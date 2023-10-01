@@ -10,6 +10,7 @@
     "pre-commit": "npm run tsc-check && npm run lint && npm run prettier"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.17",
     "@supabase/supabase-js": "^2.36.0",
     "axios": "^1.5.1",
     "next": "latest",
