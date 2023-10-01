@@ -1,0 +1,103 @@
+.buttonbox {
+    display: flex;
+    justify-content: flex-end;
+    padding: 4px;
+}
+
+.roundedbackground {
+  color: gray;
+  width: 398px;
+  height: 730px;
+  flex-shrink: 0;
+  border-radius: 32px 32px 0px 0px;
+}
+
+.rectangle {
+  color: white;
+  width: 398px;
+  height: 581px;
+  flex-shrink: 0;
+  padding-right: 22px;
+  padding-left: 22px;
+  padding-bottom: 46px;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+
+.titlebox {
+  width: 354px;
+  padding-top: 46px;
+  justify-content: flex-start;
+}
+
+.titletext {
+  color: black;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.5px;
+}
+
+.locationbox {
+  width: 354px;
+  padding-top: 8px;
+  justify-content: flex-start;
+}
+
+.locationtext {
+  color: #0d0b0b;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+}
+
+.descriptionbox {
+  width: 354px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  justify-content: flex-start;
+}
+
+.descriptiontext {
+  color: #0d0b0b;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+}
+
+.aboutbox {
+  width: 354px;
+  padding-top: 17px;
+  padding-bottom: 17px;
+  justify-content: flex-start;
+}
+
+.abouttext {
+  color: #0d0b0b;
+  font-family: sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.5px;
+}
+
+.picturebox {
+  width: 354px;
+  height: 190px;
+  flex-shrink: 0;
+}
+
+.topimagebox {
+  width: 398px; /* Adjust the width and height as needed */
+  height: 220px;
+  overflow: hidden; /* Clip the image to fit within the box */
+}
