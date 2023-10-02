@@ -78,9 +78,10 @@ export default function ExhibitPreview({
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+            
+              <div className={styles.roundedbackground}>
                 <div className={styles.buttonbox}>
-                  <div className="mt-4">
+                  
                     <button
                       type="button"
                       className="inline-flex justify-center px-4 py-2 text-sm text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 duration-300"
@@ -88,16 +89,9 @@ export default function ExhibitPreview({
                     >
                       x
                     </button>
-                  </div>
+                  
                 </div>
 
-                <Image
-                      src={bottomimage}
-                      alt="exhibit display"
-                      width={354}
-                      height={150}
-                      priority
-                    />
 
                 <div className={styles.rectangle}>
                   <div className={styles.titlebox}>
@@ -126,7 +120,22 @@ export default function ExhibitPreview({
                     />
                   </div>
                 </div>
+
+                <div className={styles.topimagebox}>
+                  <Image
+                      src={topimage}
+                      alt="exhibit display"
+                      width={398}
+                      height={800}
+                      priority
+                    />
+                </div>
+            
+
               </div>
+                
+              
+            
             </Transition.Child>
           </div>
         </Dialog>
