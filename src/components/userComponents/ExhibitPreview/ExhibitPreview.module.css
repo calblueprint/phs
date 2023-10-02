@@ -1,27 +1,52 @@
+.outercontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
 .buttonbox {
     display: flex;
     justify-content: flex-end;
-    padding: 4px;
+    padding-right: 18px;
+    padding-bottom: 156px;
+    padding-top: 10px;
 }
 
 .roundedbackground {
-  color: gray;
+  background-color: white;
   width: 398px;
   height: 730px;
-  flex-shrink: 0;
-  border-radius: 32px 32px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  vertical-align: bottom;
+  width: 100%;
+  max-width: 398px;
+  overflow: hidden;
+  text-align: left;
+  position: fixed;
+  transition-property: all;
+  transition-duration: 0.3s; /* Adjust the duration as needed */
+  transition-timing-function: ease;
+  transform: translate(0);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  border-radius: 2rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .rectangle {
-  color: white;
+background-color: white;
   width: 398px;
-  height: 581px;
+  height: 497px;
   flex-shrink: 0;
   padding-right: 22px;
   padding-left: 22px;
-  padding-bottom: 46px;
   justify-content: flex-start;
   align-content: flex-start;
+  position: relative;
 }
 
 .titlebox {
@@ -94,10 +119,15 @@
   width: 354px;
   height: 190px;
   flex-shrink: 0;
+
 }
 
 .topimagebox {
-  width: 398px; /* Adjust the width and height as needed */
-  height: 220px;
-  overflow: hidden; /* Clip the image to fit within the box */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
 }
