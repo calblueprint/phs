@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
 import React from 'react';
 import NavBar from '../../components/userComponents/navBar/navBar';
 
 function App() {
   return (
-    <div style={{ backgroundColor: 'white', height: '100vh' }}>
+    <div style={{ backgroundColor: '#ebf0e4', height: '100vh' }}>
       <NavBar />
-      <div style={{ backgroundColor: 'white', padding: '16px' }}>
-        <h1 style={{ color: 'black' }}>News Feed</h1>
+      <div style={{ padding: '16px' }}>
+        <h1 style={{ color: '#333333', fontSize: '2rem', fontWeight: 700 }}>News Feed</h1>
       </div>
     </div>
   );

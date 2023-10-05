@@ -2,61 +2,105 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 
 function NavBar() {
-    const [showMenu, setShowMenu] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
-    function handleClick() {
-        setShowMenu(!showMenu);
+  function handleClick() {
+    setShowMenu(!showMenu);
+  }
+
+  function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
+    if (event.key === 'Escape') {
+      setShowMenu(false);
     }
+  }
 
-    function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
-        if (event.key === 'Escape') {
-            setShowMenu(false);
-        }
-    };
+  return (
+    <nav
+      className="bg-[#4b711d] p-4 flex items-center justify-between"
+      style={{ padding: '1rem' }}
+    >
+      <Link href="/homePage">
+        <img
+          src="https://phs-spca.org/wp-content/uploads/2017/03/PHSLogo.jpg"
+          alt="Logo"
+          className="object-contain"
+          style={{ maxHeight: '100%', maxWidth: '50%' }}
+        />
+      </Link>
+      <div className="flex-grow" />
+      <button
+        type="button"
+        className="w-10 h-10"
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
+        tabIndex={0}
+        aria-label="Menu"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="46"
+          height="46"
+          viewBox="0 0 46 46"
+          fill="none"
+        >
+          <path
+            d="M9.58331 13.4167H36.4166"
+            stroke="white"
+            strokeWidth="3.83333"
+            strokeLinecap="round"
+          />
+          <path
+            d="M9.58331 23H36.4166"
+            stroke="white"
+            strokeWidth="3.83333"
+            strokeLinecap="round"
+          />
+          <path
+            d="M9.58331 32.5833H36.4166"
+            stroke="white"
+            strokeWidth="3.83333"
+            strokeLinecap="round"
+          />
+        </svg>
+      </button>
 
-    return (
-        <nav className="bg-gray-100 p-4 flex items-center justify-between">
-            <Link href="/toursHomescreenPage">
-                <img
-                    src="logo.png"
-                    alt="Logo"
-                    className="w-10 h-10"
-                />
+      {showMenu && (
+        <div className="fixed top-20 right-0 h-full w-3/5 bg-[#ebf0e4] shadow-lg">
+            <h1 className="text-xl text-black font-bold p-4">WELCOME</h1>
+          <ul className="p-4">
+            <Link href="/homePage" className="block mb-2 text-black">
+              Home
             </Link>
-            <div className="flex-grow" />
-            <button
-                type="button"
-                className="w-10 h-10 bg-gray-500"
-                onClick={handleClick}
-                onKeyDown={handleKeyDown}
-                tabIndex={0}
-            />
-            
-            {showMenu && (
-                <div
-                    className="fixed top-0 right-0 h-full w-1/4 bg-white shadow-lg"
-                    onClick={() => setShowMenu(false)}
-                    onKeyDown={handleKeyDown}
-                    tabIndex={0}
-                    role="button"
-                >
-                    <div className="fixed top-0 right-0 h-full w-1/4 bg-white shadow-lg">
-                        <h1 className="text-xl text-black font-bold p-4">Plan Your Visit</h1>
-                        <ul className="p-4">
-                            <Link href="/hoursAdmissionPage" className="block mb-2 text-black">Hours & Admission</Link>
-                            <Link href="/interactiveMapPage" className="block mb-2 text-black">Interactive Map</Link>
-                            <Link href="/qrCodeTourPage" className="block text-black">QR Code Tour</Link>
-                        </ul>
-                        <h1 className="text-xl text-black font-bold p-4">Learn & Explore</h1>
-                        <ul className="p-4">
-                            <Link href="/collectionsPage" className="block mb-2 text-black">Collections</Link>
-                            <Link href="/newsFeedPage" className="block mb-2 text-black">News Feed</Link>
-                        </ul>
-                    </div>
-                </div>
-            )}
-        </nav>
-    );
+          </ul>
+
+            <h1 className="text-xl text-black font-bold p-4">VISIT</h1>
+          <ul className="p-4">
+            <Link href="/hoursAdmissionPage" className="block mb-2 text-black">
+              Hours & Admission
+            </Link>
+            <Link href="/featuredToursPage" className="block mb-2 text-black">
+              Featured Tours
+            </Link>
+            <Link href="/siteMapPage" className="block mb-2 text-black">
+              Site Map
+            </Link>
+            <Link href="/qrCodeTourPage" className="block text-black">
+              QR Code Tour
+            </Link>
+          </ul>
+          <h1 className="text-xl text-black font-bold p-4">LEARN & EXPLORE</h1>
+          <ul className="p-4">
+            <Link href="/collectionsPage" className="block mb-2 text-black">
+              Collections
+            </Link>
+            <Link href="/newsFeedPage" className="block mb-2 text-black">
+              News Feed
+            </Link>
+          </ul>
+        </div>
+      )}
+    </nav>
+  );
 }
 
 export default NavBar;
