@@ -1,8 +1,15 @@
-import Image from 'next/image'
+import Image from "next/image";
+import ExhibitPreview from "@/components/userComponents/ExhibitPreview/ExhibitPreview";
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <ExhibitPreview
+        name="Exhibit Name"
+        location="location description"
+        description="description"
+        about="About this exhibit"
+      />
 
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
         <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
@@ -16,7 +23,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            By{' '}
+            By{" "}
             <Image
               src="/vercel.svg"
               alt="Vercel Logo"
@@ -47,8 +54,13 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
+<<<<<<< HEAD
           <h2 className="mb-3 text-2xl font-semibold">
             Docs{' '}
+=======
+          <h2 className={`mb-3 text-2xl font-semibold`}>
+            Docs{" "}
+>>>>>>> 56f0b99 (draft of exhibit preview modal. i'm just commiting for now so i can pull from the main again)
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>
@@ -64,8 +76,13 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
+<<<<<<< HEAD
           <h2 className="mb-3 text-2xl font-semibold">
             Learn{' '}
+=======
+          <h2 className={`mb-3 text-2xl font-semibold`}>
+            Learn{" "}
+>>>>>>> 56f0b99 (draft of exhibit preview modal. i'm just commiting for now so i can pull from the main again)
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>
@@ -81,8 +98,13 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
+<<<<<<< HEAD
           <h2 className="mb-3 text-2xl font-semibold">
             Templates{' '}
+=======
+          <h2 className={`mb-3 text-2xl font-semibold`}>
+            Templates{" "}
+>>>>>>> 56f0b99 (draft of exhibit preview modal. i'm just commiting for now so i can pull from the main again)
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>
@@ -98,8 +120,13 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
+<<<<<<< HEAD
           <h2 className="mb-3 text-2xl font-semibold">
             Deploy{' '}
+=======
+          <h2 className={`mb-3 text-2xl font-semibold`}>
+            Deploy{" "}
+>>>>>>> 56f0b99 (draft of exhibit preview modal. i'm just commiting for now so i can pull from the main again)
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>
@@ -110,5 +137,5 @@ export default function Home() {
         </a>
       </div>
     </main>
-  )
+  );
 }

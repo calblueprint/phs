@@ -1,16 +1,13 @@
-
-import React from 'react';
-import ExhibitPreview from '@/components/userComponents/ExhibitPreview/ExhibitPreview';
+import Image from "next/image";
+import ExhibitPreview from "@/components/userComponents/ExhibitPreview/ExhibitPreview";
 
 export default function Home() {
   return (
     <ExhibitPreview
-      name="Exhibit Name"
-      location="Location description here"
-      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+      name="Exhibit Name Ryan"
+      location="location description"
+      description="description"
       about="About this exhibit"
-      topimage="/Rectangle 12.png"
-      bottomimage="/Rectangle 10.png"
     />
   );
 }
