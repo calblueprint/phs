@@ -19,7 +19,7 @@ function NavBar() {
       className="bg-[#4b711d] p-4 flex items-center justify-between"
       style={{ padding: '1rem' }}
     >
-      <Link href="/homePage">
+      <Link href="/">
         <img
           src="https://phs-spca.org/wp-content/uploads/2017/03/PHSLogo.jpg"
           alt="Logo"
@@ -68,7 +68,7 @@ function NavBar() {
         <div className="fixed top-20 right-0 h-full w-3/5 bg-[#ebf0e4] shadow-lg">
             <h1 className="text-xl text-black font-bold p-4">WELCOME</h1>
           <ul className="p-4">
-            <Link href="/homePage" className="block mb-2 text-black">
+            <Link href="/" className="block mb-2 text-black">
               Home
             </Link>
           </ul>
