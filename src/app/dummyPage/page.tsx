@@ -1,6 +1,6 @@
 
 import React from 'react';
-import ExhibitPreview from '@/components/userComponents/ExhibitPreview/ExhibitPreview';
+import ExhibitPreview from '../../components/userComponents/ExhibitPreview/ExhibitPreview';
 
 export default function Home() {
   return (
