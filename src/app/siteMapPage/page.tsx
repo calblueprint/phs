@@ -44,7 +44,7 @@ function MapPage() {
               ))}
           </div>
         </div>
-        <div className=" w-full pr-6 flex h-2/3 mb-6">
+        <div className=" w-full pr-6 flex h-2/3 mb-8">
           <SiteMap />
         </div>
       </div>
