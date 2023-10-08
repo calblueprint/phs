@@ -30,6 +30,7 @@ function SiteMap() {
       zoomControl={false}
       scrollWheelZoom
       style={{ height: '75vh', width: '100%', minHeight: '544px' }}
+      key={new Date().getTime()}
     >
       <ZoomControl position="bottomright" />
       <TileLayer {...tileLayer} />
