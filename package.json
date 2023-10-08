@@ -11,10 +11,12 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
-    "@supabase/supabase-js": "^2.36.0",
+    "@supabase/supabase-js": "^2.38.0",
     "axios": "^1.5.1",
+    "bootstrap": "^5.3.2",
     "next": "latest",
     "react": "latest",
+    "react-bootstrap": "^2.9.0",
     "react-dom": "latest"
   },
   "devDependencies": {
