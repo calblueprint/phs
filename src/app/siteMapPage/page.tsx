@@ -3,6 +3,7 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 import NavBar from '../../components/userComponents/navBar/navBar';
+import FilterButton from '../../components/userComponents/FilterButton/FilterButton';
 
 const filterButtonContent: string[] = [
   'Buildings & Services',
@@ -19,7 +20,6 @@ const SiteMap = dynamic(
 );
 
 function MapPage() {
-  // TODO: ask about expected styling when button selected – able to filter on multiple conds?
   return (
     <>
       <NavBar />
@@ -29,18 +29,7 @@ function MapPage() {
           <div className="inline-flex flex-row items-center gap-x-2.5 w-full overflow-x-scroll no-scrollbar">
             {filterButtonContent &&
               filterButtonContent.map(text => (
-                <button
-                  key={text}
-                  type="button"
-                  className="bg-[#4b711d]/[0.13] text-white py-2 px-4 rounded-full whitespace-nowrap"
-                  style={{
-                    border: '1px solid #4B711D',
-                    flexWrap: 'nowrap',
-                    color: '#4B711D',
-                  }}
-                >
-                  {text}
-                </button>
+                <FilterButton key={text} content={text} />
               ))}
           </div>
         </div>
