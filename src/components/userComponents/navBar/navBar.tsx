@@ -8,7 +8,7 @@ function NavBar() {
     setShowMenu(!showMenu);
   }
 
-  function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
+  function handleKeyDown(event: React.KeyboardEvent<HTMLButtonElement>) {
     if (event.key === 'Escape') {
       setShowMenu(false);
     }
@@ -65,7 +65,7 @@ function NavBar() {
       </button>
 
       {showMenu && (
-        <div className="fixed top-20 right-0 h-full w-3/5 bg-[#ebf0e4] shadow-lg">
+        <div className="fixed top-20 right-0 h-full w-3/5 bg-[#ebf0e4] shadow-lg z-[9999]">
             <h1 className="text-xl text-black font-bold p-4">WELCOME</h1>
           <ul className="p-4">
             <Link href="/" className="block mb-2 text-black">
