@@ -1,100 +1,50 @@
-import './App.css'
-import { fetchDisplays, createDisplay, updateDisplay, deleteDisplay } from "./fetch"
-import supabase from "./createClient"
+"use client";
+import 'crypto';
 import React, { useEffect, useState } from 'react';
-import {Display} from "./scheme"
+import { fetchDisplays, insertDisplay, updateDisplay } from '@/supabase/queries/fetch';
+import supabase from '@/supabase/client';
+import { Display } from '@/types/schemaTypes';
+import { UUID } from 'crypto';
 
-export default function App() {
-	const [displays, setDisplays] = useState([]);
-
+export default function Home() {
+  const [displays, setDisplays] = useState<Display[]>([]);
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const data = await fetchDisplays();
-        setDisplays(data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
+    (async () => {
+      console.log("reach")
+      const allDisplays = await fetchDisplays();
+      setDisplays(allDisplays);
 
-    fetchData();
+      const mockDisplay = {
+        title: 'First',
+        description: 'Last',
+        coordinates: "d",
+        update: "lm",
+        creation: "jcc",
+      };
+
+      await insertDisplay(mockDisplay);
+
+      await updateDisplay(mockDisplay.title, {
+        description: "100", });
+    })();
   }, []);
 
-  const handleDeleteDisplay = async (id) => {
-    try {
-	  console.log("broski")
-      await deleteDisplay(id);
-      // After deleting, refresh the displays list
-      const data = await fetchDisplays();
-      setDisplays(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleCreateDisplay = async () => {
-    const newDisplayData = {
-      // Define your display data here
-      // For example:
-      title: 'New Display',
-      description: 'This is a new display',
-	  coordinates: '11',
-	  updated: 'ds',
-	  creation: 'akdfs'
-    };
-
-    try {
-      await createDisplay(newDisplayData);
-      // After creating, refresh the displays list
-      const data = await fetchDisplays();
-      setDisplays(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleUpdateDisplay = async (id) => {
-    const updatedDisplayInfo = {
-      // Define the updated display info here
-      // For example, to update the title:
-      id: id,
-      title: 'Updated Display2 Title',
-      description: 'Updated Display description',
-	  coordinates: "333"
-    };
-
-    try {
-      await updateDisplay(id, updatedDisplayInfo);
-	  console.log("mee")
-	// Pass the 'id' as the first argument
-      // After updating, refresh the displays list
-      const data = await fetchDisplays();
-      setDisplays(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  
-	
-	
-
   return (
-	  <div>
+    <div>
       <h1>Displays</h1>
       <ul>
-        {displays.map((display) => (
-<li key={display.id}>
-            <div>Title: {display.title}</div>
-            <div>Description: {display.description}</div>
-            <div>Coordinates: {display.coordinates}</div>
-            <div>Updated: {display.updated}</div>
-            <div>Creation: {display.creation}</div>
-            <button onClick={() => handleDeleteDisplay(display.id)}>Delete</button>
-            <button onClick={() => handleUpdateDisplay(display.id)}>Update</button>
+        {displays.map(display => (
+          <li key={display.id}>
+            <h2>title: {display.title}</h2>
+            <p>Description: {display.description}</p>
+            <p>Coordinates: {display.coordinates}</p>
+            <p>updates: {display.updated}</p>
+            <p>creation: {display.creation}</p>
           </li>
         ))}
       </ul>
-      <button onClick={handleCreateDisplay}>Create Display</button>
     </div>
+
+
   );
 }
