@@ -1,0 +1,50 @@
+"use client";
+import 'crypto';
+import React, { useEffect, useState } from 'react';
+import { fetchDisplays, insertDisplay, updateDisplay } from '@/supabase/queries/fetch';
+import supabase from '@/supabase/client';
+import { Display } from '@/types/schemaTypes';
+import { UUID } from 'crypto';
+
+export default function Home() {
+  const [displays, setDisplays] = useState<Display[]>([]);
+  useEffect(() => {
+    (async () => {
+      console.log("reach")
+      const allDisplays = await fetchDisplays();
+      setDisplays(allDisplays);
+
+      const mockDisplay = {
+        title: 'First',
+        description: 'Last',
+        coordinates: "d",
+        update: "lm",
+        creation: "jcc",
+      };
+
+      await insertDisplay(mockDisplay);
+
+      await updateDisplay(mockDisplay.title, {
+        description: "100", });
+    })();
+  }, []);
+
+  return (
+    <div>
+      <h1>Displays</h1>
+      <ul>
+        {displays.map(display => (
+          <li key={display.id}>
+            <h2>title: {display.title}</h2>
+            <p>Description: {display.description}</p>
+            <p>Coordinates: {display.coordinates}</p>
+            <p>updates: {display.updated}</p>
+            <p>creation: {display.creation}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+
+  );
+}
