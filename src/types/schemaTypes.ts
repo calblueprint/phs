@@ -1,8 +1,7 @@
-
 export interface Display {
-  title: string;
-  description: string;
-  coordinates: string;
-  updated: number;
-  creation: string;
+title: any;
+description: any;
+coordinates: any;
+updated: any;
+creation: any;
 }
