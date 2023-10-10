@@ -12,15 +12,9 @@
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@supabase/supabase-js": "^2.38.0",
-    "axios": "^1.5.1",
-    "leaflet": "^1.9.4",
-    "bootstrap": "^5.3.2",
-    "crypto": "^1.0.1",
     "next": "latest",
     "react": "latest",
-    "react-bootstrap": "^2.9.0",
-    "react-dom": "latest",
-    "react-leaflet": "^4.2.1"
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@calblueprint/eslint-config-react": "^0.0.3",
