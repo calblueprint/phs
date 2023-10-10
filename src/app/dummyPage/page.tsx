@@ -8,9 +8,10 @@ export default function Home() {
       name="Exhibit Name"
       location="Location description here"
       description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-      about="About this exhibit"
+      about="Click below to learn more"
       topimage="/Rectangle 12.png"
       bottomimage="/Rectangle 10.png"
+      href="/dummyPage2"
     />
   );
 }

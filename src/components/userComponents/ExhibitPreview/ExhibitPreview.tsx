@@ -3,6 +3,7 @@
 import React, { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './ExhibitPreview.module.css';
 
 export default function ExhibitPreview({
@@ -12,6 +13,7 @@ export default function ExhibitPreview({
   about,
   topimage,
   bottomimage,
+  href,
 }: {
   name: string;
   location: string;
@@ -19,6 +21,7 @@ export default function ExhibitPreview({
   about: string;
   topimage: string;
   bottomimage: string;
+  href: string;
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -110,6 +113,7 @@ export default function ExhibitPreview({
                     <h1 className={styles.abouttext}>{about}</h1>
                   </div>
 
+                <Link href={href}>
                   <div className={styles.picturebox}>
                     <Image
                       src={bottomimage}
@@ -119,8 +123,11 @@ export default function ExhibitPreview({
                       priority
                     />
                   </div>
+                </Link>
                 </div>
-
+              
+              
+              
                 <div className={styles.topimagebox}>
                   <Image
                       src={topimage}
@@ -130,8 +137,7 @@ export default function ExhibitPreview({
                       priority
                     />
                 </div>
-            
-
+              
               </div>
                 
               
