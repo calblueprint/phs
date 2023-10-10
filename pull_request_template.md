@@ -4,17 +4,25 @@
 
 ## Coverage 🙆‍♀️
 
-_use this section to break up your task into submodules and track progress_
+_use this section to break up your task into submodules and track progress, copy from Linear and mark what was completed_
 
 - [ ] ...
 - [ ] ...
 
-## How can the reviewer test your code? 👩‍💻
+## How can the reviewer test your code?  Where is this sprint located in the codebase? 👩‍💻
+
+## REQUIRED: Link a short video demo of the feature you have added. 👩‍💻
+
 
 ## Any bugs you encountered or still having trouble with? 🐛
 
 ## Resources 📔
+_REQUIREMENTS in this section: 
+Write down any new dependencies or packages and link to their documentation.
+If you ran into bugs, link any stack overflow or online resources that helped you unblock yourself.
+link online resources and related PRs
+_
 
-_link online resources and related PRs_
 
+## ❗IF this sprint was marked as FRONTEND on linear, cc Claire Wang
 🏚 cc: @andreisito
