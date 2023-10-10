@@ -21,6 +21,7 @@ export default function ExhibitPreview({
   bottomimage: string;
 }) {
   const [isOpen, setIsOpen] = useState(false);
+  
 
   const closeModal = () => {
     setIsOpen(false);
