@@ -21,4 +21,5 @@ _REQUIREMENTS in this section: Link all relevant online resources and related PR
 
 
 ## ❗IF this sprint was marked as FRONTEND on linear, cc Claire Wang
+_REMEMBER: once PR is made, also request a PR review Andrei, CC'ing is NOT enough!_
 🏚 cc: @andreisito
