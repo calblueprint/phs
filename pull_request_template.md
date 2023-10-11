@@ -17,7 +17,11 @@ _use this section to break up your task into submodules and track progress, copy
 ## Any bugs you encountered or still having trouble with? 🐛
 
 ## Resources 📔
-_REQUIREMENTS in this section: Link all relevant online resources and related PRs.  Write down any new dependencies or packages and link to their documentation.  If you ran into bugs, link any stack overflow or online resources that helped you unblock yourself_
+_REQUIREMENTS in this section: 
+Write down any new dependencies or packages and link to their documentation.
+If you ran into bugs, link any stack overflow or online resources that helped you unblock yourself.
+link online resources and related PRs
+_
 
 
 ## ❗IF this sprint was marked as FRONTEND on linear, cc Claire Wang
