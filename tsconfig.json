@@ -33,6 +33,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "lint-staged.config.js"
-  ],
+, "src/app/supabaseCRUD2/supabaseClient.js", "src/app/supabaseCRUD/supabaseClient.js"  ],
   "exclude": ["node_modules"]
 }

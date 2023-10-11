@@ -1,12 +1,11 @@
-'use client';
+import './App.css'
+import { fetchDisplays, createDisplay, updateDisplay, deleteDisplay } from "./fetch"
+import supabase from "./createClient"
+import React, { useEffect, useState } from 'react';
+import {Display} from "./scheme"
 
-import React, {useEffect, useState} from 'react';
-import ExhibitPreview from '../../components/userComponents/ExhibitPreview/ExhibitPreview';
-import { fetchDisplays, deleteDisplay, createDisplay, updateDisplay } from '@/supabase/queries/queries';
-// import { Display } from '@/types/schemaTypes';
-
-export default function Home() {
-  const [displays, setDisplays] = useState([]);
+export default function App() {
+	const [displays, setDisplays] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -23,6 +22,7 @@ export default function Home() {
 
   const handleDeleteDisplay = async (id) => {
     try {
+	  console.log("broski")
       await deleteDisplay(id);
       // After deleting, refresh the displays list
       const data = await fetchDisplays();
@@ -34,12 +34,13 @@ export default function Home() {
 
   const handleCreateDisplay = async () => {
     const newDisplayData = {
-
+      // Define your display data here
+      // For example:
       title: 'New Display',
       description: 'This is a new display',
-      coordinates: '11',
-      updated: 'ds',
-      creation: 'akdfs'
+	  coordinates: '11',
+	  updated: 'ds',
+	  creation: 'akdfs'
     };
 
     try {
@@ -56,7 +57,7 @@ export default function Home() {
     const updatedDisplayInfo = {
       // Define the updated display info here
       // For example, to update the title:
-      id,
+      id: id,
       title: 'Updated Display2 Title',
       description: 'Updated Display description',
 	  coordinates: "333"
@@ -64,7 +65,7 @@ export default function Home() {
 
     try {
       await updateDisplay(id, updatedDisplayInfo);
-
+	  console.log("mee")
 	// Pass the 'id' as the first argument
       // After updating, refresh the displays list
       const data = await fetchDisplays();
@@ -73,23 +74,27 @@ export default function Home() {
       console.error(error);
     }
   };
+  
+	
+	
+
   return (
-  <div>
-    <h1>Displays</h1>
-    <ul>
-      {displays.map((display) => (
+	  <div>
+      <h1>Displays</h1>
+      <ul>
+        {displays.map((display) => (
 <li key={display.id}>
-          <div>Title: {display.title}</div>
-          <div>Description: {display.description}</div>
-          <div>Coordinates: {display.coordinates}</div>
-          <div>Updated: {display.updated}</div>
-          <div>Creation: {display.creation}</div>
-          <button onClick={() => handleDeleteDisplay(display.id)}>Delete</button>
-          <button onClick={() => handleUpdateDisplay(display.id)}>Update</button>
-        </li>
+            <div>Title: {display.title}</div>
+            <div>Description: {display.description}</div>
+            <div>Coordinates: {display.coordinates}</div>
+            <div>Updated: {display.updated}</div>
+            <div>Creation: {display.creation}</div>
+            <button onClick={() => handleDeleteDisplay(display.id)}>Delete</button>
+            <button onClick={() => handleUpdateDisplay(display.id)}>Update</button>
+          </li>
         ))}
-    </ul>
-    <button onClick={handleCreateDisplay}>Create Display</button>
+      </ul>
+      <button onClick={handleCreateDisplay}>Create Display</button>
     </div>
   );
 }
