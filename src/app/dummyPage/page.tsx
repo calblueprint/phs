@@ -1,9 +1,9 @@
 'use client';
 
 import React, {useEffect, useState} from 'react';
-import ExhibitPreview from '../../components/userComponents/ExhibitPreview/ExhibitPreview';
+// import ExhibitPreview from '../../components/userComponents/ExhibitPreview/ExhibitPreview';
 import { fetchDisplays, deleteDisplay, createDisplay, updateDisplay } from '@/supabase/queries/queries';
-// import { Display } from '@/types/schemaTypes';
+
 const styles = {
   container: {
     textAlign: 'center',
