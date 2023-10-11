@@ -1,4 +1,3 @@
-import React from 'react'
 import './globals.css';
 import React from 'react';
 import type { Metadata } from 'next';
@@ -29,7 +28,7 @@ export default function RootLayout({
           src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
           crossOrigin=""
-         />
+        />
       </head>
       <body className={inter.className}>{children}</body>
     </html>
