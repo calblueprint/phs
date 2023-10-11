@@ -36,10 +36,13 @@ export default function Home() {
     const newDisplayData = {
 
       title: 'New Display',
-      description: 'This is a new display',
-      coordinates: '11',
-      updated: 'ds',
-      creation: 'akdfs'
+      coordinates: {
+        "lat": 37.25323057233323,
+        "lng": -122.08556629289924
+      },
+      created_at: 'now',
+      description: 'see if this creates',
+      updated_at: 'later'
     };
 
     try {
@@ -59,7 +62,10 @@ export default function Home() {
       id,
       title: 'Updated Display2 Title',
       description: 'Updated Display description',
-	  coordinates: "333"
+      coordinates: {
+        "lat": 40.25323057233323,
+        "lng": -122.08556629289924
+      }
     };
 
     try {
@@ -82,8 +88,8 @@ export default function Home() {
           <div>Title: {display.title}</div>
           <div>Description: {display.description}</div>
           <div>Coordinates: {display.coordinates}</div>
-          <div>Updated: {display.updated}</div>
-          <div>Creation: {display.creation}</div>
+          <div>Updated: {display.updated_at}</div>
+          <div>Creation: {display.created_at}</div>
           <button onClick={() => handleDeleteDisplay(display.id)}>Delete</button>
           <button onClick={() => handleUpdateDisplay(display.id)}>Update</button>
         </li>
