@@ -7,9 +7,11 @@ import { Database } from '@/types/supabase';
 
 export async function fetchDisplays() {
     const { data, error } = await supabase.from('displays').select('*');
+    console.log("here????");
     if (error) {
         throw new Error(`An error occurred trying to read displays: ${error}`);
       }
+      console.log(data);
       return data;
 }
 
