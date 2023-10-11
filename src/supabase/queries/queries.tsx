@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import supabase from '../client';
 import { Display } from '@/types/schemaTypes';
+
 import { Database } from '@/types/supabase';
 
 export async function fetchDisplays() {
@@ -12,12 +13,15 @@ export async function fetchDisplays() {
         throw new Error(`An error occurred trying to read displays: ${error}`);
       }
       console.log(data);
+
       return data;
 }
 
   
 export async function deleteDisplay(id) {
+
     const { data, error } = await supabase.from('displays').delete().eq('id', id);
+
     if (error) {
         throw new Error(`An error occurred trying to delete displays: ${error}`);
     }
@@ -26,8 +30,10 @@ export async function deleteDisplay(id) {
     }
 }
 
+
 export async function createDisplay(displayData: Database) {
   const { data, error } = await supabase.from('displays').upsert([displayData]);
+
   if (error) {
     throw new Error(`An error occurred trying to create displays: ${error.message}`);
   }
@@ -43,10 +49,12 @@ export async function createDisplay(displayData: Database) {
 //       throw new Error(`Error inserting profile data: ${error.message}`);
 //     }
 //   }
+
 export async function updateDisplay(id, updatedInfo: Partial<Database>) {
 	
     const { data, error } = await supabase
     .from('displays').update(updatedInfo).eq('id', updatedInfo.id);
+
 	
     if (error) {
         throw new Error(`Error updating display data: ${error.message}`);
