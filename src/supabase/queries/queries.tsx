@@ -1,10 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import { Database } from '../../types/supabase';
 import supabase from '../client';
-import { Display } from '@/types/schemaTypes';
-
-import { Database } from '@/types/supabase';
 
 export async function fetchDisplays() {
     const { data, error } = await supabase.from('displays').select('*');
@@ -18,7 +15,7 @@ export async function fetchDisplays() {
 }
 
   
-export async function deleteDisplay(id) {
+export async function deleteDisplay(id: any) {
 
     const { data, error } = await supabase.from('displays').delete().eq('id', id);
 

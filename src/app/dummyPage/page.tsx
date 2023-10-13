@@ -1,9 +1,10 @@
 'use client';
 
 import React, {useEffect, useState} from 'react';
+import { createDisplay, fetchDisplays, updateDisplay } from '../../supabase/queries/queries';
 
 // import ExhibitPreview from '../../components/userComponents/ExhibitPreview/ExhibitPreview';
-import { fetchDisplays, deleteDisplay, createDisplay, updateDisplay } from '@/supabase/queries/queries';
+
 
 const styles = {
   container: {
@@ -107,7 +108,7 @@ export default function Home() {
     };
 
     try {
-      await createDisplay(newDisplayData);
+      await createDisplay(newDisplayData );
       // After creating, refresh the displays list
       const data = await fetchDisplays();
       setDisplays(data);
