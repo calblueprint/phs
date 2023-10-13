@@ -142,48 +142,30 @@ export default function Home() {
     }
   };
   return (
-
-  <div style={styles.container}>
-    <h1 style={styles.header}>Displays</h1>
-    <ul style={styles.list}>
-      {displays.map((display) => (
+    <div style={styles.container}>
+      <h1 style={styles.header}>Displays</h1>
+      <ul style={styles.list}>
+        {displays.map((display) => (
           <li style={styles.listItem} key={display.id}>
-          <div style={styles.info}>
-            <div style={styles.title}>Title: {display.title}</div>
-            <div style={styles.description}>Description: {display.description}</div>
-            <div style={styles.coordinates}>
-              Coordinates: Latitude: {display.coordinates.lat}, Longitude: {display.coordinates.lng}
+            <div style={styles.info}>
+              <div style={styles.title}>Title: {display.title}</div>
+              <div style={styles.description}>Description: {display.description}</div>
+              <div style={styles.coordinates}>
+                Coordinates: Latitude: {display.coordinates.lat}, Longitude: {display.coordinates.lng}
+              </div>
+              <div style={styles.updated}>Updated: {display.updated_at}</div>
+              <div style={styles.creation}>Creation: {display.created_at}</div>
+              <button onClick={() => handleDeleteDisplay(display.id)} style={styles.deleteButton}>
+                Delete
+              </button>
+              <button onClick={() => handleUpdateDisplay(display.id)} style={styles.updateButton}>
+                Update
+              </button>
             </div>
-            <div style={styles.updated}>Updated: {display.updated_at}</div>
-            <div style={styles.creation}>Creation: {display.created_at}</div>
-            <button onClick={() => handleDeleteDisplay(display.id)} style={styles.deleteButton}>
-              Delete
-            </button>
-            <button onClick={() => handleUpdateDisplay(display.id)} style={styles.updateButton}>
-              Update
-            </button>
-          </div>
-        </li>
+          </li>
         ))}
-    </ul>
-    {/* <button onClick={handleCreateDisplay}>Create Display</button> */}
-
-  <div>
-    <h1>Displays</h1>
-    <ul>
-      {displays.map((display) => (
-<li key={display.id}>
-          <div>Title: {display.title}</div>
-          <div>Description: {display.description}</div>
-          <div>Coordinates: {display.coordinates}</div>
-          <div>Updated: {display.updated}</div>
-          <div>Creation: {display.creation}</div>
-          <button onClick={() => handleDeleteDisplay(display.id)}>Delete</button>
-          <button onClick={() => handleUpdateDisplay(display.id)}>Update</button>
-        </li>
-        ))}
-    </ul>
-    <button onClick={handleCreateDisplay}>Create Display</button>
+      </ul>
+      <button onClick={handleCreateDisplay}>Create Display</button>
     </div>
   );
 }
