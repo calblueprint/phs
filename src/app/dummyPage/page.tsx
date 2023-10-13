@@ -1,6 +1,7 @@
 'use client';
 
 import React, {useEffect, useState} from 'react';
+
 // import ExhibitPreview from '../../components/userComponents/ExhibitPreview/ExhibitPreview';
 import { fetchDisplays, deleteDisplay, createDisplay, updateDisplay } from '@/supabase/queries/queries';
 
@@ -62,6 +63,7 @@ const styles = {
     cursor: 'pointer',
   },
 };
+
 
 export default function Home() {
   const [displays, setDisplays] = useState([]);
@@ -125,6 +127,7 @@ export default function Home() {
         "lat": 40.25323057233323,
         "lng": -122.08556629289924
       }
+
     };
 
     try {
@@ -139,6 +142,7 @@ export default function Home() {
     }
   };
   return (
+
   <div style={styles.container}>
     <h1 style={styles.header}>Displays</h1>
     <ul style={styles.list}>
@@ -163,6 +167,23 @@ export default function Home() {
         ))}
     </ul>
     {/* <button onClick={handleCreateDisplay}>Create Display</button> */}
+
+  <div>
+    <h1>Displays</h1>
+    <ul>
+      {displays.map((display) => (
+<li key={display.id}>
+          <div>Title: {display.title}</div>
+          <div>Description: {display.description}</div>
+          <div>Coordinates: {display.coordinates}</div>
+          <div>Updated: {display.updated}</div>
+          <div>Creation: {display.creation}</div>
+          <button onClick={() => handleDeleteDisplay(display.id)}>Delete</button>
+          <button onClick={() => handleUpdateDisplay(display.id)}>Update</button>
+        </li>
+        ))}
+    </ul>
+    <button onClick={handleCreateDisplay}>Create Display</button>
     </div>
   );
 }
