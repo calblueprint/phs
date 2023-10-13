@@ -1,7 +1,7 @@
 'use client';
 
 import { LatLngExpression } from 'leaflet';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   LayersControl,
   MapContainer,
@@ -10,6 +10,7 @@ import {
   Popup,
   ZoomControl,
 } from 'react-leaflet';
+import { fetchDisplays } from '@/supabase/queries/queries';
 
 const center: LatLngExpression = {
   lat: 37.25323057233323,
@@ -23,26 +24,47 @@ const tileLayer: { attribution: string; url: string } = {
 };
 
 function SiteMap() {
+  const [displays, setDisplays] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await fetchDisplays();
+        setDisplays(data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, []);
+  useEffect(() => {
+    console.log("Displays in useEffect:", displays);
+  }, [displays]);
   return (
     <MapContainer
       center={center}
-      zoom={18}
+      zoom={6}
       zoomControl={false}
       scrollWheelZoom
       style={{ height: '75vh', width: '100%', minHeight: '544px' }}
-      key={new Date().getTime()}
-    >
+      key={new Date().getTime()}>
       <ZoomControl position="bottomright" />
       <TileLayer {...tileLayer} />
-      <LayersControl position="topright">
-        <LayersControl.Overlay name="Marker with popup">
-          <Marker position={center}>
-            <Popup>
-              Populate the popups here <br /> Add new control overlays for
-              different locations
-            </Popup>
-          </Marker>
-        </LayersControl.Overlay>
+        <LayersControl position="topright">
+        {displays.map((display) => (
+            <LayersControl.Overlay name={display.title}>
+                  <Marker
+                    key={display.id} 
+                    position={{
+                      lat: display.coordinates.lat,
+                      lng: display.coordinates.lng
+                    }}
+                  >
+                    <Popup>
+                      {display.title} <br /> {display.description}
+                    </Popup>
+                  </Marker> 
+            </LayersControl.Overlay> ))}
       </LayersControl>
     </MapContainer>
   );
