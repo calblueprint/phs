@@ -101,9 +101,9 @@ export default function Home() {
         "lat": 37.25323057233323,
         "lng": -122.08556629289924
       },
-      created_at: 'now',
+      created_at: new Date('2023-10-13T12:34:56Z'),
       description: 'see if this creates',
-      updated_at: 'later'
+      updated_at: new Date('2024-10-13T12:34:56Z')
     };
 
     try {
