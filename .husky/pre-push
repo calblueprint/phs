@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+. "$(dirname -- "$0")/../.husky/husky.sh"
 
 # Get the list of files being pushed
 files_changed=$(git diff --staged --name-only)
