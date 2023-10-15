@@ -17,7 +17,7 @@ function NavBar() {
   return (
     <nav
       className="bg-[#4b711d] p-4 flex items-center justify-between"
-      style={{ padding: '1rem' }}
+      style={{ padding: '1rem', position: 'sticky', top: 0 }}
     >
       <Link href="/">
         <img
