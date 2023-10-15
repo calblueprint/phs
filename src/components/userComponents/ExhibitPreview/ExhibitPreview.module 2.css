@@ -1,15 +1,15 @@
 .outercontainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .buttonbox {
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 18px;
-    padding-bottom: 156px;
-    padding-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 18px;
+  padding-bottom: 156px;
+  padding-top: 10px;
 }
 
 .roundedbackground {
@@ -38,7 +38,7 @@
 }
 
 .rectangle {
-background-color: white;
+  background-color: white;
   width: 398px;
   height: 497px;
   flex-shrink: 0;
@@ -119,15 +119,14 @@ background-color: white;
   width: 354px;
   height: 190px;
   flex-shrink: 0;
-
 }
 
 .topimagebox {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }

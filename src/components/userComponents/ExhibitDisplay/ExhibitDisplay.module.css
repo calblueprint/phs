@@ -1,124 +1,124 @@
 .outercontainer {
-    background-color: white;
-    width: 100%;
-    height: 100%;
+  background-color: white;
+  width: 100%;
+  height: 100%;
 }
 
 .logobox {
-    background-color: darkgray;
-    width: 100%;
-    height: 93px;
-    padding: 21px;
-    flex-shrink: 0;
+  background-color: darkgray;
+  width: 100%;
+  height: 93px;
+  padding: 21px;
+  flex-shrink: 0;
 }
 
 .logo {
-    background-color: white;
-    width: 141px;
-    height: 52px;
-    flex-shrink: 0;
+  background-color: white;
+  width: 141px;
+  height: 52px;
+  flex-shrink: 0;
 }
 
 .imagebox {
-    width: 100%;
-    height: 224px;
-    flex-shrink: 0;
-    justify-content: center;
+  width: 100%;
+  height: 224px;
+  flex-shrink: 0;
+  justify-content: center;
 }
 
 .bottombox {
-    background-color: white;
-    width: 100%;
-    height: 1073px;
-    padding: 18px;
+  background-color: white;
+  width: 100%;
+  height: 1073px;
+  padding: 18px;
 }
 
 .namebox {
-    width: 390x;
-    height: 77px;
-    padding-top: 37px;
-    padding-bottom: 11px;
-    justify-content: flex-start;
+  width: 390x;
+  height: 77px;
+  padding-top: 37px;
+  padding-bottom: 11px;
+  justify-content: flex-start;
 }
 
 .nametext {
-    color: #0D0B0B;
-    font-family: Inter;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: -0.5px;
+  color: #0d0b0b;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.5px;
 }
 
 .locationtext {
-    color: #0D0B0B;
-    font-family: Inter;
-    font-size: 14px;
-    font-style: italic;
-    font-weight: 400;
-    line-height: 20px; /* 142.857% */
-    letter-spacing: -0.5px;
+  color: #0d0b0b;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: -0.5px;
 }
 
 .informationbox {
-    width: 390x;
-    height: 62px;
-    padding-top: 27px;
-    padding-bottom: 11px;
-    justify-content: flex-start;
+  width: 390x;
+  height: 62px;
+  padding-top: 27px;
+  padding-bottom: 11px;
+  justify-content: flex-start;
 }
 
 .informationtext {
-    color: #0D0B0B;
-    font-family: Inter;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    letter-spacing: -0.5px;
+  color: #0d0b0b;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.5px;
 }
 
 .descriptiontext {
-    color: #0D0B0B;
-    font-family: Inter;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px; /* 125% */
-    letter-spacing: -0.5px;
-    padding-bottom: 16px;
+  color: #0d0b0b;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 125% */
+  letter-spacing: -0.5px;
+  padding-bottom: 16px;
 }
 
 .relatednewsbox {
-    width: 390x;
-    height: 78px;
-    padding-top: 32px;
-    padding-bottom: 22px;
-    justify-content: flex-start;
+  width: 390x;
+  height: 78px;
+  padding-top: 32px;
+  padding-bottom: 22px;
+  justify-content: flex-start;
 }
 
 .relatedtext {
-    color: #0D0B0B;
-    font-family: Inter;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    letter-spacing: -0.5px;
+  color: #0d0b0b;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.5px;
 }
 
 .newsbox {
-    width: 100%;
-    height: 120px;
-    display: flex;
-    flex-direction: row; /* Make the items stack vertically */
-    justify-content: space-between; /* Distribute space between items vertically */
-    align-items: center;
-    gap: 19px;
+  width: 100%;
+  height: 120px;
+  display: flex;
+  flex-direction: row; /* Make the items stack vertically */
+  justify-content: space-between; /* Distribute space between items vertically */
+  align-items: center;
+  gap: 19px;
 }
 
 .moretextbox {
-    width: 208px;
-    height: 120px;
+  width: 208px;
+  height: 120px;
 }

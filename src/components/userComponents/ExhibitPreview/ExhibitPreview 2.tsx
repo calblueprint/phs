@@ -21,17 +21,15 @@ export default function ExhibitPreview({
   bottomimage: string;
 }) {
   const [isOpen, setIsOpen] = useState(false);
-  
 
   const closeModal = () => {
     setIsOpen(false);
-  }
+  };
 
   const openModal = () => {
     setIsOpen(true);
-  }
+  };
 
-  
   return (
     <>
       <div className="fixed inset-0 flex items-center justify-center bg-blue-200">
@@ -79,20 +77,16 @@ export default function ExhibitPreview({
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-            
               <div className={styles.roundedbackground}>
                 <div className={styles.buttonbox}>
-                  
-                    <button
-                      type="button"
-                      className="inline-flex justify-center px-4 py-2 text-sm text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 duration-300"
-                      onClick={closeModal}
-                    >
-                      x
-                    </button>
-                  
+                  <button
+                    type="button"
+                    className="inline-flex justify-center px-4 py-2 text-sm text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 duration-300"
+                    onClick={closeModal}
+                  >
+                    x
+                  </button>
                 </div>
-
 
                 <div className={styles.rectangle}>
                   <div className={styles.titlebox}>
@@ -104,7 +98,7 @@ export default function ExhibitPreview({
                   </div>
 
                   <div className={styles.descriptionbox}>
-                    <p className={styles.descriptiontext}>{description}</p> 
+                    <p className={styles.descriptiontext}>{description}</p>
                   </div>
 
                   <div className={styles.aboutbox}>
@@ -124,19 +118,14 @@ export default function ExhibitPreview({
 
                 <div className={styles.topimagebox}>
                   <Image
-                      src={topimage}
-                      alt="exhibit display"
-                      width={398}
-                      height={800}
-                      priority
-                    />
+                    src={topimage}
+                    alt="exhibit display"
+                    width={398}
+                    height={800}
+                    priority
+                  />
                 </div>
-            
-
               </div>
-                
-              
-            
             </Transition.Child>
           </div>
         </Dialog>

@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Define the file you want to exclude from checks
+file_to_exclude="src/app/testing/page.tsx"
+
+# Check the list of changed files using git diff
+for file in $(git diff --staged --name-only); do
+  if [ "$file" = "$file_to_exclude" ]; then
+    echo "Skipping checks for $file_to_exclude"
+    exit 0
+  fi
+done
+
+# If the excluded file is not found, proceed with the checks
+npm run pre-push

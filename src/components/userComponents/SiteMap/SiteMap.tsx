@@ -1,7 +1,7 @@
 'use client';
 
 import { LatLngExpression } from 'leaflet';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   LayersControl,
   MapContainer,
@@ -10,6 +10,8 @@ import {
   Popup,
   ZoomControl,
 } from 'react-leaflet';
+import { fetchDisplays } from '../../../supabase/displays/queries';
+import { DisplayRow } from '../../../types/types';
 
 const center: LatLngExpression = {
   lat: 37.25323057233323,
@@ -22,7 +24,30 @@ const tileLayer: { attribution: string; url: string } = {
   url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 };
 
+/**
+ * @returns Interactive map based on React Leaflet, holds the markers which lead to exhibits
+ */
 function SiteMap() {
+  const [displays, setDisplays] = useState<DisplayRow[]>([]);
+
+  useEffect(() => {
+    /**
+     *
+     */
+    async function fetchData() {
+      try {
+        const data = await fetchDisplays();
+        setDisplays(data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, []);
+  useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.log('Displays in useEffect:', displays);
+  }, [displays]);
   return (
     <MapContainer
       center={center}
@@ -35,14 +60,21 @@ function SiteMap() {
       <ZoomControl position="bottomright" />
       <TileLayer {...tileLayer} />
       <LayersControl position="topright">
-        <LayersControl.Overlay name="Marker with popup">
-          <Marker position={center}>
-            <Popup>
-              Populate the popups here <br /> Add new control overlays for
-              different locations
-            </Popup>
-          </Marker>
-        </LayersControl.Overlay>
+        {displays.map(display => (
+          <LayersControl.Overlay key={display.id} name={display.title}>
+            <Marker
+              key={display.id}
+              position={{
+                lat: (display.coordinates as { lat: number })?.lat ?? 0,
+                lng: (display.coordinates as { lng: number })?.lng ?? 0,
+              }}
+            >
+              <Popup>
+                {display.title} <br /> {display.description}
+              </Popup>
+            </Marker>
+          </LayersControl.Overlay>
+        ))}
       </LayersControl>
     </MapContainer>
   );
