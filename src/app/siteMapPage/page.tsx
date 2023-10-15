@@ -19,6 +19,9 @@ const SiteMap = dynamic(
   },
 );
 
+/**
+ * @returns Page for the interactive map
+ */
 function MapPage() {
   return (
     <>

@@ -38,27 +38,27 @@ export interface Database {
       }
       displays: {
         Row: {
-          coordinates: Json | null
+          coordinates: Json
           created_at: string
-          description: string | null
+          description: string
           id: string
-          title: string | null
+          title: string
           updated_at: string | null
         }
         Insert: {
-          coordinates?: Json | null
+          coordinates?: Json
           created_at?: string
-          description?: string | null
+          description?: string
           id?: string
-          title?: string | null
+          title?: string
           updated_at?: string | null
         }
         Update: {
-          coordinates?: Json | null
+          coordinates?: Json
           created_at?: string
-          description?: string | null
+          description?: string
           id?: string
-          title?: string | null
+          title?: string
           updated_at?: string | null
         }
         Relationships: []

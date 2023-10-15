@@ -10,7 +10,8 @@ import {
   Popup,
   ZoomControl,
 } from 'react-leaflet';
-import { fetchDisplays } from '@/supabase/displays/queries';
+import { fetchDisplays } from '../../../supabase/displays/queries';
+import { DisplayRow } from '../../../types/types';
 
 const center: LatLngExpression = {
   lat: 37.25323057233323,
@@ -23,10 +24,16 @@ const tileLayer: { attribution: string; url: string } = {
   url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 };
 
+/**
+ * @returns Interactive map based on React Leaflet, holds the markers which lead to exhibits
+ */
 function SiteMap() {
-  const [displays, setDisplays] = useState([]);
+  const [displays, setDisplays] = useState<DisplayRow[]>([]);
 
   useEffect(() => {
+    /**
+     *
+     */
     async function fetchData() {
       try {
         const data = await fetchDisplays();
@@ -38,6 +45,7 @@ function SiteMap() {
     fetchData();
   }, []);
   useEffect(() => {
+    // eslint-disable-next-line no-console
     console.log('Displays in useEffect:', displays);
   }, [displays]);
   return (
@@ -53,12 +61,12 @@ function SiteMap() {
       <TileLayer {...tileLayer} />
       <LayersControl position="topright">
         {displays.map(display => (
-          <LayersControl.Overlay name={display.title}>
+          <LayersControl.Overlay key = {display.id} name={display.title}>
             <Marker
               key={display.id}
               position={{
-                lat: display.coordinates.lat,
-                lng: display.coordinates.lng,
+                lat: (display.coordinates as { lat: number })?.lat ?? 0,
+                lng: (display.coordinates as { lng: number })?.lng ?? 0,
               }}
             >
               <Popup>

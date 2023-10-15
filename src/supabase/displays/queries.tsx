@@ -1,6 +1,5 @@
 'use client';
 
-import { Database } from '../../types/supabase';
 import { DisplayRow } from '../../types/types';
 import supabase from '../client';
 
@@ -13,7 +12,7 @@ export async function fetchDisplays() {
 }
 
 export async function deleteDisplay(id: number) {
-  const { data, error } = await supabase.from('displays').delete().eq('id', id);
+  const { error } = await supabase.from('displays').delete().eq('id', id);
 
   if (error) {
     throw new Error(`An error occurred trying to delete displays: ${error}`);

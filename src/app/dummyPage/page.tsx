@@ -69,14 +69,21 @@ const styles = {
   },
 };
 
+
+/**
+ *
+ */
 export default function Home() {
-  const [displays, setDisplays] = useState([]);
+  const [displays, setDisplays] = useState<DisplayRow[]>([]);
 
   useEffect(() => {
+    /**
+     *
+     */
     async function fetchData() {
       try {
-        const data: DisplayRow = await fetchDisplays();
-        setDisplays(data);
+        const responseData: DisplayRow[]  = await fetchDisplays();
+        setDisplays(responseData);
       } catch (error) {
         console.error(error);
       }
@@ -85,7 +92,7 @@ export default function Home() {
     fetchData();
   }, []);
 
-  const handleDeleteDisplay = async id => {
+  const handleDeleteDisplay = async (id: number) => {
     try {
       await deleteDisplay(id);
       // After deleting, refresh the displays list
@@ -103,9 +110,10 @@ export default function Home() {
         lat: 37.25323057233323,
         lng: -122.08556629289924,
       },
-      created_at: new Date('2023-10-13T12:34:56Z'),
+      created_at: (new Date('2023-10-13T12:34:56Z')).toJSON(),
       description: 'see if this creates',
-      updated_at: new Date('2024-10-13T12:34:56Z'),
+      updated_at: (new Date('2024-10-13T12:34:56Z')).toJSON(),
+      id
     };
 
     try {
@@ -154,8 +162,8 @@ export default function Home() {
                 Description: {display.description}
               </div>
               <div style={styles.coordinates}>
-                Coordinates: Latitude: {display.coordinates.lat}, Longitude:{' '}
-                {display.coordinates.lng}
+                Coordinates: Latitude: {display.coordinates?.lat}, Longitude:{' '}
+                {display.coordinates?.lng}
               </div>
               <div style={styles.updated}>Updated: {display.updated_at}</div>
               <div style={styles.creation}>Creation: {display.created_at}</div>
@@ -177,7 +185,7 @@ export default function Home() {
           </li>
         ))}
       </ul>
-      <button onClick={handleCreateDisplay}>Create Display</button>
+      <button type = "button" onClick={handleCreateDisplay}>Create Display</button>
     </div>
   );
 }
