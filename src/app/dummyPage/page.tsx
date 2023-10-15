@@ -1,8 +1,8 @@
 'use client';
 
 import React, {useEffect, useState} from 'react';
-import { createDisplay, fetchDisplays, updateDisplay } from '../../supabase/queries/queries';
-
+import { createDisplay, deleteDisplay, fetchDisplays, updateDisplay } from '../../supabase/displays/queries';
+import { DisplayRow } from '../../types/types';
 // import ExhibitPreview from '../../components/userComponents/ExhibitPreview/ExhibitPreview';
 
 
@@ -72,7 +72,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const data = await fetchDisplays();
+        const data: DisplayRow = await fetchDisplays();
         setDisplays(data);
       } catch (error) {
         console.error(error);
@@ -94,8 +94,7 @@ export default function Home() {
   };
 
   const handleCreateDisplay = async () => {
-    console.log("yo");
-    const newDisplayData = {
+    const newDisplayData: DisplayRow = {
 
       title: 'New Display',
       coordinates: {
@@ -108,7 +107,7 @@ export default function Home() {
     };
 
     try {
-      await createDisplay(newDisplayData );
+      await createDisplay(newDisplayData);
       // After creating, refresh the displays list
       const data = await fetchDisplays();
       setDisplays(data);
@@ -156,10 +155,10 @@ export default function Home() {
               </div>
               <div style={styles.updated}>Updated: {display.updated_at}</div>
               <div style={styles.creation}>Creation: {display.created_at}</div>
-              <button onClick={() => handleDeleteDisplay(display.id)} style={styles.deleteButton}>
+              <button type = "button" onClick={() => handleDeleteDisplay(display.id)} style={styles.deleteButton}>
                 Delete
               </button>
-              <button onClick={() => handleUpdateDisplay(display.id)} style={styles.updateButton}>
+              <button type = "button" onClick={() => handleUpdateDisplay(display.id)} style={styles.updateButton}>
                 Update
               </button>
             </div>

@@ -10,7 +10,7 @@ import {
   Popup,
   ZoomControl,
 } from 'react-leaflet';
-import { fetchDisplays } from '@/supabase/queries/queries';
+import { fetchDisplays } from '@/supabase/displays/queries';
 
 const center: LatLngExpression = {
   lat: 37.25323057233323,

@@ -1,21 +1,19 @@
 "use client";
 
 import { Database } from '../../types/supabase';
+import { DisplayRow } from '../../types/types';
 import supabase from '../client';
 
 export async function fetchDisplays() {
     const { data, error } = await supabase.from('displays').select('*');
-    console.log("here????");
     if (error) {
         throw new Error(`An error occurred trying to read displays: ${error}`);
       }
-      console.log(data);
-
       return data;
 }
 
   
-export async function deleteDisplay(id: any) {
+export async function deleteDisplay(id: number) {
 
     const { data, error } = await supabase.from('displays').delete().eq('id', id);
 
@@ -28,7 +26,7 @@ export async function deleteDisplay(id: any) {
 }
 
 
-export async function createDisplay(displayData: Database) {
+export async function createDisplay(displayData: DisplayRow) {
   const { data, error } = await supabase.from('displays').upsert([displayData]);
 
   if (error) {
@@ -47,7 +45,7 @@ export async function createDisplay(displayData: Database) {
 //     }
 //   }
 
-export async function updateDisplay(id, updatedInfo: Partial<Database>) {
+export async function updateDisplay(id: number, updatedInfo: DisplayRow) {
 	
     const { data, error } = await supabase
     .from('displays').update(updatedInfo).eq('id', updatedInfo.id);

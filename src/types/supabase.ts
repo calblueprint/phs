@@ -63,6 +63,51 @@ export interface Database {
         }
         Relationships: []
       }
+      media: {
+        Row: {
+          created_at: string | null
+          id: number
+          text: string | null
+          type: string | null
+          url: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: number
+          text?: string | null
+          type?: string | null
+          url: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: number
+          text?: string | null
+          type?: string | null
+          url?: string
+        }
+        Relationships: []
+      }
+      tours: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: number
+          name: string | null
+        }
+        Insert: {
+          created_at: string
+          description?: string | null
+          id?: number
+          name?: string | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: number
+          name?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
