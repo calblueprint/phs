@@ -4,6 +4,6 @@ This file is meant to create clean type definitions that we can export to keep t
 Any updates to supabase.ts should be reflected here (new tables).
 */
 
-import { Database } from "./supabase";
+import { Database } from './supabase';
 
 export type DisplayRow = Database['public']['Tables']['displays']['Row'];

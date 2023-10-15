@@ -7,7 +7,7 @@ interface FilterButtonProps {
 
 function FilterButton({ content, ...children }: FilterButtonProps) {
   const [isSelected, setIsSelected] = useState<boolean>(false);
-  
+
   const defaultStyle = 'bg-[#4b711d]/[0.13] text-[#4B711D] border-[#547829]';
   const selectedStyle = 'bg-[#547829] text-white border-[#547829]';
 

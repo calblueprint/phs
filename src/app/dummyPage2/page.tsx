@@ -12,7 +12,7 @@ export default function Home() {
       topimage="/Rectangle 14.png"
       media="/Rectangle 15.png"
       bottomimage="/Rectangle 16.png"
-      moretext = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do dolore magna aliqua."
+      moretext="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do dolore magna aliqua."
     />
   );
 }

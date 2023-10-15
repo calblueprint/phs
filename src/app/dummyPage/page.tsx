@@ -1,10 +1,14 @@
 'use client';
 
-import React, {useEffect, useState} from 'react';
-import { createDisplay, deleteDisplay, fetchDisplays, updateDisplay } from '../../supabase/displays/queries';
+import React, { useEffect, useState } from 'react';
+import {
+  createDisplay,
+  deleteDisplay,
+  fetchDisplays,
+  updateDisplay,
+} from '../../supabase/displays/queries';
 import { DisplayRow } from '../../types/types';
 // import ExhibitPreview from '../../components/userComponents/ExhibitPreview/ExhibitPreview';
-
 
 const styles = {
   container: {
@@ -65,7 +69,6 @@ const styles = {
   },
 };
 
-
 export default function Home() {
   const [displays, setDisplays] = useState([]);
 
@@ -82,7 +85,7 @@ export default function Home() {
     fetchData();
   }, []);
 
-  const handleDeleteDisplay = async (id) => {
+  const handleDeleteDisplay = async id => {
     try {
       await deleteDisplay(id);
       // After deleting, refresh the displays list
@@ -95,15 +98,14 @@ export default function Home() {
 
   const handleCreateDisplay = async () => {
     const newDisplayData: DisplayRow = {
-
       title: 'New Display',
       coordinates: {
-        "lat": 37.25323057233323,
-        "lng": -122.08556629289924
+        lat: 37.25323057233323,
+        lng: -122.08556629289924,
       },
       created_at: new Date('2023-10-13T12:34:56Z'),
       description: 'see if this creates',
-      updated_at: new Date('2024-10-13T12:34:56Z')
+      updated_at: new Date('2024-10-13T12:34:56Z'),
     };
 
     try {
@@ -116,7 +118,7 @@ export default function Home() {
     }
   };
 
-  const handleUpdateDisplay = async (id) => {
+  const handleUpdateDisplay = async id => {
     const updatedDisplayInfo = {
       // Define the updated display info here
       // For example, to update the title:
@@ -124,16 +126,15 @@ export default function Home() {
       title: 'Updated Display2 Title',
       description: 'Updated Display description',
       coordinates: {
-        "lat": 40.25323057233323,
-        "lng": -122.08556629289924
-      }
-
+        lat: 40.25323057233323,
+        lng: -122.08556629289924,
+      },
     };
 
     try {
       await updateDisplay(id, updatedDisplayInfo);
 
-	// Pass the 'id' as the first argument
+      // Pass the 'id' as the first argument
       // After updating, refresh the displays list
       const data = await fetchDisplays();
       setDisplays(data);
@@ -145,20 +146,31 @@ export default function Home() {
     <div style={styles.container}>
       <h1 style={styles.header}>Displays</h1>
       <ul style={styles.list}>
-        {displays.map((display) => (
+        {displays.map(display => (
           <li style={styles.listItem} key={display.id}>
             <div style={styles.info}>
               <div style={styles.title}>Title: {display.title}</div>
-              <div style={styles.description}>Description: {display.description}</div>
+              <div style={styles.description}>
+                Description: {display.description}
+              </div>
               <div style={styles.coordinates}>
-                Coordinates: Latitude: {display.coordinates.lat}, Longitude: {display.coordinates.lng}
+                Coordinates: Latitude: {display.coordinates.lat}, Longitude:{' '}
+                {display.coordinates.lng}
               </div>
               <div style={styles.updated}>Updated: {display.updated_at}</div>
               <div style={styles.creation}>Creation: {display.created_at}</div>
-              <button type = "button" onClick={() => handleDeleteDisplay(display.id)} style={styles.deleteButton}>
+              <button
+                type="button"
+                onClick={() => handleDeleteDisplay(display.id)}
+                style={styles.deleteButton}
+              >
                 Delete
               </button>
-              <button type = "button" onClick={() => handleUpdateDisplay(display.id)} style={styles.updateButton}>
+              <button
+                type="button"
+                onClick={() => handleUpdateDisplay(display.id)}
+                style={styles.updateButton}
+              >
                 Update
               </button>
             </div>

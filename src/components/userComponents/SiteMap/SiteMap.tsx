@@ -1,7 +1,7 @@
 'use client';
 
 import { LatLngExpression } from 'leaflet';
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   LayersControl,
   MapContainer,
@@ -38,7 +38,7 @@ function SiteMap() {
     fetchData();
   }, []);
   useEffect(() => {
-    console.log("Displays in useEffect:", displays);
+    console.log('Displays in useEffect:', displays);
   }, [displays]);
   return (
     <MapContainer
@@ -47,24 +47,26 @@ function SiteMap() {
       zoomControl={false}
       scrollWheelZoom
       style={{ height: '75vh', width: '100%', minHeight: '544px' }}
-      key={new Date().getTime()}>
+      key={new Date().getTime()}
+    >
       <ZoomControl position="bottomright" />
       <TileLayer {...tileLayer} />
-        <LayersControl position="topright">
-        {displays.map((display) => (
-            <LayersControl.Overlay name={display.title}>
-                  <Marker
-                    key={display.id} 
-                    position={{
-                      lat: display.coordinates.lat,
-                      lng: display.coordinates.lng
-                    }}
-                  >
-                    <Popup>
-                      {display.title} <br /> {display.description}
-                    </Popup>
-                  </Marker> 
-            </LayersControl.Overlay> ))}
+      <LayersControl position="topright">
+        {displays.map(display => (
+          <LayersControl.Overlay name={display.title}>
+            <Marker
+              key={display.id}
+              position={{
+                lat: display.coordinates.lat,
+                lng: display.coordinates.lng,
+              }}
+            >
+              <Popup>
+                {display.title} <br /> {display.description}
+              </Popup>
+            </Marker>
+          </LayersControl.Overlay>
+        ))}
       </LayersControl>
     </MapContainer>
   );

@@ -9,17 +9,17 @@ _use this section to break up your task into submodules and track progress, copy
 - [ ] ...
 - [ ] ...
 
-## How can the reviewer test your code?  Where is this sprint located in the codebase? 👩‍💻
+## How can the reviewer test your code? Where is this sprint located in the codebase? 👩‍💻
 
 ## REQUIRED: Link a short video demo of the feature you have added. 👩‍💻
-
 
 ## Any bugs you encountered or still having trouble with? 🐛
 
 ## Resources 📔
-_REQUIREMENTS in this section: Link all relevant online resources and related PRs.  Write down any new dependencies or packages and link to their documentation.  If you ran into bugs, link any stack overflow or online resources that helped you unblock yourself_
 
+_REQUIREMENTS in this section: Link all relevant online resources and related PRs. Write down any new dependencies or packages and link to their documentation. If you ran into bugs, link any stack overflow or online resources that helped you unblock yourself_
 
 ## ❗IF this sprint was marked as FRONTEND on linear, cc Claire Wang
+
 _REMEMBER: once PR is made, also request a PR review Andrei, CC'ing is NOT enough!_
 🏚 cc: @andreisito

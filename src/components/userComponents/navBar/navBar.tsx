@@ -66,14 +66,14 @@ function NavBar() {
 
       {showMenu && (
         <div className="fixed top-20 right-0 h-full w-3/5 bg-[#ebf0e4] shadow-lg z-[9999]">
-            <h1 className="text-xl text-black font-bold p-4">WELCOME</h1>
+          <h1 className="text-xl text-black font-bold p-4">WELCOME</h1>
           <ul className="p-4">
             <Link href="/" className="block mb-2 text-black">
               Home
             </Link>
           </ul>
 
-            <h1 className="text-xl text-black font-bold p-4">VISIT</h1>
+          <h1 className="text-xl text-black font-bold p-4">VISIT</h1>
           <ul className="p-4">
             <Link href="/hoursAdmissionPage" className="block mb-2 text-black">
               Hours & Admission

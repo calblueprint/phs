@@ -1,42 +1,38 @@
-"use client";
+'use client';
 
 import { Database } from '../../types/supabase';
 import { DisplayRow } from '../../types/types';
 import supabase from '../client';
 
 export async function fetchDisplays() {
-    const { data, error } = await supabase.from('displays').select('*');
-    if (error) {
-        throw new Error(`An error occurred trying to read displays: ${error}`);
-      }
-      return data;
+  const { data, error } = await supabase.from('displays').select('*');
+  if (error) {
+    throw new Error(`An error occurred trying to read displays: ${error}`);
+  }
+  return data;
 }
 
-  
 export async function deleteDisplay(id: number) {
+  const { data, error } = await supabase.from('displays').delete().eq('id', id);
 
-    const { data, error } = await supabase.from('displays').delete().eq('id', id);
-
-    if (error) {
-        throw new Error(`An error occurred trying to delete displays: ${error}`);
-    }
-     else {
-        fetchDisplays();
-    }
+  if (error) {
+    throw new Error(`An error occurred trying to delete displays: ${error}`);
+  } else {
+    fetchDisplays();
+  }
 }
-
 
 export async function createDisplay(displayData: DisplayRow) {
   const { data, error } = await supabase.from('displays').upsert([displayData]);
 
   if (error) {
-    throw new Error(`An error occurred trying to create displays: ${error.message}`);
+    throw new Error(
+      `An error occurred trying to create displays: ${error.message}`,
+    );
   }
   const newDisplay = data;
   return newDisplay;
 }
-  
-
 
 // export async function insertDisplay(displayData: Display) {
 //     const { error } = await supabase.from('profiles').insert(displayData);
@@ -46,15 +42,15 @@ export async function createDisplay(displayData: DisplayRow) {
 //   }
 
 export async function updateDisplay(id: number, updatedInfo: DisplayRow) {
-	
-    const { data, error } = await supabase
-    .from('displays').update(updatedInfo).eq('id', updatedInfo.id);
+  const { data, error } = await supabase
+    .from('displays')
+    .update(updatedInfo)
+    .eq('id', updatedInfo.id);
 
-	
-    if (error) {
-        throw new Error(`Error updating display data: ${error.message}`);
-    }
-	
-	const newDisplay = data;
-    return newDisplay;
+  if (error) {
+    throw new Error(`Error updating display data: ${error.message}`);
+  }
+
+  const newDisplay = data;
+  return newDisplay;
 }
