@@ -68,8 +68,7 @@ function SiteMap() {
                 // lat: (display.coordinates as { lat: number })?.lat ?? 0,
                 // lng: (display.coordinates as { lng: number })?.lng ?? 0,
                 lat: display.coordinates.lat,
-                lng: display.coordinates.lng
-
+                lng: display.coordinates.lng,
               }}
             >
               <Popup>
