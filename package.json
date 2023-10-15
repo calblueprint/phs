@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "tsc-check": "tsc --noEmit",
-    "pre-push": "(git diff --staged --name-only | grep -q 'src/app/testing/page.tsx') && exit 0 || npm run tsc-check && npm run lint && npm run prettier || exit 1",    "prettier": "prettier --write .",
+    "pre-push": "npm run tsc-check && npm run lint && npm run prettier",
+    "prettier": "prettier --write .",
     "update-types": "npx supabase gen types typescript --project-id 'qkkuacqtcsfjbnzmxmhk' > src/types/supabase.ts"
   },
   "husky": {
@@ -55,5 +56,11 @@
     "supabase": "^1.100.1",
     "tailwindcss": "latest",
     "typescript": "^4.9.5"
+  },
+  "lint-staged": {
+    "linters": {
+      "src/**/*.js": ["formatter --write", "git add"]
+    },
+    "ignore": ["node_modules", "dist", "package-lock.json", "src/app/testing/page.tsx"]
   }
 }

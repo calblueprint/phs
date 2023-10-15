@@ -23,6 +23,7 @@
     },
     "forceConsistentCasingInFileNames": true
   },
+  "exclude": ["node_modules", "src/app/testing/page.tsx"],
   "include": [
     "next-env.d.ts",
     "**/*.ts",
@@ -31,6 +32,5 @@
     "lint-staged.config.js",
     "src/app/supabaseCRUD2/supabaseClient.js",
     "src/app/supabaseCRUD/supabaseClient.js"
-  ],
-  "exclude": ["node_modules", "src/app/testing/page.tsx"]
+  ]
 }

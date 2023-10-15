@@ -5,8 +5,8 @@ module.exports = {
   ],
   plugins: ['jsdoc'],
   ignorePatterns: ['src/app/testing/page.tsx'],
-  "rules": {
+  rules: {
     // ... other ESLint rules ...
-    "no-warning-comments": "error"
-  }
+    'no-warning-comments': 'error',
+  },
 };
