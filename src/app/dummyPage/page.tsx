@@ -1,12 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import {
-  createDisplay,
-  deleteDisplay,
-  fetchDisplays,
-  updateDisplay,
-} from '../../supabase/displays/queries';
+import { createDisplay, deleteDisplay, fetchDisplays, updateDisplay } from '../../supabase/displays/queries';
 import { DisplayRow } from '../../types/types';
 // import ExhibitPreview from '../../components/userComponents/ExhibitPreview/ExhibitPreview';
 
@@ -70,7 +65,7 @@ const styles = {
 };
 
 /**
- *
+ * 
  */
 export default function Home() {
   const [displays, setDisplays] = useState<DisplayRow[]>([]);
@@ -81,7 +76,7 @@ export default function Home() {
      */
     async function fetchData() {
       try {
-        const responseData: DisplayRow[] = await fetchDisplays();
+        const responseData: DisplayRow[]  = await fetchDisplays();
         setDisplays(responseData);
       } catch (error) {
         console.error(error);
@@ -109,10 +104,9 @@ export default function Home() {
         lat: 37.25323057233323,
         lng: -122.08556629289924,
       },
-      created_at: new Date('2023-10-13T12:34:56Z').toJSON(),
+      created_at: (new Date('2023-10-13T12:34:56Z')).toJSON(),
       description: 'see if this creates',
-      updated_at: new Date('2024-10-13T12:34:56Z').toJSON(),
-      id,
+      updated_at: (new Date('2024-10-13T12:34:56Z')).toJSON(),
     };
 
     try {
@@ -184,9 +178,7 @@ export default function Home() {
           </li>
         ))}
       </ul>
-      <button type="button" onClick={handleCreateDisplay}>
-        Create Display
-      </button>
+      <button type = "button" onClick={handleCreateDisplay}>Create Display</button>
     </div>
   );
 }
