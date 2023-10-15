@@ -65,10 +65,8 @@ function SiteMap() {
             <Marker
               key={display.id}
               position={{
-                // lat: (display.coordinates as { lat: number })?.lat ?? 0,
-                // lng: (display.coordinates as { lng: number })?.lng ?? 0,
-                lat: display.coordinates.lat,
-                lng: display.coordinates.lng,
+                lat: (display.coordinates as { lat: number })?.lat ?? 0,
+                lng: (display.coordinates as { lng: number })?.lng ?? 0,
               }}
             >
               <Popup>
