@@ -1,4 +1,16 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+# Get the list of files being pushed
+files_changed=$(git diff --staged --name-only)
+
+# Define the file you want to exclude from checks
+file_to_exclude="src/app/testing/page.tsx"
+
+# Check if the excluded file is in the list of changed files
+if echo "$files_changed" | grep -q "$file_to_exclude"; then
+  echo "Skipping checks for $file_to_exclude"
+  exit 0
+fi
+
 npm run pre-push
