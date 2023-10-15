@@ -61,7 +61,7 @@ function SiteMap() {
       <TileLayer {...tileLayer} />
       <LayersControl position="topright">
         {displays.map(display => (
-          <LayersControl.Overlay key = {display.id} name={display.title}>
+          <LayersControl.Overlay key={display.id} name={display.title}>
             <Marker
               key={display.id}
               position={{
