@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-. "$(dirname -- "$0")/../.husky/husky.sh"
+. "$(dirname -- "$0")/_/husky.sh"
 
 # Get the list of files being pushed
 files_changed=$(git diff --staged --name-only)
@@ -13,4 +13,5 @@ if echo "$files_changed" | grep -q "$file_to_exclude"; then
   exit 0
 fi
 
+# If the excluded file is not found, proceed with the checks
 npm run pre-push
