@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "tsc-check": "tsc --noEmit",
     "pre-commit": "npm run tsc-check && npm run lint && npm run prettier",
     "update-types": "npx supabase gen types typescript --project-id 'qkkuacqtcsfjbnzmxmhk' > src/types/supabase.ts"
   },
