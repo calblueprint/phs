@@ -5,25 +5,27 @@ import { Dialog, Transition } from '@headlessui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './ExhibitPreview.module.css';
+import { DisplayRow } from '../../../types/types';
+
+interface ExhibitProps {
+  display: DisplayRow;
+  about: string,
+  topimage: string,
+  bottomimage: string,
+  href: string
+}
+
 
 export default function ExhibitPreview({
-  name,
-  location,
-  description,
+  display,
   about,
   topimage,
   bottomimage,
-  href,
-}: {
-  name: string;
-  location: string;
-  description: string;
-  about: string;
-  topimage: string;
-  bottomimage: string;
-  href: string;
-}) {
+  href
+}: ExhibitProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const { title, coordinates, description } = display;
+
 
   const closeModal = () => {
     setIsOpen(false);
@@ -93,11 +95,11 @@ export default function ExhibitPreview({
 
                 <div className={styles.rectangle}>
                   <div className={styles.titlebox}>
-                    <h1 className={styles.titletext}>{name}</h1>
+                    <h1 className={styles.titletext}>{title}</h1>
                   </div>
 
                   <div className={styles.locationbox}>
-                    <p className={styles.locationtext}>{location}</p>
+                    <p className={styles.locationtext}>{`${coordinates.lat}, ${coordinates.lng}`}</p>
                   </div>
 
                   <div className={styles.descriptionbox}>

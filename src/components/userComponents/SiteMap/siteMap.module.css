@@ -1,0 +1,14 @@
+.parent, .sibling, .mapContainer {
+    display: flex; /* or display: inline-block; or any other layout method */
+  }
+  .mapContainer {
+    height: '75vh';
+    width: '100%';
+    min-Height: '544px';
+  }
+  
+  .sibling {
+    /* CSS styles for your sibling elements */
+    position: relative;
+    z-index: 100000;
+  }

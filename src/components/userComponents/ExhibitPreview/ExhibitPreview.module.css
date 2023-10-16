@@ -13,6 +13,7 @@
 }
 
 .roundedbackground {
+  /* z-index: 999999; */
   background-color: white;
   width: 398px;
   height: 730px;
