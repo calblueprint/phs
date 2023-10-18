@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -23,7 +23,7 @@ export default function ExhibitPreview({
   bottomimage,
   href
 }: ExhibitProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const { title, coordinates, description } = display;
 
 
@@ -34,14 +34,25 @@ export default function ExhibitPreview({
   const openModal = () => {
     setIsOpen(true);
   };
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'; // Disable scrolling when the modal is open
+    } else {
+      document.body.style.overflow = ''; // Enable scrolling when the modal is closed
+    }
+
+    return () => {
+      document.body.style.overflow = ''; // Clean up on unmount
+    };
+  }, [isOpen]);
 
   return (
     <>
-      <div className="fixed inset-0 flex items-center justify-center bg-blue-200">
+      <div className="fixed inset-0 flex items-center justify-center bg-blue-200 bg-opacity-0">
         <button
           type="button"
           onClick={openModal}
-          className="px-4 py-2 text-sm font-medium text-white bg-green-500 rounded-md hover:bg-opacity-50 duration-300 shadow-xl"
+          className="px-4 py-2 text-sm font-medium text-white bg-green-500 bg-opacity-0 rounded-md hover:bg-opacity-50 duration-300 shadow-xl"
         >
           Open Me
         </button>
@@ -51,7 +62,7 @@ export default function ExhibitPreview({
         <Dialog
           as="div"
           className="fixed inset-0 z-10 overflow-y-auto"
-          onClose={closeModal}
+          onClose={openModal}
         >
           <div className="min-h-screen px-4 text-center">
             <Transition.Child
@@ -71,7 +82,7 @@ export default function ExhibitPreview({
               className="inline-block h-screen align-middle"
               aria-hidden="true"
             >
-             
+              
             </span>
             <Transition.Child
               as={Fragment}

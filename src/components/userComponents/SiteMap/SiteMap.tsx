@@ -53,12 +53,13 @@ function SiteMap() {
   }, [displays]);
   return (
     <MapContainer
+      
       center={center}
       zoom={18}
       zoomControl={false}
       scrollWheelZoom
       // style={styles.MapContainer}
-      style={{ height: '75vh', width: '100%', minHeight: '544px' }}
+      style={{ height: '75vh', width: '100%', minHeight: '544px',zIndex:'10' }}
       key={new Date().getTime()}
     >
       <ZoomControl position="bottomright" />
@@ -85,17 +86,17 @@ function SiteMap() {
                     href="/hoursAdmissionPage"
                   />
                 </div> */}
-                <div className={styles.sibling}>
-                  <ExhibitPreview 
-                    
-                    display={display}
-                    about='pls work'
-                    topimage='/Rectangle 12.png'
-                    bottomimage='/Rectangle 10.png'
-                    href="/hoursAdmissionPage"
-                  />
-                </div>
+               
+                <ExhibitPreview 
+                  
+                  display={display}
+                  about='pls work'
+                  topimage='/Rectangle 12.png'
+                  bottomimage='/Rectangle 10.png'
+                  href="/hoursAdmissionPage"
+                />
                 
+
 
                 {/* {display.title} <br /> {display.description} */}
               </Popup>
