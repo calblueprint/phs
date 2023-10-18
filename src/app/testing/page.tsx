@@ -4,13 +4,8 @@
 /* eslint-disable */
 
 import React, { useEffect, useState } from 'react';
-import {
-  createDisplay,
-  deleteDisplay,
-  fetchDisplays,
-  updateDisplay,
-} from '../../supabase/displays/queries';
-import { DisplayRow } from '../../types/types';
+import { MediaRow } from '../../types/types';
+import { createMedia, deleteMedia, fetchMedia, updateMedia } from '../../supabase/media/queries';
 // import ExhibitPreview from '../../components/userComponents/ExhibitPreview/ExhibitPreview';
 
 const styles = {
@@ -37,16 +32,13 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
   },
-  title: {
+  text: {
     fontWeight: 'bold',
   },
-  description: {
+  type: {
     marginTop: '5px',
   },
-  coordinates: {
-    marginTop: '5px',
-  },
-  updated: {
+  url: {
     marginTop: '5px',
   },
   creation: {
@@ -76,7 +68,7 @@ const styles = {
  *
  */
 export default function Home() {
-  const [displays, setDisplays] = useState<DisplayRow[]>([]);
+  const [media, setMedia] = useState<MediaRow[]>([]);
 
   useEffect(() => {
     /**
@@ -84,8 +76,9 @@ export default function Home() {
      */
     async function fetchData() {
       try {
-        const responseData: DisplayRow[] = await fetchDisplays();
-        setDisplays(responseData);
+        const responseData: MediaRow[] = await fetchMedia();
+        setMedia(responseData);
+        console.log("set the media");
       } catch (error) {
         console.error(error);
       }
@@ -94,90 +87,80 @@ export default function Home() {
     fetchData();
   }, []);
 
-  const handleDeleteDisplay = async (id: number) => {
+  const handleDeleteMedia = async (id: number) => {
     try {
-      await deleteDisplay(id);
-      // After deleting, refresh the displays list
-      const data = await fetchDisplays();
-      setDisplays(data);
+      await deleteMedia(id);
+      // After deleting, refresh the media list
+      const data = await fetchMedia();
+      setMedia(data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const handleCreateDisplay = async () => {
-    const newDisplayData: DisplayRow = {
-      title: 'New Display',
-      coordinates: {
-        lat: 37.25323057233323,
-        lng: -122.08556629289924,
-      },
+  const handleCreateMedia = async () => {
+    const newMediaData: MediaRow = {
+      text: 'New Media',
+      type: 'Picture',
+      url: 'https://',
       created_at: new Date('2023-10-13T12:34:56Z').toJSON(),
-      description: 'see if this creates',
-      updated_at: new Date('2024-10-13T12:34:56Z').toJSON(),
+      //id
     };
 
     try {
-      await createDisplay(newDisplayData);
-      // After creating, refresh the displays list
-      const data = await fetchDisplays();
-      setDisplays(data);
+      await createMedia(newMediaData);
+      // After creating, refresh the media list
+      const data = await fetchMedia();
+      setMedia(data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const handleUpdateDisplay = async id => {
-    const updatedDisplayInfo = {
-      // Define the updated display info here
-      // For example, to update the title:
+  const handleUpdateMedia = async id => {
+    const updatedMediaInfo: MediaRow = {
+      // Define the updated media info here
+      // For example, to update the text:
       id,
-      title: 'Updated Display2 Title',
-      description: 'Updated Display description',
-      coordinates: {
-        lat: 40.25323057233323,
-        lng: -122.08556629289924,
-      },
+      text: 'Updated Media2 Title',
+      type: 'Updated picture',
+      url: 'Updated https://',
+      created_at: new Date('2023-10-13T12:34:56Z').toJSON(),
     };
 
     try {
-      await updateDisplay(id, updatedDisplayInfo);
+      await updateMedia(id, updatedMediaInfo);
 
       // Pass the 'id' as the first argument
       // After updating, refresh the displays list
-      const data = await fetchDisplays();
-      setDisplays(data);
+      const data = await fetchMedia();
+      setMedia(data);
     } catch (error) {
       console.error(error);
     }
   };
   return (
     <div style={styles.container}>
-      <h1 style={styles.header}>Displays</h1>
+      <h1 style={styles.header}>Media</h1>
       <ul style={styles.list}>
-        {displays.map(display => (
-          <li style={styles.listItem} key={display.id}>
+        {media.map(media => (
+          <li style={styles.listItem} key={media.id}>
             <div style={styles.info}>
-              <div style={styles.title}>Title: {display.title}</div>
-              <div style={styles.description}>
-                Description: {display.description}
+              <div style={styles.text}>Title: {media.text}</div>
+              <div style={styles.type}>
+                Type: {media.type}
               </div>
-              <div style={styles.coordinates}>
-                Coordinates: Latitude: {display.coordinates?.lat}, Longitude:{' '}
-                {display.coordinates?.lng}
-              </div>
-              <div style={styles.updated}>Updated: {display.updated_at}</div>
-              <div style={styles.creation}>Creation: {display.created_at}</div>
+              <div style={styles.creation}>Creation: {media.created_at}</div>
               <button
                 type="button"
-                onClick={() => handleDeleteDisplay(display.id)}
+                onClick={() => handleDeleteMedia(media.id)}
                 style={styles.deleteButton}
               >
                 Delete
               </button>
               <button
                 type="button"
-                onClick={() => handleUpdateDisplay(display.id)}
+                onClick={() => handleUpdateMedia(media.id)}
                 style={styles.updateButton}
               >
                 Update
@@ -186,9 +169,10 @@ export default function Home() {
           </li>
         ))}
       </ul>
-      <button type="button" onClick={handleCreateDisplay}>
-        Create Display
+      <button type="button" onClick={handleCreateMedia}>
+        Create Media
       </button>
     </div>
   );
 }
+

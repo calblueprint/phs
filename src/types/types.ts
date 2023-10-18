@@ -7,3 +7,4 @@ Any updates to supabase.ts should be reflected here (new tables).
 import { Database } from './supabase';
 
 export type DisplayRow = Database['public']['Tables']['displays']['Row'];
+export type MediaRow = Database['public']['Tables']['media']['Row'];

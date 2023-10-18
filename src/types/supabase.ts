@@ -65,25 +65,25 @@ export interface Database {
       }
       media: {
         Row: {
-          created_at: string | null
-          id: number
+          created_at: string
+          id: string
           text: string | null
           type: string | null
-          url: string
+          url: string | null
         }
         Insert: {
-          created_at?: string | null
-          id?: number
+          created_at?: string
+          id?: string
           text?: string | null
           type?: string | null
-          url: string
+          url?: string | null
         }
         Update: {
-          created_at?: string | null
-          id?: number
+          created_at?: string
+          id?: string
           text?: string | null
           type?: string | null
-          url?: string
+          url?: string | null
         }
         Relationships: []
       }
