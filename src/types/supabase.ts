@@ -91,19 +91,19 @@ export interface Database {
         Row: {
           created_at: string
           description: string | null
-          id: number
+          id: string
           name: string | null
         }
         Insert: {
-          created_at: string
+          created_at?: string
           description?: string | null
-          id?: number
+          id?: string
           name?: string | null
         }
         Update: {
           created_at?: string
           description?: string | null
-          id?: number
+          id?: string
           name?: string | null
         }
         Relationships: []
