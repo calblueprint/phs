@@ -36,6 +36,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  
 }
 
 .rectangle {
@@ -48,12 +49,14 @@
   justify-content: flex-start;
   align-content: flex-start;
   position: relative;
+  /* z-index: 1000000; */
 }
 
 .titlebox {
   width: 354px;
   padding-top: 46px;
   justify-content: flex-start;
+  margin-top: -100px;
 }
 
 .titletext {
@@ -87,6 +90,7 @@
   padding-top: 20px;
   padding-bottom: 20px;
   justify-content: flex-start;
+  z-index: -1;
 }
 
 .descriptiontext {

@@ -52,60 +52,58 @@ function SiteMap() {
     console.log('Displays in useEffect:', displays);
   }, [displays]);
   return (
-    <div>
-      <MapContainer
-        center={center}
-        zoom={18}
-        zoomControl={false}
-        scrollWheelZoom
-        style={styles.MapContainer}
-        key={new Date().getTime()}
-      >
-        <ZoomControl position="bottomright" />
-        <TileLayer {...tileLayer} />
-        <LayersControl position="topright">
-          {displays.map(display => (
-            <LayersControl.Overlay key={display.id} name={display.title}>
-              <Marker
-                className={styles.parent}
-                key={display.id}
-                position={{
-                  lat: (display.coordinates as { lat: number })?.lat ?? 0,
-                  lng: (display.coordinates as { lng: number })?.lng ?? 0,
-                }}
-              >
-                <Popup className={styles.sibling}>
-                  {/* <div>
-                    <ExhibitPreview
-                      name={display.title}
-                      location={`${display.coordinates.lat}, ${display.coordinates.lng}`}
-                      description={display.description}
-                      about='pls work bro'
-                      topimage='/Rectangle 12.png'
-                      bottomimage='/Rectangle 10.png'
-                      href="/hoursAdmissionPage"
-                    />
-                  </div> */}
-                  <div className={styles.sibling}>
-                    <ExhibitPreview 
-                      
-                      display={display}
-                      about='pls work'
-                      topimage='/Rectangle 12.png'
-                      bottomimage='/Rectangle 10.png'
-                      href="/hoursAdmissionPage"
-                    />
-                  </div>
-                  
+    <MapContainer
+      center={center}
+      zoom={18}
+      zoomControl={false}
+      scrollWheelZoom
+      // style={styles.MapContainer}
+      style={{ height: '75vh', width: '100%', minHeight: '544px' }}
+      key={new Date().getTime()}
+    >
+      <ZoomControl position="bottomright" />
+      <TileLayer {...tileLayer} />
+      <LayersControl position="topright">
+        {displays.map(display => (
+          <LayersControl.Overlay key={display.id} name={display.title}>
+            <Marker
+              key={display.id}
+              position={{
+                lat: (display.coordinates as { lat: number })?.lat ?? 0,
+                lng: (display.coordinates as { lng: number })?.lng ?? 0,
+              }}
+            >
+              <Popup >
+                {/* <div>
+                  <ExhibitPreview
+                    name={display.title}
+                    location={`${display.coordinates.lat}, ${display.coordinates.lng}`}
+                    description={display.description}
+                    about='pls work bro'
+                    topimage='/Rectangle 12.png'
+                    bottomimage='/Rectangle 10.png'
+                    href="/hoursAdmissionPage"
+                  />
+                </div> */}
+                <div className={styles.sibling}>
+                  <ExhibitPreview 
+                    
+                    display={display}
+                    about='pls work'
+                    topimage='/Rectangle 12.png'
+                    bottomimage='/Rectangle 10.png'
+                    href="/hoursAdmissionPage"
+                  />
+                </div>
+                
 
-                  {/* {display.title} <br /> {display.description} */}
-                </Popup>
-              </Marker>
-            </LayersControl.Overlay>
-          ))}
-        </LayersControl>
-      </MapContainer>
-    </div>
+                {/* {display.title} <br /> {display.description} */}
+              </Popup>
+            </Marker>
+          </LayersControl.Overlay>
+        ))}
+      </LayersControl>
+    </MapContainer>
   );
 }
 
