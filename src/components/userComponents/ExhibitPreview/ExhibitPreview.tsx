@@ -23,7 +23,7 @@ export default function ExhibitPreview({
   bottomimage,
   href
 }: ExhibitProps) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const { title, coordinates, description } = display;
 
 
