@@ -102,6 +102,7 @@ export default function Home() {
     const newTourData: ToursRow = {
       name: 'New tour name',
       description: 'New tour description',
+      stop_count: 0,
       created_at: new Date('2023-10-13T12:34:56Z').toJSON(),
       //id
     };
@@ -123,6 +124,7 @@ export default function Home() {
       id,
       name: 'Updated tour name',
       description: 'Updated tour description',
+      stop_count: 0,
       created_at: new Date('2023-10-13T12:34:56Z').toJSON(),
     };
 

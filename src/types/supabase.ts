@@ -93,18 +93,21 @@ export interface Database {
           description: string | null
           id: string
           name: string | null
+          stop_count: number | null
         }
         Insert: {
           created_at?: string
           description?: string | null
           id?: string
           name?: string | null
+          stop_count?: number | null
         }
         Update: {
           created_at?: string
           description?: string | null
           id?: string
           name?: string | null
+          stop_count?: number | null
         }
         Relationships: []
       }
