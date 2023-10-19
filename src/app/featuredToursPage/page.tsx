@@ -13,26 +13,25 @@ function App() {
           Featured Tours
         </h1>
         <p className="text-[#333333] mb-4">
-          Embark on a tour and explore our exhibits from anywhere - at home or in person!
+          Embark on a tour and explore our exhibits from anywhere - at home or
+          in person!
         </p>
 
         <div className="flex flex-row justify-between mb-4">
           <button
             type="button"
-            className="bg-[#d7e0cc] rounded-2xl p-4 w-[48%] h-[150px]">
+            className="bg-[#d7e0cc] rounded-2xl p-4 w-[48%] h-[150px]"
+          >
             <Link href="/">
-              <h1 className="text-[#333333] p-4">
-                Tour Name
-              </h1>
+              <h1 className="text-[#333333] p-4">Tour Name</h1>
             </Link>
           </button>
           <button
             type="button"
-            className="bg-[#d7e0cc] rounded-2xl p-4 w-[48%] h-[150px]">
+            className="bg-[#d7e0cc] rounded-2xl p-4 w-[48%] h-[150px]"
+          >
             <Link href="/">
-              <h1 className="text-[#333333] p-4">
-                Tour Name
-              </h1>
+              <h1 className="text-[#333333] p-4">Tour Name</h1>
             </Link>
           </button>
         </div>
@@ -40,20 +39,18 @@ function App() {
         <div className="flex flex-row justify-between mb-4">
           <button
             type="button"
-            className="bg-[#d7e0cc] rounded-2xl p-4 w-[48%] h-[150px]">
+            className="bg-[#d7e0cc] rounded-2xl p-4 w-[48%] h-[150px]"
+          >
             <Link href="/">
-              <h1 className="text-[#333333] p-4">
-                Tour Name
-              </h1>
+              <h1 className="text-[#333333] p-4">Tour Name</h1>
             </Link>
           </button>
           <button
             type="button"
-            className="bg-[#d7e0cc] rounded-2xl p-4 w-[48%] h-[150px]">
+            className="bg-[#d7e0cc] rounded-2xl p-4 w-[48%] h-[150px]"
+          >
             <Link href="/">
-              <h1 className="text-[#333333] p-4">
-                Tour Name
-              </h1>
+              <h1 className="text-[#333333] p-4">Tour Name</h1>
             </Link>
           </button>
         </div>
@@ -61,24 +58,21 @@ function App() {
         <div className="flex flex-row justify-between mb-4">
           <button
             type="button"
-            className="bg-[#d7e0cc] rounded-2xl p-4 w-[48%] h-[150px]">
+            className="bg-[#d7e0cc] rounded-2xl p-4 w-[48%] h-[150px]"
+          >
             <Link href="/">
-              <h1 className="text-[#333333] p-4">
-                Tour Name
-              </h1>
+              <h1 className="text-[#333333] p-4">Tour Name</h1>
             </Link>
           </button>
           <button
             type="button"
-            className="bg-[#d7e0cc] rounded-2xl p-4 w-[48%] h-[150px]">
+            className="bg-[#d7e0cc] rounded-2xl p-4 w-[48%] h-[150px]"
+          >
             <Link href="/">
-              <h1 className="text-[#333333] p-4">
-                Tour Name
-              </h1>
+              <h1 className="text-[#333333] p-4">Tour Name</h1>
             </Link>
           </button>
         </div>
-
       </div>
     </div>
   );

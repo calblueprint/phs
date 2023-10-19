@@ -5,7 +5,13 @@
 
 import React, { useEffect, useState } from 'react';
 import { ToursRow } from '../../types/types';
-import { fetchTours, insertTour, updateTour, upsertTour, deleteTour } from '../../supabase/tours/queries';
+import {
+  fetchTours,
+  insertTour,
+  updateTour,
+  upsertTour,
+  deleteTour,
+} from '../../supabase/tours/queries';
 // import ExhibitPreview from '../../components/userComponents/ExhibitPreview/ExhibitPreview';
 
 const styles = {
@@ -78,7 +84,7 @@ export default function Home() {
       try {
         const responseData: ToursRow[] = await fetchTours();
         setTours(responseData);
-        console.log("set the tours");
+        console.log('set the tours');
       } catch (error) {
         console.error(error);
       }
@@ -147,9 +153,7 @@ export default function Home() {
           <li style={styles.listItem} key={tours.id}>
             <div style={styles.info}>
               <div style={styles.text}>Title: {tours.text}</div>
-              <div style={styles.type}>
-                Type: {tours.type}
-              </div>
+              <div style={styles.type}>Type: {tours.type}</div>
               <div style={styles.creation}>Creation: {tours.created_at}</div>
               <button
                 type="button"
