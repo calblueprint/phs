@@ -4,8 +4,8 @@
 /* eslint-disable */
 
 import React, { useEffect, useState } from 'react';
-import { MediaRow } from '../../types/types';
-import { createMedia, deleteMedia, fetchMedia, updateMedia } from '../../supabase/media/queries';
+import { ToursRow } from '../../types/types';
+import { fetchTours, insertTour, updateTour, upsertTour, deleteTour } from '../../supabase/tours/queries';
 // import ExhibitPreview from '../../components/userComponents/ExhibitPreview/ExhibitPreview';
 
 const styles = {
@@ -68,7 +68,7 @@ const styles = {
  *
  */
 export default function Home() {
-  const [media, setMedia] = useState<MediaRow[]>([]);
+  const [tours, setTours] = useState<ToursRow[]>([]);
 
   useEffect(() => {
     /**
@@ -76,9 +76,9 @@ export default function Home() {
      */
     async function fetchData() {
       try {
-        const responseData: MediaRow[] = await fetchMedia();
-        setMedia(responseData);
-        console.log("set the media");
+        const responseData: ToursRow[] = await fetchTours();
+        setTours(responseData);
+        console.log("set the tours");
       } catch (error) {
         console.error(error);
       }
@@ -87,80 +87,78 @@ export default function Home() {
     fetchData();
   }, []);
 
-  const handleDeleteMedia = async (id: number) => {
+  const handleDeleteTour = async (id: number) => {
     try {
-      await deleteMedia(id);
-      // After deleting, refresh the media list
-      const data = await fetchMedia();
-      setMedia(data);
+      await deleteTour(id);
+      // After deleting, refresh the tour list
+      const data = await fetchTours();
+      setTours(data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const handleCreateMedia = async () => {
-    const newMediaData: MediaRow = {
-      text: 'New Media',
-      type: 'Picture',
-      url: 'https://',
+  const handleUpsertTour = async () => {
+    const newTourData: ToursRow = {
+      name: 'New tour name',
+      description: 'New tour description',
       created_at: new Date('2023-10-13T12:34:56Z').toJSON(),
       //id
     };
 
     try {
-      await createMedia(newMediaData);
-      // After creating, refresh the media list
-      const data = await fetchMedia();
-      setMedia(data);
+      await upsertTour(newTourData);
+      // After creating, refresh the tour list
+      const data = await fetchTours();
+      setTours(data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const handleUpdateMedia = async id => {
-    const updatedMediaInfo: MediaRow = {
-      // Define the updated media info here
+  const handleUpdateTour = async id => {
+    const updatedTourInfo: ToursRow = {
+      // Define the updated tour info here
       // For example, to update the text:
       id,
-      text: 'Updated Media2 Title',
-      type: 'Updated picture',
-      url: 'Updated https://',
+      name: 'Updated tour name',
+      description: 'Updated tour description',
       created_at: new Date('2023-10-13T12:34:56Z').toJSON(),
     };
 
     try {
-      await updateMedia(id, updatedMediaInfo);
+      await updateTour(id, updatedTourInfo);
 
       // Pass the 'id' as the first argument
-      // After updating, refresh the displays list
-      const data = await fetchMedia();
-      setMedia(data);
+      // After updating, refresh the tour list
+      const data = await fetchTours();
+      setTours(data);
     } catch (error) {
       console.error(error);
     }
   };
   return (
     <div style={styles.container}>
-      <h1 style={styles.header}>Media</h1>
+      <h1 style={styles.header}>Tours</h1>
       <ul style={styles.list}>
-        {media.map(media => (
-          <li style={styles.listItem} key={media.id}>
+        {tours.map(tours => (
+          <li style={styles.listItem} key={tours.id}>
             <div style={styles.info}>
-              <div style={styles.text}>Title: {media.text}</div>
+              <div style={styles.text}>Title: {tours.text}</div>
               <div style={styles.type}>
-                Type: {media.type}
+                Type: {tours.type}
               </div>
-              <div style={styles.creation}>Creation: {media.created_at}</div>
+              <div style={styles.creation}>Creation: {tours.created_at}</div>
               <button
                 type="button"
-                onClick={() => handleDeleteMedia(media.id)}
+                onClick={() => handleDeleteTour(tours.id)}
                 style={styles.deleteButton}
               >
                 Delete
               </button>
               <button
                 type="button"
-                onClick={() => handleUpdateMedia(media.id)}
+                onClick={() => handleUpdateTour(tours.id)}
                 style={styles.updateButton}
               >
                 Update
@@ -169,10 +167,9 @@ export default function Home() {
           </li>
         ))}
       </ul>
-      <button type="button" onClick={handleCreateMedia}>
-        Create Media
+      <button type="button" onClick={handleUpsertTour}>
+        Upsert Tour
       </button>
     </div>
   );
 }
-
