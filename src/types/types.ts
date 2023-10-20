@@ -8,3 +8,4 @@ import { Database } from './supabase';
 
 export type DisplayRow = Database['public']['Tables']['displays']['Row'];
 export type MediaRow = Database['public']['Tables']['media']['Row'];
+export type ToursRow = Database['public']['Tables']['tours']['Row'];
