@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, SetStateAction, Dispatch } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,6 +13,8 @@ interface ExhibitProps {
   topimage: string,
   bottomimage: string,
   href: string
+  isOpen1: Dispatch<SetStateAction<boolean>>
+  
 }
 
 
@@ -21,9 +23,10 @@ export default function ExhibitPreview({
   about,
   topimage,
   bottomimage,
-  href
+  href,
+  isOpen1
 }: ExhibitProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const { title, coordinates, description } = display;
 
 
@@ -98,7 +101,7 @@ export default function ExhibitPreview({
                   <button
                     type="button"
                     className="inline-flex justify-center px-4 py-2 text-sm text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 duration-300"
-                    onClick={closeModal}
+                    onClick={() => isOpen1(false)}
                   >
                     x
                   </button>
