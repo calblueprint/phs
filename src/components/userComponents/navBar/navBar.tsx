@@ -16,7 +16,7 @@ function NavBar() {
 
   return (
     <nav
-      className="bg-[#4b711d] p-4 flex items-center justify-between"
+      className="bg-[#4b711d] p-4 flex items-center justify-between z-[9999]"
       style={{ padding: '1rem', position: 'sticky', top: 0 }}
     >
       <Link href="/">
@@ -65,7 +65,7 @@ function NavBar() {
       </button>
 
       {showMenu && (
-        <div className="fixed top-20 right-0 h-full w-3/5 bg-[#ebf0e4] shadow-lg z-[9999]">
+        <div className="fixed top-20 right-0 h-full w-3/5 bg-[#ebf0e4] shadow-lg">
           <h1 className="text-xl text-black font-bold p-4">WELCOME</h1>
           <ul className="p-4">
             <Link href="/" className="block mb-2 text-black">
