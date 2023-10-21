@@ -1,10 +1,28 @@
 'use client';
 
-import React from 'react';
+import React, { use, useEffect, useState } from 'react';
 import Link from 'next/link';
+import { ToursRow } from '../../types/types';
+import { fetchTours } from '../../supabase/tours/queries';
 import NavBar from '../../components/userComponents/navBar/navBar';
 
 function App() {
+  const [tours, setTours] = useState<ToursRow[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const responseData: ToursRow[] = await fetchTours();
+        setTours(responseData);
+        console.log('set the tours');
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <div className="bg-[#ebf0e4]">
       <NavBar />
@@ -17,62 +35,21 @@ function App() {
           in person!
         </p>
 
-        <div className="flex flex-row justify-between mb-4">
-          <button
-            type="button"
-            className="bg-[#d7e0cc] rounded-2xl p-4 w-[48%] h-[150px]"
-          >
+        <ul className="list-none p-0">
+        {tours.map(tours => (
+          <li className="my-4" key={tours.id}>
             <Link href="/">
-              <h1 className="text-[#333333] p-4">Tour Name</h1>
+              <div className="bg-[#d7e0cc] h-48 rounded-2xl p-4">
+                <div className="flex flex-col items-center">
+                  <div className="mt-0.5">{tours.stop_count} stops</div>
+                  <div className="font-bold">{tours.name}</div>
+                </div>
+              </div>
             </Link>
-          </button>
-          <button
-            type="button"
-            className="bg-[#d7e0cc] rounded-2xl p-4 w-[48%] h-[150px]"
-          >
-            <Link href="/">
-              <h1 className="text-[#333333] p-4">Tour Name</h1>
-            </Link>
-          </button>
-        </div>
-
-        <div className="flex flex-row justify-between mb-4">
-          <button
-            type="button"
-            className="bg-[#d7e0cc] rounded-2xl p-4 w-[48%] h-[150px]"
-          >
-            <Link href="/">
-              <h1 className="text-[#333333] p-4">Tour Name</h1>
-            </Link>
-          </button>
-          <button
-            type="button"
-            className="bg-[#d7e0cc] rounded-2xl p-4 w-[48%] h-[150px]"
-          >
-            <Link href="/">
-              <h1 className="text-[#333333] p-4">Tour Name</h1>
-            </Link>
-          </button>
-        </div>
-
-        <div className="flex flex-row justify-between mb-4">
-          <button
-            type="button"
-            className="bg-[#d7e0cc] rounded-2xl p-4 w-[48%] h-[150px]"
-          >
-            <Link href="/">
-              <h1 className="text-[#333333] p-4">Tour Name</h1>
-            </Link>
-          </button>
-          <button
-            type="button"
-            className="bg-[#d7e0cc] rounded-2xl p-4 w-[48%] h-[150px]"
-          >
-            <Link href="/">
-              <h1 className="text-[#333333] p-4">Tour Name</h1>
-            </Link>
-          </button>
-        </div>
+          </li>
+        ))}
+        </ul>
+        
       </div>
     </div>
   );
