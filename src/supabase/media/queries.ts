@@ -5,11 +5,9 @@ import { MediaRow } from '../../types/types';
 
 export async function fetchMedia() {
     const { data, error } = await supabase.from('media').select('*');
-    console.log("here????");
     if (error) {
         throw new Error(`An error occurred trying to read displays: ${error}`);
       }
-    console.log(data);
     return data;
 }
 export async function deleteMedia(id: number) {
