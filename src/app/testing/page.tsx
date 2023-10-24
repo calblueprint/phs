@@ -10,8 +10,7 @@ import { Carousel } from '@/components/userComponents/ImageScroller/ImageScrolle
 export default function Test() {
   return (
     <div>
-    <Carousel />
+      <Carousel />
     </div>
-
-  )
+  );
 }

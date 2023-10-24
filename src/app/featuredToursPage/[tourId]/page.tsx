@@ -119,16 +119,18 @@ export default function Page({ params }: { params: { tourId: string } }) {
           {tourDisplays.map((tourDisplay, index) => (
             <li key={tourDisplay.display_id}>
               <div>
-              <Link href={`/featuredToursPage/${params.tourId}/${tourDisplay.display_id}`}>
-                <h4 className="font-light">
-                  {index + 1}.{' '}
-                  {
-                    displays.find(
-                      display => display.id === tourDisplay.display_id,
-                    )?.title
-                  }
-                </h4>
-              </Link>
+                <Link
+                  href={`/featuredToursPage/${params.tourId}/${tourDisplay.display_id}`}
+                >
+                  <h4 className="font-light">
+                    {index + 1}.{' '}
+                    {
+                      displays.find(
+                        display => display.id === tourDisplay.display_id,
+                      )?.title
+                    }
+                  </h4>
+                </Link>
               </div>
             </li>
           ))}

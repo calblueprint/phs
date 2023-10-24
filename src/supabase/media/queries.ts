@@ -7,11 +7,11 @@ import { MediaRow } from '../../types/types';
  *
  */
 export async function fetchMedia() {
-    const { data, error } = await supabase.from('media').select('*');
-    if (error) {
-        throw new Error(`An error occurred trying to read displays: ${error}`);
-      }
-    return data;
+  const { data, error } = await supabase.from('media').select('*');
+  if (error) {
+    throw new Error(`An error occurred trying to read displays: ${error}`);
+  }
+  return data;
 }
 /**
  *
