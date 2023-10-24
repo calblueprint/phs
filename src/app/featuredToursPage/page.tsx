@@ -1,6 +1,6 @@
 'use client';
 
-import React, { use, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ToursRow } from '../../types/types';
 import { fetchTours } from '../../supabase/tours/queries';
@@ -36,20 +36,19 @@ function App() {
         </p>
 
         <ul className="list-none p-0">
-        {tours.map(tours => (
-          <li className="my-4" key={tours.id}>
-            <Link href="/">
-              <div className="bg-[#d7e0cc] h-48 rounded-2xl p-4">
-                <div className="flex flex-col items-center">
-                  <div className="mt-0.5">{tours.stop_count} stops</div>
-                  <div className="font-bold">{tours.name}</div>
+          {tours.map(tours => (
+            <li className="my-4" key={tours.id}>
+              <Link href={`/${tours.id}`} className="w-full rounded-2xl">
+                <div className="bg-[#d7e0cc] h-48 rounded-2xl p-4">
+                  <div className="flex flex-col items-center">
+                    <div className="mt-0.5">{tours.stop_count} stops</div>
+                    <div className="font-bold">{tours.name}</div>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          </li>
-        ))}
+              </Link>
+            </li>
+          ))}
         </ul>
-        
       </div>
     </div>
   );
