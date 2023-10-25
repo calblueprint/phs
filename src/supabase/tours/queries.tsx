@@ -1,7 +1,7 @@
 'use client';
 
 import supabase from '../client';
-import { ToursRow } from '../../types/types';
+import { TourRow } from '../../types/types';
 
 // Fetch all tours
 export async function fetchTours() {
@@ -13,7 +13,7 @@ export async function fetchTours() {
 }
 
 // Insert tour(s)
-export async function insertTour(tourData: ToursRow) {
+export async function insertTour(tourData: TourRow) {
   const { data, error } = await supabase.from('tours').insert([tourData]);
   if (error) {
     throw new Error(
@@ -25,7 +25,7 @@ export async function insertTour(tourData: ToursRow) {
 }
 
 // Update a tour
-export async function updateTour(id: number, updatedInfo: ToursRow) {
+export async function updateTour(id: number, updatedInfo: TourRow) {
   const { data, error } = await supabase
     .from('tours')
     .update(updatedInfo)
@@ -40,7 +40,7 @@ export async function updateTour(id: number, updatedInfo: ToursRow) {
 }
 
 // Upsert tour(s)
-export async function upsertTour(tourData: ToursRow) {
+export async function upsertTour(tourData: TourRow) {
   const { data, error } = await supabase.from('tours').upsert([tourData]);
   if (error) {
     throw new Error(

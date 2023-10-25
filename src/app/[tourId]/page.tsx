@@ -2,13 +2,14 @@
 
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import supabase from '../../supabase/client';
-import { ToursRow } from '../../types/types';
-import { TourDisplaysRow } from '../../types/types';
+
 import NavBar from '@/components/userComponents/navBar/navBar';
+import supabase from '@/supabase/client';
+import { TourDisplaysRow } from '@/types/types';
+import { TourRow } from '@/types/types';
 
 export default function Page({ params }: { params: { tourId: string }}) {
-  const [tour, setTour] = useState<ToursRow>();
+  const [tour, setTour] = useState<TourRow>();
   const [tourDisplays, setTourDisplays] = useState<TourDisplaysRow[]>([]);
 
   useEffect(() => {
@@ -26,7 +27,7 @@ export default function Page({ params }: { params: { tourId: string }}) {
           throw new Error('No data found');
         }
         console.log('Obtained tour details');
-        const responseData: ToursRow = data;
+        const responseData: TourRow = data;
         setTour(responseData);
       } catch (error) {
         console.error('Error fetching tour details:', error);

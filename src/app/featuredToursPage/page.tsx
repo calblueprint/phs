@@ -1,18 +1,19 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ToursRow } from '../../types/types';
-import { fetchTours } from '../../supabase/tours/queries';
-import NavBar from '../../components/userComponents/navBar/navBar';
+import React, { useEffect, useState } from 'react';
+
+import { fetchTours } from '@/supabase/tours/queries';
+import NavBar from '@/components/userComponents/navBar/navBar';
+import { TourRow } from '@/types/types';
 
 function App() {
-  const [tours, setTours] = useState<ToursRow[]>([]);
+  const [tours, setTours] = useState<TourRow[]>([]);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const responseData: ToursRow[] = await fetchTours();
+        const responseData: TourRow[] = await fetchTours();
         setTours(responseData);
         console.log('set the tours');
       } catch (error) {
