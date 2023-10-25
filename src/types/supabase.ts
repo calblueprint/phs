@@ -9,32 +9,36 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      "bp-testing": {
+      display_media: {
         Row: {
-          coordinates: string | null
-          creation: string
-          description: string | null
-          id: number
-          title: string | null
-          updated: string | null
+          display_id: string
+          media_id: string
+          media_placement: string | null
         }
         Insert: {
-          coordinates?: string | null
-          creation: string
-          description?: string | null
-          id?: number
-          title?: string | null
-          updated?: string | null
+          display_id: string
+          media_id: string
+          media_placement?: string | null
         }
         Update: {
-          coordinates?: string | null
-          creation?: string
-          description?: string | null
-          id?: number
-          title?: string | null
-          updated?: string | null
+          display_id?: string
+          media_id?: string
+          media_placement?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "display_media_display_id_fkey"
+            columns: ["display_id"]
+            referencedRelation: "displays"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "display_media_media_id_fkey"
+            columns: ["media_id"]
+            referencedRelation: "media"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       displays: {
         Row: {
@@ -68,24 +72,58 @@ export interface Database {
           created_at: string
           id: string
           text: string | null
+          title: string | null
           type: string | null
-          url: string | null
+          url: string
         }
         Insert: {
           created_at?: string
           id?: string
           text?: string | null
+          title?: string | null
           type?: string | null
-          url?: string | null
+          url?: string
         }
         Update: {
           created_at?: string
           id?: string
           text?: string | null
+          title?: string | null
           type?: string | null
-          url?: string | null
+          url?: string
         }
         Relationships: []
+      }
+      tour_displays: {
+        Row: {
+          display_id: string
+          display_order: number | null
+          tour_id: string
+        }
+        Insert: {
+          display_id: string
+          display_order?: number | null
+          tour_id: string
+        }
+        Update: {
+          display_id?: string
+          display_order?: number | null
+          tour_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tour_displays_display_id_fkey"
+            columns: ["display_id"]
+            referencedRelation: "displays"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tour_displays_tour_id_fkey"
+            columns: ["tour_id"]
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       tours: {
         Row: {
@@ -119,7 +157,7 @@ export interface Database {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      media_type: "image" | "video" | "link"
     }
     CompositeTypes: {
       [_ in never]: never

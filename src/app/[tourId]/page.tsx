@@ -4,14 +4,15 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import supabase from '../../supabase/client';
 import { ToursRow } from '../../types/types';
+import { TourDisplaysRow } from '../../types/types';
 import NavBar from '@/components/userComponents/navBar/navBar';
 
 export default function Page({ params }: { params: { tourId: string }}) {
   const [tour, setTour] = useState<ToursRow>();
+  const [tourDisplays, setTourDisplays] = useState<TourDisplaysRow[]>([]);
 
   useEffect(() => {
-    async function fetchData() {
-      console.log(params);
+    async function fetchTourData() {
       try {
         const { data, error } = await supabase
           .from('tours')
@@ -24,15 +25,36 @@ export default function Page({ params }: { params: { tourId: string }}) {
         if (!data) {
           throw new Error('No data found');
         }
+        console.log('Obtained tour details');
         const responseData: ToursRow = data;
         setTour(responseData);
-        console.log('Obtained tour details');
       } catch (error) {
         console.error('Error fetching tour details:', error);
       }
     }
 
-    fetchData();
+    async function fetchTourDisplays() {
+      try {
+        const { data, error } = await supabase
+          .from('tour_displays')
+          .select('*')
+          .eq('tour_id', params.tourId);
+        if (error) {
+          throw error;
+        }
+        if (!data) {
+          throw new Error('No data found');
+        }
+        console.log('Obtained tour displays');
+        const responseData: TourDisplaysRow[] = data;
+        setTourDisplays(responseData);
+      } catch (error) {
+        console.error('Error fetching tour displays:', error);
+      }
+    }
+
+    fetchTourData();
+    fetchTourDisplays();
   }, []);
 
   return (
@@ -71,8 +93,8 @@ export default function Page({ params }: { params: { tourId: string }}) {
           In this tour
         </h3>
 
+        <h4>Tour Displays here</h4>
         <ol className="p-4">
-          
         </ol>
 
         <h4 className="text-[#386131] px-4 py-8 font-bold">
