@@ -6,19 +6,25 @@ import React, { useEffect, useState } from 'react';
 import { fetchDisplays } from '@/supabase/displays/queries';
 import { fetchTours } from '@/supabase/tours/queries';
 import { fetchTourDisplays } from '@/supabase/tour_displays/queries';
-import { DisplayRow } from '@/types/types';
-import { TourDisplaysRow } from '@/types/types';
-import { TourRow } from '@/types/types';
+import { DisplayRow, TourDisplaysRow, TourRow } from '@/types/types';
 import NavBar from '@/components/userComponents/navBar/navBar';
 import supabase from '@/supabase/client';
 
+/**
+ *
+ * @param root0
+ * @param root0.params
+ * @param root0.params.tourId
+ */
 export default function Page({ params }: { params: { tourId: string } }) {
   const [tour, setTour] = useState<TourRow>();
   const [tourDisplays, setTourDisplays] = useState<TourDisplaysRow[]>([]);
-
   const [displays, setDisplays] = useState<DisplayRow[]>([]);
 
   useEffect(() => {
+    /**
+     *
+     */
     async function fetchTour() {
       try {
         const { data, error } = await supabase
@@ -40,6 +46,9 @@ export default function Page({ params }: { params: { tourId: string } }) {
       }
     }
 
+    /**
+     *
+     */
     async function fetchTourDisplays() {
       try {
         const { data, error } = await supabase
@@ -56,7 +65,9 @@ export default function Page({ params }: { params: { tourId: string } }) {
         const responseData: TourDisplaysRow[] = data;
 
         // Sort the responseData array by the display_order attribute  (ascending, does not throw error if display_order is null)
-        responseData.sort((a, b) => (a?.display_order || 0) - (b?.display_order || 0));
+        responseData.sort(
+          (a, b) => (a?.display_order || 0) - (b?.display_order || 0),
+        );
 
         setTourDisplays(responseData);
       } catch (error) {
@@ -64,6 +75,9 @@ export default function Page({ params }: { params: { tourId: string } }) {
       }
     }
 
+    /**
+     *
+     */
     async function fetchDisplays() {
       try {
         const { data, error } = await supabase.from('displays').select('*');
@@ -90,6 +104,7 @@ export default function Page({ params }: { params: { tourId: string } }) {
     <div className="bg-[#ebf0e4]">
       <NavBar />
       <div>
+        // TODO: Add tour-specific image
         <img
           src="https://images.unsplash.com/photo-1615812214207-34e3be6812df?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="placeholder"
@@ -114,14 +129,16 @@ export default function Page({ params }: { params: { tourId: string } }) {
 
         <ol className="list-decimal px-16">
           {tourDisplays.map(tourDisplay => (
-            <li>
-              <h4 className="font-light">
-                {
-                  displays.find(
-                    display => display.id === tourDisplay.display_id,
-                  )?.title
-                }
-              </h4>
+            <li key={tourDisplay.display_id}>
+              <Link href={`/displayPages/${tourDisplay.display_id}`}>
+                <h4 className="font-light">
+                  {
+                    displays.find(
+                      display => display.id === tourDisplay.display_id,
+                    )?.title
+                  }
+                </h4>
+              </Link>
             </li>
           ))}
         </ol>
