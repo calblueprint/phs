@@ -1,18 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import Image from 'next/image';
+import ReactDOM from 'react-dom';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+
 import { fetchMedia } from "../../../supabase/media/queries";
 import { MediaRow } from "../../../types/types";
-import supabase from "../../../supabase/client";
 
-import Image from 'next/image';
+/**
+ *
+ */
+export default function Carousel() {
 
-export const Carousel = () => {
-  
     const [media, setMedia] = useState<MediaRow[]>([]);
     // const [image, setImage] = useState('')
+    const carouselRef = useRef<HTMLDivElement>(null);
 
-    const imageLoader = ({ src, width }) => {
-        return `${src}?w=${width}`
-      }
+    const imageLoader = ({ src, width }) => `${src}?w=${width}`
 
     useEffect(() => {
         /**
@@ -21,7 +25,7 @@ export const Carousel = () => {
         async function fetchData() {
           try {
             const responseData: MediaRow[] = await fetchMedia();
-            let images: MediaRow[] = [];
+            const images: MediaRow[] = [];
             responseData.map(media => {
                 if (media.type === "image") {
                     images.push(media);
@@ -30,6 +34,7 @@ export const Carousel = () => {
             console.log('hello')
             console.log(images)
             setMedia(images);
+
           } catch (error) {
             console.error(error);
           }
@@ -45,30 +50,54 @@ export const Carousel = () => {
         fetchData();
         // fetchImage();
       }, []);
+
+      const observerTarget = useRef<HTMLDivElement>(null);
+
+      useEffect(() => {
+        const observer = new IntersectionObserver(
+          entries => {
+            if (entries[0].isIntersecting) {
+              fetchData();
+            }
+          },
+          { threshold: 1 }
+        );
+      
+        if (observerTarget.current) {
+          observer.observe(observerTarget.current);
+        }
+      
+        return () => {
+          if (observerTarget.current) {
+            observer.unobserve(observerTarget.current);
+          }
+        };
+      }, [media]);
+
+
+      return (
+        <div className="bg-blue h-245 w-390 flex overflow-x-auto">
     
-     
-  return (
-    <div className="bg-blue h-245 w-390 p-1/25 flex overflow-x-auto">
-        
-            <div className="whitespace-nowrap carousel carousel-end rounded-box">
-                {media.map((item) => (
-                    <div key={item.id} className="inline-block w-390 h-245 px-4 carousel-item w-full" style={{ scrollSnapAlign: 'start' }}> 
-                    <Image
-                    loader={imageLoader}
-                    key={item.id}
-                    src={item.url}
-                    alt="Media Image"
-                    width={390}
-                    height={245}
-                    priority={true}
-                    />
-                    </div>
-        ))}
-            </div>
-            
-       
-    </div>
+                <div className="whitespace-nowrap carousel carousel-end">
+                    {media.map((item) => (
+                        <div key={item.id} className="inline-block w-390 h-245 carousel-item w-full" style={{ scrollSnapAlign: 'start' }}> 
+                        <Image
+                        loader={imageLoader}
+                        key={item.id}
+                        src={item.url}
+                        alt="Media Image"
+                        width={390}
+                        height={245}
+                        priority
+                        />
+                        </div>
+            ))}
+                </div>
+    
+                <div ref={observerTarget} />
 
-
-  );
-};
+        </div>
+    
+    
+      );
+    };
