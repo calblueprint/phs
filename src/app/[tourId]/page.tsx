@@ -3,18 +3,23 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-import NavBar from '@/components/userComponents/navBar/navBar';
-import supabase from '@/supabase/client';
+import { fetchDisplays } from '@/supabase/displays/queries';
+import { fetchTours } from '@/supabase/tours/queries';
+import { fetchTourDisplays } from '@/supabase/tour_displays/queries';
 import { DisplayRow } from '@/types/types';
 import { TourDisplaysRow } from '@/types/types';
 import { TourRow } from '@/types/types';
+import NavBar from '@/components/userComponents/navBar/navBar';
+import supabase from '@/supabase/client';
 
 export default function Page({ params }: { params: { tourId: string } }) {
   const [tour, setTour] = useState<TourRow>();
   const [tourDisplays, setTourDisplays] = useState<TourDisplaysRow[]>([]);
 
+  const [displays, setDisplays] = useState<DisplayRow[]>([]);
+
   useEffect(() => {
-    async function fetchTourData() {
+    async function fetchTour() {
       try {
         const { data, error } = await supabase
           .from('tours')
@@ -49,6 +54,10 @@ export default function Page({ params }: { params: { tourId: string } }) {
         }
         console.log('Obtained tour displays');
         const responseData: TourDisplaysRow[] = data;
+
+        // Sort the responseData array by the display_order attribute  (ascending, does not throw error if display_order is null)
+        responseData.sort((a, b) => (a?.display_order || 0) - (b?.display_order || 0));
+
         setTourDisplays(responseData);
       } catch (error) {
         console.error('Error fetching tour displays:', error);
@@ -56,9 +65,23 @@ export default function Page({ params }: { params: { tourId: string } }) {
     }
 
     async function fetchDisplays() {
+      try {
+        const { data, error } = await supabase.from('displays').select('*');
+        if (error) {
+          throw error;
+        }
+        if (!data) {
+          throw new Error('No data found');
+        }
+        console.log('Obtained displays');
+        const responseData: DisplayRow[] = data;
+        setDisplays(responseData);
+      } catch (error) {
+        console.error('Error fetching displays:', error);
+      }
     }
 
-    fetchTourData();
+    fetchTour();
     fetchTourDisplays();
     fetchDisplays();
   }, []);
@@ -71,7 +94,6 @@ export default function Page({ params }: { params: { tourId: string } }) {
           src="https://images.unsplash.com/photo-1615812214207-34e3be6812df?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="placeholder"
         />
-
         <div className="mt-4">
           <div className="flex items-center flex-col bg-[#d7e0cc] h-48 rounded-md mx-4 p-4">
             <h2 className="text-[#141414] text-sm mt-4">WELCOME TO</h2>
@@ -87,14 +109,20 @@ export default function Page({ params }: { params: { tourId: string } }) {
             </div>
           </div>
         </div>
-
         <p className="p-4">{tour && tour.description}</p>
-
         <h3 className="p-4 text-lg font-bold">In this tour</h3>
-        <h4 className="p-4">Tour Displays here</h4>
-        <ol className="p-4">
+
+        <ol className="list-decimal px-16">
           {tourDisplays.map(tourDisplay => (
-            <li key={tourDisplay.display_order}>{tourDisplay.display_id}</li>
+            <li>
+              <h4 className="font-light">
+                {
+                  displays.find(
+                    display => display.id === tourDisplay.display_id,
+                  )?.title
+                }
+              </h4>
+            </li>
           ))}
         </ol>
 
