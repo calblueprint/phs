@@ -28,7 +28,9 @@
     "react": "latest",
     "react-bootstrap": "^2.9.0",
     "react-dom": "latest",
-    "react-leaflet": "^4.2.1"
+    "react-icons": "^4.11.0",
+    "react-leaflet": "^4.2.1",
+    "react-leaflet-custom-control": "^1.4.0"
   },
   "devDependencies": {
     "@calblueprint/eslint-config-react": "^0.0.3",
@@ -59,8 +61,16 @@
   },
   "lint-staged": {
     "linters": {
-      "src/**/*.js": ["formatter --write", "git add"]
+      "src/**/*.js": [
+        "formatter --write",
+        "git add"
+      ]
     },
-    "ignore": ["node_modules", "dist", "package-lock.json", "src/app/testing/page.tsx"]
+    "ignore": [
+      "node_modules",
+      "dist",
+      "package-lock.json",
+      "src/app/testing/page.tsx"
+    ]
   }
 }
