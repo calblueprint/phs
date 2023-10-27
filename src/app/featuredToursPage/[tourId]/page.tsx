@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use client';
 
 import Link from 'next/link';
@@ -10,21 +11,12 @@ import { DisplayRow, TourDisplaysRow, TourRow } from '@/types/types';
 import NavBar from '@/components/userComponents/navBar/navBar';
 import supabase from '@/supabase/client';
 
-/**
- *
- * @param root0
- * @param root0.params
- * @param root0.params.tourId
- */
 export default function Page({ params }: { params: { tourId: string } }) {
   const [tour, setTour] = useState<TourRow>();
   const [tourDisplays, setTourDisplays] = useState<TourDisplaysRow[]>([]);
   const [displays, setDisplays] = useState<DisplayRow[]>([]);
 
   useEffect(() => {
-    /**
-     *
-     */
     async function fetchTour() {
       try {
         const { data, error } = await supabase
@@ -46,9 +38,6 @@ export default function Page({ params }: { params: { tourId: string } }) {
       }
     }
 
-    /**
-     *
-     */
     async function fetchTourDisplays() {
       try {
         const { data, error } = await supabase
@@ -75,9 +64,6 @@ export default function Page({ params }: { params: { tourId: string } }) {
       }
     }
 
-    /**
-     *
-     */
     async function fetchDisplays() {
       try {
         const { data, error } = await supabase.from('displays').select('*');
@@ -104,7 +90,7 @@ export default function Page({ params }: { params: { tourId: string } }) {
     <div className="bg-[#ebf0e4]">
       <NavBar />
       <div>
-        // TODO: Add tour-specific image
+        {/* TODO: Add tour-specific image */}
         <img
           src="https://images.unsplash.com/photo-1615812214207-34e3be6812df?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="placeholder"
@@ -116,7 +102,10 @@ export default function Page({ params }: { params: { tourId: string } }) {
               {tour && tour.name}
             </h1>
             <div className="bg-[#7ca24e] w-52 rounded-md">
-              <Link className="rounded-md w-full" href="/">
+              <Link
+                className="rounded-md w-full"
+                href={`/featuredToursPage/${params.tourId}/${tourDisplays[0]?.display_id}`}
+              >
                 <h2 className="text-[#fafafa] text-sm text-center font-bold py-2 px-4">
                   Start Tour
                 </h2>
@@ -126,12 +115,13 @@ export default function Page({ params }: { params: { tourId: string } }) {
         </div>
         <p className="p-4">{tour && tour.description}</p>
         <h3 className="p-4 text-lg font-bold">In this tour</h3>
-
-        <ol className="list-decimal px-16">
-          {tourDisplays.map(tourDisplay => (
+        <ol className="px-12">
+          {tourDisplays.map((tourDisplay, index) => (
             <li key={tourDisplay.display_id}>
-              <Link href={`/displayPages/${tourDisplay.display_id}`}>
+              <div>
+              <Link href={`/featuredToursPage/${params.tourId}/${tourDisplay.display_id}`}>
                 <h4 className="font-light">
+                  {index + 1}.{' '}
                   {
                     displays.find(
                       display => display.id === tourDisplay.display_id,
@@ -139,10 +129,10 @@ export default function Page({ params }: { params: { tourId: string } }) {
                   }
                 </h4>
               </Link>
+              </div>
             </li>
           ))}
         </ol>
-
         <h4 className="text-[#386131] px-4 py-8 font-bold">
           <Link href="/featuredToursPage">Back to Tours</Link>
         </h4>

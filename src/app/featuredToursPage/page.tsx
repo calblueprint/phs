@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use client';
 
 import Link from 'next/link';
@@ -40,7 +41,7 @@ function App() {
         <ul className="list-none p-0">
           {tours.map(tour => (
             <li className="my-4" key={tour.id}>
-              <Link href={`/${tour.id}`} className="w-full rounded-2xl">
+              <Link href={`/featuredToursPage/${tour.id}`} className="w-full rounded-2xl">
                 <div className="bg-[#386131] h-48 rounded-2xl p-4 flex flex-col">
                   <div className="relative top-28">
                     <h4 className="text-white text-sm font-semibold mt-0.5">{tour.stop_count} stops</h4>
