@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Json } from '../../types/supabase';
 import { DisplayRow } from '../../types/types';
 
@@ -13,7 +14,7 @@ export const getMockDisplay = (): DisplayRow => ({
 });
 
 export const fetchMockDisplays = (numDisplays: number): DisplayRow[] => {
-  const baseDisplay: DisplayRow = {
+  const baseDisplay = {
     coordinates: { lat: 37.869121, lng: -122.257154 },
     created_at: '2023-10-11 20:56:43.529155+00',
     description:
@@ -28,6 +29,7 @@ export const fetchMockDisplays = (numDisplays: number): DisplayRow[] => {
     const coordOffset = Math.random() * 0.5;
     const newDisplay = {
       ...baseDisplay,
+      title: `Display ${i}`,
       coordinates: {
         lat: baseDisplay.coordinates.lat + coordOffset,
         lng: baseDisplay.coordinates.lng + coordOffset,

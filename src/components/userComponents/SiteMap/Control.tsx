@@ -70,7 +70,8 @@ function Control({
   }, [portalRoot, prepend, controlContainerRef]);
 
   /**
-   * Concatenate the props.container className to the class of the control div
+   * Concatenate the props.container className to the class of the control div, per leaflet's built in styles.
+   * Will need to change styling of component itself based on screen breakpoints
    */
   const className = `${container?.className?.concat(' ') || ''}leaflet-control`;
 

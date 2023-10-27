@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react';
-import { TbSquareRoundedX } from 'react-icons/tb';
-// import { createControlComponent, useLeafletContext } from '@react-leaflet/core';
-// import { Control, DomUtil } from 'leaflet';
-import L from 'leaflet';
+import React from 'react';
+import { LatLngExpression } from 'leaflet';
+import { useMapEvents } from 'react-leaflet';
 import { DisplayRow } from '../types/types';
 
 interface DisplayCardProps {
@@ -12,11 +10,9 @@ interface DisplayCardProps {
 }
 
 /**
- * @param handleClick.display
- * @param handleClick function to handle actions when clicked
- * @param display object from supabase corresponding to the ...
- * @param handleClick.handleClick
- * @param handleClick.handleClose
+ * @param {DisplayRow} DisplayCardProps.display display to preview
+ * @param {Function} DisplayCardProps.handleClick function to handle actions when clicked
+ * @param {Function} DisplayCardProps.handleClose function to handle closing of preview card
  * @returns preview card component to display within leaflet map container
  */
 function DisplayPreviewCard({
@@ -24,20 +20,25 @@ function DisplayPreviewCard({
   handleClick,
   handleClose,
 }: DisplayCardProps) {
-  const { title, description } = display;
+  const { title, description, coordinates } = display;
+
+  const map = useMapEvents({
+    click: e => {
+      if (!e.latlng.equals(coordinates as LatLngExpression)) {
+        handleClose();
+      }
+    },
+  });
 
   return (
     <div className="flex flex-col h-fit left-1/2 translate-x-5">
-      <div className='content-end'>
-        <TbSquareRoundedX size={30} onClick={handleClose} tabIndex={0} className="mb-0"/>
-      </div>
       <div
         className="flex flex-row align-center rounded-md shadow-[0_4px_21px_0_rgba(0, 0, 0, 0.25)] overflow-hidden w-80 max-h-28 absolute bottom-0"
         onClick={handleClick}
         aria-hidden="true"
       >
         <img
-          className='shrink'
+          className="shrink"
           src="https://unsplash.it/118/113"
           alt="Placeholder for this input"
         />
