@@ -1,29 +1,34 @@
 'use client';
 
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect, SetStateAction, Dispatch } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './ExhibitPreview.module.css';
+import { DisplayRow } from '../../../types/types';
+
+interface ExhibitProps {
+  display: DisplayRow;
+  about: string,
+  topimage: string,
+  bottomimage: string,
+  href: string
+  isOpen1: Dispatch<SetStateAction<boolean>>
+  
+}
+
 
 export default function ExhibitPreview({
-  name,
-  location,
-  description,
+  display,
   about,
   topimage,
   bottomimage,
   href,
-}: {
-  name: string;
-  location: string;
-  description: string;
-  about: string;
-  topimage: string;
-  bottomimage: string;
-  href: string;
-}) {
-  const [isOpen, setIsOpen] = useState(false);
+  isOpen1
+}: ExhibitProps) {
+  const [isOpen, setIsOpen] = useState(true);
+  const { title, coordinates, description } = display;
+
 
   const closeModal = () => {
     setIsOpen(false);
@@ -32,14 +37,25 @@ export default function ExhibitPreview({
   const openModal = () => {
     setIsOpen(true);
   };
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'; // Disable scrolling when the modal is open
+    } else {
+      document.body.style.overflow = ''; // Enable scrolling when the modal is closed
+    }
+
+    return () => {
+      document.body.style.overflow = ''; // Clean up on unmount
+    };
+  }, [isOpen]);
 
   return (
     <>
-      <div className="fixed inset-0 flex items-center justify-center bg-blue-200">
+      <div className="fixed inset-0 flex items-center justify-center bg-blue-200 bg-opacity-0">
         <button
           type="button"
           onClick={openModal}
-          className="px-4 py-2 text-sm font-medium text-white bg-green-500 rounded-md hover:bg-opacity-50 duration-300 shadow-xl"
+          className="px-4 py-2 text-sm font-medium text-white bg-green-500 bg-opacity-0 rounded-md hover:bg-opacity-50 duration-300 shadow-xl"
         >
           Open Me
         </button>
@@ -49,7 +65,7 @@ export default function ExhibitPreview({
         <Dialog
           as="div"
           className="fixed inset-0 z-10 overflow-y-auto"
-          onClose={closeModal}
+          onClose={openModal}
         >
           <div className="min-h-screen px-4 text-center">
             <Transition.Child
@@ -69,7 +85,7 @@ export default function ExhibitPreview({
               className="inline-block h-screen align-middle"
               aria-hidden="true"
             >
-              &#8203;
+              
             </span>
             <Transition.Child
               as={Fragment}
@@ -85,7 +101,7 @@ export default function ExhibitPreview({
                   <button
                     type="button"
                     className="inline-flex justify-center px-4 py-2 text-sm text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 duration-300"
-                    onClick={closeModal}
+                    onClick={() => isOpen1(false)}
                   >
                     x
                   </button>
@@ -93,11 +109,11 @@ export default function ExhibitPreview({
 
                 <div className={styles.rectangle}>
                   <div className={styles.titlebox}>
-                    <h1 className={styles.titletext}>{name}</h1>
+                    <h1 className={styles.titletext}>{title}</h1>
                   </div>
 
                   <div className={styles.locationbox}>
-                    <p className={styles.locationtext}>{location}</p>
+                    <p className={styles.locationtext}>{`${coordinates.lat}, ${coordinates.lng}`}</p>
                   </div>
 
                   <div className={styles.descriptionbox}>

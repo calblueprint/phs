@@ -16,6 +16,7 @@ const SiteMap = dynamic(
   {
     ssr: false,
     loading: () => <p>Loading...</p>,
+    
   },
 );
 
@@ -36,7 +37,7 @@ function MapPage() {
               ))}
           </div>
         </div>
-        <div className=" w-full pr-6 flex h-2/3 mb-8">
+        <div className=" w-full pr-6 flex h-2/3 mb-8" style={{ position: 'relative' }}>
           <SiteMap />
         </div>
       </div>
