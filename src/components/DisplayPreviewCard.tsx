@@ -27,16 +27,17 @@ function DisplayPreviewCard({
   const { title, description } = display;
 
   return (
-    <div className="flex flex-col h-fit w-fit">
+    <div className="flex flex-col h-fit left-1/2 translate-x-5">
       <div className='content-end'>
         <TbSquareRoundedX size={30} onClick={handleClose} tabIndex={0} className="mb-0"/>
       </div>
       <div
-        className="flex flex-row align-center rounded-md shadow-[0_4px_21px_0_rgba(0, 0, 0, 0.25)] overflow-hidden w-[352px] max-h-28 absolute bottom-0"
+        className="flex flex-row align-center rounded-md shadow-[0_4px_21px_0_rgba(0, 0, 0, 0.25)] overflow-hidden w-80 max-h-28 absolute bottom-0"
         onClick={handleClick}
         aria-hidden="true"
       >
         <img
+          className='shrink'
           src="https://unsplash.it/118/113"
           alt="Placeholder for this input"
         />

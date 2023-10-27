@@ -29,8 +29,7 @@
     "react-bootstrap": "^2.9.0",
     "react-dom": "latest",
     "react-icons": "^4.11.0",
-    "react-leaflet": "^4.2.1",
-    "react-leaflet-custom-control": "^1.4.0"
+    "react-leaflet": "^4.2.1"
   },
   "devDependencies": {
     "@calblueprint/eslint-config-react": "^0.0.3",
