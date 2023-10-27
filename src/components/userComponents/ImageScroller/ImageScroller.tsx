@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Image from 'next/image';
 
 import { fetchMedia } from "../../../supabase/media/queries";
@@ -50,7 +50,7 @@ export default function Carousel() {
   
 
       return (
-        <div className="bg-blue h-245 w-390 flex overflow-x-auto">
+        <div className="h-245 w-390 flex overflow-x-auto">
     
                 <div className="whitespace-nowrap carousel carousel-end">
                     {media.map((item) => (
