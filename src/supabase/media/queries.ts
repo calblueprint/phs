@@ -24,6 +24,12 @@ export async function deleteMedia(id: number) {
   } else {
     fetchMedia();
   }
+  const { error } = await supabase.from('media').delete().eq('id', id);
+  if (error) {
+    throw new Error(`An error occurred trying to delete displays: ${error}`);
+  } else {
+    fetchMedia();
+  }
 }
 /**
  *
