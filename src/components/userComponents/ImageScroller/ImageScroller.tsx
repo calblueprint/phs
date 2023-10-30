@@ -16,7 +16,7 @@ export default function Carousel() {
     // const [image, setImage] = useState('')
     const carouselRef = useRef<HTMLDivElement>(null);
 
-    const imageLoader = ({ src, width }) => `${src}?w=${width}`
+    const imageLoader = ({ src, width }: { src: string, width: number }) => `${src}?w=${width}`
 
     useEffect(() => {
         /**
