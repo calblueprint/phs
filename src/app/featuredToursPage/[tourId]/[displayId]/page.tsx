@@ -4,14 +4,26 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-import { DisplayRow } from '@/types/types';
+import { DisplayRow, TourDisplaysRow } from '@/types/types';
 import NavBar from '@/components/userComponents/navBar/navBar';
 import supabase from '@/supabase/client';
 
-export default function Page({ params }: { params: { displayId: string } }) {
+export default function Page({
+  params,
+}: {
+  params: { tourId: string; displayId: string };
+}) {
   const [display, setDisplay] = useState<DisplayRow>();
+  const [tourDisplays, setTourDisplays] = useState<TourDisplaysRow[]>([]);
+  const [prev, setPrev] = useState<string>(
+    `/featuredToursPage/${params.tourId}`,
+  );
+  const [next, setNext] = useState<string>(
+    `/featuredToursPage/${params.tourId}/tourEndPage`,
+  );
 
   useEffect(() => {
+    // Fetch display details
     async function fetchDisplay() {
       try {
         const { data, error } = await supabase
@@ -33,7 +45,69 @@ export default function Page({ params }: { params: { displayId: string } }) {
       }
     }
 
+    // Fetch tour displays to get the display order
+    async function fetchTourDisplays() {
+      try {
+        const { data, error } = await supabase
+          .from('tour_displays')
+          .select('*')
+          .eq('tour_id', params.tourId);
+        if (error) {
+          throw error;
+        }
+        if (!data) {
+          throw new Error('No data found');
+        }
+        console.log('Obtained tour displays');
+        const responseData: TourDisplaysRow[] = data;
+
+        // Sort the responseData array in ascending display_order
+        responseData.sort(
+          (a, b) => (a?.display_order || 0) - (b?.display_order || 0),
+        );
+
+        setTourDisplays(responseData);
+      } catch (error) {
+        console.error('Error fetching tour displays:', error);
+      }
+    }
+
+    // Get the links for the previous and next displays or pages
+    async function fetchLinks() {
+      await fetchTourDisplays();
+      const index = tourDisplays.findIndex(
+        tourDisplay => tourDisplay.display_id === params.displayId,
+      );
+      if (index === -1) {
+        console.error('Display not found in tour displays');
+      } else if (index === 0) {
+        setNext(
+          `/featuredToursPage/${params.tourId}/${
+            tourDisplays[index + 1].display_id
+          }`,
+        );
+      } else if (index === tourDisplays.length - 1) {
+        setPrev(
+          `/featuredToursPage/${params.tourId}/${
+            tourDisplays[index - 1].display_id
+          }`,
+        );
+      } else {
+        setPrev(
+          `/featuredToursPage/${params.tourId}/${
+            tourDisplays[index - 1].display_id
+          }`,
+        );
+        setNext(
+          `/featuredToursPage/${params.tourId}/${
+            tourDisplays[index + 1].display_id
+          }`,
+        );
+      }
+    }
+
     fetchDisplay();
+    fetchLinks();
   }, []);
 
   return (
@@ -42,6 +116,7 @@ export default function Page({ params }: { params: { displayId: string } }) {
       <h1 className="text-[#333333] text-3xl font-bold p-4">
         {display && display.title}
       </h1>
+
       <p className="text-[#333333] p-4">{display && display.description}</p>
       {/* TODO: Add tour-specific image */}
       <img
@@ -63,12 +138,18 @@ export default function Page({ params }: { params: { displayId: string } }) {
         resilient wildlife species on the continent.
       </p>
       <div className="flex flex-row justify-between p-4">
-        <button className="bg-[#386131] w-[48%] h-16 text-white font-bold rounded-2xl">
-          Back
-        </button>
-        <button className="bg-[#386131] w-[48%] h-16 text-white font-bold rounded-2xl">
-          Next Stop
-        </button>
+        <Link
+          className="bg-[#386131] w-[48%] h-16 text-white font-bold rounded-2xl"
+          href={prev}
+        >
+          Prev
+        </Link>
+        <Link
+          className="bg-[#386131] w-[48%] h-16 text-white font-bold rounded-2xl"
+          href={next}
+        >
+          Next
+        </Link>
       </div>
       <div>
         <h4 className="text-[#386131] p-4 font-bold">
