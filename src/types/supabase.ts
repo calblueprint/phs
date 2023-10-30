@@ -157,7 +157,7 @@ export interface Database {
       media_type: 'image' | 'video' | 'link';
     };
     CompositeTypes: {
-      [_ in never]: never;
-    };
-  };
+      [_ in never]: never
+    }
+  }
 }

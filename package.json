@@ -42,7 +42,7 @@
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "autoprefixer": "latest",
-    "daisyui": "^3.9.3",
+    "daisyui": "^3.9.4",
     "eslint": "^8.50.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-next": "latest",
