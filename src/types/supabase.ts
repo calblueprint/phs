@@ -4,69 +4,69 @@ export type Json =
   | boolean
   | null
   | { [key: string]: Json | undefined }
-  | Json[];
+  | Json[]
 
 export interface Database {
   public: {
     Tables: {
       display_media: {
         Row: {
-          display_id: string;
-          media_id: string;
-          media_placement: string | null;
-        };
+          display_id: string
+          media_id: string
+          media_placement: string | null
+        }
         Insert: {
-          display_id: string;
-          media_id: string;
-          media_placement?: string | null;
-        };
+          display_id: string
+          media_id: string
+          media_placement?: string | null
+        }
         Update: {
-          display_id?: string;
-          media_id?: string;
-          media_placement?: string | null;
-        };
+          display_id?: string
+          media_id?: string
+          media_placement?: string | null
+        }
         Relationships: [
           {
-            foreignKeyName: 'display_media_display_id_fkey';
-            columns: ['display_id'];
-            referencedRelation: 'displays';
-            referencedColumns: ['id'];
+            foreignKeyName: "display_media_display_id_fkey"
+            columns: ["display_id"]
+            referencedRelation: "displays"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: 'display_media_media_id_fkey';
-            columns: ['media_id'];
-            referencedRelation: 'media';
-            referencedColumns: ['id'];
-          },
-        ];
-      };
+            foreignKeyName: "display_media_media_id_fkey"
+            columns: ["media_id"]
+            referencedRelation: "media"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       displays: {
         Row: {
-          coordinates: Json;
-          created_at: string;
-          description: string;
-          id: string;
-          title: string;
-          updated_at: string | null;
-        };
+          coordinates: Json
+          created_at: string
+          description: string
+          id: string
+          title: string
+          updated_at: string | null
+        }
         Insert: {
-          coordinates?: Json;
-          created_at?: string;
-          description?: string;
-          id?: string;
-          title?: string;
-          updated_at?: string | null;
-        };
+          coordinates?: Json
+          created_at?: string
+          description?: string
+          id?: string
+          title?: string
+          updated_at?: string | null
+        }
         Update: {
-          coordinates?: Json;
-          created_at?: string;
-          description?: string;
-          id?: string;
-          title?: string;
-          updated_at?: string | null;
-        };
-        Relationships: [];
-      };
+          coordinates?: Json
+          created_at?: string
+          description?: string
+          id?: string
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       media: {
         Row: {
           created_at: string
@@ -96,35 +96,35 @@ export interface Database {
       }
       tour_displays: {
         Row: {
-          display_id: string;
-          display_order: number | null;
-          tour_id: string;
-        };
+          display_id: string
+          display_order: number | null
+          tour_id: string
+        }
         Insert: {
-          display_id: string;
-          display_order?: number | null;
-          tour_id: string;
-        };
+          display_id: string
+          display_order?: number | null
+          tour_id: string
+        }
         Update: {
-          display_id?: string;
-          display_order?: number | null;
-          tour_id?: string;
-        };
+          display_id?: string
+          display_order?: number | null
+          tour_id?: string
+        }
         Relationships: [
           {
-            foreignKeyName: 'tour_displays_display_id_fkey';
-            columns: ['display_id'];
-            referencedRelation: 'displays';
-            referencedColumns: ['id'];
+            foreignKeyName: "tour_displays_display_id_fkey"
+            columns: ["display_id"]
+            referencedRelation: "displays"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: 'tour_displays_tour_id_fkey';
-            columns: ['tour_id'];
-            referencedRelation: 'tours';
-            referencedColumns: ['id'];
-          },
-        ];
-      };
+            foreignKeyName: "tour_displays_tour_id_fkey"
+            columns: ["tour_id"]
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       tours: {
         Row: {
           created_at: string
@@ -154,16 +154,16 @@ export interface Database {
       }
     }
     Views: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Functions: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Enums: {
-      media_type: 'image' | 'video' | 'link';
-    };
+      media_type: "image" | "video" | "link"
+    }
     CompositeTypes: {
-      [_ in never]: never;
-    };
-  };
+      [_ in never]: never
+    }
+  }
 }
