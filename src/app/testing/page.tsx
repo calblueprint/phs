@@ -4,7 +4,7 @@
 /* eslint-disable */
 
 import React, { useEffect, useState } from 'react';
-import { ToursRow } from '../../types/types';
+import { TourRow } from '../../types/types';
 import {
   fetchTours,
   insertTour,
@@ -74,7 +74,7 @@ const styles = {
  *
  */
 export default function Home() {
-  const [tours, setTours] = useState<ToursRow[]>([]);
+  const [tours, setTours] = useState<TourRow[]>([]);
 
   useEffect(() => {
     /**
@@ -82,7 +82,7 @@ export default function Home() {
      */
     async function fetchData() {
       try {
-        const responseData: ToursRow[] = await fetchTours();
+        const responseData: TourRow[] = await fetchTours();
         setTours(responseData);
         console.log('set the tours');
       } catch (error) {
@@ -105,7 +105,7 @@ export default function Home() {
   };
 
   const handleUpsertTour = async () => {
-    const newTourData: ToursRow = {
+    const newTourData: TourRow = {
       name: 'New tour name',
       description: 'New tour description',
       stop_count: 0,
@@ -124,7 +124,7 @@ export default function Home() {
   };
 
   const handleUpdateTour = async id => {
-    const updatedTourInfo: ToursRow = {
+    const updatedTourInfo: TourRow = {
       // Define the updated tour info here
       // For example, to update the text:
       id,
