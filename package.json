@@ -28,7 +28,9 @@
     "react": "latest",
     "react-bootstrap": "^2.9.0",
     "react-dom": "latest",
-    "react-leaflet": "^4.2.1"
+    "react-leaflet": "^4.2.1",
+    "react-responsive-carousel": "^3.2.23",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@calblueprint/eslint-config-react": "^0.0.3",
@@ -40,6 +42,7 @@
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "autoprefixer": "latest",
+    "daisyui": "^3.9.4",
     "eslint": "^8.50.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-next": "latest",
@@ -59,8 +62,16 @@
   },
   "lint-staged": {
     "linters": {
-      "src/**/*.js": ["formatter --write", "git add"]
+      "src/**/*.js": [
+        "formatter --write",
+        "git add"
+      ]
     },
-    "ignore": ["node_modules", "dist", "package-lock.json", "src/app/testing/page.tsx"]
+    "ignore": [
+      "node_modules",
+      "dist",
+      "package-lock.json",
+      "src/app/testing/page.tsx"
+    ]
   }
 }

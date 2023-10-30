@@ -131,6 +131,7 @@ export interface Database {
           description: string | null
           id: string
           name: string | null
+          spotlight: boolean
           stop_count: number | null
         }
         Insert: {
@@ -138,6 +139,7 @@ export interface Database {
           description?: string | null
           id?: string
           name?: string | null
+          spotlight?: boolean
           stop_count?: number | null
         }
         Update: {
@@ -145,6 +147,7 @@ export interface Database {
           description?: string | null
           id?: string
           name?: string | null
+          spotlight?: boolean
           stop_count?: number | null
         }
         Relationships: []
