@@ -1,9 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from 'next/image';
-import ReactDOM from 'react-dom';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
-
 import { fetchMedia } from '../../../supabase/media/queries';
 import { MediaRow } from '../../../types/types';
 
@@ -12,11 +8,7 @@ import { MediaRow } from '../../../types/types';
  */
 export default function Carousel() {
 
-    const [media, setMedia] = useState<MediaRow[]>([]);
-    // const [image, setImage] = useState('')
-    const carouselRef = useRef<HTMLDivElement>(null);
   const [media, setMedia] = useState<MediaRow[]>([]);
-  // const [image, setImage] = useState('')
 
   const imageLoader = ({ src, width }: { src: string; width: number }) =>
     `${src}?w=${width}`;
@@ -28,28 +20,14 @@ export default function Carousel() {
     async function fetchData() {
       try {
         const responseData: MediaRow[] = await fetchMedia();
-        const images: MediaRow[] = [];
-        responseData.map(media => {
-          if (media.type === 'image') {
-            images.push(media);
-          }
-        });
-        console.log('hello');
-        console.log(images);
+        const images: MediaRow[] = responseData.filter(m => m.type === 'image');
         setMedia(images);
       } catch (error) {
         console.error(error);
       }
     }
 
-    // async function fetchImage() {
-    //     const url = supabase.storage.from('images').getPublicUrl('images2.png').data.publicUrl
-    //     console.log(url)
-    //     setImage(url)
-    // }
-
     fetchData();
-    // fetchImage();
   }, []);
 
   return (
