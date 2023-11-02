@@ -10,3 +10,7 @@ export type DisplayRow = Database['public']['Tables']['displays']['Row'];
 export type MediaRow = Database['public']['Tables']['media']['Row'];
 export type TourDisplaysRow = Database['public']['Tables']['tour_displays']['Row'];
 export type TourRow = Database['public']['Tables']['tours']['Row'];
+export type SpotlightRow = {
+    tour_row: TourRow;
+    url: string;
+};

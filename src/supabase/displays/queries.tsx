@@ -3,6 +3,9 @@
 import { DisplayRow } from '../../types/types';
 import supabase from '../client';
 
+/**
+ *
+ */
 export async function fetchDisplays() {
   const { data, error } = await supabase.from('displays').select('*');
   if (error) {
@@ -11,6 +14,10 @@ export async function fetchDisplays() {
   return data;
 }
 
+/**
+ *
+ * @param id
+ */
 export async function deleteDisplay(id: number) {
   const { error } = await supabase.from('displays').delete().eq('id', id);
 
@@ -21,6 +28,10 @@ export async function deleteDisplay(id: number) {
   }
 }
 
+/**
+ *
+ * @param displayData
+ */
 export async function createDisplay(displayData: DisplayRow) {
   const { data, error } = await supabase.from('displays').upsert([displayData]);
 
@@ -33,13 +44,12 @@ export async function createDisplay(displayData: DisplayRow) {
   return newDisplay;
 }
 
-// export async function insertDisplay(displayData: Display) {
-//     const { error } = await supabase.from('profiles').insert(displayData);
-//     if (error) {
-//       throw new Error(`Error inserting profile data: ${error.message}`);
-//     }
-//   }
 
+/**
+ *
+ * @param id
+ * @param updatedInfo
+ */
 export async function updateDisplay(id: number, updatedInfo: DisplayRow) {
   const { data, error } = await supabase
     .from('displays')
@@ -52,4 +62,23 @@ export async function updateDisplay(id: number, updatedInfo: DisplayRow) {
 
   const newDisplay = data;
   return newDisplay;
+}
+
+
+/**
+ * 
+ * @param displayIds - array of display ids
+ * @returns all the displays matching the display ids
+ */
+export async function fetchDisplaysfromIds(displayIds: string[]) {
+  const { data, error } = await supabase
+    .from('displays')
+    .select('*')
+    .in('id', displayIds);
+
+  if (error) {
+    throw new Error(`Error updating display data: ${error.message}`);
+  }
+
+  return data;
 }
