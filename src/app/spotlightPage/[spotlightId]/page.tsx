@@ -26,11 +26,9 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
     async function fetchData() {
       try {
         const responseData: TourRow = await fetchTour(params.spotlightId);
-        console.log({responseData: responseData});
         setSpotlight(responseData);
-        console.log({spotlight: spotlight});
         const displays: DisplayRow[] = await fetchDisplayfromSpotlight(params.spotlightId);
-        console.log('displays are set')
+        setDisplays(displays);
       } catch (error) {
         console.error(error);
       }
@@ -54,34 +52,20 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
         {spotlight.name}
       </h1>
       <p className="text-[#333333] p-4">{spotlight.description}</p>
-      <h1 className="text-Night font-lato text-16 font-medium pl-4">In this spotlight...</h1>
-      {/* TODO: Add d{isplay ids */}
-      <div className="flex space-x-4">
+      <h1 className="text-black font-lato text-16 font-medium pl-4">In this spotlight...</h1>
+      {/* TODO: Add display ids */}
+      <div className="flex flex-wrap mt-2 pl-2">
        
        
       {displays.map( 
             display => (
-            
-            <button className="bg-[#7CA24E] w-[168px] h-[74px] text-white font-bold rounded-2xl">
-                {display.title}
-            </button>
+                <Link href={`/spotlightPage/${spotlight.id}/${display.id}?spotlightId=${spotlight.id}`} >
+                    <button className="bg-[#7CA24E] w-[163px] h-[74px] text-white font-bold rounded-2xl p-[21px] m-2 mb-4">
+                        {display.title}
+                    </button>
+                </Link>
 
             ))}
-      </div>
-      
-      
-      <div className="flex flex-row justify-between p-4">
-        <button className="bg-[#386131] w-[48%] h-16 text-white font-bold rounded-2xl">
-          Back
-        </button>
-        <button className="bg-[#386131] w-[48%] h-16 text-white font-bold rounded-2xl">
-          Next Stop
-        </button>
-      </div>
-      <div>
-        <h4 className="text-[#386131] p-4 font-bold">
-          <Link href="/featuredToursPage">Exit this tour</Link>
-        </h4>
       </div>
     </div>
   );

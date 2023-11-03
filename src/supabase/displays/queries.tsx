@@ -47,8 +47,9 @@ export async function createDisplay(displayData: DisplayRow) {
 
 /**
  *
- * @param id
- * @param updatedInfo
+ * @param id - id number
+ * @param updatedInfo - the display row to update
+ * @returns - updates that given display row
  */
 export async function updateDisplay(id: number, updatedInfo: DisplayRow) {
   const { data, error } = await supabase
@@ -75,6 +76,24 @@ export async function fetchDisplaysfromIds(displayIds: string[]) {
     .from('displays')
     .select('*')
     .in('id', displayIds);
+
+  if (error) {
+    throw new Error(`Error updating display data: ${error.message}`);
+  }
+
+  return data;
+}
+
+/**
+ * @param displayId - a display id
+ * @returns - given a display id, fetch the data for that display
+ */
+export async function fetchDisplayFromId(displayId: string) {
+  const { data, error } = await supabase
+    .from('displays')
+    .select('*')
+    .eq('id', displayId)
+    .single();
 
   if (error) {
     throw new Error(`Error updating display data: ${error.message}`);

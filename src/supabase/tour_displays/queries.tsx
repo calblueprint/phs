@@ -6,7 +6,8 @@ import { fetchDisplaysfromIds } from '../displays/queries';
 
 // Fetch all tour displays
 /**
- *
+ * @param () - nothing
+ * @returns fetches tour displays
  */
 export async function fetchTourDisplays() {
   const { data, error } = await supabase.from('tour_displays').select('*');
@@ -25,7 +26,7 @@ export async function fetchMatchingTourDisplayIdsfromSpotlight(tourId: string) {
   const { data, error } = await supabase
   .from('tour_displays')
   .select('*')
-  .eq('id', tourId)
+  .eq('tour_id', tourId)
   
   if (error) {
     throw new Error(`An error occurred while trying to read tour displays: ${error}`);
@@ -40,10 +41,7 @@ export async function fetchMatchingTourDisplayIdsfromSpotlight(tourId: string) {
  * @returns given a spotlight ID, get all the displays
  */
 export async function fetchDisplayfromSpotlight(spotlightId: string) {
-  console.log({spotty: spotlightId});
   const displayIds: string[] = await fetchMatchingTourDisplayIdsfromSpotlight(spotlightId);
-  console.log('displayids are good')
   const displays: DisplayRow[] = await fetchDisplaysfromIds(displayIds)
-  console.log('diplayitself is good')
   return displays;
 }
