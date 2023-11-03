@@ -7,9 +7,9 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-import { fetchTours, fetchSpotlightTours, fetchSpotlightMedia } from '@/supabase/tours/queries';
+import { fetchSpotlightTours } from '@/supabase/tours/queries';
 import NavBar from '@/components/userComponents/navBar/navBar';
-import { TourRow, MediaRow } from '@/types/types';
+import { TourRow} from '@/types/types';
 
 function App() {
   const [spotlights, setSpotlights] = useState<TourRow[]>([]);
@@ -19,7 +19,6 @@ function App() {
       try {
         const responseData: TourRow[] = await fetchSpotlightTours();
         setSpotlights(responseData);
-        console.log('set the spotlights');
       } catch (error) {
         console.error(error);
       }
