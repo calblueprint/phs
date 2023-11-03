@@ -17,6 +17,7 @@ export default function Page({ params }: { params: { tourId: string } }) {
   const [displays, setDisplays] = useState<DisplayRow[]>([]);
 
   useEffect(() => {
+    // Fetch tour details
     async function fetchTour() {
       try {
         const { data, error } = await supabase
@@ -38,6 +39,7 @@ export default function Page({ params }: { params: { tourId: string } }) {
       }
     }
 
+    // Fetch tour displays to get the display order
     async function fetchTourDisplays() {
       try {
         const { data, error } = await supabase
@@ -53,7 +55,7 @@ export default function Page({ params }: { params: { tourId: string } }) {
         console.log('Obtained tour displays');
         const responseData: TourDisplaysRow[] = data;
 
-        // Sort the responseData array by the display_order attribute  (ascending, does not throw error if display_order is null)
+        // Sort the responseData array in ascending display_order
         responseData.sort(
           (a, b) => (a?.display_order || 0) - (b?.display_order || 0),
         );
@@ -62,8 +64,10 @@ export default function Page({ params }: { params: { tourId: string } }) {
       } catch (error) {
         console.error('Error fetching tour displays:', error);
       }
+      console.log('tourDisplays length', tourDisplays.length);
     }
 
+    // Fetch displays to get the display titles
     async function fetchDisplays() {
       try {
         const { data, error } = await supabase.from('displays').select('*');
@@ -116,12 +120,12 @@ export default function Page({ params }: { params: { tourId: string } }) {
         <p className="p-4">{tour && tour.description}</p>
         <h3 className="p-4 text-lg font-bold">In this tour</h3>
         <ol className="px-12">
-          {tourDisplays.map((tourDisplay, index) => (
+          {tourDisplays.map(tourDisplay => (
             <li key={tourDisplay.display_id}>
               <div>
               <Link href={`/featuredToursPage/${params.tourId}/${tourDisplay.display_id}`}>
                 <h4 className="font-light">
-                  {index + 1}.{' '}
+                  {tourDisplay.display_order != null ? tourDisplay.display_order + 1 : ''}.{' '}
                   {
                     displays.find(
                       display => display.id === tourDisplay.display_id,
