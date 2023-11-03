@@ -14,7 +14,6 @@ export default function Page({
   params: { tourId: string; displayId: string };
 }) {
   const [display, setDisplay] = useState<DisplayRow>();
-  const [tourDisplays, setTourDisplays] = useState<TourDisplaysRow[]>([]);
   const [prev, setPrev] = useState<string>(
     `/featuredToursPage/${params.tourId}`,
   );
@@ -66,10 +65,7 @@ export default function Page({
           (a, b) => (a?.display_order || 0) - (b?.display_order || 0),
         );
 
-        setTourDisplays(responseData);
-
-        console.log({responseData: responseData});
-        console.log({fetchtourDisplays: tourDisplays});
+        return responseData;
 
       } catch (error) {
         console.error('Error fetching tour displays:', error);
@@ -78,7 +74,7 @@ export default function Page({
 
     // Get the links for the previous and next displays or pages
     async function fetchLinks() {
-      await fetchTourDisplays();
+      const tourDisplays: TourDisplaysRow[] = await fetchTourDisplays();
       const index = tourDisplays.findIndex(
         tourDisplay => tourDisplay.display_id === params.displayId,
       );
