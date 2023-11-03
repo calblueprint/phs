@@ -20,12 +20,17 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
     stop_count: 0,
   });
 
+  const [displays, setDisplays] = useState<DisplayRow[]>([])
+
   useEffect(() => {
     async function fetchData() {
       try {
         const responseData: TourRow = await fetchTour(params.spotlightId);
+        console.log({responseData: responseData});
         setSpotlight(responseData);
-        const displays: DisplayRow[] = await fetchDisplayfromSpotlight(params.spotlightId)
+        console.log({spotlight: spotlight});
+        const displays: DisplayRow[] = await fetchDisplayfromSpotlight(params.spotlightId);
+        console.log('displays are set')
       } catch (error) {
         console.error(error);
       }
@@ -50,8 +55,21 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
       </h1>
       <p className="text-[#333333] p-4">{spotlight.description}</p>
       <h1 className="text-Night font-lato text-16 font-medium pl-4">In this spotlight...</h1>
-      {/* TODO: Add display ids */}
-      spotlig
+      {/* TODO: Add d{isplay ids */}
+      <div className="flex space-x-4">
+       
+       
+      {displays.map( 
+            display => (
+            
+            <button className="bg-[#7CA24E] w-[168px] h-[74px] text-white font-bold rounded-2xl">
+                {display.title}
+            </button>
+
+            ))}
+      </div>
+      
+      
       <div className="flex flex-row justify-between p-4">
         <button className="bg-[#386131] w-[48%] h-16 text-white font-bold rounded-2xl">
           Back

@@ -24,13 +24,14 @@ export async function fetchTourDisplays() {
 export async function fetchMatchingTourDisplayIdsfromSpotlight(tourId: string) {
   const { data, error } = await supabase
   .from('tour_displays')
-  .select('display_id')
+  .select('*')
   .eq('id', tourId)
   
   if (error) {
     throw new Error(`An error occurred while trying to read tour displays: ${error}`);
   }
   const displayIds = data.map((item) => item.display_id);
+  console.log('hello?')
   return displayIds;
 }
 
@@ -39,8 +40,10 @@ export async function fetchMatchingTourDisplayIdsfromSpotlight(tourId: string) {
  * @returns given a spotlight ID, get all the displays
  */
 export async function fetchDisplayfromSpotlight(spotlightId: string) {
+  console.log({spotty: spotlightId});
   const displayIds: string[] = await fetchMatchingTourDisplayIdsfromSpotlight(spotlightId);
+  console.log('displayids are good')
   const displays: DisplayRow[] = await fetchDisplaysfromIds(displayIds)
-
+  console.log('diplayitself is good')
   return displays;
 }
