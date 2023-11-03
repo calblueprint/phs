@@ -9,15 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'asparagus': '#7CA24E',
+        asparagus: '#7CA24E',
         'hunter-green': '#3F6A38',
         'scary-forest': '#386131',
         'mint-cream': '#EBF0E8',
         'white-smoke': '#F5F6F5',
-        'night': '#141414',
-        'shadow': '#808080',
-        'silver': '#BDBDBD',
-        'ivory': '#FFFDF7',
+        night: '#141414',
+        shadow: '#808080',
+        silver: '#BDBDBD',
+        ivory: '#FFFDF7',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

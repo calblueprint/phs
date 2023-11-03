@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { fetchMedia } from '../../../supabase/media/queries';
 import { MediaRow } from '../../../types/types';
@@ -7,7 +7,6 @@ import { MediaRow } from '../../../types/types';
  *
  */
 export default function Carousel() {
-
   const [media, setMedia] = useState<MediaRow[]>([]);
 
   const imageLoader = ({ src, width }: { src: string; width: number }) =>

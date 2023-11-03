@@ -23,7 +23,10 @@ function Home() {
               Ellison Conservation Center for Wildlife Care
             </p>
             <div className="w-44 h-11 px-4 py-3 bg-asparagus rounded-xl justify-center items-center gap-2.5 inline-flex">
-              <button type="button" className="text-center text-smoke text-base font-bold font-['Lato']">
+              <button
+                type="button"
+                className="text-center text-smoke text-base font-bold font-['Lato']"
+              >
                 Start a Tour
               </button>
             </div>
