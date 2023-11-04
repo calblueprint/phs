@@ -29,6 +29,7 @@ export default function Page({ params }: { params: { tourId: string } }) {
           throw new Error('No data found');
         }
         console.log('Obtained tour details');
+        console.log({ tour: data });
         const responseData: TourRow = data;
         setTour(responseData);
       } catch (error) {
@@ -50,9 +51,8 @@ export default function Page({ params }: { params: { tourId: string } }) {
           throw new Error('No data found');
         }
         console.log('Obtained tour media');
-        console.log({ data: data });
+        console.log({ tourMedia: data });
         const responseData: TourMediaRow[] = data;
-        console.log({ responseData: responseData });
 
         setTourMedia(responseData);
         console.log({ tourMedia: tourMedia });
@@ -72,6 +72,7 @@ export default function Page({ params }: { params: { tourId: string } }) {
           throw new Error('No data found');
         }
         console.log('Obtained media');
+        console.log({ media: data });
         const responseData: MediaRow[] = data;
         setMedia(responseData);
       } catch (error) {
@@ -82,6 +83,7 @@ export default function Page({ params }: { params: { tourId: string } }) {
     fetchTour();
     fetchTourMedia();
     fetchMedia();
+
   }, []);
 
   return (
