@@ -44,7 +44,7 @@ export interface Database {
       }
       displays: {
         Row: {
-          coordinates: Json
+          coordinates: Json | null
           created_at: string
           description: string
           id: string
@@ -52,7 +52,7 @@ export interface Database {
           updated_at: string | null
         }
         Insert: {
-          coordinates?: Json
+          coordinates?: Json | null
           created_at?: string
           description?: string
           id: string
@@ -60,7 +60,7 @@ export interface Database {
           updated_at?: string | null
         }
         Update: {
-          coordinates?: Json
+          coordinates?: Json | null
           created_at?: string
           description?: string
           id?: string
