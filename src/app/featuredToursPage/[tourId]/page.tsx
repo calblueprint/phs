@@ -4,17 +4,14 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-import { fetchDisplays } from '@/supabase/displays/queries';
-import { fetchTours } from '@/supabase/tours/queries';
-import { fetchTourDisplays } from '@/supabase/tour_displays/queries';
 import { DisplayRow, TourDisplaysRow, TourRow } from '@/types/types';
 import NavBar from '@/components/userComponents/navBar/navBar';
 import supabase from '@/supabase/client';
 
 export default function Page({ params }: { params: { tourId: string } }) {
+  const [displays, setDisplays] = useState<DisplayRow[]>([]);
   const [tour, setTour] = useState<TourRow>();
   const [tourDisplays, setTourDisplays] = useState<TourDisplaysRow[]>([]);
-  const [displays, setDisplays] = useState<DisplayRow[]>([]);
 
   useEffect(() => {
     // Fetch tour details
