@@ -4,6 +4,7 @@ import supabase from '../client';
 import { TourDisplaysRow } from '../../types/types';
 
 // Fetch all tour displays
+
 /**
  *
  */
