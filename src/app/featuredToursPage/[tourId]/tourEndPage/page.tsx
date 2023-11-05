@@ -6,11 +6,11 @@ import React, { useEffect, useState } from 'react';
 
 import NavBar from '@/components/userComponents/navBar/navBar';
 import { MediaRow, TourRow, TourMediaRow } from '@/types/types';
+import { fetchMedia } from '@/supabase/media/queries';
 import { fetchTour } from '@/supabase/tours/queries';
 import { fetchTourMedia } from '@/supabase/tour_media/queries';
-import { fetchMedia } from '@/supabase/media/queries';
 
-export default function Page({ params }: { params: { tourId: string } }) {
+export default ({ params }: { params: { tourId: string } }) => {
   const [media, setMedia] = useState<MediaRow[]>([]);
   const [tour, setTour] = useState<TourRow>();
   const [tourMedia, setTourMedia] = useState<TourMediaRow[]>([]);
@@ -25,6 +25,7 @@ export default function Page({ params }: { params: { tourId: string } }) {
     // Get tour media
     const getTourMedia = async () => {
       const fetchedTourMedia = await fetchTourMedia(params.tourId);
+      console.log({tourMedia: fetchedTourMedia});
       setTourMedia(fetchedTourMedia);
     };
 
