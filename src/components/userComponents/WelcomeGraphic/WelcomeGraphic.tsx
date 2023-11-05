@@ -9,7 +9,7 @@ function WelcomeGraphic() {
       className="w-full h-96 bg-neutral-900 bg-opacity-60 flex justify-center items-center relative"
       style={{
         backgroundImage:
-          "url('https://qkkuacqtcsfjbnzmxmhk.supabase.co/storage/v1/object/public/images/EllisonCover.png?t=2023-11-05T03%3A22%3A44.379Z')"
+          "url('https://qkkuacqtcsfjbnzmxmhk.supabase.co/storage/v1/object/public/images/EllisonCover.png?t=2023-11-05T03%3A22%3A44.379Z')",
       }}
     >
       <div className="w-80 h-40 flex-col justify-start items-center gap-6 inline-flex">

@@ -24,45 +24,43 @@
     @apply text-3xl font-semibold text-ivory;
   }
   .h2 {
-    @apply text-xl font-extrabold text-ivory
+    @apply text-xl font-extrabold text-ivory;
   }
   .h3 {
-    @apply text-lg font-bold text-ivory
+    @apply text-lg font-bold text-ivory;
   }
   .b1 {
-    @apply text-base font-bold text-ivory
-  } 
+    @apply text-base font-bold text-ivory;
+  }
   .b2 {
-    @apply text-base font-medium text-ivory
+    @apply text-base font-medium text-ivory;
   }
   .b3 {
-    @apply text-base font-light text-ivory
+    @apply text-base font-light text-ivory;
   }
   .s1 {
-    @apply text-sm font-normal text-ivory
+    @apply text-sm font-normal text-ivory;
   }
   .s2 {
-    @apply text-xs font-normal text-ivory
+    @apply text-xs font-normal text-ivory;
   }
-  
 }
 @layer base {
   h1 {
-    @apply h1
+    @apply h1;
   }
   h2 {
-    @apply h2
+    @apply h2;
   }
   h3 {
-    @apply h3
+    @apply h3;
   }
   button {
-    @apply b1
+    @apply b1;
   }
   p {
-    @apply b3
+    @apply b3;
   }
-
 }
 
 :root {

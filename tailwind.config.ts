@@ -14,13 +14,13 @@ const config: Config = {
         'scary-forest': '#386131',
         'mint-cream': '#EBF0E8',
         'white-smoke': '#F5F6F5',
-        'night': '#141414',
+        'night': '#3B3B3B',
         'shadow': '#808080',
         'silver': '#BDBDBD',
         'ivory': '#FFFDF7',
       },
       textColor: {
-        'default': '#FFFDF7',
+        default: '#FFFDF7',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -28,8 +28,8 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       fontFamily: {
-        'lato' : ['Lato'],
-      }
+        lato: ['Lato'],
+      },
     },
   },
   plugins: [require('daisyui')],
