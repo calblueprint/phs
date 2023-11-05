@@ -7,11 +7,25 @@ import { TourMediaRow } from '../../types/types';
 /**
  *
  */
-export async function fetchTourMedia() {
+export async function fetchAllTourMedia() {
   const { data, error } = await supabase.from('tour_media').select('*');
   if (error) {
     throw new Error(`An error occurred while trying to read tour media: ${error}`);
   }
-  console.log({data});
+  return data;
+}
+
+/**
+ *
+ * @param id
+ */
+export async function fetchTourMedia(id: string) {
+  const { data, error } = await supabase
+    .from('tour_media')
+    .select('*')
+    .eq('tour_id', id);
+  if (error) {
+    throw new Error(`An error occurred while trying to read tour media: ${error}`);
+  }
   return data;
 }

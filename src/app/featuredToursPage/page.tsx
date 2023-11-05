@@ -4,25 +4,21 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-import { fetchTours } from '@/supabase/tours/queries';
+import { fetchAllTours } from '@/supabase/tours/queries';
 import NavBar from '@/components/userComponents/navBar/navBar';
 import { TourRow } from '@/types/types';
 
-function App() {
+export default () => {
   const [tours, setTours] = useState<TourRow[]>([]);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const responseData: TourRow[] = await fetchTours();
-        setTours(responseData);
-        console.log('set the tours');
-      } catch (error) {
-        console.error(error);
-      }
-    }
+    // Get tours
+    const getTours = async () => {
+      const fetchedTours = await fetchAllTours();
+      setTours(fetchedTours);
+    };
 
-    fetchData();
+    getTours();
   }, []);
 
   return (
@@ -67,5 +63,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

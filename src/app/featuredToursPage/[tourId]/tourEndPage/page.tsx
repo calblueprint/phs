@@ -6,7 +6,9 @@ import React, { useEffect, useState } from 'react';
 
 import NavBar from '@/components/userComponents/navBar/navBar';
 import { MediaRow, TourRow, TourMediaRow } from '@/types/types';
-import supabase from '@/supabase/client';
+import { fetchTour } from '@/supabase/tours/queries';
+import { fetchTourMedia } from '@/supabase/tour_media/queries';
+import { fetchMedia } from '@/supabase/media/queries';
 
 export default function Page({ params }: { params: { tourId: string } }) {
   const [media, setMedia] = useState<MediaRow[]>([]);
@@ -14,76 +16,27 @@ export default function Page({ params }: { params: { tourId: string } }) {
   const [tourMedia, setTourMedia] = useState<TourMediaRow[]>([]);
 
   useEffect(() => {
-    // Fetch tour details
-    async function fetchTour() {
-      try {
-        const { data, error } = await supabase
-          .from('tours')
-          .select('*')
-          .eq('id', params.tourId)
-          .single();
-        if (error) {
-          throw error;
-        }
-        if (!data) {
-          throw new Error('No data found');
-        }
-        console.log('Obtained tour details');
-        console.log({ tour: data });
-        const responseData: TourRow = data;
-        setTour(responseData);
-      } catch (error) {
-        console.error('Error fetching tour details:', error);
-      }
-    }
+    // Get tour
+    const getTour = async () => {
+      const fetchedTour = await fetchTour(params.tourId);
+      setTour(fetchedTour);
+    };
 
-    // Fetch tour media
-    async function fetchTourMedia() {
-      try {
-        const { data, error } = await supabase
-          .from('tour_media')
-          .select('*')
-          .eq('tour_id', params.tourId);
-        if (error) {
-          throw error;
-        }
-        if (!data) {
-          throw new Error('No data found');
-        }
-        console.log('Obtained tour media');
-        console.log({ tourMedia: data });
-        const responseData: TourMediaRow[] = data;
+    // Get tour media
+    const getTourMedia = async () => {
+      const fetchedTourMedia = await fetchTourMedia(params.tourId);
+      setTourMedia(fetchedTourMedia);
+    };
 
-        setTourMedia(responseData);
-        console.log({ tourMedia: tourMedia });
-      } catch (error) {
-        console.error('Error fetching tour media:', error);
-      }
-    }
+    // Get media
+    const getMedia = async () => {
+      const fetchedMedia = await fetchMedia();
+      setMedia(fetchedMedia);
+    };
 
-    // Fetch media to get the media titles
-    async function fetchMedia() {
-      try {
-        const { data, error } = await supabase.from('media').select('*');
-        if (error) {
-          throw error;
-        }
-        if (!data) {
-          throw new Error('No data found');
-        }
-        console.log('Obtained media');
-        console.log({ media: data });
-        const responseData: MediaRow[] = data;
-        setMedia(responseData);
-      } catch (error) {
-        console.error('Error fetching media:', error);
-      }
-    }
-
-    fetchTour();
-    fetchTourMedia();
-    fetchMedia();
-
+    getTour();
+    getTourMedia();
+    getMedia();
   }, []);
 
   return (
@@ -112,9 +65,7 @@ export default function Page({ params }: { params: { tourId: string } }) {
           {tourMedia.map(tm => (
             <li key={tm.media_id}>
               <div>
-                <Link
-                  href={media.find(m => m.id === tm.media_id)?.url ?? '-1'}
-                >
+                <Link href={media.find(m => m.id === tm.media_id)?.url ?? '-1'}>
                   <h4 className="font-light">
                     {media.find(m => m.id === tm.media_id)?.title}
                   </h4>

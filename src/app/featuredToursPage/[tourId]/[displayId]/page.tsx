@@ -6,13 +6,14 @@ import React, { useEffect, useState } from 'react';
 
 import { DisplayRow, TourDisplaysRow } from '@/types/types';
 import NavBar from '@/components/userComponents/navBar/navBar';
-import supabase from '@/supabase/client';
+import { fetchDisplay } from '@/supabase/displays/queries';
+import { fetchTourDisplays } from '@/supabase/tour_displays/queries';
 
-export default function Page({
+export default ({
   params,
 }: {
   params: { tourId: string; displayId: string };
-}) {
+}) => {
   const [display, setDisplay] = useState<DisplayRow>();
   const [prev, setPrev] = useState<string>(
     `/featuredToursPage/${params.tourId}`,
@@ -22,59 +23,21 @@ export default function Page({
   );
 
   useEffect(() => {
-    // Fetch display details
-    async function fetchDisplay() {
-      try {
-        const { data, error } = await supabase
-          .from('displays')
-          .select('*')
-          .eq('id', params.displayId)
-          .single();
-        if (error) {
-          throw error;
-        }
-        if (!data) {
-          throw new Error('No data found');
-        }
-        console.log('Obtained display details');
-        const responseData: DisplayRow = data;
-        setDisplay(responseData);
-      } catch (error) {
-        console.error('Error fetching tour details:', error);
-      }
-    }
+    // Get display
+    const getDisplay = async () => {
+      const fetchedDisplay = await fetchDisplay(params.displayId);
+      setDisplay(fetchedDisplay);
+    };
 
-    // Fetch tour displays to get the display order
-    async function fetchTourDisplays() {
-      try {
-        const { data, error } = await supabase
-          .from('tour_displays')
-          .select('*')
-          .eq('tour_id', params.tourId);
-        if (error) {
-          throw error;
-        }
-        if (!data) {
-          throw new Error('No data found');
-        }
-        console.log('Obtained tour displays');
-        const responseData: TourDisplaysRow[] = data;
+    // Get tour displays
+    const getTourDisplays = async () => {
+      const fetchedTourDisplays = await fetchTourDisplays(params.tourId);
+      return fetchedTourDisplays;
+    };
 
-        // Sort the responseData array in ascending display_order
-        responseData.sort(
-          (a, b) => (a?.display_order || 0) - (b?.display_order || 0),
-        );
-
-        return responseData;
-
-      } catch (error) {
-        console.error('Error fetching tour displays:', error);
-      }
-    }
-
-    // Get the links for the previous and next displays or pages
-    async function fetchLinks() {
-      const tourDisplays: TourDisplaysRow[] = await fetchTourDisplays();
+    // Get the links for the previous and next pages
+    async function getLinks() {
+      const tourDisplays: TourDisplaysRow[] = await getTourDisplays();
       const index = tourDisplays.findIndex(
         tourDisplay => tourDisplay.display_id === params.displayId,
       );
@@ -107,8 +70,8 @@ export default function Page({
       }
     }
 
-    fetchDisplay();
-    fetchLinks();
+    getDisplay();
+    getLinks();
   }, []);
 
   return (
@@ -163,4 +126,4 @@ export default function Page({
       </div>
     </div>
   );
-}
+};

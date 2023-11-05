@@ -5,8 +5,21 @@ import supabase from '../client';
 import { TourRow } from '../../types/types';
 
 // Fetch all tours
-export async function fetchTours() {
+export async function fetchAllTours() {
   const { data, error } = await supabase.from('tours').select('*');
+  if (error) {
+    throw new Error(`An error occurred while trying to read tours: ${error}`);
+  }
+  return data;
+}
+
+// Fetch a single tour
+export async function fetchTour(id: string) {
+  const { data, error } = await supabase
+    .from('tours')
+    .select('*')
+    .eq('id', id)
+    .single();
   if (error) {
     throw new Error(`An error occurred while trying to read tours: ${error}`);
   }
@@ -26,7 +39,7 @@ export async function insertTour(tourData: TourRow) {
 }
 
 // Update a tour
-export async function updateTour(id: number, updatedInfo: TourRow) {
+export async function updateTour(id: string, updatedInfo: TourRow) {
   const { data, error } = await supabase
     .from('tours')
     .update(updatedInfo)
@@ -53,7 +66,7 @@ export async function upsertTour(tourData: TourRow) {
 }
 
 // Delete a tour
-export async function deleteTour(id: number) {
+export async function deleteTour(id: string) {
   const { data, error } = await supabase.from('tours').delete().eq('id', id);
   if (error) {
     throw new Error(
