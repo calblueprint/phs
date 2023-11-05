@@ -10,7 +10,7 @@ const config: Config = {
     extend: {
       /** Color palette for the app, based on the design system in the figma file */
       colors: {
-        'asparagus': '#7CA24E',
+        asparagus: '#7CA24E',
         'hunter-green': '#3F6A38',
         'scary-forest': '#386131',
         'mint-cream': '#EBF0E8',
