@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 import { TourRow, DisplayRow } from '@/types/types';
 import { fetchTour } from '@/supabase/tours/queries';
 import NavBar from '@/components/userComponents/navBar/navBar';
-import { fetchDisplayfromSpotlight } from '../../../supabase/tour_displays/queries';
+import { fetchDisplayfromSpotlight, fetchRelatedSpotlightsfromSpotlightId } from '../../../supabase/tour_displays/queries';
 
 export default function Page({ params }: { params: { spotlightId: string } }) {
   const [spotlight, setSpotlight] = useState<TourRow>({
@@ -21,6 +21,8 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
 
   const [displays, setDisplays] = useState<DisplayRow[]>([])
 
+  const [relatedSpolights, setRelatedSpotlight] = useState<TourRow[]>([])
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -28,6 +30,8 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
         setSpotlight(responseData);
         const displays: DisplayRow[] = await fetchDisplayfromSpotlight(params.spotlightId);
         setDisplays(displays);
+        const relatedSpotlights: TourRow[] = await fetchRelatedSpotlightsfromSpotlightId(params.spotlightId);
+        setRelatedSpotlight(relatedSpotlights);
       } catch (error) {
         console.error(error);
       }
@@ -66,6 +70,32 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
 
             ))}
       </div>
+
+              
+      <h1 className="text-black font-lato text-18 font-medium pl-4 pb-[16px]">Related Spotlights</h1>
+
+      <ul className="list-none p-0 flex">
+          {relatedSpolights.map(
+            spotlight => (
+                <li className="pl-[18px] w-[162px] overflow-x-auto" key={spotlight.id}>
+                  <Link
+                    href={`/spotlightPage/${spotlight.id}`}>
+                    <div className="bg-[#386131] h-[169px] rounded-2xl p-4 flex flex-col">
+        
+                    </div>
+                    <h4 className="text-black font-Lato text-20 font-bold mt-2">
+                          {spotlight.name}
+                        </h4>
+                        <h2 className="text-gray font-Lato text-sm font-normal">
+                          {spotlight.description}
+                        </h2>
+                  </Link>
+                </li>
+              ),
+          )}
+        </ul>
+
+
     </div>
   );
 }

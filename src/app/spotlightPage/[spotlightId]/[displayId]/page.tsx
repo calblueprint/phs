@@ -4,10 +4,8 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-import { TourRow, DisplayRow } from '@/types/types';
-import { fetchSpotlightTours, fetchTour } from '@/supabase/tours/queries';
+import { DisplayRow } from '@/types/types';
 import NavBar from '@/components/userComponents/navBar/navBar';
-import supabase from '@/supabase/client';
 import { fetchDisplayFromId } from '../../../../supabase/displays/queries';
 import { fetchDisplayfromSpotlight } from '../../../../supabase/tour_displays/queries';
 
