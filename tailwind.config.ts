@@ -5,11 +5,11 @@ const config: Config = {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-  ], 
+  ],
   theme: {
     extend: {
       /** Color palette for the app, based on the design system in the figma file */
-      colors: { 
+      colors: {
         asparagus: '#7CA24E',
         'hunter-green': '#3F6A38',
         'scary-forest': '#386131',

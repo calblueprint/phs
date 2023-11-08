@@ -20,8 +20,8 @@ function WelcomeGraphic() {
           <h1 className="text-center w-80">Center for Wildlife Care</h1>
         </div>
         <div className="w-52 px-4 py-3 bg-asparagus rounded-lg justify-center items-center gap-2.5 inline-flex">
-          <Link href ="/featuredToursPage" className ="text-center text-ivory">
-             Start Tour
+          <Link href="/featuredToursPage" className="text-center text-ivory">
+            Start Tour
           </Link>
         </div>
       </div>
