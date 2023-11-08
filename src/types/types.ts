@@ -11,3 +11,4 @@ export type MediaRow = Database['public']['Tables']['media']['Row'];
 export type TourDisplaysRow =
   Database['public']['Tables']['tour_displays']['Row'];
 export type TourRow = Database['public']['Tables']['tours']['Row'];
+export type SpotlightWithMediaRow = TourRow & { media_url: string };

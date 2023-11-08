@@ -5,10 +5,11 @@ const config: Config = {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
+  ], 
   theme: {
     extend: {
-      colors: {
+      /** Color palette for the app, based on the design system in the figma file */
+      colors: { 
         asparagus: '#7CA24E',
         'hunter-green': '#3F6A38',
         'scary-forest': '#386131',
@@ -27,6 +28,7 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      /** Default font is Lato */
       fontFamily: {
         lato: ['Lato'],
       },

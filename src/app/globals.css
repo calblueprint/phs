@@ -1,9 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;1,100&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;1,100&display=swap');
 
 @layer utilities {
   @variants responsive {
@@ -19,32 +16,35 @@
     }
   }
 }
+/* Based on the design system in the figma file, the base HTML components are automatically given a certain amount of text-styling
+These styles are applied automatically to certain div tags, but you can also call these component styles manually if they are relevant (check figma inspect) */
 @layer components {
-  .h1 {
+  .h1 { /* Header 1 */
     @apply text-3xl font-semibold text-ivory;
   }
-  .h2 {
+  .h2 { /* Header 2 */
     @apply text-xl font-extrabold text-ivory;
   }
-  .h3 {
+  .h3 { /* Header 3 */
     @apply text-lg font-bold text-ivory;
   }
-  .b1 {
+  .b1 { /* Button */
     @apply text-base font-bold text-ivory;
-  }
-  .b2 {
+  } 
+  .b2 { /* Bolded Body */
     @apply text-base font-medium text-ivory;
   }
-  .b3 {
+  .b3 { /* Body Text */
     @apply text-base font-light text-ivory;
   }
-  .s1 {
+  .s1 { /* Subtitle Text */
     @apply text-sm font-normal text-ivory;
   }
-  .s2 {
+  .s2 { /* Category Label Text */
     @apply text-xs font-normal text-ivory;
   }
 }
+/* Base layer:  To match figma design system, certain styles are auto-applied to these HTML tags.  You can overwrite them if needed.*/
 @layer base {
   h1 {
     @apply h1;
