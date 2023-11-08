@@ -1,7 +1,8 @@
+import Link from 'next/link';
 import React from 'react';
 
 /**
- *
+ * @returns - Welcome graphic on the home page.  Button available for "start tour" leads to the featured tours page and flow
  */
 function WelcomeGraphic() {
   return (
@@ -19,9 +20,9 @@ function WelcomeGraphic() {
           <h1 className="text-center w-80">Center for Wildlife Care</h1>
         </div>
         <div className="w-52 px-4 py-3 bg-asparagus rounded-lg justify-center items-center gap-2.5 inline-flex">
-          <button type="button" className="text-center">
-            Start Tour
-          </button>
+          <Link href ="/featuredToursPage" className ="text-center text-ivory">
+             Start Tour
+          </Link>
         </div>
       </div>
     </div>

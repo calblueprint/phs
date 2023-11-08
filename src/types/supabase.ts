@@ -126,6 +126,36 @@ export interface Database {
           }
         ]
       }
+      spotlight_recommendations: {
+        Row: {
+          source_display_id: string
+          target_display_id: string
+        }
+        Insert: {
+          source_display_id: string
+          target_display_id: string
+        }
+        Update: {
+          source_display_id?: string
+          target_display_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "spotlight_recommendations_source_display_id_fkey"
+            columns: ["source_display_id"]
+            isOneToOne: false
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "spotlight_recommendations_target_display_id_fkey"
+            columns: ["target_display_id"]
+            isOneToOne: false
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       tour_displays: {
         Row: {
           display_id: string
@@ -227,7 +257,7 @@ export interface Database {
         }
         Returns: Record<string, unknown>
       }
-      joinspotlightswithmedia: {
+      join_spotlights_with_media: {
         Args: Record<PropertyKey, never>
         Returns: {
           id: string
