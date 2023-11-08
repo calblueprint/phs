@@ -1,7 +1,8 @@
 import React from 'react';
 
 /**
- *
+ * !!! WIP !!!
+ * @returns - Spotlight scroller to be used in Home page, each entry will lead to a spotlight's dynamic page.
  */
 function SpotlightScroller() {
   return (
