@@ -19,31 +19,26 @@ export async function fetchMedia() {
  * @param displayId id of the display to fetch pictures for
  * @returns array of image objects corresponding to the display
  */
-export async function fetchImagesForDisplay(displayId: string | undefined): Promise<MediaRow[] | null | undefined>  {
-  // noah TODO: clean up code to query on join table
+export async function fetchImagesForDisplay(
+  displayId: string | undefined,
+) {
   if (!displayId) {
-    return null
+    return null;
   }
-  const {data, error} = await supabase.from('display_media').select('*').eq('display_id', displayId);
+  const { data, error } = await supabase.rpc('fetchimagesfordisplay', {
+    displayid: displayId,
+  });
+
   if (error) {
-    throw new Error(`${error.message}`)
+    throw new Error(error.message);
   }
 
-  const mediaIds = data.map((row) => row.media_id);
-  if (!mediaIds.length) {
-    return []
-  }
-
-  const {data: mediaData, error: mediaError } = await supabase.from('media').select('*').in('id', mediaIds).eq('type', 'image');
-  if (mediaError) {
-    throw new Error(`Error fetching media: ${mediaError.message}`);
-  }
-  
-  return mediaData;
+  return data; 
 }
 /**
  *
- * @param id
+ * @param id of media to delete
+ * @returns deletes a media row where id == media_id 
  */
 export async function deleteMedia(id: number) {
   const { error } = await supabase.from('media').delete().eq('id', id);
@@ -55,7 +50,8 @@ export async function deleteMedia(id: number) {
 }
 /**
  *
- * @param mediaData
+ * @param mediaData object containing the new media to create
+ * @returns new created media object
  */
 export async function createMedia(mediaData: MediaRow) {
   const { data, error } = await supabase.from('media').upsert([mediaData]);
@@ -75,8 +71,9 @@ export async function createMedia(mediaData: MediaRow) {
 //   }
 /**
  *
- * @param id
- * @param updatedInfo
+ * @param id of media to update
+ * @param updatedInfo fields to update on media object
+ * @returns updated media
  */
 export async function updateMedia(id: number, updatedInfo: MediaRow) {
   const { data, error } = await supabase
