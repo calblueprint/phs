@@ -7,7 +7,7 @@ import { TourMediaRow } from '../../types/types';
  * Fetches all tour media from the database.
  * @returns A promise that resolves to an array of TourMediaRow objects.
  */
-export async function fetchAllTourMedia() {
+export async function fetchAllTourMedia(): Promise<TourMediaRow[]> {
   const { data, error } = await supabase.from('tour_media').select('*');
   if (error) {
     throw new Error(error.message);
