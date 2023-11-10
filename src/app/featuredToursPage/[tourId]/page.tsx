@@ -3,13 +3,20 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-import { DisplayRow, TourDisplaysRow, TourRow } from '@/types/types';
-import NavBar from '@/components/userComponents/navBar/navBar';
-import { fetchTour } from '@/supabase/tours/queries';
-import { fetchTourDisplays } from '@/supabase/tour_displays/queries';
-import { fetchAllDisplays } from '@/supabase/displays/queries';
+import { DisplayRow, TourDisplaysRow, TourRow } from '../../../types/types';
+import NavBar from '../../../components/userComponents/navBar/navBar';
+import { fetchTour } from '../../../supabase/tours/queries';
+import { fetchTourDisplays } from '../../../supabase/tour_displays/queries';
+import { fetchAllDisplays } from '../../../supabase/displays/queries';
 
-export default ({ params }: { params: { tourId: string } }) => {
+/**
+ * The page that displays the start of a tour.
+ * @param params -
+ * @param params.params -
+ * @param params.params.tourId - The tour ID.
+ * @returns The tour start page.
+ */
+export default function TourStartPage({ params }: { params: { tourId: string } }) {
   const [displays, setDisplays] = useState<DisplayRow[]>([]);
   const [tour, setTour] = useState<TourRow>();
   const [tourDisplays, setTourDisplays] = useState<TourDisplaysRow[]>([]);
@@ -36,13 +43,12 @@ export default ({ params }: { params: { tourId: string } }) => {
     getTour();
     getTourDisplays();
     getDisplays();
-  }, []);
+  }, [params.tourId]);
 
   return (
     <div className="bg-[#ebf0e4]">
       <NavBar />
       <div>
-        {/* TODO: Add tour-specific image */}
         <img
           src="https://images.unsplash.com/photo-1615812214207-34e3be6812df?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="placeholder"
