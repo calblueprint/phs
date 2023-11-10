@@ -30,10 +30,7 @@ export default function Page({ params }: { params: { displayId: string } }) {
         if (!data) {
           throw new Error('No data found');
         }
-        console.log('Obtained display details');
         const responseData: DisplayRow = data;
-        console.log(responseData);
-
         setDisplay(responseData);
       } catch (error) {
         console.error('Error fetching tour details:', error);
@@ -56,10 +53,6 @@ export default function Page({ params }: { params: { displayId: string } }) {
 
     fetchDisplayMedia();
   }, [display]);
-
-  console.log('MEDIA:', media);
-  
-  
 
   return (
     <div className="bg-[#ebf0e4] h-full">
