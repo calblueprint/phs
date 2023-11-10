@@ -3,13 +3,20 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-import NavBar from '@/components/userComponents/navBar/navBar';
-import { MediaRow, TourRow, TourMediaRow } from '@/types/types';
-import { fetchMedia } from '@/supabase/media/queries';
-import { fetchTour } from '@/supabase/tours/queries';
-import { fetchTourMedia } from '@/supabase/tour_media/queries';
+import NavBar from '../../../../components/userComponents/navBar/navBar';
+import { MediaRow, TourRow, TourMediaRow } from '../../../../types/types';
+import { fetchMedia } from '../../../../supabase/media/queries';
+import { fetchTour } from '../../../../supabase/tours/queries';
+import { fetchTourMedia } from '../../../../supabase/tour_media/queries';
 
-export default ({ params }: { params: { tourId: string } }) => {
+/**
+ * The page that displays the end of a tour.
+ * @param params -
+ * @param params.params -
+ * @param params.params.tourId - The tour ID.
+ * @returns The tour end page.
+ */
+export default function TourEndPage({ params }: { params: { tourId: string } }) {
   const [media, setMedia] = useState<MediaRow[]>([]);
   const [tour, setTour] = useState<TourRow>();
   const [tourMedia, setTourMedia] = useState<TourMediaRow[]>([]);
@@ -36,7 +43,7 @@ export default ({ params }: { params: { tourId: string } }) => {
     getTour();
     getTourMedia();
     getMedia();
-  }, []);
+  }, [params.tourId]);
 
   return (
     <div className="bg-[#ebf0e4]">
@@ -45,7 +52,7 @@ export default ({ params }: { params: { tourId: string } }) => {
       <div className="flex flex-col items-center">
         <div className="p-4 text-center">
           <h1 className="px-20 py-4 text-[#333333] text-xl font-extrabold mb-4">
-            You've reached the end of this tour!
+            You have reached the end of this tour!
           </h1>
           <p className="text-[#333333] text-lg font-medium mb-4">
             Thanks for visiting {tour?.name}.
