@@ -3,9 +3,9 @@
 import supabase from '../client';
 import { TourMediaRow } from '../../types/types';
 
-// Fetch all tour media
 /**
- *
+ * Fetches all tour media from the database.
+ * @returns A promise that resolves to an array of TourMediaRow objects.
  */
 export async function fetchAllTourMedia() {
   const { data, error } = await supabase.from('tour_media').select('*');
@@ -15,6 +15,11 @@ export async function fetchAllTourMedia() {
   return data;
 }
 
+/**
+ * Fetches all tour media for a single tour from the database.
+ * @param tourId - The id of the tour to fetch.
+ * @returns A promise that resolves to an array of TourMediaRow objects.
+ */
 export async function fetchTourMedia(tourId: string): Promise<TourMediaRow[]> {
   const { data, error } = await supabase
     .from('tour_media')
