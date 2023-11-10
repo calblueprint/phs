@@ -1,78 +1,88 @@
-/* eslint-disable */
 'use client';
 
 import supabase from '../client';
 import { TourRow } from '../../types/types';
 
-// Fetch all tours
-export async function fetchAllTours() {
+/**
+ * Fetches all tours from the database.
+ * @returns A promise that resolves to an array of TourRow objects.
+ */
+export async function fetchAllTours(): Promise<TourRow[]> {
   const { data, error } = await supabase.from('tours').select('*');
   if (error) {
-    throw new Error(`An error occurred while trying to read tours: ${error}`);
+    throw new Error(error.message);
   }
   return data;
 }
 
-// Fetch a single tour
-export async function fetchTour(id: string) {
+/**
+ * Fetches a single tour from the database.
+ * @param tourId - The id of the tour to fetch.
+ * @returns A promise that resolves to a TourRow object.
+ */
+export async function fetchTour(tourId: string): Promise<TourRow> {
   const { data, error } = await supabase
     .from('tours')
     .select('*')
-    .eq('id', id)
+    .eq('id', tourId)
     .single();
   if (error) {
-    throw new Error(`An error occurred while trying to read tours: ${error}`);
+    throw new Error(error.message);
   }
   return data;
 }
 
-// Insert tour(s)
+/**
+ * Inserts a single tour into the database.
+ * @param tourData - The tour to insert.
+ * @returns A promise that resolves to a TourRow object.
+ */
 export async function insertTour(tourData: TourRow) {
-  const { data, error } = await supabase.from('tours').insert([tourData]);
+  const { data, error } = await supabase.from('tours').insert(tourData);
   if (error) {
-    throw new Error(
-      `An error occurred while trying to insert tour: ${error.message}`,
-    );
+    throw new Error(error.message);
   }
-  const newTour = data;
-  return newTour;
+  return data;
 }
 
-// Update a tour
-export async function updateTour(id: string, updatedInfo: TourRow) {
+/**
+ * Updates a single tour in the database.
+ * @param newTourData - The updated tour data.
+ * @returns A promise that resolves to a TourRow object.
+ */
+export async function updateTour(newTourData: TourRow) {
   const { data, error } = await supabase
     .from('tours')
-    .update(updatedInfo)
-    .eq('id', updatedInfo.id);
+    .update(newTourData)
+    .eq('id', newTourData.id);
   if (error) {
-    throw new Error(
-      `An error occurred while trying to update tour: ${error.message}`,
-    );
+    throw new Error(error.message);
   }
-  const newTour = data;
-  return newTour;
+  return data;
 }
 
-// Upsert tour(s)
+/**
+ * Upserts a single tour into the database.
+ * @param tourData - The tour to upsert.
+ * @returns A promise that resolves to a TourRow object.
+ */
 export async function upsertTour(tourData: TourRow) {
-  const { data, error } = await supabase.from('tours').upsert([tourData]);
+  const { data, error } = await supabase.from('tours').upsert(tourData);
   if (error) {
-    throw new Error(
-      `An error occurred while trying to upsert tour: ${error.message}`,
-    );
+    throw new Error(error.message);
   }
-  const newTour = data;
-  return newTour;
+  return data;
 }
 
-// Delete a tour
-export async function deleteTour(id: string) {
-  const { data, error } = await supabase.from('tours').delete().eq('id', id);
+/**
+ * Deletes a single tour from the database.
+ * @param tourId - The id of the tour to delete.
+ * @returns A promise that resolves to a TourRow object.
+ */
+export async function deleteTour(tourId: string) {
+  const { data, error } = await supabase.from('tours').delete().eq('id', tourId);
   if (error) {
-    throw new Error(
-      `An error occurred while trying to delete tour: ${error.message}`,
-    );
+    throw new Error(error.message);
   }
-  const deletedTour = data;
-  return deletedTour;
+  return data;
 }

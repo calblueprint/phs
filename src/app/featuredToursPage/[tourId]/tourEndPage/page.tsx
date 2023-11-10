@@ -25,7 +25,6 @@ export default ({ params }: { params: { tourId: string } }) => {
     // Get tour media
     const getTourMedia = async () => {
       const fetchedTourMedia = await fetchTourMedia(params.tourId);
-      console.log({tourMedia: fetchedTourMedia});
       setTourMedia(fetchedTourMedia);
     };
 

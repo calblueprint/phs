@@ -10,22 +10,19 @@ import { TourMediaRow } from '../../types/types';
 export async function fetchAllTourMedia() {
   const { data, error } = await supabase.from('tour_media').select('*');
   if (error) {
-    throw new Error(`An error occurred while trying to read tour media: ${error}`);
+    throw new Error(error.message);
   }
   return data;
 }
 
-/**
- *
- * @param id
- */
-export async function fetchTourMedia(id: string) {
+export async function fetchTourMedia(tourId: string): Promise<TourMediaRow[]> {
   const { data, error } = await supabase
     .from('tour_media')
     .select('*')
-    .eq('tour_id', id);
+    .eq('tour_id', tourId);
   if (error) {
-    throw new Error(`An error occurred while trying to read tour media: ${error}`);
+    throw new Error(error.message);
   }
   return data;
 }
+
