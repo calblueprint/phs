@@ -37,7 +37,7 @@ export async function fetchTour(tourId: string): Promise<TourRow> {
  * @param tourData - The tour to insert.
  * @returns A promise that resolves to a TourRow object.
  */
-export async function insertTour(tourData: TourRow) {
+export async function insertTour(tourData: TourRow): Promise<TourRow | null> {
   const { data, error } = await supabase.from('tours').insert(tourData);
   if (error) {
     throw new Error(error.message);
@@ -50,7 +50,7 @@ export async function insertTour(tourData: TourRow) {
  * @param newTourData - The updated tour data.
  * @returns A promise that resolves to a TourRow object.
  */
-export async function updateTour(newTourData: TourRow) {
+export async function updateTour(newTourData: TourRow): Promise<TourRow | null> {
   const { data, error } = await supabase
     .from('tours')
     .update(newTourData)
@@ -66,7 +66,7 @@ export async function updateTour(newTourData: TourRow) {
  * @param tourData - The tour to upsert.
  * @returns A promise that resolves to a TourRow object.
  */
-export async function upsertTour(tourData: TourRow) {
+export async function upsertTour(tourData: TourRow): Promise<TourRow | null> {
   const { data, error } = await supabase.from('tours').upsert(tourData);
   if (error) {
     throw new Error(error.message);
@@ -79,7 +79,7 @@ export async function upsertTour(tourData: TourRow) {
  * @param tourId - The id of the tour to delete.
  * @returns A promise that resolves to a TourRow object.
  */
-export async function deleteTour(tourId: string) {
+export async function deleteTour(tourId: string): Promise<TourRow | null> {
   const { data, error } = await supabase.from('tours').delete().eq('id', tourId);
   if (error) {
     throw new Error(error.message);
