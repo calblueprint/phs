@@ -1,4 +1,3 @@
-/* eslint-disable */
 'use client';
 
 import Link from 'next/link';
@@ -72,16 +71,21 @@ export default ({ params }: { params: { tourId: string } }) => {
           {tourDisplays.map(tourDisplay => (
             <li key={tourDisplay.display_id}>
               <div>
-              <Link href={`/featuredToursPage/${params.tourId}/${tourDisplay.display_id}`}>
-                <h4 className="font-light">
-                  {tourDisplay.display_order != null ? tourDisplay.display_order + 1 : ''}.{' '}
-                  {
-                    displays.find(
-                      display => display.id === tourDisplay.display_id,
-                    )?.title
-                  }
-                </h4>
-              </Link>
+                <Link
+                  href={`/featuredToursPage/${params.tourId}/${tourDisplay.display_id}`}
+                >
+                  <h4 className="font-light">
+                    {tourDisplay.display_order != null
+                      ? tourDisplay.display_order + 1
+                      : ''}
+                    .{' '}
+                    {
+                      displays.find(
+                        display => display.id === tourDisplay.display_id,
+                      )?.title
+                    }
+                  </h4>
+                </Link>
               </div>
             </li>
           ))}
@@ -92,4 +96,4 @@ export default ({ params }: { params: { tourId: string } }) => {
       </div>
     </div>
   );
-}
+};
