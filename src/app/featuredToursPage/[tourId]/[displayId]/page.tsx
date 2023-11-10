@@ -3,16 +3,24 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-import { DisplayRow, TourDisplaysRow } from '@/types/types';
-import NavBar from '@/components/userComponents/navBar/navBar';
-import { fetchDisplay } from '@/supabase/displays/queries';
-import { fetchTourDisplays } from '@/supabase/tour_displays/queries';
+import { DisplayRow, TourDisplaysRow } from '../../../../types/types';
+import NavBar from '../../../../components/userComponents/navBar/navBar';
+import { fetchDisplay } from '../../../../supabase/displays/queries';
+import { fetchTourDisplays } from '../../../../supabase/tour_displays/queries';
 
-export default ({
+/**
+ * The page that displays a tour stop.
+ * @param params -
+ * @param params.params -
+ * @param params.params.tourId - The tour ID.
+ * @param params.params.displayId - The display ID.
+ * @returns The tour stop page.
+ */
+export default function TourStopPage({
   params,
 }: {
   params: { tourId: string; displayId: string };
-}) => {
+}) {
   const [display, setDisplay] = useState<DisplayRow>();
   const [prev, setPrev] = useState<string>(
     `/featuredToursPage/${params.tourId}`,
@@ -35,6 +43,9 @@ export default ({
     };
 
     // Get the links for the previous and next pages
+    /**
+     *
+     */
     async function getLinks() {
       const tourDisplays: TourDisplaysRow[] = await getTourDisplays();
       const index = tourDisplays.findIndex(
@@ -42,7 +53,7 @@ export default ({
       );
 
       if (index === -1) {
-        console.error('Display not found in tour displays');
+        throw new Error('Display not found in tour displays');
       } else if (index === 0) {
         setNext(
           `/featuredToursPage/${params.tourId}/${
@@ -71,7 +82,7 @@ export default ({
 
     getDisplay();
     getLinks();
-  }, []);
+  }, [params.displayId, params.tourId]);
 
   return (
     <div className="bg-[#ebf0e4]">
@@ -83,12 +94,10 @@ export default ({
       <p className="text-[#333333] p-4 font-medium">
         {display && display.description}
       </p>
-      {/* TODO: Add tour-specific image */}
       <img
         src="https://images.unsplash.com/photo-1615812214207-34e3be6812df?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         alt="placeholder"
       />
-      {/* TODO: Add tour-specific text */}
       <p className="text-[#333333] px-4 py-2">
         Scientifically known as Procyon lotor, raccoons are highly adaptable
         creatures with a wide range of habitats across North and Central
@@ -125,4 +134,4 @@ export default ({
       </div>
     </div>
   );
-};
+}

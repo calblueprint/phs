@@ -16,7 +16,11 @@ import { fetchAllDisplays } from '../../../supabase/displays/queries';
  * @param params.params.tourId - The tour ID.
  * @returns The tour start page.
  */
-export default function TourStartPage({ params }: { params: { tourId: string } }) {
+export default function TourStartPage({
+  params,
+}: {
+  params: { tourId: string };
+}) {
   const [displays, setDisplays] = useState<DisplayRow[]>([]);
   const [tour, setTour] = useState<TourRow>();
   const [tourDisplays, setTourDisplays] = useState<TourDisplaysRow[]>([]);
@@ -102,4 +106,4 @@ export default function TourStartPage({ params }: { params: { tourId: string } }
       </div>
     </div>
   );
-};
+}
