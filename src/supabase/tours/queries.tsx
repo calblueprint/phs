@@ -50,7 +50,9 @@ export async function insertTour(tourData: TourRow): Promise<TourRow | null> {
  * @param newTourData - The updated tour data.
  * @returns A promise that resolves to a TourRow object.
  */
-export async function updateTour(newTourData: TourRow): Promise<TourRow | null> {
+export async function updateTour(
+  newTourData: TourRow,
+): Promise<TourRow | null> {
   const { data, error } = await supabase
     .from('tours')
     .update(newTourData)
@@ -80,7 +82,10 @@ export async function upsertTour(tourData: TourRow): Promise<TourRow | null> {
  * @returns A promise that resolves to a TourRow object.
  */
 export async function deleteTour(tourId: string): Promise<TourRow | null> {
-  const { data, error } = await supabase.from('tours').delete().eq('id', tourId);
+  const { data, error } = await supabase
+    .from('tours')
+    .delete()
+    .eq('id', tourId);
   if (error) {
     throw new Error(error.message);
   }

@@ -30,4 +30,3 @@ export async function fetchTourMedia(tourId: string): Promise<TourMediaRow[]> {
   }
   return data;
 }
-

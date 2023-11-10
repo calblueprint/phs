@@ -20,7 +20,9 @@ export async function fetchAllTourDisplays(): Promise<TourDisplaysRow[]> {
  * @param tourId - The id of the tour to fetch.
  * @returns A promise that resolves to an array of TourDisplaysRow objects.
  */
-export async function fetchTourDisplays(tourId: string): Promise<TourDisplaysRow[]> {
+export async function fetchTourDisplays(
+  tourId: string,
+): Promise<TourDisplaysRow[]> {
   const { data, error } = await supabase
     .from('tour_displays')
     .select('*')
@@ -28,8 +30,6 @@ export async function fetchTourDisplays(tourId: string): Promise<TourDisplaysRow
   if (error) {
     throw new Error(error.message);
   }
-  data.sort(
-    (a, b) => (a?.display_order || 0) - (b?.display_order || 0),
-  );
+  data.sort((a, b) => (a?.display_order || 0) - (b?.display_order || 0));
   return data;
 }

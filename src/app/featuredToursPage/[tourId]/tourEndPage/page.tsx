@@ -16,7 +16,11 @@ import { fetchTourMedia } from '../../../../supabase/tour_media/queries';
  * @param params.params.tourId - The tour ID.
  * @returns The tour end page.
  */
-export default function TourEndPage({ params }: { params: { tourId: string } }) {
+export default function TourEndPage({
+  params,
+}: {
+  params: { tourId: string };
+}) {
   const [media, setMedia] = useState<MediaRow[]>([]);
   const [tour, setTour] = useState<TourRow>();
   const [tourMedia, setTourMedia] = useState<TourMediaRow[]>([]);
@@ -60,9 +64,7 @@ export default function TourEndPage({ params }: { params: { tourId: string } }) 
         </div>
         <div className="bg-[#7ca24e] text-center w-72 h-auto rounded-2xl mb-4">
           <Link href="/featuredToursPage">
-            <h2 className="text-white font-bold p-4">
-              Back to Featured Tours
-            </h2>
+            <h2 className="text-white font-bold p-4">Back to Featured Tours</h2>
           </Link>
         </div>
       </div>
@@ -88,4 +90,4 @@ export default function TourEndPage({ params }: { params: { tourId: string } }) 
       </div>
     </div>
   );
-};
+}
