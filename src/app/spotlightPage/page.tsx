@@ -1,20 +1,23 @@
-/* eslint-disable */
 'use client';
-
-//fetch from tours table
 
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-import { fetchSpotlightTours } from '@/supabase/tours/queries';
-import NavBar from '@/components/userComponents/navBar/navBar';
-import { TourRow} from '@/types/types';
+import { fetchSpotlightTours } from '../../supabase/tours/queries';
+import NavBar from '../../components/userComponents/navBar/navBar';
+import { TourRow} from '../../types/types';
 
+/**
+ * @returns spotlights from tours table
+ */
 function App() {
   const [spotlights, setSpotlights] = useState<TourRow[]>([]);
 
   useEffect(() => {
+    /**
+     * @returns spotlight data
+     */
     async function fetchData() {
       try {
         const responseData: TourRow[] = await fetchSpotlightTours();
@@ -33,7 +36,7 @@ function App() {
     <div className="bg-[#F5F6F5]">
       <NavBar />
 
-      <div className="p-4 bt-41">
+      <div className="pl-[19.5px] pb-[16px] pt-[61px]">
         <h1 className="text-[#333333] text-3xl font-bold mb-4">
           Our Wildlife Spotlights
         </h1>
@@ -49,7 +52,7 @@ function App() {
                     href={`/spotlightPage/${spotlight.id}`}
                     className="w-full rounded-2xl"
                   >
-                    <div className="bg-[#386131] h-48 rounded-2xl p-4 flex flex-col">
+                    <div className="bg-[#386131] h-48 rounded-2xl p-[19px] flex flex-col">
                       <div className="relative top-28">
                       <Image
                             key={spotlight.id}
@@ -62,10 +65,10 @@ function App() {
                       </div>
                       
                     </div>
-                    <h4 className="text-black font-Lato text-20 font-bold mt-2">
+                    <h4 className="text-black font-Lato text-20 font-bold pt-[14px]">
                           {spotlight.name}
                         </h4>
-                        <h2 className="text-gray font-Lato text-sm font-normal">
+                        <h2 className="text-black font-Lato text-sm font-normal pt-[4px]">
                           {spotlight.description}
                         </h2>
                   </Link>

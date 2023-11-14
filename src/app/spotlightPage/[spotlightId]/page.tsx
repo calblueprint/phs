@@ -1,14 +1,22 @@
-/* eslint-disable */
 'use client';
 
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-import { TourRow, DisplayRow } from '@/types/types';
-import { fetchTour } from '@/supabase/tours/queries';
-import NavBar from '@/components/userComponents/navBar/navBar';
+import { TourRow, DisplayRow } from '../../../types/types';
+import { fetchTour } from '../../../supabase/tours/queries';
+import NavBar from '../../../components/userComponents/navBar/navBar';
 import { fetchDisplayfromSpotlight, fetchRelatedSpotlightsfromSpotlightId } from '../../../supabase/tour_displays/queries';
 
+/**
+ * @param -.params
+ * @param -.params.spotlightId
+ * @param -.params.params
+ * @param -.params.params.spotlightId
+ * @param -.params.params
+ * @param -.params.params.spotlightId
+ * @returns a spotlight page given a spotlight Id
+ */
 export default function Page({ params }: { params: { spotlightId: string } }) {
   const [spotlight, setSpotlight] = useState<TourRow>({
     created_at: "N/A",
@@ -24,14 +32,17 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
   const [relatedSpolights, setRelatedSpotlight] = useState<TourRow[]>([])
 
   useEffect(() => {
+    /**
+     * @returns data from tour table and display table
+     */
     async function fetchData() {
       try {
-        const responseData: TourRow = await fetchTour(params.spotlightId);
-        setSpotlight(responseData);
-        const displays: DisplayRow[] = await fetchDisplayfromSpotlight(params.spotlightId);
-        setDisplays(displays);
-        const relatedSpotlights: TourRow[] = await fetchRelatedSpotlightsfromSpotlightId(params.spotlightId);
-        setRelatedSpotlight(relatedSpotlights);
+        const responseDataForSpotlight: TourRow = await fetchTour(params.spotlightId);
+        setSpotlight(responseDataForSpotlight);
+        const responseDataForDisplays: DisplayRow[] = await fetchDisplayfromSpotlight(params.spotlightId);
+        setDisplays(responseDataForDisplays);
+        const responseDataForRelatedSpotlights: TourRow[] = await fetchRelatedSpotlightsfromSpotlightId(params.spotlightId);
+        setRelatedSpotlight(responseDataForRelatedSpotlights);
       } catch (error) {
         console.error(error);
       }
@@ -50,20 +61,19 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
         alt="placeholder"
         height={145}
       />
-      <h1 className="text-green-700 font-lato text-base font-normal pl-4 pt-[31px]"> CATEGORY TWO</h1>
-      <h1 className="text-[#333333] text-3xl text-14 font-bold pl-4 pt-[8px]">
+      <h1 className="text-green-700 font-Lato text-base font-normal pl-[18px] pt-[31px]"> CATEGORY TWO</h1>
+      <h1 className="text-[#333333] text-3xl text-14 font-bold pl-[18px] pt-[8px]">
         {spotlight.name}
       </h1>
       <p className="text-[#333333] p-4">{spotlight.description}</p>
-      <h1 className="text-black font-lato text-16 font-medium pl-4">In this spotlight...</h1>
-      {/* TODO: Add display ids */}
+      <h1 className="text-black font-Lato font-bold text-[18px] font-medium pl-[18px]">In this spotlight...</h1>
       <div className="flex flex-wrap mt-2 pl-2">
        
        
       {displays.map( 
             display => (
-                <Link href={`/spotlightPage/${spotlight.id}/${display.id}?spotlightId=${spotlight.id}`} >
-                    <button className="bg-[#7CA24E] w-[163px] h-[74px] text-white font-bold rounded-2xl p-[21px] m-2 mb-4">
+                <Link key={display.id} href={`/spotlightPage/${spotlight.id}/${display.id}?spotlightId=${spotlight.id}`} >
+                    <button type="button" className="bg-[#7CA24E] w-[163px] h-[74px] text-white font-bold rounded-2xl p-[21px] m-2 mb-4">
                         {display.title}
                     </button>
                 </Link>
@@ -72,22 +82,20 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
       </div>
 
               
-      <h1 className="text-black font-lato text-18 font-medium pl-4 pb-[16px]">Related Spotlights</h1>
+      <h1 className="text-black font-Lato font-bold text-[18px] font-medium pl-[18px] pb-[16px]">Related Spotlights</h1>
 
       <ul className="list-none p-0 flex">
           {relatedSpolights.map(
-            spotlight => (
-                <li className="pl-[18px] w-[162px] overflow-x-auto" key={spotlight.id}>
+            otherSpotlight => (
+                <li className="pl-[18px] w-[162px] overflow-x-auto" key={otherSpotlight.id}>
                   <Link
                     href={`/spotlightPage/${spotlight.id}`}>
-                    <div className="bg-[#386131] h-[169px] rounded-2xl p-4 flex flex-col">
-        
-                    </div>
+                    <div className="bg-[#386131] h-[169px] rounded-2xl p-[18px] flex flex-col" />
                     <h4 className="text-black font-Lato text-20 font-bold mt-2">
-                          {spotlight.name}
+                          {otherSpotlight.name}
                         </h4>
                         <h2 className="text-gray font-Lato text-sm font-normal">
-                          {spotlight.description}
+                          {otherSpotlight.description}
                         </h2>
                   </Link>
                 </li>

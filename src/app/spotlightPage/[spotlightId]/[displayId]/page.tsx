@@ -1,14 +1,22 @@
-/* eslint-disable */
 'use client';
 
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-import { DisplayRow } from '@/types/types';
-import NavBar from '@/components/userComponents/navBar/navBar';
+import { DisplayRow } from '../../../../types/types';
+import NavBar from '../../../../components/userComponents/navBar/navBar';
 import { fetchDisplayFromId } from '../../../../supabase/displays/queries';
 import { fetchDisplayfromSpotlight } from '../../../../supabase/tour_displays/queries';
 
+/**
+ *
+ * 
+ * @param root0
+ * @param root0.params
+ * @param root0.params.displayId
+ * @param root0.params.spotlightId
+ * @returns display page
+ */
 export default function Page({ params }: { params: { displayId: string, spotlightId: string } }) {
   const [display, setDisplay] = useState<DisplayRow>({
     coordinates: {0:0},
@@ -22,6 +30,9 @@ export default function Page({ params }: { params: { displayId: string, spotligh
   const [otherDisplays, setOtherDisplays] = useState<DisplayRow[]>([]);
 
   useEffect(() => {
+    /**
+     * @returns a display 
+     */
     async function fetchData() {
       try {
         const currentDisplayData: DisplayRow = await fetchDisplayFromId(params.displayId);
@@ -29,9 +40,9 @@ export default function Page({ params }: { params: { displayId: string, spotligh
 
         const displaysFromSpotlight: DisplayRow[] = await fetchDisplayfromSpotlight(params.spotlightId);
         const currentDisplayId = params.displayId;
-        const otherDisplays = displaysFromSpotlight.filter((display) => display.id !== currentDisplayId);
+        const responseDataOtherDisplays = displaysFromSpotlight.filter((aDisplay) => aDisplay.id !== currentDisplayId);
 
-        setOtherDisplays(otherDisplays);
+        setOtherDisplays(responseDataOtherDisplays);
 
       } catch (error) {
         console.error(error);
@@ -51,19 +62,19 @@ export default function Page({ params }: { params: { displayId: string, spotligh
         alt="placeholder"
         height={145}
       />
-      <h1 className="text-green-700 font-lato text-base font-normal pl-4 pt-[31px]"> CATEGORY TWO</h1>
-      <h1 className="text-[#333333] text-3xl text-14 font-bold pl-4 pt-[8px]">
+      <h1 className="text-green-700 font-Lato text-base font-normal pl-[25px] pt-[31px]"> CATEGORY TWO</h1>
+      <h1 className="text-[#333333] text-3xl text-14 font-bold pl-[25px] pt-[8px]">
         {display.title}
       </h1>
-      <p className="text-[#333333] p-4">{display.description}</p>
-      <h1 className="text-black font-lato text-16 font-medium pl-4">More in this spotlight...</h1>
+      <p className="text-[#333333] p-[25px]">{display.description}</p>
+      <h1 className="text-black font-bold font-Lato text-[18px] pl-[25px] font-medium pl-4">More in this spotlight...</h1>
       
-      <div className="flex space-x-[14px] pl-4 pt-[16px] w-screen overflow-x-auto">
+      <div className="flex space-x-[14px] pl-[25px] pt-[16px] w-screen overflow-x-auto">
       {otherDisplays.map( 
-            display => (
-                <Link href={`/spotlightPage/${params.spotlightId}/${display.id}?spotlightId=${params.spotlightId}`} >
-                    <button className="bg-[#7CA24E] w-[163px] h-[74px] text-white font-bold rounded-2xl p-[21px]">
-                        {display.title}
+            otherDisplay => (
+                <Link key={otherDisplay.id} href={`/spotlightPage/${params.spotlightId}/${display.id}?spotlightId=${params.spotlightId}`} >
+                    <button type="button" className="bg-[#7CA24E] w-[163px] h-[74px] text-white font-bold rounded-2xl p-[25px]">
+                        {otherDisplay.title}
                     </button>
                 </Link>
 
