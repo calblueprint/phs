@@ -3,7 +3,7 @@ import { HiChevronRight } from 'react-icons/hi';
 import SpotlightScroller from '../SpotlightScroller/SpotlightScroller';
 
 /**
- * !!! WIP !!! 
+ * !!! WIP !!!
  * @returns - For the Home page: Give a preview of content stored on the spotlights page
  * See All button will lead to the spotlights home page
  * Spotlight scroller will showcase and link to chosen spotlights
