@@ -12,7 +12,7 @@ import { fetchDisplaysfromIds } from '../displays/queries';
 export async function fetchTourDisplays() {
   const { data, error } = await supabase.from('tour_displays').select('*');
   if (error) {
-    throw new Error(`An error occurred while trying to read tour displays: ${error}`);
+    throw new Error(error.message);
   }
   return data;
 }

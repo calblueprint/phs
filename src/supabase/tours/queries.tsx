@@ -10,7 +10,7 @@ import { TourRow } from '../../types/types';
 export async function fetchTours() {
   const { data, error } = await supabase.from('tours').select('*');
   if (error) {
-    throw new Error(`An error occurred while trying to read tours: ${error}`);
+    throw new Error(error.message);
   }
   return data;
 }
@@ -69,12 +69,9 @@ export async function fetchSpotlightMedia(spotlightId: string) { // pass in tour
 export async function insertTour(tourData: TourRow) {
   const { data, error } = await supabase.from('tours').insert([tourData]);
   if (error) {
-    throw new Error(
-      `An error occurred while trying to insert tour: ${error.message}`,
-    );
+    throw new Error(error.message);
   }
-  const newTour = data;
-  return newTour;
+  return data;
 }
 
 // Update a tour
@@ -86,15 +83,12 @@ export async function insertTour(tourData: TourRow) {
 export async function updateTour(id: number, updatedInfo: TourRow) {
   const { data, error } = await supabase
     .from('tours')
-    .update(updatedInfo)
-    .eq('id', updatedInfo.id);
+    .update(newTourData)
+    .eq('id', newTourData.id);
   if (error) {
-    throw new Error(
-      `An error occurred while trying to update tour: ${error.message}`,
-    );
+    throw new Error(error.message);
   }
-  const newTour = data;
-  return newTour;
+  return data;
 }
 
 // Upsert tour(s)
@@ -104,13 +98,11 @@ export async function updateTour(id: number, updatedInfo: TourRow) {
  */
 export async function upsertTour(tourData: TourRow) {
   const { data, error } = await supabase.from('tours').upsert([tourData]);
+
   if (error) {
-    throw new Error(
-      `An error occurred while trying to upsert tour: ${error.message}`,
-    );
+    throw new Error(error.message);
   }
-  const newTour = data;
-  return newTour;
+  return data;
 }
 
 // Delete a tour
@@ -121,10 +113,7 @@ export async function upsertTour(tourData: TourRow) {
 export async function deleteTour(id: number) {
   const { data, error } = await supabase.from('tours').delete().eq('id', id);
   if (error) {
-    throw new Error(
-      `An error occurred while trying to delete tour: ${error.message}`,
-    );
+    throw new Error(error.message);
   }
-  const deletedTour = data;
-  return deletedTour;
+  return data;
 }
