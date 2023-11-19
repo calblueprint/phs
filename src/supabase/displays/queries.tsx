@@ -3,7 +3,10 @@
 import { DisplayRow } from '../../types/types';
 import supabase from '../client';
 
-export async function fetchDisplays() {
+/**
+ *
+ */
+export async function fetchAllDisplays() {
   const { data, error } = await supabase.from('displays').select('*');
   if (error) {
     throw new Error(`An error occurred trying to read displays: ${error}`);
@@ -11,7 +14,23 @@ export async function fetchDisplays() {
   return data;
 }
 
-export async function deleteDisplay(id: number) {
+/**
+ *
+ * @param id
+ */
+export async function fetchDisplay(id: string) {
+  const { data, error } = await supabase.from('displays').select('*').eq('id', id).single();
+  if (error) {
+    throw new Error(`An error occurred trying to read displays: ${error}`);
+  }
+  return data;
+}
+
+/**
+ *
+ * @param id
+ */
+export async function deleteDisplay(id: string) {
   const { error } = await supabase.from('displays').delete().eq('id', id);
 
   if (error) {
@@ -21,6 +40,10 @@ export async function deleteDisplay(id: number) {
   }
 }
 
+/**
+ *
+ * @param displayData
+ */
 export async function createDisplay(displayData: DisplayRow) {
   const { data, error } = await supabase.from('displays').upsert([displayData]);
 
@@ -40,7 +63,12 @@ export async function createDisplay(displayData: DisplayRow) {
 //     }
 //   }
 
-export async function updateDisplay(id: number, updatedInfo: DisplayRow) {
+/**
+ *
+ * @param id
+ * @param updatedInfo
+ */
+export async function updateDisplay(id: string, updatedInfo: DisplayRow) {
   const { data, error } = await supabase
     .from('displays')
     .update(updatedInfo)

@@ -1,4 +1,3 @@
-/* eslint-disable */
 'use client';
 
 import Link from 'next/link';
@@ -9,8 +8,19 @@ import NavBar from '@/components/userComponents/navBar/navBar';
 import supabase from '@/supabase/client';
 import { fetchImagesForDisplay } from '../../../../supabase/media/queries';
 import Carousel from '../../../../components/userComponents/ImageScroller/ImageScroller';
-
-export default function Page({ params }: { params: { displayId: string } }) {
+/**
+ * The page that displays a tour stop.
+ * @param params -
+ * @param params.params -
+ * @param params.params.tourId - The tour ID.
+ * @param params.params.displayId - The display ID.
+ * @returns The tour stop page.
+ */
+export default function TourStopPage({
+  params,
+}: {
+  params: { tourId: string; displayId: string };
+}) {
   const [display, setDisplay] = useState<DisplayRow>();
   const [media, setMedia] = useState<MediaRow[]>([]);
   // TODO: add loading state for page – only render after isLoading == false
@@ -37,8 +47,9 @@ export default function Page({ params }: { params: { displayId: string } }) {
       }
     }
 
-    fetchDisplay();
-  }, []);
+    getDisplay();
+    getLinks();
+  }, [params.displayId, params.tourId]);
 
   useEffect(() => {
     async function fetchDisplayMedia() {
@@ -65,12 +76,18 @@ export default function Page({ params }: { params: { displayId: string } }) {
       {media && <Carousel media={media} />}
       <p className="text-[#333333] p-4">{display && display.description}</p>
       <div className="flex flex-row justify-between p-4">
-        <button className="bg-[#386131] w-[48%] h-16 text-white font-bold rounded-2xl">
-          Back
-        </button>
-        <button className="bg-[#386131] w-[48%] h-16 text-white font-bold rounded-2xl">
-          Next Stop
-        </button>
+        <Link
+          className="bg-[#386131] text-center w-[48%] h-16 rounded-2xl"
+          href={prev}
+        >
+          <h2 className="relative top-[30%] text-white font-bold">Back</h2>
+        </Link>
+        <Link
+          className="bg-[#386131] text-center w-[48%] h-16 rounded-2xl"
+          href={next}
+        >
+          <h2 className="relative top-[30%] text-white font-bold">Next</h2>
+        </Link>
       </div>
       <div>
         <h4 className="text-[#386131] p-4 font-bold">
