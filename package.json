@@ -26,7 +26,7 @@
     "crypto": "^1.0.1",
     "html5-qrcode": "^2.3.8",
     "leaflet": "^1.9.4",
-    "next": "latest",
+    "next": "^14.0.3",
     "react": "latest",
     "react-bootstrap": "^2.9.0",
     "react-dom": "latest",
