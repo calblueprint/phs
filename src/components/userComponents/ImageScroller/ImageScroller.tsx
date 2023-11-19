@@ -1,49 +1,31 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from 'react';
 import Image from 'next/image';
-import { fetchMedia } from '../../../supabase/media/queries';
 import { MediaRow } from '../../../types/types';
 
+interface CarouselProps {
+  media: MediaRow[];
+}
+
 /**
- *
+ * @param CarouselProps defines the props for the component
+ * @param CarouselProps.media defines the array of media objects from which to render images
+ * @returns scroller component for the current display
  */
-export default function Carousel() {
-
-  const [media, setMedia] = useState<MediaRow[]>([]);
-
-  const imageLoader = ({ src, width }: { src: string; width: number }) =>
-    `${src}?w=${width}`;
-
-  useEffect(() => {
-    /**
-     *
-     */
-    async function fetchData() {
-      try {
-        const responseData: MediaRow[] = await fetchMedia();
-        const images: MediaRow[] = responseData.filter(m => m.type === 'image');
-        setMedia(images);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    fetchData();
-  }, []);
-
+export default function Carousel({ media }: CarouselProps) {
   return (
-    <div className="h-245 w-390 flex overflow-x-auto">
-      <div className="whitespace-nowrap carousel carousel-end">
-        {media.map(item => (
+    <div className="w-full flex overflow-x-auto justify-center align-center">
+      <div className="carousel w-full">
+        {media.map((item) => (
           <div
             key={item.id}
-            className="inline-block w-390 h-245 carousel-item w-full"
+            className="w-full carousel-item"
             style={{ scrollSnapAlign: 'start' }}
           >
             <Image
-              loader={imageLoader}
+              className="w-full"
               key={item.id}
               src={item.url}
-              alt="Media Image"
+              alt={item.text ?? ""}
               width={390}
               height={245}
               priority
