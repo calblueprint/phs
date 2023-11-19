@@ -221,20 +221,13 @@ export interface Database {
       [_ in never]: never
     }
     Functions: {
-      fetchimagesfordisplay: {
+      fetch_display_images: {
         Args: {
-          displayid: string
+          display_id: string
         }
-        Returns: {
-          id: string
-          url: string
-          type: string
-          title: string
-          text: string
-          created_at: string
-        }[]
+        Returns: Record<string, unknown>
       }
-      join_spotlights_with_media: {
+      joinspotlightswithmedia: {
         Args: Record<PropertyKey, never>
         Returns: {
           id: string

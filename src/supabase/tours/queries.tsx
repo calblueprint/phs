@@ -3,11 +3,11 @@
 import supabase from '../client';
 import { TourRow } from '../../types/types';
 
+// Fetch all tours
 /**
- * Fetches all tours from the database.
- * @returns A promise that resolves to an array of TourRow objects.
+ *
  */
-export async function fetchAllTours(): Promise<TourRow[]> {
+export async function fetchTours() {
   const { data, error } = await supabase.from('tours').select('*');
   if (error) {
     throw new Error(error.message);
@@ -16,43 +16,71 @@ export async function fetchAllTours(): Promise<TourRow[]> {
 }
 
 /**
- * Fetches a single tour from the database.
- * @param tourId - The id of the tour to fetch.
- * @returns A promise that resolves to a TourRow object.
+ *
+ * @param id
  */
-export async function fetchTour(tourId: string): Promise<TourRow> {
+export async function fetchTour(id: string) {
   const { data, error } = await supabase
-    .from('tours')
-    .select('*')
-    .eq('id', tourId)
-    .single();
+  .from('tours')
+  .select('*')
+  .eq('id', id)
+  .single();
+  if (error) {
+    throw new Error(`An error occurred while trying to read tours: ${error}`);
+  }
+  return data;
+}
+
+/**
+ *
+ */
+export async function fetchSpotlightTours() {
+  const { data, error } = await supabase
+  .from('tours')
+  .select('*')
+  .eq('spotlight', true)
+  if (error) {
+    throw new Error(`An error occurred while trying to read tours: ${error}`);
+  }
+  return data;
+}
+
+/**
+ *
+ * @param spotlightId
+ */
+// just an fyi, fetchSpotlightMedia is not fully done
+export async function fetchSpotlightMedia(spotlightId: string) { // pass in tours id
+  const { data, error } = await supabase
+  .from('tour_media')
+  .select('*')
+  .eq('id', spotlightId)
+  if (error) {
+    throw new Error(`An error occurred while trying to read tours: ${error}`);
+  }
+  return data;
+}
+
+// Insert tour(s)
+/**
+ *
+ * @param tourData
+ */
+export async function insertTour(tourData: TourRow) {
+  const { data, error } = await supabase.from('tours').insert([tourData]);
   if (error) {
     throw new Error(error.message);
   }
   return data;
 }
 
+// Update a tour
 /**
- * Inserts a single tour into the database.
- * @param tourData - The tour to insert.
- * @returns A promise that resolves to a TourRow object.
+ *
+ * @param id
+ * @param updatedInfo
  */
-export async function insertTour(tourData: TourRow): Promise<TourRow | null> {
-  const { data, error } = await supabase.from('tours').insert(tourData);
-  if (error) {
-    throw new Error(error.message);
-  }
-  return data;
-}
-
-/**
- * Updates a single tour in the database.
- * @param newTourData - The updated tour data.
- * @returns A promise that resolves to a TourRow object.
- */
-export async function updateTour(
-  newTourData: TourRow,
-): Promise<TourRow | null> {
+export async function updateTour(id: number, updatedInfo: TourRow) {
   const { data, error } = await supabase
     .from('tours')
     .update(newTourData)
@@ -63,29 +91,27 @@ export async function updateTour(
   return data;
 }
 
+// Upsert tour(s)
 /**
- * Upserts a single tour into the database.
- * @param tourData - The tour to upsert.
- * @returns A promise that resolves to a TourRow object.
+ *
+ * @param tourData
  */
-export async function upsertTour(tourData: TourRow): Promise<TourRow | null> {
-  const { data, error } = await supabase.from('tours').upsert(tourData);
+export async function upsertTour(tourData: TourRow) {
+  const { data, error } = await supabase.from('tours').upsert([tourData]);
+
   if (error) {
     throw new Error(error.message);
   }
   return data;
 }
 
+// Delete a tour
 /**
- * Deletes a single tour from the database.
- * @param tourId - The id of the tour to delete.
- * @returns A promise that resolves to a TourRow object.
+ *
+ * @param id
  */
-export async function deleteTour(tourId: string): Promise<TourRow | null> {
-  const { data, error } = await supabase
-    .from('tours')
-    .delete()
-    .eq('id', tourId);
+export async function deleteTour(id: number) {
+  const { data, error } = await supabase.from('tours').delete().eq('id', id);
   if (error) {
     throw new Error(error.message);
   }

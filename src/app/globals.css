@@ -16,6 +16,60 @@
     }
   }
 }
+/* Based on the design system in the figma file, the base HTML components are automatically given a certain amount of text-styling
+These styles are applied automatically to certain div tags, but you can also call these component styles manually if they are relevant (check figma inspect) */
+@layer components {
+  .h1 {
+    /* Header 1 */
+    @apply text-3xl font-semibold text-ivory;
+  }
+  .h2 {
+    /* Header 2 */
+    @apply text-xl font-extrabold text-ivory;
+  }
+  .h3 {
+    /* Header 3 */
+    @apply text-lg font-bold text-ivory;
+  }
+  .b1 {
+    /* Button */
+    @apply text-base font-bold text-ivory;
+  }
+  .b2 {
+    /* Bolded Body */
+    @apply text-base font-medium text-ivory;
+  }
+  .b3 {
+    /* Body Text */
+    @apply text-base font-light text-ivory;
+  }
+  .s1 {
+    /* Subtitle Text */
+    @apply text-sm font-normal text-ivory;
+  }
+  .s2 {
+    /* Category Label Text */
+    @apply text-xs font-normal text-ivory;
+  }
+}
+/* Base layer:  To match figma design system, certain styles are auto-applied to these HTML tags.  You can overwrite them if needed.*/
+@layer base {
+  h1 {
+    @apply h1;
+  }
+  h2 {
+    @apply h2;
+  }
+  h3 {
+    @apply h3;
+  }
+  button {
+    @apply b1;
+  }
+  p {
+    @apply b3;
+  }
+}
 
 :root {
   --foreground-rgb: 0, 0, 0;
