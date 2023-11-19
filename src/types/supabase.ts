@@ -29,12 +29,14 @@ export interface Database {
           {
             foreignKeyName: "display_media_display_id_fkey"
             columns: ["display_id"]
+            isOneToOne: false
             referencedRelation: "displays"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "display_media_media_id_fkey"
             columns: ["media_id"]
+            isOneToOne: false
             referencedRelation: "media"
             referencedColumns: ["id"]
           }
@@ -42,7 +44,7 @@ export interface Database {
       }
       displays: {
         Row: {
-          coordinates: Json
+          coordinates: Json | null
           created_at: string
           description: string
           id: string
@@ -50,15 +52,15 @@ export interface Database {
           updated_at: string | null
         }
         Insert: {
-          coordinates?: Json
+          coordinates?: Json | null
           created_at?: string
           description?: string
-          id?: string
+          id: string
           title?: string
           updated_at?: string | null
         }
         Update: {
-          coordinates?: Json
+          coordinates?: Json | null
           created_at?: string
           description?: string
           id?: string
@@ -114,12 +116,44 @@ export interface Database {
           {
             foreignKeyName: "tour_displays_display_id_fkey"
             columns: ["display_id"]
+            isOneToOne: false
             referencedRelation: "displays"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "tour_displays_tour_id_fkey"
             columns: ["tour_id"]
+            isOneToOne: false
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      tour_media: {
+        Row: {
+          media_id: string
+          tour_id: string
+        }
+        Insert: {
+          media_id: string
+          tour_id: string
+        }
+        Update: {
+          media_id?: string
+          tour_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tour_media_media_id_fkey"
+            columns: ["media_id"]
+            isOneToOne: false
+            referencedRelation: "media"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tour_media_tour_id_fkey"
+            columns: ["tour_id"]
+            isOneToOne: false
             referencedRelation: "tours"
             referencedColumns: ["id"]
           }
