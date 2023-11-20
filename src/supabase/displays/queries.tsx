@@ -6,7 +6,7 @@ import supabase from '../client';
 /**
  *
  */
-export async function fetchDisplays() {
+export async function fetchAllDisplays() {
   const { data, error } = await supabase.from('displays').select('*');
   if (error) {
     throw new Error(`An error occurred trying to read displays: ${error}`);
@@ -18,7 +18,19 @@ export async function fetchDisplays() {
  *
  * @param id
  */
-export async function deleteDisplay(id: number) {
+export async function fetchDisplay(id: string) {
+  const { data, error } = await supabase.from('displays').select('*').eq('id', id).single();
+  if (error) {
+    throw new Error(`An error occurred trying to read displays: ${error}`);
+  }
+  return data;
+}
+
+/**
+ *
+ * @param id
+ */
+export async function deleteDisplay(id: string) {
   const { error } = await supabase.from('displays').delete().eq('id', id);
 
   if (error) {
