@@ -85,7 +85,7 @@ export default function TourStopPage({
   }, [params.displayId, params.tourId]);
 
   return (
-    <div className="bg-[#ebf0e4]">
+    <div className="bg-[#ebf0e4] h-full">
       <NavBar />
       <h1 className="text-[#333333] text-3xl font-bold p-4">
         {display && display.title}

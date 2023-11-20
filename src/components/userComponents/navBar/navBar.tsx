@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
+/**
+ *
+ */
 function NavBar() {
   const [showMenu, setShowMenu] = useState(false);
 
+  /**
+   *
+   */
   function handleClick() {
     setShowMenu(!showMenu);
   }
 
+  /**
+   *
+   * @param event
+   */
   function handleKeyDown(event: React.KeyboardEvent<HTMLButtonElement>) {
     if (event.key === 'Escape') {
       setShowMenu(false);
@@ -80,6 +90,9 @@ function NavBar() {
             </Link>
             <Link href="/featuredToursPage" className="block mb-2 text-black">
               Featured Tours
+            </Link>
+            <Link href="/spotlightPage" className="block mb-2 text-black">
+              Spotlight Tours
             </Link>
             <Link href="/siteMapPage" className="block mb-2 text-black">
               Site Map

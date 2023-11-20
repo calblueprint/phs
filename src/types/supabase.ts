@@ -96,6 +96,36 @@ export interface Database {
         }
         Relationships: []
       }
+      spotlight_recommendations: {
+        Row: {
+          source_display_id: string
+          target_display_id: string
+        }
+        Insert: {
+          source_display_id: string
+          target_display_id: string
+        }
+        Update: {
+          source_display_id?: string
+          target_display_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "spotlight_recommendations_source_display_id_fkey"
+            columns: ["source_display_id"]
+            isOneToOne: false
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "spotlight_recommendations_target_display_id_fkey"
+            columns: ["target_display_id"]
+            isOneToOne: false
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       tour_displays: {
         Row: {
           display_id: string
@@ -191,7 +221,24 @@ export interface Database {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      fetch_display_images: {
+        Args: {
+          display_id: string
+        }
+        Returns: Record<string, unknown>
+      }
+      joinspotlightswithmedia: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          id: string
+          name: string
+          description: string
+          created_at: string
+          stop_count: number
+          spotlight: boolean
+          media_url: string
+        }[]
+      }
     }
     Enums: {
       media_type: "image" | "video" | "link"

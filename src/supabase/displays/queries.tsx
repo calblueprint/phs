@@ -56,19 +56,14 @@ export async function createDisplay(displayData: DisplayRow) {
   return newDisplay;
 }
 
-// export async function insertDisplay(displayData: Display) {
-//     const { error } = await supabase.from('profiles').insert(displayData);
-//     if (error) {
-//       throw new Error(`Error inserting profile data: ${error.message}`);
-//     }
-//   }
 
 /**
  *
- * @param id
- * @param updatedInfo
+ * @param id - id number
+ * @param updatedInfo - the display row to update
+ * @returns - updates that given display row
  */
-export async function updateDisplay(id: string, updatedInfo: DisplayRow) {
+export async function updateDisplay(id: number, updatedInfo: DisplayRow) {
   const { data, error } = await supabase
     .from('displays')
     .update(updatedInfo)
@@ -80,4 +75,41 @@ export async function updateDisplay(id: string, updatedInfo: DisplayRow) {
 
   const newDisplay = data;
   return newDisplay;
+}
+
+
+/**
+ * 
+ * @param displayIds - array of display ids
+ * @returns all the displays matching the display ids
+ */
+export async function fetchDisplaysfromIds(displayIds: string[]) {
+  const { data, error } = await supabase
+    .from('displays')
+    .select('*')
+    .in('id', displayIds);
+
+  if (error) {
+    throw new Error(`Error updating display data: ${error.message}`);
+  }
+
+  return data;
+}
+
+/**
+ * @param displayId - a display id
+ * @returns - given a display id, fetch the data for that display
+ */
+export async function fetchDisplayFromId(displayId: string) {
+  const { data, error } = await supabase
+    .from('displays')
+    .select('*')
+    .eq('id', displayId)
+    .single();
+
+  if (error) {
+    throw new Error(`Error updating display data: ${error.message}`);
+  }
+
+  return data;
 }
