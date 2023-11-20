@@ -4,7 +4,6 @@ import React from 'react';
 import NavBar from '../../components/userComponents/navBar/navBar';
 
 /**
- * The page that displays the hours and admission details.
  * @returns The hours and admission page.
  */
 export default function HoursAdmissionPage() {

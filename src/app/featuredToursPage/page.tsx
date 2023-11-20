@@ -8,7 +8,6 @@ import NavBar from '../../components/userComponents/navBar/navBar';
 import { TourRow } from '../../types/types';
 
 /**
- * The page that displays all the featured tours.
  * @returns The featured tours page.
  */
 export default function FeaturedToursPage() {
@@ -25,7 +24,7 @@ export default function FeaturedToursPage() {
   }, []);
 
   return (
-    <div className="bg-[#ebf0e4]">
+    <div className="bg-[ivory]">
       <NavBar />
 
       <div className="p-4">

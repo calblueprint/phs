@@ -3,9 +3,12 @@
 import React from 'react';
 import NavBar from '../../components/userComponents/navBar/navBar';
 
-function App() {
+/**
+ * @returns The collections page.
+ */
+export default function CollectionsPage() {
   return (
-    <div className="bg-[#ebf0e4]">
+    <div className="bg-[ivory]">
       <NavBar />
       <div className="p-4">
         <h1 className="text-[#333333] text-3xl font-bold mb-4">Collections</h1>
@@ -29,5 +32,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
