@@ -1,151 +1,46 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import NavBar from '../../components/userComponents/navBar/navBar';
 
-function App() {
+/**
+ * The page that displays the hours and admission details.
+ * @returns The hours and admission page.
+ */
+export default function HoursAdmissionPage() {
   return (
-    <div style={{ backgroundColor: '#ebf0e4', height: '100vh' }}>
+    <div className="bg-[ivory] h-full">
       <NavBar />
-      <div style={{ padding: '16px' }}>
-        <h1 style={{ color: '#333333', fontSize: '2rem', fontWeight: 700 }}>
-          Visit
+      <div className="p-4">
+        <h1 className="text-[#333333] text-3xl font-bold mb-4">
+          Hours & Admission
         </h1>
-        <p style={{ color: '#333333', fontSize: '1rem', fontWeight: 400 }}>
-          Short summary or description of exhibit here. Short summary or
-          description of exhibit here.
+        <h3 className="text-[#333333] text-xl font-semibold mb-4">
+          Site Information
+        </h3>
+
+        <div className="bg-[#EBF0E8] rounded-2xl p-8 mb-4">
+          <p className="text-[#333333] mb-2">
+            24103 Congress Springs Road, Saratoga, CA 95070
+          </p>
+          <p className="text-[#333333] mb-2">
+            Monday-Sunday | 11 a.m. - 6 p.m.
+          </p>
+          <p className="text-[#333333] italic mb-2">Closed on holidays*</p>
+          <p className="text-[#333333]">
+            Any additional information will be found in this space.
+          </p>
+        </div>
+
+        <h3 className="text-[#333333] text-xl font-semibold mb-4">
+          Contact Us
+        </h3>
+        <p className='text-[#333333] mx-4'>
+          For dog, small animal, or exotic adoptions please call 650-340-7022
+          for an appointment or submit your adoption application to
+          adoptinquire@PHS-SPCA.org.
         </p>
-        <div
-          style={{
-            backgroundColor: '#d7e0cc',
-            borderRadius: '16px',
-            padding: '16px',
-            marginTop: '16px',
-          }}
-        >
-          <h2
-            style={{
-              color: '#333333',
-              fontSize: '1.5rem',
-              fontWeight: 600,
-              marginTop: '16px',
-              marginBottom: '8px',
-            }}
-          >
-            Hours & Admission
-          </h2>
-          <p
-            style={{
-              color: '#333333',
-              fontSize: '1rem',
-              fontWeight: 400,
-              marginBottom: '8px',
-            }}
-          >
-            12 Airport Blvd, San Mateo, CA 94401
-          </p>
-          <p
-            style={{
-              color: '#333333',
-              fontSize: '1rem',
-              fontWeight: 400,
-              marginBottom: '8px',
-            }}
-          >
-            Monday-Friday | 11 a.m. - 5 p.m.
-            <br />
-            Saturday-Sunday | 10 a.m. - 8 p.m.
-          </p>
-          <p
-            style={{
-              color: '#333333',
-              fontSize: '1rem',
-              fontWeight: 400,
-              marginBottom: '8px',
-            }}
-          >
-            *Closed on holidays
-          </p>
-          <p
-            style={{
-              color: '#333333',
-              fontSize: '1rem',
-              fontWeight: 400,
-              fontStyle: 'italic',
-              marginBottom: '16px',
-            }}
-          >
-            Additional Information here
-          </p>
-        </div>
-        <h1
-          style={{
-            color: '#333333',
-            fontSize: '1.5rem',
-            fontWeight: 600,
-            padding: '16px',
-          }}
-        >
-          Touring
-        </h1>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}
-        >
-          <button
-            type="button"
-            style={{
-              backgroundColor: '#d7e0cc',
-              borderRadius: '16px',
-              padding: '16px',
-              width: '48%',
-              height: '150px',
-            }}
-          >
-            <Link href="/siteMapPage">
-              <h1
-                style={{
-                  color: '#333333',
-                  fontSize: '1rem',
-                  fontWeight: 400,
-                  padding: '16px',
-                }}
-              >
-                Site Map
-              </h1>
-            </Link>
-          </button>
-          <button
-            type="button"
-            style={{
-              backgroundColor: '#d7e0cc',
-              borderRadius: '16px',
-              padding: '16px',
-              width: '48%',
-              height: '150px',
-            }}
-          >
-            <Link href="/qrCodeTourPage">
-              <h1
-                style={{
-                  color: '#333333',
-                  fontSize: '1rem',
-                  fontWeight: 400,
-                  padding: '16px',
-                }}
-              >
-                QR Code Tour
-              </h1>
-            </Link>
-          </button>
-        </div>
       </div>
     </div>
   );
 }
-
-export default App;
