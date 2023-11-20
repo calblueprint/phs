@@ -24,7 +24,7 @@ const SiteMap = dynamic(
  */
 function MapPage() {
   return (
-    <>
+    <div className="bg-[ivory]">
       <NavBar />
       <div className="flex flex-col items-start pl-6">
         <div className="container mb-6 mt-9">
@@ -40,7 +40,7 @@ function MapPage() {
           <SiteMap />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

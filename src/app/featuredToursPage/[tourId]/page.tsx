@@ -10,7 +10,6 @@ import { fetchTourDisplays } from '../../../supabase/tour_displays/queries';
 import { fetchAllDisplays } from '../../../supabase/displays/queries';
 
 /**
- * The page that displays the start of a tour.
  * @param params -
  * @param params.params -
  * @param params.params.tourId - The tour ID.
@@ -50,7 +49,7 @@ export default function TourStartPage({
   }, [params.tourId]);
 
   return (
-    <div className="bg-[#ebf0e4]">
+    <div className="bg-[ivory]">
       <NavBar />
       <div>
         <img

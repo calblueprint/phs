@@ -10,7 +10,6 @@ import { fetchTour } from '../../../../supabase/tours/queries';
 import { fetchTourMedia } from '../../../../supabase/tour_media/queries';
 
 /**
- * The page that displays the end of a tour.
  * @param params -
  * @param params.params -
  * @param params.params.tourId - The tour ID.
@@ -50,7 +49,7 @@ export default function TourEndPage({
   }, [params.tourId]);
 
   return (
-    <div className="bg-[#ebf0e4]">
+    <div className="bg-[ivory]">
       <NavBar />
 
       <div className="flex flex-col items-center">
