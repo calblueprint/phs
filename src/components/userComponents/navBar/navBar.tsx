@@ -3,35 +3,29 @@ import Link from 'next/link';
 import { HamburgerMenu } from '../../../../public/Icons';
 
 /**
- *
+ * @returns The navigation bar for the web app
  */
 export default function NavBar() {
   const [showMenu, setShowMenu] = useState(false);
 
   /**
-   *
+   * Toggles the side menu
    */
   function handleClick() {
     setShowMenu(!showMenu);
   }
 
   return (
-    <nav
-      className="bg-[#386131] p-4 flex sticky items-center justify-between z-[9999]"
-    >
+    <nav className="bg-scary-forest p-4 flex sticky items-center justify-between z-[9999]">
       <Link href="/">
         <img
           src="https://phs-spca.org/wp-content/uploads/2017/03/PHSLogo.jpg"
-          alt="Logo"
+          alt="PHSLogo"
           className="object-contain max-w-[50%]"
         />
       </Link>
       <div className="flex-grow" />
-      <button
-        type="button"
-        className="w-10 h-10"
-        onClick={handleClick}
-      >
+      <button type="button" className="w-10 h-10" onClick={handleClick}>
         <HamburgerMenu />
       </button>
 
@@ -65,6 +59,7 @@ export default function NavBar() {
               QR Scanner
             </Link>
           </ul>
+
           <h1 className="text-xl text-black font-bold p-4">LEARN & EXPLORE</h1>
           <ul className="p-4">
             <Link href="/collectionsPage" className="block mb-2 text-black">
@@ -79,4 +74,3 @@ export default function NavBar() {
     </nav>
   );
 }
-

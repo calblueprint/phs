@@ -49,7 +49,7 @@ export default function TourStartPage({
   }, [params.tourId]);
 
   return (
-    <div className="bg-[ivory]">
+    <div className="bg-ivory">
       <NavBar />
       <div>
         <img
