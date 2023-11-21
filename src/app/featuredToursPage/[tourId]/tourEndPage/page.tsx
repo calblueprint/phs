@@ -49,7 +49,7 @@ export default function TourEndPage({
   }, [params.tourId]);
 
   return (
-    <div className="bg-[ivory]">
+    <div className="bg-ivory">
       <NavBar />
 
       <div className="flex flex-col items-center">

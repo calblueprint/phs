@@ -8,11 +8,11 @@ import NavBar from '../../components/userComponents/navBar/navBar';
  */
 export default function CollectionsPage() {
   return (
-    <div className="bg-[ivory]">
+    <div className="bg-ivory">
       <NavBar />
       <div className="p-4">
-        <h1 className="text-[#333333] text-3xl font-bold mb-4">Collections</h1>
-        <p className="text-[#333333] mb-4">
+        <h1 className="text-night text-3xl font-bold mb-4">Collections</h1>
+        <p className="text-night mb-4">
           Learn about our collections alsjfs sjflksjdf s slkdjfksjf sjf df
           sjflksldjls sdlkfjslj sdlkf jsldj kdf jdks kdjdk fjks dkd dkdk.
         </p>

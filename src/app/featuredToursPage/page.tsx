@@ -24,14 +24,14 @@ export default function FeaturedToursPage() {
   }, []);
 
   return (
-    <div className="bg-[ivory]">
+    <div className="bg-ivory">
       <NavBar />
 
       <div className="p-4">
-        <h1 className="text-[#333333] text-3xl font-bold mb-4">
+        <h1 className="text-night text-3xl font-bold mb-4">
           Featured Tours
         </h1>
-        <p className="text-[#333333] mb-4">
+        <p className="text-night mb-4">
           Embark on a tour and explore our exhibits from anywhere - at home or
           in person!
         </p>
