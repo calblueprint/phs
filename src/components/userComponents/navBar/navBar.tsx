@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { HamburgerMenu } from '../../../../public/Icons';
 
 /**
  *
  */
-function NavBar() {
+export default function NavBar() {
   const [showMenu, setShowMenu] = useState(false);
 
   /**
@@ -14,27 +15,15 @@ function NavBar() {
     setShowMenu(!showMenu);
   }
 
-  /**
-   *
-   * @param event
-   */
-  function handleKeyDown(event: React.KeyboardEvent<HTMLButtonElement>) {
-    if (event.key === 'Escape') {
-      setShowMenu(false);
-    }
-  }
-
   return (
     <nav
-      className="bg-[#4b711d] p-4 flex items-center justify-between z-[9999]"
-      style={{ padding: '1rem', position: 'sticky', top: 0 }}
+      className="bg-[#4b711d] p-4 flex sticky items-center justify-between z-[9999]"
     >
       <Link href="/">
         <img
           src="https://phs-spca.org/wp-content/uploads/2017/03/PHSLogo.jpg"
           alt="Logo"
-          className="object-contain"
-          style={{ maxHeight: '100%', maxWidth: '50%' }}
+          className="object-contain max-w-[50%]"
         />
       </Link>
       <div className="flex-grow" />
@@ -42,36 +31,8 @@ function NavBar() {
         type="button"
         className="w-10 h-10"
         onClick={handleClick}
-        onKeyDown={handleKeyDown}
-        tabIndex={0}
-        aria-label="Menu"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="46"
-          height="46"
-          viewBox="0 0 46 46"
-          fill="none"
-        >
-          <path
-            d="M9.58331 13.4167H36.4166"
-            stroke="white"
-            strokeWidth="3.83333"
-            strokeLinecap="round"
-          />
-          <path
-            d="M9.58331 23H36.4166"
-            stroke="white"
-            strokeWidth="3.83333"
-            strokeLinecap="round"
-          />
-          <path
-            d="M9.58331 32.5833H36.4166"
-            stroke="white"
-            strokeWidth="3.83333"
-            strokeLinecap="round"
-          />
-        </svg>
+        <HamburgerMenu />
       </button>
 
       {showMenu && (
@@ -119,4 +80,3 @@ function NavBar() {
   );
 }
 
-export default NavBar;
