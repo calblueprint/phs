@@ -17,7 +17,7 @@ export default function NavBar() {
 
   return (
     <nav
-      className="bg-[#4b711d] p-4 flex sticky items-center justify-between z-[9999]"
+      className="bg-[#386131] p-4 flex sticky items-center justify-between z-[9999]"
     >
       <Link href="/">
         <img
