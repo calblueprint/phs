@@ -83,7 +83,7 @@ export function NextArrow() {
     >
       <path
         d="M2.25 9H15.75M15.75 9L12 5.25M15.75 9L12 12.75"
-        stroke="#FFFDF7"
+        stroke="#FFFFFF"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
