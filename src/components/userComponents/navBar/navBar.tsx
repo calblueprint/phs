@@ -55,13 +55,7 @@ export default function NavBar() {
               href="/featuredToursPage"
               className="text-night text-lg font-bold block relative left-4 mt-[1.25rem]"
             >
-              Featured Tours
-            </Link>
-            <Link
-              href="/spotlightPage"
-              className="text-night text-lg font-bold block relative left-4 mt-[1.25rem]"
-            >
-              Spotlight Tours
+              Tours
             </Link>
             <Link
               href="/siteMapPage"
@@ -73,15 +67,15 @@ export default function NavBar() {
               href="/qrCodeTourPage"
               className="text-night text-lg font-bold block relative left-4 mt-[1.25rem]"
             >
-              QR Code Tour
+              QR Scanner
             </Link>
 
             <h1 className="text-scary-forest text-sm mt-[2.13rem]">LEARN & EXPLORE</h1>
             <Link
-              href="/collectionsPage"
+              href="/spotlightPage"
               className="text-night text-lg font-bold block relative left-4 mt-[1.25rem]"
             >
-              Collections
+              Spotlights
             </Link>
             <Link
               href="/newsFeedPage"
