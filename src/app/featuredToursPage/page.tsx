@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchAllTours } from '../../supabase/tours/queries';
 import NavBar from '../../components/userComponents/navBar/navBar';
 import { TourRow } from '../../types/types';
-
+import BackButton from '../../components/userComponents/BackButton/BackButton';
 /**
  * @returns The featured tours page.
  */
@@ -24,13 +24,16 @@ export default function FeaturedToursPage() {
   }, []);
 
   return (
-    <div className="bg-ivory">
+    <div className="bg-ivory h-full">
       <NavBar />
+      <div className="relative top-4 left-4 mb-3">
+        <Link href="/">
+          <BackButton />
+        </Link>
+      </div>
 
       <div className="p-4">
-        <h1 className="text-night text-3xl font-bold mb-4">
-          Featured Tours
-        </h1>
+        <h1 className="text-night text-3xl font-bold mb-4">Featured Tours</h1>
         <p className="text-night mb-4">
           Embark on a tour and explore our exhibits from anywhere - at home or
           in person!
