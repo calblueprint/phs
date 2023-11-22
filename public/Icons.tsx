@@ -68,3 +68,26 @@ export function BackArrow() {
     </svg>
   );
 }
+
+/**
+ * @returns the NextArrow icon
+ */
+export function NextArrow() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+    >
+      <path
+        d="M2.25 9H15.75M15.75 9L12 5.25M15.75 9L12 12.75"
+        stroke="#FFFDF7"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
