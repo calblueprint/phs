@@ -7,6 +7,7 @@ import { fetchAllTours } from '../../supabase/tours/queries';
 import NavBar from '../../components/userComponents/navBar/navBar';
 import { TourRow } from '../../types/types';
 import BackButton from '../../components/userComponents/BackButton/BackButton';
+import NextButton from '../../components/userComponents/NextButton/NextButton';
 /**
  * @returns The featured tours page.
  */
@@ -46,16 +47,19 @@ export default function FeaturedToursPage() {
                 <li className="my-4" key={tour.id}>
                   <Link
                     href={`/featuredToursPage/${tour.id}`}
-                    className="w-full rounded-2xl"
+                    className="w-full rounded-lg"
                   >
-                    <div className="bg-[#386131] h-48 rounded-2xl p-4 flex flex-col">
-                      <div className="relative top-28">
-                        <h4 className="text-white text-sm font-semibold mt-0.5">
-                          {tour.stop_count} stops
-                        </h4>
-                        <h2 className="text-white text-xl font-extrabold truncate">
+                    <div className="bg-[#386131] h-48 rounded-lg p-[1.31rem] flex flex-col justify-end">
+                      <h4 className="text-white text-[0.8125rem] font-semibold mt-0.5 relative bottom-[0.44rem]">
+                        {tour.stop_count} stops
+                      </h4>
+                      <div className="flex items-center justify-between">
+                        <h2 className="text-white text-xl font-bold truncate relative bottom-[0.31rem]">
                           {tour.name}
                         </h2>
+                        <div className="relative bottom-[0.35rem]">
+                          <NextButton />
+                        </div>
                       </div>
                     </div>
                   </Link>
