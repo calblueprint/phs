@@ -45,3 +45,26 @@ export function CloseMenu() {
     </svg>
   );
 }
+
+/**
+ * @returns the BackArrow icon
+ */
+export function BackArrow() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+    >
+      <path
+        d="M15.75 9H2.25M2.25 9L6 12.75M2.25 9L6 5.25"
+        stroke="#386131"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
