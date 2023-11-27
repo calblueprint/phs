@@ -85,7 +85,6 @@ export async function upsertTour(tourData: TourRow): Promise<TourRow | null> {
 
 // Delete a tour
 /**
- *
  * @param id
  */
 export async function deleteTour(id: number) {
@@ -103,6 +102,7 @@ export async function deleteTour(id: number) {
  */
 export async function joinSpotlightsWithMedia() {
   const {data, error } = await supabase.rpc('join_spotlights_with_media');
+  console.log({'datastuff' : data})
   if (error) {
     throw new Error(
       `An error occurred while trying to load spotlights: ${error.message}`,
@@ -112,16 +112,28 @@ export async function joinSpotlightsWithMedia() {
 }
 
 /**
- * !!! WIP !!!
- * @returns - Uses rpc to call Database function of the same name on Supabase.
- * Used to call a join on a tour and the media table, in order to retrieve its cover image + the rest of the tour info.
+ *
  */
-export async function joinSpotlightsWithMedia() {
-  const { data, error } = await supabase.rpc('join_spotlights_with_media');
+export async function joinToursWithMedia() {
+  const {data, error } = await supabase.rpc('join_tours_with_media');
   if (error) {
     throw new Error(
       `An error occurred while trying to load spotlights: ${error.message}`,
     );
+  }
+  return data
+}
+
+/**
+ * 
+ */
+export async function fetchSpotlightTours() {
+  const { data, error } = await supabase
+  .from('tours')
+  .select('*')
+  .eq('spotlight', true)
+  if (error) {
+    throw new Error(`An error occurred while trying to read tours: ${error}`);
   }
   return data;
 }

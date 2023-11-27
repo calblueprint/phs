@@ -126,36 +126,6 @@ export interface Database {
           }
         ]
       }
-      spotlight_recommendations: {
-        Row: {
-          source_display_id: string
-          target_display_id: string
-        }
-        Insert: {
-          source_display_id: string
-          target_display_id: string
-        }
-        Update: {
-          source_display_id?: string
-          target_display_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "spotlight_recommendations_source_display_id_fkey"
-            columns: ["source_display_id"]
-            isOneToOne: false
-            referencedRelation: "tours"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "spotlight_recommendations_target_display_id_fkey"
-            columns: ["target_display_id"]
-            isOneToOne: false
-            referencedRelation: "tours"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
       tour_displays: {
         Row: {
           display_id: string
@@ -225,6 +195,7 @@ export interface Database {
           description: string | null
           id: string
           name: string | null
+          preview_text: string | null
           spotlight: boolean
           stop_count: number | null
         }
@@ -233,6 +204,7 @@ export interface Database {
           description?: string | null
           id?: string
           name?: string | null
+          preview_text?: string | null
           spotlight?: boolean
           stop_count?: number | null
         }
@@ -241,6 +213,7 @@ export interface Database {
           description?: string | null
           id?: string
           name?: string | null
+          preview_text?: string | null
           spotlight?: boolean
           stop_count?: number | null
         }
@@ -251,11 +224,18 @@ export interface Database {
       [_ in never]: never
     }
     Functions: {
-      fetch_display_images: {
+      fetchimagesfordisplay: {
         Args: {
-          display_id: string
+          displayid: string
         }
-        Returns: Record<string, unknown>
+        Returns: {
+          id: string
+          url: string
+          type: string
+          title: string
+          text: string
+          created_at: string
+        }[]
       }
       join_spotlights_with_media: {
         Args: Record<PropertyKey, never>
@@ -266,7 +246,21 @@ export interface Database {
           created_at: string
           stop_count: number
           spotlight: boolean
+          preview_text: string
           media_url: string
+        }[]
+      }
+      join_tours_with_media: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          id: string
+          name: string
+          description: string
+          created_at: string
+          stop_count: number
+          spotlight: boolean
+          preview_text: string
+          url: string
         }[]
       }
     }
