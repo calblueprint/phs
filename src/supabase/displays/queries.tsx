@@ -19,7 +19,11 @@ export async function fetchAllDisplays() {
  * @param id
  */
 export async function fetchDisplay(id: string) {
-  const { data, error } = await supabase.from('displays').select('*').eq('id', id).single();
+  const { data, error } = await supabase
+    .from('displays')
+    .select('*')
+    .eq('id', id)
+    .single();
   if (error) {
     throw new Error(`An error occurred trying to read displays: ${error}`);
   }
@@ -56,7 +60,6 @@ export async function createDisplay(displayData: DisplayRow) {
   return newDisplay;
 }
 
-
 /**
  *
  * @param id - id number
@@ -77,9 +80,8 @@ export async function updateDisplay(id: number, updatedInfo: DisplayRow) {
   return newDisplay;
 }
 
-
 /**
- * 
+ *
  * @param displayIds - array of display ids
  * @returns all the displays matching the display ids
  */

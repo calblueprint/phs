@@ -8,7 +8,8 @@ import { Database } from './supabase';
 
 export type DisplayRow = Database['public']['Tables']['displays']['Row'];
 export type MediaRow = Database['public']['Tables']['media']['Row'];
-export type TourDisplaysRow = Database['public']['Tables']['tour_displays']['Row'];
+export type TourDisplaysRow =
+  Database['public']['Tables']['tour_displays']['Row'];
 export type TourMediaRow = Database['public']['Tables']['tour_media']['Row'];
 export type TourRow = Database['public']['Tables']['tours']['Row'];
 export type SpotlightWithMediaRow = TourRow & { media_url: string };

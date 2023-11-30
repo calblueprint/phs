@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { HiChevronRight } from 'react-icons/hi';
 import Link from 'next/link';
-import { SpotlightWithMediaRow } from '../types/types';
-import { joinSpotlightsWithMedia } from '@/supabase/tours/queries';
+import { joinSpotlightsWithMedia } from '../../../supabase/tours/queries';
+import { SpotlightWithMediaRow } from '../../../types/types';
 
 /**
  * !!! WIP !!!
@@ -47,29 +47,23 @@ function HomeWildlifeSpotlights(
       </div>
       <div className="carousel carousel-center max-w-md p-4 space-x-4 rounded-box w-full">
         {spotlightsWithMedia.map((spotlight : SpotlightWithMediaRow) => (
-          <img
-           className="carousel-item w-[234.78px] h-[275px] bg-gradient-to-b from-zinc-800 to-black rounded-lg"
-           src={spotlight.media_url}
-           alt = "background for spotlight"
-           key = {spotlight.id}
-           />
+          <div
+            key={spotlight.id}
+            className="carousel-item w-[234.78px] h-[275px] bg-gradient-to-b from-zinc-800 to-black rounded-lg overflow-hidden"
+          >
+            <img
+              className="w-full h-full object-cover rounded-lg"
+              src={spotlight.media_url}
+              alt="background for spotlight"
+            />
+            <div className="bg-red-400 flex-col justify-start items-start gap-2 inline-flex">
+              <div className="w-[181px] text-stone-50 text-xl font-extrabold font-['Lato']">Dove Flight Enclosures</div>
+              <div className="w-[181px] text-stone-50 text-sm font-normal font-['Lato']">Species diversity, reproduction, and conservation</div>
+            </div>
+          </div>
             )
-        )}
-        {/* <div className="carousel-item w-60 h-72 bg-gradient-to-b from-zinc-800 to-black rounded-lg">
-          test
-        </div>
-        <div className="carousel-item w-60 h-68.75 bg-gradient-to-b from-zinc-800 to-black rounded-lg">
-          test
-        </div>
-        <div className="carousel-item w-60 h-68.75 bg-gradient-to-b from-zinc-800 to-black rounded-lg">
-          test
-        </div>
-        <div className="carousel-item w-60 h-68.75 bg-gradient-to-b from-zinc-800 to-black rounded-lg">
-          test
-        </div>
-        <div className="carousel-item w-60 h-68.75 bg-gradient-to-b from-zinc-800 to-black rounded-lg">
-          test
-        </div> */}
+        )
+        }
       </div>
     </div>
   );

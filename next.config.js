@@ -5,10 +5,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'qkkuacqtcsfjbnzmxmhk.supabase.co',
         port: '',
-        pathname: '/storage/v1/object/public/**'
-      }
-    ]
-  }
+        pathname: '/storage/v1/object/public/**',
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;

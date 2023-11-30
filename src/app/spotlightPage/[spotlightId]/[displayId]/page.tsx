@@ -10,40 +10,48 @@ import { fetchDisplayfromSpotlight } from '../../../../supabase/tour_displays/qu
 
 /**
  *
- * 
+ *
  * @param root0
  * @param root0.params
  * @param root0.params.displayId
  * @param root0.params.spotlightId
  * @returns display page
  */
-export default function Page({ params }: { params: { displayId: string, spotlightId: string } }) {
+export default function Page({
+  params,
+}: {
+  params: { displayId: string; spotlightId: string };
+}) {
   const [display, setDisplay] = useState<DisplayRow>({
-    coordinates: {0:0},
-    created_at: "N/A",
-    description: "N/A",
-    id: "0",
-    title: "N/A",
-    updated_at: "N/A",
+    coordinates: { 0: 0 },
+    created_at: 'N/A',
+    description: 'N/A',
+    id: '0',
+    title: 'N/A',
+    updated_at: 'N/A',
   });
 
   const [otherDisplays, setOtherDisplays] = useState<DisplayRow[]>([]);
 
   useEffect(() => {
     /**
-     * @returns a display 
+     * @returns a display
      */
     async function fetchData() {
       try {
-        const currentDisplayData: DisplayRow = await fetchDisplayFromId(params.displayId);
+        const currentDisplayData: DisplayRow = await fetchDisplayFromId(
+          params.displayId,
+        );
         setDisplay(currentDisplayData);
 
-        const displaysFromSpotlight: DisplayRow[] = await fetchDisplayfromSpotlight(params.spotlightId);
+        const displaysFromSpotlight: DisplayRow[] =
+          await fetchDisplayfromSpotlight(params.spotlightId);
         const currentDisplayId = params.displayId;
-        const responseDataOtherDisplays = displaysFromSpotlight.filter((aDisplay) => aDisplay.id !== currentDisplayId);
+        const responseDataOtherDisplays = displaysFromSpotlight.filter(
+          aDisplay => aDisplay.id !== currentDisplayId,
+        );
 
         setOtherDisplays(responseDataOtherDisplays);
-
       } catch (error) {
         console.error(error);
       }
@@ -51,8 +59,6 @@ export default function Page({ params }: { params: { displayId: string, spotligh
 
     fetchData();
   }, []);
-
-  
 
   return (
     <div className="bg-[#ebf0e4]">
@@ -62,25 +68,33 @@ export default function Page({ params }: { params: { displayId: string, spotligh
         alt="placeholder"
         height={145}
       />
-      <h1 className="text-green-700 font-Lato text-base font-normal pl-[25px] pt-[31px]"> CATEGORY TWO</h1>
+      <h1 className="text-green-700 font-Lato text-base font-normal pl-[25px] pt-[31px]">
+        {' '}
+        CATEGORY TWO
+      </h1>
       <h1 className="text-[#333333] text-3xl text-14 font-bold pl-[25px] pt-[8px]">
         {display.title}
       </h1>
       <p className="text-[#333333] p-[25px]">{display.description}</p>
-      <h1 className="text-black font-bold font-Lato text-[18px] pl-[25px] font-medium pl-4">More in this spotlight...</h1>
-      
+      <h1 className="text-black font-bold font-Lato text-[18px] pl-[25px] font-medium pl-4">
+        More in this spotlight...
+      </h1>
+
       <div className="flex space-x-[14px] pl-[25px] pt-[16px] w-screen overflow-x-auto">
-      {otherDisplays.map( 
-            otherDisplay => (
-                <Link key={otherDisplay.id} href={`/spotlightPage/${params.spotlightId}/${otherDisplay.id}?spotlightId=${params.spotlightId}`} >
-                    <button type="button" className="bg-[#7CA24E] w-[163px] h-[74px] text-white font-bold rounded-2xl p-[25px]">
-                        {otherDisplay.title}
-                    </button>
-                </Link>
-
-            ))}
+        {otherDisplays.map(otherDisplay => (
+          <Link
+            key={otherDisplay.id}
+            href={`/spotlightPage/${params.spotlightId}/${otherDisplay.id}?spotlightId=${params.spotlightId}`}
+          >
+            <button
+              type="button"
+              className="bg-[#7CA24E] w-[163px] h-[74px] text-white font-bold rounded-2xl p-[25px]"
+            >
+              {otherDisplay.title}
+            </button>
+          </Link>
+        ))}
       </div>
-
     </div>
   );
 }

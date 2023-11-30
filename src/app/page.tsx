@@ -14,7 +14,9 @@ import { SpotlightWithMediaRow } from '../types/types';
  * @returns - Home page for PHS/SPCA.  Buttons are available for the major flows of the application through this.
  */
 function Home() {
-  const [spotlightsWithMedia, setSpotlightsWithMedia] = useState<SpotlightWithMediaRow[]>([]);
+  const [spotlightsWithMedia, setSpotlightsWithMedia] = useState<
+    SpotlightWithMediaRow[]
+  >([]);
 
   useEffect(() => {
     /**
@@ -22,15 +24,15 @@ function Home() {
      */
     async function fetchData() {
       try {
-        console.log("Running fetch data")
+        console.log('Running fetch data');
         const responseData = await joinSpotlightsWithMedia();
         setSpotlightsWithMedia(responseData);
-        console.log({'data' : responseData});
+        console.log({ data: responseData });
       } catch (error) {
-        console.error("Error in fetch data: ", error);
+        console.error('Error in fetch data: ', error);
       }
     }
-    console.log("running")
+    console.log('running');
     fetchData();
   }, []);
 
@@ -46,7 +48,7 @@ function Home() {
           welfare.
         </p>
       </div>
-      <HomeWildlifeSpotlights spotlightsWithMedia={spotlightsWithMedia}/>
+      <HomeWildlifeSpotlights spotlightsWithMedia={spotlightsWithMedia} />
       <VisitorResources />
 
       <div className="mt-10 border-t border-smoke">
