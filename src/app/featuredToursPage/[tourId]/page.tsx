@@ -75,12 +75,12 @@ export default function TourStartPage({
             </div>
           </div>
         </div>
-        <p className="p-4">{tour && tour.description}</p>
-        <h3 className="p-4 text-lg font-bold">In this tour</h3>
+        <p className="p-4 text-night">{tour && tour.description}</p>
+        <h3 className="p-4 text-lg font-bold text-night">In this tour</h3>
         <ol className="px-12">
           {tourDisplays.map(tourDisplay => (
             <li key={tourDisplay.display_id}>
-              <div>
+              <div className='text-night'>
                 <Link
                   href={`/featuredToursPage/${params.tourId}/${tourDisplay.display_id}`}
                 >
