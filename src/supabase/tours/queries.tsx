@@ -16,6 +16,20 @@ export async function fetchAllTours(): Promise<TourRow[]> {
 }
 
 /**
+ * @returns all spotlight tours from the tours table
+ */
+export async function fetchSpotlightTours(): Promise<TourRow[] | null> {
+  const { data, error } = await supabase
+    .from('tours')
+    .select('*')
+    .is('spotlight', true);
+  if (error) {
+    throw new Error(`Error fetching spotlight tours: ${error.message}`);
+  }
+  return data;
+}
+
+/**
  * Fetches a single tour from the database.
  * @param tourId - The id of the tour to fetch.
  * @returns A promise that resolves to a TourRow object.
