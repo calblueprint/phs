@@ -16,6 +16,20 @@ export async function fetchAllTours(): Promise<TourRow[]> {
 }
 
 /**
+ * @returns all spotlight tours from the tours table
+ */
+export async function fetchSpotlightTours(): Promise<TourRow[] | null> {
+  const { data, error } = await supabase
+    .from('tours')
+    .select('*')
+    .is('spotlight', true);
+  if (error) {
+    throw new Error(`Error fetching spotlight tours: ${error.message}`);
+  }
+  return data;
+}
+
+/**
  * Fetches a single tour from the database.
  * @param tourId - The id of the tour to fetch.
  * @returns A promise that resolves to a TourRow object.
@@ -36,10 +50,6 @@ export async function fetchTour(tourId: string): Promise<TourRow> {
  * Inserts a single tour into the database.
  * @param tourData - The tour to insert.
  * @returns A promise that resolves to a TourRow object.
- */
-/**
- *
- * @param tourData
  */
 export async function insertTour(tourData: TourRow): Promise<TourRow | null> {
   const { data, error } = await supabase.from('tours').insert(tourData);
@@ -119,20 +129,6 @@ export async function joinToursWithMedia() {
     throw new Error(
       `An error occurred while trying to load spotlights: ${error.message}`,
     );
-  }
-  return data;
-}
-
-/**
- *
- */
-export async function fetchSpotlightTours() {
-  const { data, error } = await supabase
-    .from('tours')
-    .select('*')
-    .eq('spotlight', true);
-  if (error) {
-    throw new Error(`An error occurred while trying to read tours: ${error}`);
   }
   return data;
 }
