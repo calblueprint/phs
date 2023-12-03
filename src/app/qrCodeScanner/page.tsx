@@ -1,60 +1,16 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { Html5QrcodeScanner, Html5QrcodeScanType } from 'html5-qrcode';
+import React from 'react';
 import NavBar from '../../components/userComponents/navBar/navBar';
 import QrScanner from "../../components/userComponents/QrScanner/QrScanner"
 // Define the App component
 /**
- *
+ * @returns qr code scanner page
  */
 function App() {
-  const onNewScanResult = (decodedText, decodedResult) => {
-    // handle decoded results here
-    console.log(decodedText, decodedResult);
-};
 
-//   const [scanResult, setScanResult] = useState(null);
+  // const [scanResult, setScanResult] = useState();
 
-//   const config = {
-//     fps: 10,
-//     qrbox: {width: 100, height: 100},
-//     rememberLastUsedCamera: true,
-//     supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
-//   };
-
-//   useEffect(() => {
-//     // Create a new Html5QrcodeScanner instance
-//     const scanner = new Html5QrcodeScanner('reader', {
-//       qrbox: {
-//         width: 250,
-//         height: 250,
-//       },
-//       fps: 5,
-//     });
-//     // Define the success callback function
-//     /**
-//      *
-//      * @param result
-//      */
-//     function success(result) {
-//       scanner.clear();
-//       setScanResult(result);
-//     }
-//     // Define the error callback function
-//     /**
-//      *
-//      * @param err
-//      */
-//     function error(err) {
-//       console.warn(err);
-//     }
-//     scanner.render(success, error);
-//     // Cleanup function
-//     return () => {
-//       scanner.clear();
-//     };
-//   }, []); 
   return (
     <div style={{ backgroundColor: '#FFFDF7', height: '100vh' }}>
       <NavBar />
@@ -71,14 +27,8 @@ function App() {
           on each sign that has a fun fact about a species.
         </p>
       </div>
-{/* <div className="p-[19px]"> */}
-
-<QrScanner />
-
-{/* {scanResult
-      ? <div>Successful Scan!</div>
-      : <div id="reader" />} */}
-{/* </div> */}
+{/* {scanResult ? <div>Successful</div> : <QrScanner updateScanResult={setScanResult} />} */}
+    <QrScanner />
     </div>
   );
 }

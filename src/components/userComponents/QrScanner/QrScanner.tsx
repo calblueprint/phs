@@ -1,53 +1,43 @@
 
 import { Html5QrcodeScanner, Html5QrcodeScanType } from 'html5-qrcode';
-import React, { useEffect } from 'react';
+import { StateManagerProxy } from 'html5-qrcode/esm/state-manager';
+import React, { Dispatch, SetStateAction, useEffect } from 'react';
 
 const qrcodeRegionId = "html5qr-code-full-region";
 
-// Creates the configuration object for Html5QrcodeScanner.
-// const createConfig = (props) => {
-//     const config = {};
-//     if (props.fps) {
-//         config.fps = props.fps;
-//     }
-//     if (props.qrbox) {
-//         config.qrbox = props.qrbox;
-//     }
-//     if (props.aspectRatio) {
-//         config.aspectRatio = props.aspectRatio;
-//     }
-//     if (props.disableFlip !== undefined) {
-//         config.disableFlip = props.disableFlip;
-//     }
-//     return config;
-// };
+// {updateScanResult} : {updateScanResult: Dispatch<SetStateAction<any>>}
+
 
 /**
  *
- * @param props
+ * @param root0
+ * @param root0.setScanResult
+ * @param root0.updateScanResult
+ * @returns qr scanner 
  */
 function Html5QrcodePlugin() {
 
+    // const handleResult = (decodedText, decodedResult) => {
+    //     updateScanResult(decodedResult)
+    //     console.log(decodedText, decodedResult)
+    // };
     useEffect(() => {
-        // when component mounts
-        // const config = createConfig(props);
-        // const { verbose, qrCodeSuccessCallback } = props;
-        // const verbose = props.verbose === true;
-        // const isVerbose = verbose === true
-        // Suceess callback is required.
-        // if (!(props.qrCodeSuccessCallback)) {
-        //     throw "qrCodeSuccessCallback is required callback.";
-        // }
+
+        const videoConstraints = {
+            facingMode: "environment" // Use ':environment' for rear camera, 'user' for front camera
+        };
+
         const html5QrcodeScanner = new Html5QrcodeScanner('reader', {
             qrbox: {
                 width: 500,
                 height: 500
             },
             fps: 5,
-            // supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
-        }, true);
-        html5QrcodeScanner.render(() => console.log('lmao'), () => { console.log('lol')});
-
+            supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
+            videoConstraints
+        }, false);
+        html5QrcodeScanner.render(() => console.log('bruh'), () => { console.log('lol')});
+        // html5QrcodeScanner.applyVideoConstraints();
         // cleanup function when component will unmount
         return () => {
             html5QrcodeScanner.clear().catch(error => {
@@ -57,7 +47,7 @@ function Html5QrcodePlugin() {
     }, []);
 
     return (
-        <div id={qrcodeRegionId} />
+        <div id='reader' />
     );
 }
 
