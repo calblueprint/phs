@@ -36,11 +36,13 @@ export default function NavBar() {
       <div className=" bg-hunter-green w-[24.375rem] h-[0.375rem] absolute bottom-0" />
 
       {showMenu && (
-        <div className="relative">
-          <div className="bg-[#141414] fixed top-28 left-0 w-full h-full opacity-[56%]" />
-          <div className="bg-ivory fixed top-28 right-0 w-[14.9375rem] h-full p-[1.31rem]">
+        <div className="bg-[#1414148F] w-[24.375rem] h-full flex justify-end fixed top-28">
+          <div className="bg-ivory w-[14.9375rem] h-full relative p-[1.31rem]">
             <h1 className="text-scary-forest text-sm mt-[1.5rem]">WELCOME</h1>
-            <Link href="/" className="text-night text-lg font-bold block relative left-4 mt-[1.25rem]">
+            <Link
+              href="/"
+              className="text-night text-lg font-bold block relative left-4 mt-[1.25rem]"
+            >
               Home
             </Link>
 
@@ -70,7 +72,9 @@ export default function NavBar() {
               QR Scanner
             </Link>
 
-            <h1 className="text-scary-forest text-sm mt-[2.13rem]">LEARN & EXPLORE</h1>
+            <h1 className="text-scary-forest text-sm mt-[2.13rem]">
+              LEARN & EXPLORE
+            </h1>
             <Link
               href="/spotlightPage"
               className="text-night text-lg font-bold block relative left-4 mt-[1.25rem]"
