@@ -25,22 +25,23 @@ export default function FeaturedToursPage() {
   }, []);
 
   return (
-    <div className="bg-ivory h-full">
+    <div className="bg-ivory w-[24.375rem] min-h-screen">
       <NavBar />
-      <div className="relative top-4 left-4 mb-3">
-        <Link href="/">
-          <BackButton />
-        </Link>
-      </div>
 
       <div className="p-4">
+        <div className="mb-3">
+          <Link href="/">
+            <BackButton />
+          </Link>
+        </div>
+
         <h1 className="text-night text-3xl font-bold mb-4">Featured Tours</h1>
         <p className="text-night mb-4">
           Embark on a tour and explore our exhibits from anywhere - at home or
           in person!
         </p>
 
-        <ul className="list-none p-0">
+        <ul className="list-none mb-6">
           {tours.map(
             tour =>
               tour.spotlight === false && (

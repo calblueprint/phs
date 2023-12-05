@@ -49,7 +49,7 @@ export default function TourEndPage({
   }, [params.tourId]);
 
   return (
-    <div className="bg-ivory">
+    <div className="bg-ivory w-[24.375rem] min-h-screen">
       <NavBar />
 
       <div className="flex flex-col items-center">
@@ -63,7 +63,7 @@ export default function TourEndPage({
         </div>
         <div className="bg-[#7ca24e] text-center w-72 h-auto rounded-2xl mb-4">
           <Link href="/featuredToursPage">
-            <h2 className="text-white font-bold p-4">Back to Featured Tours</h2>
+            <h2 className="text-white font-semibold p-4">Back to Featured Tours</h2>
           </Link>
         </div>
       </div>
@@ -78,7 +78,7 @@ export default function TourEndPage({
                   <h4 className="font-light">
                     {media.find(m => m.id === tm.media_id)?.type}
                   </h4>
-                  <h4 className="font-light">
+                  <h4 className="font-semibold">
                     {media.find(m => m.id === tm.media_id)?.title}
                   </h4>
                 </Link>
