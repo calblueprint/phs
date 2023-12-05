@@ -137,3 +137,72 @@ export function CaretRight() {
     </svg>
   );
 }
+
+/**
+ * @returns the Congratulations icon
+ */
+export function Congratulations() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="74"
+      height="38"
+      viewBox="0 0 74 38"
+      fill="none"
+    >
+      <path
+        d="M16.8928 32.3137L5.5791 21"
+        stroke="url(#paint0_linear_3790_3714)"
+        strokeWidth="9.87583"
+        strokeLinecap="round"
+      />
+      <path
+        d="M36.5791 21V5"
+        stroke="url(#paint1_linear_3790_3714)"
+        strokeWidth="9.87583"
+        strokeLinecap="round"
+      />
+      <path
+        d="M57.1072 32.3301L68.4209 21.0164"
+        stroke="url(#paint2_linear_3790_3714)"
+        strokeWidth="9.87583"
+        strokeLinecap="round"
+      />
+      <defs>
+        <linearGradient
+          id="paint0_linear_3790_3714"
+          x1="5.93265"
+          y1="20.6464"
+          x2="17.2464"
+          y2="31.9602"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#7CA24E" />
+          <stop offset="1" stopColor="#7CA24E" stopOpacity="0.45" />
+        </linearGradient>
+        <linearGradient
+          id="paint1_linear_3790_3714"
+          x1="37.0791"
+          y1="5"
+          x2="37.0791"
+          y2="21"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#7CA24E" />
+          <stop offset="1" stopColor="#7CA24E" stopOpacity="0.45" />
+        </linearGradient>
+        <linearGradient
+          id="paint2_linear_3790_3714"
+          x1="68.7745"
+          y1="21.3699"
+          x2="57.4607"
+          y2="32.6836"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#7CA24E" />
+          <stop offset="1" stopColor="#7CA24E" stopOpacity="0.45" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+}
