@@ -1,10 +1,10 @@
 import React from 'react';
 
-type ProgressBarProps = {
+interface ProgressBarProps {
   tourName: string;
   currentStop: number;
   totalStops: number;
-};
+}
 
 /**
  * @param root0 -
