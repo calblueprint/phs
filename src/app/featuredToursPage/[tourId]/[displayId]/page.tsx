@@ -3,10 +3,14 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-import { DisplayRow, TourDisplaysRow } from '../../../../types/types';
+import { DisplayRow, TourRow, TourDisplaysRow } from '../../../../types/types';
 import NavBar from '../../../../components/userComponents/navBar/navBar';
+import { fetchTour } from '../../../../supabase/tours/queries';
 import { fetchDisplay } from '../../../../supabase/displays/queries';
 import { fetchTourDisplays } from '../../../../supabase/tour_displays/queries';
+import ProgressBar from '../../../../components/userComponents/ProgressBar/ProgressBar';
+import LastStopButton from '../../../../components/userComponents/LastStopButton/LastStopButton';
+import NextStopButton from '../../../../components/userComponents/NextStopButton/NextStopButton';
 
 /**
  * The page that displays a tour stop.
@@ -22,18 +26,28 @@ export default function TourStopPage({
   params: { tourId: string; displayId: string };
 }) {
   const [display, setDisplay] = useState<DisplayRow>();
+  const [tour, setTour] = useState<TourRow>();
+  const [currentStop, setCurrentStop] = useState<number>();
   const [prev, setPrev] = useState<string>(
     `/featuredToursPage/${params.tourId}`,
   );
+  const [prevText, setPrevText] = useState<string>('Back');
   const [next, setNext] = useState<string>(
     `/featuredToursPage/${params.tourId}/tourEndPage`,
   );
+  const [nextText, setNextText] = useState<string>('End Tour');
 
   useEffect(() => {
     // Get display
     const getDisplay = async () => {
       const fetchedDisplay = await fetchDisplay(params.displayId);
       setDisplay(fetchedDisplay);
+    };
+
+    // Get tour
+    const getTour = async () => {
+      const fetchedTour = await fetchTour(params.tourId);
+      setTour(fetchedTour);
     };
 
     // Get tour displays
@@ -60,75 +74,84 @@ export default function TourStopPage({
             tourDisplays[index + 1].display_id
           }`,
         );
+        setNextText('Next Stop');
       } else if (index === tourDisplays.length - 1) {
         setPrev(
           `/featuredToursPage/${params.tourId}/${
             tourDisplays[index - 1].display_id
           }`,
         );
+        setPrevText('Last Stop');
       } else {
         setPrev(
           `/featuredToursPage/${params.tourId}/${
             tourDisplays[index - 1].display_id
           }`,
         );
+        setPrevText('Last Stop');
         setNext(
           `/featuredToursPage/${params.tourId}/${
             tourDisplays[index + 1].display_id
           }`,
         );
+        setNextText('Next Stop');
+      }
+    }
+
+    // Get the current stop number
+    /**
+     *
+     */
+    async function getCurrentStop() {
+      const tourDisplays: TourDisplaysRow[] = await getTourDisplays();
+      const index = tourDisplays.findIndex(
+        tourDisplay => tourDisplay.display_id === params.displayId,
+      );
+
+      if (index === -1) {
+        throw new Error('Display not found in tour displays');
+      } else {
+        setCurrentStop(index + 1);
       }
     }
 
     getDisplay();
+    getTour();
     getLinks();
+    getCurrentStop();
   }, [params.displayId, params.tourId]);
 
   return (
-    <div className="bg-[#ebf0e4] h-full">
+    <div className="bg-ivory w-[24.375rem] min-h-screen">
       <NavBar />
-      <h1 className="text-[#333333] text-3xl font-bold p-4">
-        {display && display.title}
-      </h1>
-
-      <p className="text-[#333333] p-4 font-medium">
-        {display && display.description}
-      </p>
+      <ProgressBar
+        tourName={tour?.name || ''}
+        currentStop={currentStop || 0}
+        totalStops={tour?.stop_count || 0}
+      />
+      <div className="flex flex-col px-[1.56rem] gap-2 mt-8">
+        <h1 className="text-[#333333] text-3xl font-bold">
+          {display && display.title}
+        </h1>
+        <p className="text-[#333333] font-medium">
+          Raccoons adapt to a variety of habitats, making them highly versatile
+          mammals.
+        </p>
+      </div>
       <img
+        className="w-[24.375rem] h-[15.3125rem] my-6 relative"
         src="https://images.unsplash.com/photo-1615812214207-34e3be6812df?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         alt="placeholder"
       />
-      <p className="text-[#333333] px-4 py-2">
-        Scientifically known as Procyon lotor, raccoons are highly adaptable
-        creatures with a wide range of habitats across North and Central
-        America. They are often found in wooded areas, making their homes in the
-        hollows of trees, old burrows, or even rock crevices.
-      </p>
-      <p className="text-[#333333] px-4 py-2">
-        Raccoons are equally comfortable in urban and suburban settings, where
-        they utilize human-made structures like attics, garages, and abandoned
-        buildings as dens. Wetlands and riparian habitats near water sources are
-        also common areas for raccoons due to their affinity for aquatic
-        foraging. These omnivorous mammals display a remarkable ability to
-        thrive in various environments, making them one of the most widely
-        distributed and resilient wildlife species on the continent.
-      </p>
-      <div className="flex flex-row justify-between p-4">
-        <Link
-          className="bg-[#386131] text-center w-[48%] h-16 rounded-2xl"
-          href={prev}
-        >
-          <h2 className="relative top-[30%] text-white font-bold">Back</h2>
-        </Link>
-        <Link
-          className="bg-[#386131] text-center w-[48%] h-16 rounded-2xl"
-          href={next}
-        >
-          <h2 className="relative top-[30%] text-white font-bold">Next</h2>
-        </Link>
-      </div>
-      <div>
-        <h4 className="text-[#386131] p-4 font-bold">
+      <div className="px-[1.56rem] pb-[2.5rem]">
+        <p className="text-[#333333]">
+          {display && display.description}
+        </p>
+        <div className="flex flex-row justify-between mt-8">
+          <LastStopButton text={prevText} link={prev} />
+          <NextStopButton text={nextText} link={next} />
+        </div>
+        <h4 className="text-[#386131] font-semibold mt-4">
           <Link href="/featuredToursPage">Exit this tour</Link>
         </h4>
       </div>

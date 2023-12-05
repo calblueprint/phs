@@ -33,14 +33,14 @@ function App() {
 
 
   return (
-    <div className="bg-[#F5F6F5]">
+    <div className="bg-ivory">
       <NavBar />
 
       <div className="pl-[19.5px] pb-[16px] pt-[61px]">
-        <h1 className="text-[#333333] text-3xl font-bold mb-4">
+        <h1 className="text-night text-3xl font-bold mb-4">
           Our Wildlife Spotlights
         </h1>
-        <p className="text-[#333333] mb-4">
+        <p className="text-night mb-4">
         Dive into the fascinating world of nature. Explore and uncover the captivating stories of the animal kingdom in our care center.
         </p>
 
