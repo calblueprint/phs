@@ -91,3 +91,49 @@ export function NextArrow() {
     </svg>
   );
 }
+
+/**
+ * @returns the Caret Left icon
+ */
+export function CaretLeft() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="15"
+      height="23"
+      viewBox="0 0 15 23"
+      fill="none"
+    >
+      <path
+        d="M13 2L3 11.5L13 21"
+        stroke="#386131"
+        strokeOpacity="0.17"
+        strokeWidth="3.16667"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+/**
+ * @returns the Caret Right icon
+ */
+export function CaretRight() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="15"
+      height="23"
+      viewBox="0 0 15 23"
+      fill="none"
+    >
+      <path
+        d="M2 2L12 11.5L2 21"
+        stroke="#D7E1CE"
+        strokeOpacity="0.22"
+        strokeWidth="3.16667"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
