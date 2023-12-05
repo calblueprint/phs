@@ -9,6 +9,8 @@ import { fetchTour } from '../../../../supabase/tours/queries';
 import { fetchDisplay } from '../../../../supabase/displays/queries';
 import { fetchTourDisplays } from '../../../../supabase/tour_displays/queries';
 import ProgressBar from '../../../../components/userComponents/ProgressBar/ProgressBar';
+import LastStopButton from '../../../../components/userComponents/LastStopButton/LastStopButton';
+import NextStopButton from '../../../../components/userComponents/NextStopButton/NextStopButton';
 
 /**
  * The page that displays a tour stop.
@@ -29,9 +31,11 @@ export default function TourStopPage({
   const [prev, setPrev] = useState<string>(
     `/featuredToursPage/${params.tourId}`,
   );
+  const [prevText, setPrevText] = useState<string>('Back');
   const [next, setNext] = useState<string>(
     `/featuredToursPage/${params.tourId}/tourEndPage`,
   );
+  const [nextText, setNextText] = useState<string>('End Tour');
 
   useEffect(() => {
     // Get display
@@ -70,23 +74,27 @@ export default function TourStopPage({
             tourDisplays[index + 1].display_id
           }`,
         );
+        setNextText('Next Stop');
       } else if (index === tourDisplays.length - 1) {
         setPrev(
           `/featuredToursPage/${params.tourId}/${
             tourDisplays[index - 1].display_id
           }`,
         );
+        setPrevText('Last Stop');
       } else {
         setPrev(
           `/featuredToursPage/${params.tourId}/${
             tourDisplays[index - 1].display_id
           }`,
         );
+        setPrevText('Last Stop');
         setNext(
           `/featuredToursPage/${params.tourId}/${
             tourDisplays[index + 1].display_id
           }`,
         );
+        setNextText('Next Stop');
       }
     }
 
@@ -135,25 +143,15 @@ export default function TourStopPage({
         src="https://images.unsplash.com/photo-1615812214207-34e3be6812df?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         alt="placeholder"
       />
-      <p className="text-[#333333] px-[1.56rem]">
-        {display && display.description}
-      </p>
-      <div className="flex flex-row justify-between p-4">
-        <Link
-          className="bg-[#386131] text-center w-[48%] h-16 rounded-2xl"
-          href={prev}
-        >
-          <h2 className="relative top-[30%] text-white font-bold">Back</h2>
-        </Link>
-        <Link
-          className="bg-[#386131] text-center w-[48%] h-16 rounded-2xl"
-          href={next}
-        >
-          <h2 className="relative top-[30%] text-white font-bold">Next</h2>
-        </Link>
-      </div>
-      <div>
-        <h4 className="text-[#386131] p-4 font-bold">
+      <div className="px-[1.56rem] pb-[2.5rem]">
+        <p className="text-[#333333]">
+          {display && display.description}
+        </p>
+        <div className="flex flex-row justify-between mt-8">
+          <LastStopButton text={prevText} link={prev} />
+          <NextStopButton text={nextText} link={next} />
+        </div>
+        <h4 className="text-[#386131] font-semibold mt-4">
           <Link href="/featuredToursPage">Exit this tour</Link>
         </h4>
       </div>
