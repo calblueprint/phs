@@ -134,7 +134,7 @@ export default function TourStopPage({
       <ProgressBar
         tourName={tour?.name || ''}
         currentStop={currentStop || 0}
-        totalStops={tour?.stop_count || 0}
+        totalStops={tour?.stop_count || 1}
       />
       <div className="flex flex-col px-[1.56rem] gap-2 mt-8">
         <h1 className="text-[#333333] text-3xl font-bold">
