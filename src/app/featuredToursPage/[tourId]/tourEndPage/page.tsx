@@ -4,9 +4,15 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 import NavBar from '../../../../components/userComponents/navBar/navBar';
-import { MediaRow, TourRow, TourMediaRow } from '../../../../types/types';
+import {
+  MediaRow,
+  TourRow,
+  TourMediaRow,
+  TourDisplaysRow,
+} from '../../../../types/types';
 import { fetchMedia } from '../../../../supabase/media/queries';
 import { fetchTour } from '../../../../supabase/tours/queries';
+import { fetchTourDisplays } from '../../../../supabase/tour_displays/queries';
 import { fetchTourMedia } from '../../../../supabase/tour_media/queries';
 import { Congratulations, ExternalLinkIcon } from '../../../../../public/Icons';
 import BackButton from '../../../../components/userComponents/BackButton/BackButton';
@@ -25,6 +31,9 @@ export default function TourEndPage({
   const [media, setMedia] = useState<MediaRow[]>([]);
   const [tour, setTour] = useState<TourRow>();
   const [tourMedia, setTourMedia] = useState<TourMediaRow[]>([]);
+  const [backLink, setBackLink] = useState<string>(
+    `/featuredToursPage/${params.tourId}`,
+  );
 
   useEffect(() => {
     // Get tour
@@ -45,15 +54,28 @@ export default function TourEndPage({
       setMedia(fetchedMedia);
     };
 
+    /**
+     * @returns The link to the previous page.
+     */
+    async function getBackLink() {
+      const tourDisplays: TourDisplaysRow[] = await fetchTourDisplays(params.tourId);
+      setBackLink(
+        `/featuredToursPage/${params.tourId}/${
+          tourDisplays[tourDisplays.length - 1].display_id
+        }`,
+      );
+    }
+
     getTour();
     getTourMedia();
     getMedia();
+    getBackLink();
   }, [params.tourId]);
 
   return (
     <div className="bg-ivory w-[24.375rem] min-h-screen">
       <NavBar />
-      <Link href="/featuredToursPage" className="relative top-4 left-[1.12rem]">
+      <Link href={backLink} className="relative top-4 left-[1.12rem]">
         <BackButton />
       </Link>
 
