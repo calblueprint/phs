@@ -9,12 +9,10 @@ import NavBar from '../components/userComponents/navBar/navBar';
  */
 export default function Home() {
   return (
-    <div className='bg-[ivory] h-full'>
+    <div className="bg-ivory w-[24.375rem] min-h-screen">
       <NavBar />
-      <div className='p-4'>
-        <h1 className='text-[#333333] text-3xl font-bold mb-4'>
-          Home
-        </h1>
+      <div className="p-4">
+        <h1 className="text-[#333333] text-3xl font-bold mb-4">Home</h1>
       </div>
     </div>
   );
