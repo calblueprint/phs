@@ -30,7 +30,6 @@
     "react-bootstrap": "^2.9.0",
     "react-dom": "latest",
     "react-leaflet": "^4.2.1",
-    "react-qr-scanner": "^1.0.0-alpha.11",
     "react-responsive-carousel": "^3.2.23",
     "slick-carousel": "^1.8.1"
   },

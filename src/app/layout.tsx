@@ -34,9 +34,9 @@ export default function RootLayout({
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
           crossOrigin=""
         />
-              <script src="html5-qrcode.min.js" />
-
+        <script src="html5-qrcode.min.js" />
       </head>
+      
       <body className={inter.className}>{children}</body>
 
     </html>
