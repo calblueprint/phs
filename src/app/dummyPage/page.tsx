@@ -6,7 +6,8 @@ import EmailPopup from '../../components/userComponents/emailPopup/page';
  */
 export default function Home() {
   return (
-    <EmailPopup
+    <EmailPopup 
+    backLink="/collectionsPage"
     />
   );
 }
