@@ -1,5 +1,5 @@
 import React from 'react';
-import EmailPopup from '../../components/userComponents/emailPopup/page';
+import EmailPopup from '../../components/userComponents/EmailPopup/page';
 
 /**
  * @returns email popup

@@ -94,7 +94,10 @@ function EmailInput({inputValue, handleChange, handleSubmit, showError, errorMsg
 }
 
 /**
- * @returns an email pop up
+ * @returns an email pop up. 
+ * if no email is entered and the user clicks the submit button, an error message will pop up. 
+ * if an invalid email is entered and the user clicks the submit button, another error message will pop up. 
+ * otherwise, if a valid email is submitted and properly subscribed, another pop up will appear that will tell the user they are subscribed and direct them to another page.
  */
 export default function EmailPopup({backLink}: {backLink: string}
  ) {
@@ -115,7 +118,7 @@ export default function EmailPopup({backLink}: {backLink: string}
   };
 
   const isValidEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.(com|ca)$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.(com|ca|edu|org|gov|net)$/;
     return emailRegex.test(email);
   };
 
