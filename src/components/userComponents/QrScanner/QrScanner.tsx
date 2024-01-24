@@ -1,12 +1,8 @@
 
 import { Html5QrcodeScanner, Html5QrcodeScanType } from 'html5-qrcode';
-import { StateManagerProxy } from 'html5-qrcode/esm/state-manager';
-import React, { Dispatch, SetStateAction, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 const qrcodeRegionId = "html5qr-code-full-region";
-
-// {updateScanResult} : {updateScanResult: Dispatch<SetStateAction<any>>}
-
 
 /**
  *
@@ -16,15 +12,10 @@ const qrcodeRegionId = "html5qr-code-full-region";
  * @returns qr scanner 
  */
 function Html5QrcodePlugin() {
-
-    // const handleResult = (decodedText, decodedResult) => {
-    //     updateScanResult(decodedResult)
-    //     console.log(decodedText, decodedResult)
-    // };
     useEffect(() => {
 
         const videoConstraints = {
-            facingMode: "environment" // Use ':environment' for rear camera, 'user' for front camera
+            facingMode: "environment"
         };
 
         const html5QrcodeScanner = new Html5QrcodeScanner('reader', {
@@ -36,18 +27,14 @@ function Html5QrcodePlugin() {
             supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
             videoConstraints
         }, false);
-        html5QrcodeScanner.render(() => console.log('bruh'), () => { console.log('lol')});
-        // html5QrcodeScanner.applyVideoConstraints();
-        // cleanup function when component will unmount
+        html5QrcodeScanner.render(() => {}, () => {});
         return () => {
-            html5QrcodeScanner.clear().catch(error => {
-                console.error("Failed to clear html5QrcodeScanner. ", error);
-            });
+            html5QrcodeScanner.clear().catch(error => {});
         };
     }, []);
 
     return (
-        <div id='reader' />
+        <div id='reader'/>
     );
 }
 

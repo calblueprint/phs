@@ -8,9 +8,6 @@ import QrScanner from "../../components/userComponents/QrScanner/QrScanner"
  * @returns qr code scanner page
  */
 function App() {
-
-  // const [scanResult, setScanResult] = useState();
-
   return (
     <div style={{ backgroundColor: '#FFFDF7', height: '100vh' }}>
       <NavBar />
@@ -27,8 +24,7 @@ function App() {
           on each sign that has a fun fact about a species.
         </p>
       </div>
-{/* {scanResult ? <div>Successful</div> : <QrScanner updateScanResult={setScanResult} />} */}
-    <QrScanner />
+      <QrScanner />
     </div>
   );
 }
