@@ -4,12 +4,11 @@ import supabase from '../client';
 import { TourDisplaysRow, DisplayRow, TourRow } from '../../types/types';
 import { fetchDisplaysfromIds } from '../displays/queries';
 
-// Fetch all tour displays
 /**
- * @param () - nothing
- * @returns fetches tour displays
+ * Fetches all tour displays from the database.
+ * @returns A promise that resolves to an array of TourDisplaysRow objects.
  */
-export async function fetchTourDisplays() {
+export async function fetchAllTourDisplays(): Promise<TourDisplaysRow[]> {
   const { data, error } = await supabase.from('tour_displays').select('*');
   if (error) {
     throw new Error(error.message);
@@ -81,11 +80,20 @@ export async function fetchRelatedSpotlightsfromIds(relatedSpotlightIds: string[
 }
 
 /**
- * @param spotlightId - a spotlight ID
- * @returns given a spotlight ID, get all the related spotlights
+ * Fetches all tour displays for a single tour from the database sorted by display_order.
+ * @param tourId - The id of the tour to fetch.
+ * @returns A promise that resolves to an array of TourDisplaysRow objects.
  */
-export async function fetchRelatedSpotlightsfromSpotlightId(spotlightId: string) {
-  const relatedSpotlightIds: string[] = await fetchRelatedSpotlightIdsFromSpotlight(spotlightId);
-  const spotlights: TourRow[] = await fetchRelatedSpotlightsfromIds(relatedSpotlightIds)
-  return spotlights;
+export async function fetchTourDisplays(
+  tourId: string,
+): Promise<TourDisplaysRow[]> {
+  const { data, error } = await supabase
+    .from('tour_displays')
+    .select('*')
+    .eq('tour_id', tourId);
+  if (error) {
+    throw new Error(error.message);
+  }
+  data.sort((a, b) => (a?.display_order || 0) - (b?.display_order || 0));
+  return data;
 }

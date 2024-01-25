@@ -100,6 +100,9 @@ function NavBar() {
             <Link href="/qrCodeTourPage" className="block text-black">
               QR Code Tour
             </Link>
+            <Link href="/qrCodeScanner" className="block text-black">
+              QR Scanner
+            </Link>
           </ul>
           <h1 className="text-xl text-black font-bold p-4">LEARN & EXPLORE</h1>
           <ul className="p-4">
