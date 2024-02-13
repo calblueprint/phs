@@ -5,6 +5,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { PiPaperPlaneTiltBold , PiSealCheck } from "react-icons/pi";
 import { VscClose } from "react-icons/vsc";
 import { BiErrorCircle } from "react-icons/bi";
+import supabase from '../../../supabase/client';
 
 import Link from 'next/link';
 
@@ -30,12 +31,16 @@ export default function EmailPopup(
     setShowError(false);
   };
 
+
+// const { error } = await supabase.from('emails').insert({ id: 1, name: 'Denmark' })
+  
+
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.(com|ca)$/;
     return emailRegex.test(email);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     
@@ -45,6 +50,20 @@ export default function EmailPopup(
       setErrorMsg('Please enter an email address');
     } else if (isValidEmail(inputValue)) {
       // Handle the submission for a valid email
+      try {
+        // Insert the email into the Supabase database
+        const { error } = await supabase.from('emails').insert({ emails: inputValue });
+      } catch (error) {
+          console.error(error);
+          return error;
+        }
+
+
+      // miha's edits
+
+
+
+      //
       setSubscribed(true);
       console.log('Valid email:', inputValue);
       // Additional logic for handling a valid email
@@ -94,7 +113,6 @@ export default function EmailPopup(
             >
             <div className="fixed inset-0 flex items-center justify-center">
                 <div className="w-[334px] h-[404px] bg-[#EBF0E8] rounded-lg shadow-box relative">
-                  
                   
 
                     <div className="flex justify-end">
