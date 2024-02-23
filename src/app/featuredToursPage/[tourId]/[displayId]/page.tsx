@@ -3,10 +3,12 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-import { DisplayRow, TourDisplaysRow } from '../../../../types/types';
+import { DisplayRow, TourDisplaysRow, MediaRow } from '../../../../types/types';
 import NavBar from '../../../../components/userComponents/navBar/navBar';
 import { fetchDisplay } from '../../../../supabase/displays/queries';
 import { fetchTourDisplays } from '../../../../supabase/tour_displays/queries';
+import { fetchImagesForDisplay } from '../../../../supabase/media/queries';
+import Carousel from '../../../../components/userComponents/ImageScroller/ImageScroller';
 
 /**
  * The page that displays a tour stop.
@@ -22,6 +24,7 @@ export default function TourStopPage({
   params: { tourId: string; displayId: string };
 }) {
   const [display, setDisplay] = useState<DisplayRow>();
+  const [media, setMedia] = useState<MediaRow[]>([]);
   const [prev, setPrev] = useState<string>(
     `/featuredToursPage/${params.tourId}`,
   );
@@ -43,10 +46,7 @@ export default function TourStopPage({
     };
 
     // Get the links for the previous and next pages
-    /**
-     *
-     */
-    async function getLinks() {
+    const getLinks = async () => {
       const tourDisplays: TourDisplaysRow[] = await getTourDisplays();
       const index = tourDisplays.findIndex(
         tourDisplay => tourDisplay.display_id === params.displayId,
@@ -80,8 +80,15 @@ export default function TourStopPage({
       }
     }
 
+    // Fetch the display media
+    const fetchDisplayMedia = async () => {
+      const displayMedia = await fetchImagesForDisplay(params.displayId);
+      setMedia(displayMedia);
+    }
+
     getDisplay();
     getLinks();
+    fetchDisplayMedia();
   }, [params.displayId, params.tourId]);
 
   return (
@@ -90,14 +97,10 @@ export default function TourStopPage({
       <h1 className="text-[#333333] text-3xl font-bold p-4">
         {display && display.title}
       </h1>
-
       <p className="text-[#333333] p-4 font-medium">
         {display && display.description}
       </p>
-      <img
-        src="https://images.unsplash.com/photo-1615812214207-34e3be6812df?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        alt="placeholder"
-      />
+      {media.length > 0 && <Carousel media={media} />}
       <p className="text-[#333333] px-4 py-2">
         Scientifically known as Procyon lotor, raccoons are highly adaptable
         creatures with a wide range of habitats across North and Central
