@@ -235,7 +235,7 @@ export type Database = {
           created_at: string
           description: string | null
           id: string
-          name: string | null
+          name: string
           preview_text: string | null
           spotlight: boolean
           stop_count: number | null
@@ -246,7 +246,7 @@ export type Database = {
           created_at?: string
           description?: string | null
           id?: string
-          name?: string | null
+          name: string
           preview_text?: string | null
           spotlight?: boolean
           stop_count?: number | null
@@ -257,7 +257,7 @@ export type Database = {
           created_at?: string
           description?: string | null
           id?: string
-          name?: string | null
+          name?: string
           preview_text?: string | null
           spotlight?: boolean
           stop_count?: number | null
