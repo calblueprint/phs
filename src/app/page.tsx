@@ -24,10 +24,8 @@ function Home() {
      */
     async function fetchData() {
       try {
-        console.log('Running fetch data');
         const responseData = await joinSpotlightsWithMedia();
         setSpotlightsWithMedia(responseData);
-        console.log({ data: responseData });
       } catch (error) {
         console.error('Error in fetch data: ', error);
       }
@@ -47,7 +45,7 @@ function Home() {
           welfare.
         </p>
       </div>
-      <HomeWildlifeSpotlights spotlightsWithMedia={spotlightsWithMedia} />
+      <HomeWildlifeSpotlights />
       <VisitorResources />
 
       <div className="mt-10 border-t border-smoke">
