@@ -2,7 +2,7 @@
 
 import React from 'react';
 import NavBar from '../../components/userComponents/navBar/navBar';
-import QrScanner from "../../components/userComponents/QrScanner/QrScanner"
+import QrScanner from '../../components/userComponents/QrScanner/QrScanner';
 /**
  * @returns qr code scanner page
  */
