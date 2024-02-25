@@ -32,7 +32,6 @@ function Home() {
         console.error('Error in fetch data: ', error);
       }
     }
-    console.log('running');
     fetchData();
   }, []);
 

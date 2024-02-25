@@ -21,7 +21,7 @@ function HomeWildlifeSpotlights() {
   >([]);
   useEffect(() => {
     /**
-     * @returns - !!! WIP !!! Used to fetch data for the spotlights with media
+     * @returns - Takes a tour and media table and joins them together, joined data has image + info from spotlight.
      */
     async function fetchData() {
       try {
@@ -50,19 +50,19 @@ function HomeWildlifeSpotlights() {
         {spotlightsWithMedia.map((spotlight: SpotlightWithMediaRow) => (
           <div
             key={spotlight.id}
-            className="carousel-item w-[234.78px] h-[275px] bg-gradient-to-b from-zinc-800 to-black rounded-lg overflow-hidden"
+            className="relative carousel-item w-56 h-64 bg-gradient-to-b from-zinc-800 to-black rounded-lg overflow-hidden"
           >
             <img
               className="w-full h-full object-cover rounded-lg"
               src={spotlight.media_url}
               alt="background for spotlight"
             />
-            <div className="bg-red-400 flex-col justify-start items-start gap-2 inline-flex">
-              <div className="w-[181px] text-stone-50 text-xl font-extrabold font-['Lato']">
-                Dove Flight Enclosures
+            <div className="absolute bottom-0.5 p-4">
+              <div className="w-45.25 text-stone-50 text-xl font-extrabold">
+                {spotlight.name}
               </div>
-              <div className="w-[181px] text-stone-50 text-sm font-normal font-['Lato']">
-                Species diversity, reproduction, and conservation
+              <div className="w-28 h-9 text-stone-50 text-sm font-normal line-clamp-2">
+                {spotlight.preview_text}
               </div>
             </div>
           </div>

@@ -30,7 +30,7 @@ function VisitorResources() {
         >
           <PiQrCodeBold className="w-7 h-7 text-scary-forest" />
           <div className="w-23.5 h-12.25 flex-col justify-start items-start gap-0.5 inline-flex">
-            <div className="b text-night">QR Explore</div>
+            <div className="b1 text-night">QR Explore</div>
             <div className="w-24 text-left text-zinc-500 text-xs font-normal font-['Lato']">
               Learn more about exhibits
             </div>
