@@ -6,7 +6,7 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[]
 
-export interface Database {
+export type Database = {
   public: {
     Tables: {
       display_media: {
@@ -69,6 +69,21 @@ export interface Database {
         }
         Relationships: []
       }
+      emails: {
+        Row: {
+          emails: string | null
+          id: number
+        }
+        Insert: {
+          emails?: string | null
+          id?: number
+        }
+        Update: {
+          emails?: string | null
+          id?: number
+        }
+        Relationships: []
+      }
       media: {
         Row: {
           created_at: string
@@ -93,6 +108,30 @@ export interface Database {
           title?: string | null
           type?: string | null
           url?: string
+        }
+        Relationships: []
+      }
+      news: {
+        Row: {
+          content_link: string | null
+          created_at: string
+          id: string
+          title: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          content_link?: string | null
+          created_at?: string
+          id?: string
+          title?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          content_link?: string | null
+          created_at?: string
+          id?: string
+          title?: string | null
+          updated_at?: string | null
         }
         Relationships: []
       }
@@ -191,6 +230,8 @@ export interface Database {
       }
       tours: {
         Row: {
+          category: Database["public"]["Enums"]["tour_category"]
+          coordinates: Json | null
           created_at: string
           description: string | null
           id: string
@@ -200,6 +241,8 @@ export interface Database {
           stop_count: number | null
         }
         Insert: {
+          category?: Database["public"]["Enums"]["tour_category"]
+          coordinates?: Json | null
           created_at?: string
           description?: string | null
           id?: string
@@ -209,6 +252,8 @@ export interface Database {
           stop_count?: number | null
         }
         Update: {
+          category?: Database["public"]["Enums"]["tour_category"]
+          coordinates?: Json | null
           created_at?: string
           description?: string | null
           id?: string
@@ -227,6 +272,19 @@ export interface Database {
       fetchimagesfordisplay: {
         Args: {
           displayid: string
+        }
+        Returns: {
+          id: string
+          url: string
+          type: string
+          title: string
+          text: string
+          created_at: string
+        }[]
+      }
+      fetchimagesfortour: {
+        Args: {
+          tourid: string
         }
         Returns: {
           id: string
@@ -266,6 +324,10 @@ export interface Database {
     }
     Enums: {
       media_type: "image" | "video" | "link"
+      tour_category:
+        | "BuildingsAndServices"
+        | "ParksAviariesEnclosures"
+        | "SiteFeatures"
     }
     CompositeTypes: {
       [_ in never]: never

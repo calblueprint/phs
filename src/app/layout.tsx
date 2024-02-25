@@ -6,10 +6,10 @@ import React from 'react';
 const inter = Inter({ subsets: ['latin'] });
 
 const lato = Lato({
-  weight: ["400", "700"],
+  weight: ['400', '700'],
   subsets: ['latin'],
   display: 'swap',
-})
+});
 
 export const metadata: Metadata = {
   title: 'Create Next App',

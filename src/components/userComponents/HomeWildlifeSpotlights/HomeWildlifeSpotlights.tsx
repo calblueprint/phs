@@ -15,7 +15,7 @@ import { SpotlightWithMediaRow } from '../../../types/types';
  * Spotlight scroller will showcase and link to chosen spotlights
  */
 function HomeWildlifeSpotlights() {
-// {spotlightsWithMedia} : {spotlightsWithMedia : SpotlightWithMediaRow[]}
+  // {spotlightsWithMedia} : {spotlightsWithMedia : SpotlightWithMediaRow[]}
   const [spotlightsWithMedia, setSpotlightsWithMedia] = useState<
     SpotlightWithMediaRow[]
   >([]);
