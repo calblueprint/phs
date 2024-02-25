@@ -102,7 +102,6 @@ export async function deleteTour(id: number) {
  */
 export async function joinSpotlightsWithMedia() {
   const { data, error } = await supabase.rpc('join_spotlights_with_media');
-  console.log({ datastuff: data });
   if (error) {
     throw new Error(
       `An error occurred while trying to load spotlights: ${error.message}`,
