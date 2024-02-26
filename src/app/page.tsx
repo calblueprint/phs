@@ -11,7 +11,7 @@ import { joinSpotlightsWithMedia } from '../supabase/tours/queries';
 import { SpotlightWithMediaRow } from '../types/types';
 
 /**
- * @returns - Home page for PHS/SPCA.  Buttons are available for the major flows of the application through this.
+ * @returns - Home page for PHS/SPCA.  Buttons are available for the major flows of the application from this page.
  */
 function Home() {
   const [spotlightsWithMedia, setSpotlightsWithMedia] = useState<
