@@ -41,14 +41,13 @@ function Home() {
         <h3 className="text-night">Overview</h3>
         <p className="w-96 text-night">
           The Peninsula Humane Society and SPCA (PHS and SPCA) is a local,
-          private, non-profit charitable organization dedicated to sanimal
+          private, non-profit charitable organization dedicated to animal
           welfare.
         </p>
       </div>
       <HomeWildlifeSpotlights />
       <VisitorResources />
-
-      <div className="mt-10 border-t border-smoke">
+      <div className="border-t border-smoke">
         <div className="mt-8 mx-4">
           <div className="News-Header inline-flex w-full justify-between items-center wx-4 mb-6">
             <h3 className="text-night">Latest News</h3>

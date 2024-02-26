@@ -1,14 +1,15 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter, Lato, Agbalumo } from 'next/font/google';
+import { Inter, Lato, Manrope } from 'next/font/google';
 import React from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
+const manrope = Manrope({ weight: ['400', '700'], subsets: ['latin'] });
+
 const lato = Lato({
   weight: ['400', '700'],
   subsets: ['latin'],
-  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -44,7 +45,7 @@ export default function RootLayout({
         <script src="html5-qrcode.min.js" />
       </head>
 
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} ${lato.className} ${manrope.className}`}>{children}</body>
     </html>
   );
 }
