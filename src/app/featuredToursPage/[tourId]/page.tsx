@@ -68,8 +68,8 @@ export default function TourStartPage({
       <div className="w-[24.375rem] flex flex-col px-[1.125rem] absolute top-[20.56rem] gap-6 mb-[2.5rem]">
         <div className="bg-mint-cream w-[22.125rem] rounded-md px-[2.1875rem] py-[2.1875rem] flex-col items-center gap-3 inline-flex">
           <div className="flex flex-col text-center gap-1">
-            <h2 className="text-night text-sm">WELCOME TO</h2>
-            <h1 className="text-night text-[2rem] font-bold">
+            <h2 className="text-night text-sm font-normal">WELCOME TO</h2>
+            <h1 className="text-night text-[2rem] font-semibold">
               {tour.name}
             </h1>
           </div>
@@ -77,7 +77,7 @@ export default function TourStartPage({
             <Link
               href={`/featuredToursPage/${params.tourId}/${tourDisplays[0]?.display_id}`}
             >
-              <h2 className="text-ivory text-center text-base font-bold">
+              <h2 className="text-ivory text-center text-base font-medium">
                 Start Tour
               </h2>
             </Link>
@@ -88,7 +88,7 @@ export default function TourStartPage({
 
         <div className="flex flex-col relative gap-4 mb-10">
           <div className="flex justify-between items-center">
-            <h3 className="text-night text-lg font-bold">In this tour</h3>
+            <h3 className="text-night text-lg font-medium">In this tour</h3>
             <div className="bg-[#F5EDCF80] w-[4.375rem] h-[1.5rem] rounded-lg px-3 py-[0.31rem]">
               <p className="text-night text-xs text-center">
                 {tour.stop_count} stops
@@ -97,7 +97,7 @@ export default function TourStartPage({
           </div>
           <ol>
             {tourDisplays.map(tourDisplay => (
-              <li key={tourDisplay.display_id}>
+              <li key={tourDisplay.display_id} className="mb-[0.44rem] ml-4">
                 <h4 className="font-light">
                   {tourDisplay.display_order != null
                     ? tourDisplay.display_order + 1
