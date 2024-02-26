@@ -137,10 +137,10 @@ export default function TourStopPage({
         totalStops={tour?.stop_count || 0}
       />
       <div className="flex flex-col px-[1.56rem] gap-2 mt-8">
-        <h1 className="text-[#333333] text-3xl font-bold">
+        <h1 className="text-[#333333] text-3xl font-semibold">
           {display && display.title}
         </h1>
-        <p className="text-[#333333] font-medium">
+        <p className="text-[#333333] font-normal">
           Raccoons adapt to a variety of habitats, making them highly versatile
           mammals.
         </p>
