@@ -49,9 +49,7 @@ function HomeWildlifeSpotlights() {
       <div className="carousel carousel-center max-w-md p-4 space-x-4 rounded-box w-full">
         {spotlightsWithMedia.map((spotlight: SpotlightWithMediaRow) => (
           <Link href={`/spotlightPage/${spotlight.id}`} key={spotlight.id}>
-            <div
-              className="relative carousel-item w-56 h-64 bg-gradient-to-b from-zinc-800 to-black rounded-lg overflow-hidden"
-            >
+            <div className="relative carousel-item w-56 h-64 bg-gradient-to-b from-zinc-800 to-black rounded-lg overflow-hidden">
               <img
                 className="w-full h-full object-cover rounded-lg"
                 src={spotlight.media_url}
