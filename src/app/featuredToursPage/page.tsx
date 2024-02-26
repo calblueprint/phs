@@ -35,7 +35,7 @@ export default function FeaturedToursPage() {
           </Link>
         </div>
 
-        <h1 className="text-night text-3xl font-bold mb-4">Featured Tours</h1>
+        <h1 className="text-night text-3xl font-semibold mb-4">Featured Tours</h1>
         <p className="text-night mb-4">
           Embark on a tour and explore our exhibits from anywhere - at home or
           in person!
@@ -51,7 +51,7 @@ export default function FeaturedToursPage() {
                     className="w-full rounded-lg"
                   >
                     <div className="bg-[#386131] h-48 rounded-lg p-[1.31rem] flex flex-col justify-end">
-                      <h4 className="text-white text-[0.8125rem] font-semibold mt-0.5 relative bottom-[0.44rem]">
+                      <h4 className="text-white text-[0.8125rem] font-medium mt-0.5 relative bottom-[0.44rem]">
                         {tour.stop_count} stops
                       </h4>
                       <div className="flex items-center justify-between">
