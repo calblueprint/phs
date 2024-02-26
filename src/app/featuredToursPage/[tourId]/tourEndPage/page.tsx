@@ -88,13 +88,13 @@ export default function TourEndPage({
                 {`You've reached the end of this tour!`}
               </h1>
             </div>
-            <p className="text-[#333333] text-lg">
+            <p className="text-[#333333] text-sm font-extralight">
               Thanks for visiting {tour?.name}.
             </p>
           </div>
           <div className="bg-asparagus w-[17.375rem] text-center rounded-lg">
             <Link href="/featuredToursPage">
-              <h2 className="text-ivory text-base font-semibold p-4">
+              <h2 className="text-ivory text-base font-semibold p-3">
                 Back to Featured Tours
               </h2>
             </Link>
