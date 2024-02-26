@@ -34,7 +34,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="bg-ivory min-h-screen w-full m-0">
+    <div className="bg-ivory min-h-screen w-full min-w-screen m-0">
       <NavBar />
       <WelcomeGraphic />
       <div className="w-96 h-24 flex-col justify-start items-start gap-4 inline-flex mt-8 mx-4">

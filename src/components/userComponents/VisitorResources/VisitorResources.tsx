@@ -11,7 +11,7 @@ function VisitorResources() {
   return (
     <div className="Visitor-Resources w-full h-48 bg-mint-cream pt-6 px-4">
       <h3 className="text-night mb-4">Visitor Resources</h3>
-      <div className="flex space-between space-x-3">
+      <div className="flex space-x-6">
         <Link
           className="w-44 h-24 bg-ivory text-night items-center rounded-md shadow inline-flex justify-around"
           href="/siteMapPage"
@@ -25,7 +25,7 @@ function VisitorResources() {
           </div>
         </Link>
         <Link
-          className="w-44 h-24 bg-ivory text-night items-center rounded-md shadow inline-flex justify-around"
+          className="ml-auto w-44 h-24 bg-ivory text-night items-center rounded-md shadow inline-flex justify-around"
           href="/qrCodeTourPage"
         >
           <PiQrCodeBold className="w-7 h-7 text-scary-forest" />

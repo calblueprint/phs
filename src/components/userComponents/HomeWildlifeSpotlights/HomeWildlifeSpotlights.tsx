@@ -48,24 +48,25 @@ function HomeWildlifeSpotlights() {
       </div>
       <div className="carousel carousel-center max-w-md p-4 space-x-4 rounded-box w-full">
         {spotlightsWithMedia.map((spotlight: SpotlightWithMediaRow) => (
-          <div
-            key={spotlight.id}
-            className="relative carousel-item w-56 h-64 bg-gradient-to-b from-zinc-800 to-black rounded-lg overflow-hidden"
-          >
-            <img
-              className="w-full h-full object-cover rounded-lg"
-              src={spotlight.media_url}
-              alt="background for spotlight"
-            />
-            <div className="absolute bottom-0.5 p-4">
-              <div className="w-45.25 text-stone-50 text-xl font-extrabold">
-                {spotlight.name}
-              </div>
-              <div className="w-28 h-9 text-stone-50 text-sm font-normal line-clamp-2">
-                {spotlight.preview_text}
+          <Link href={`/spotlightPage/${spotlight.id}`} key={spotlight.id}>
+            <div
+              className="relative carousel-item w-56 h-64 bg-gradient-to-b from-zinc-800 to-black rounded-lg overflow-hidden"
+            >
+              <img
+                className="w-full h-full object-cover rounded-lg"
+                src={spotlight.media_url}
+                alt="background for spotlight"
+              />
+              <div className="absolute bottom-0.5 p-4">
+                <div className="w-45.25 text-stone-50 text-xl font-extrabold">
+                  {spotlight.name}
+                </div>
+                <div className="w-28 h-9 text-stone-50 text-sm font-normal line-clamp-2">
+                  {spotlight.preview_text}
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
