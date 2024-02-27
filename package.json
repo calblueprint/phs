@@ -64,17 +64,14 @@
     "typescript": "^4.9.5"
   },
   "lint-staged": {
-    "linters": {
-      "src/**/*.js": [
-        "formatter --write",
-        "git add"
-      ]
-    },
-    "ignore": [
-      "node_modules",
-      "dist",
-      "package-lock.json",
-      "src/app/testing/page.tsx"
-    ]
-  }
+    "*.js": "eslint --cache --fix",
+    "*.css": "stylelint --fix",
+    "*.md": "markdownlint"
+  },
+  "ignore": [
+    "node_modules",
+    "dist",
+    "package-lock.json",
+    "src/app/testing/page.tsx"
+  ]
 }

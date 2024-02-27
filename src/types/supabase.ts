@@ -305,6 +305,8 @@ export type Database = {
           stop_count: number
           spotlight: boolean
           preview_text: string
+          coordinates: Json
+          category: Database["public"]["Enums"]["tour_category"]
           media_url: string
         }[]
       }
