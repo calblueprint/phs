@@ -14,24 +14,7 @@ import { SpotlightWithMediaRow } from '../types/types';
  * @returns - Home page for PHS/SPCA.  Buttons are available for the major flows of the application from this page.
  */
 function Home() {
-  const [spotlightsWithMedia, setSpotlightsWithMedia] = useState<
-    SpotlightWithMediaRow[]
-  >([]);
 
-  useEffect(() => {
-    /**
-     * @returns - !!! WIP !!! Used to fetch data for the spotlights with media
-     */
-    async function fetchData() {
-      try {
-        const responseData: SpotlightWithMediaRow[] = await joinSpotlightsWithMedia();
-        setSpotlightsWithMedia(responseData);
-      } catch (error) {
-        console.error('Error in fetch data: ', error);
-      }
-    }
-    fetchData();
-  }, []);
 
   return (
     <div className="bg-ivory min-h-screen w-full min-w-screen m-0">

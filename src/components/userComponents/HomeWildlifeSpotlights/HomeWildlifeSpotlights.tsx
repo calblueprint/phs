@@ -5,16 +5,16 @@ import { joinSpotlightsWithMedia } from '../../../supabase/tours/queries';
 import { SpotlightWithMediaRow } from '../../../types/types';
 
 /**
- * !!! WIP !!!
+ // eslint-disable-next-line jsdoc/check-param-names
  * @param root0
- * @param root0.mediaSpotlights
- * @param root0.SpotlightsWithMedia
- * @param root0.spotlightsWithMedia
+ * @param root0.mediaSpotlights - The media spotlights.
+ * @param root0.SpotlightsWithMedia - The spotlights with media.
+ * @param root0.spotlightsWithMedia - The spotlights with media.
  * @returns - For the Home page: Give a preview of content stored on the spotlights page
  * See All button will lead to the spotlights home page
  * Spotlight scroller will showcase and link to chosen spotlights
  */
-function HomeWildlifeSpotlights() {
+function HomeWildlifeSpotlights(): React.JSX.Element {
   // {spotlightsWithMedia} : {spotlightsWithMedia : SpotlightWithMediaRow[]}
   const [spotlightsWithMedia, setSpotlightsWithMedia] = useState<
     SpotlightWithMediaRow[]
@@ -25,7 +25,7 @@ function HomeWildlifeSpotlights() {
      */
     async function fetchData() {
       try {
-        const responseData = await joinSpotlightsWithMedia();
+        const responseData: SpotlightWithMediaRow[] = await joinSpotlightsWithMedia();
         setSpotlightsWithMedia(responseData);
       } catch (error) {
         console.error('Error in fetch data: ', error);
