@@ -1,21 +1,17 @@
 'use client';
 
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { HiChevronRight } from 'react-icons/hi';
 import HomeWildlifeSpotlights from '../components/userComponents/HomeWildlifeSpotlights/HomeWildlifeSpotlights';
 import NavBar from '../components/userComponents/navBar/navBar';
 import VisitorResources from '../components/userComponents/VisitorResources/VisitorResources';
 import WelcomeGraphic from '../components/userComponents/WelcomeGraphic/WelcomeGraphic';
-import { joinSpotlightsWithMedia } from '../supabase/tours/queries';
-import { SpotlightWithMediaRow } from '../types/types';
 
 /**
  * @returns - Home page for PHS/SPCA.  Buttons are available for the major flows of the application from this page.
  */
 function Home() {
-
-
   return (
     <div className="bg-ivory min-h-screen w-full min-w-screen m-0">
       <NavBar />

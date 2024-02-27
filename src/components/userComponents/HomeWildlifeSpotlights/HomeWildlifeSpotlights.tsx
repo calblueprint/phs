@@ -25,7 +25,8 @@ function HomeWildlifeSpotlights(): React.JSX.Element {
      */
     async function fetchData() {
       try {
-        const responseData: SpotlightWithMediaRow[] = await joinSpotlightsWithMedia();
+        const responseData: SpotlightWithMediaRow[] =
+          await joinSpotlightsWithMedia();
         setSpotlightsWithMedia(responseData);
       } catch (error) {
         console.error('Error in fetch data: ', error);
