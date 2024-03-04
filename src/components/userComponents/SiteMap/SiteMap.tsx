@@ -93,7 +93,7 @@ function SiteMap() {
   return (
     <MapContainer
       center={mapCenter}
-      zoom={18}
+      zoom={10}
       zoomControl={false}
       scrollWheelZoom
       style={{
