@@ -3,17 +3,17 @@
 import React from 'react';
 import NavBar from '../components/userComponents/navBar/navBar';
 
-function Home() {
+/**
+ * The home page.
+ * @returns the home page.
+ */
+export default function Home() {
   return (
-    <div style={{ backgroundColor: '#ebf0e4', height: '100vh' }}>
+    <div className="bg-ivory w-[24.375rem] min-h-screen">
       <NavBar />
-      <div style={{ padding: '16px' }}>
-        <h1 style={{ color: '#333333', fontSize: '2rem', fontWeight: 700 }}>
-          Home
-        </h1>
+      <div className="p-4">
+        <h1 className="text-[#333333] text-3xl font-bold mb-4">Home</h1>
       </div>
     </div>
   );
 }
-
-export default Home;

@@ -1,122 +1,95 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { HamburgerMenu } from '../../../../public/Icons';
 
 /**
- *
+ * @returns The navigation bar for the web app
  */
-function NavBar() {
+export default function NavBar() {
   const [showMenu, setShowMenu] = useState(false);
 
   /**
-   *
+   * Toggles the side menu
    */
   function handleClick() {
     setShowMenu(!showMenu);
   }
 
-  /**
-   *
-   * @param event
-   */
-  function handleKeyDown(event: React.KeyboardEvent<HTMLButtonElement>) {
-    if (event.key === 'Escape') {
-      setShowMenu(false);
-    }
-  }
-
   return (
-    <nav
-      className="bg-[#4b711d] p-4 flex items-center justify-between z-[9999]"
-      style={{ padding: '1rem', position: 'sticky', top: 0 }}
-    >
-      <Link href="/">
-        <img
-          src="https://phs-spca.org/wp-content/uploads/2017/03/PHSLogo.jpg"
-          alt="Logo"
-          className="object-contain"
-          style={{ maxHeight: '100%', maxWidth: '50%' }}
-        />
-      </Link>
-      <div className="flex-grow" />
-      <button
-        type="button"
-        className="w-10 h-10"
-        onClick={handleClick}
-        onKeyDown={handleKeyDown}
-        tabIndex={0}
-        aria-label="Menu"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="46"
-          height="46"
-          viewBox="0 0 46 46"
-          fill="none"
+    <nav className="bg-scary-forest w-[24.375rem] h-[7rem] flex flex-col relative z-[9999]">
+      <div className="flex flex-row justify-between relative top-[3.25rem]">
+        <Link href="/">
+          <img
+            src="https://phs-spca.org/wp-content/uploads/2017/03/PHSLogo.jpg"
+            alt="PHSLogo"
+            className="object-contain w-[6.5rem] h-[2.25rem] relative left-[1.13rem]"
+          />
+        </Link>
+        <button
+          type="button"
+          className="w-10 h-10 relative right-[0.81rem]"
+          onClick={handleClick}
         >
-          <path
-            d="M9.58331 13.4167H36.4166"
-            stroke="white"
-            strokeWidth="3.83333"
-            strokeLinecap="round"
-          />
-          <path
-            d="M9.58331 23H36.4166"
-            stroke="white"
-            strokeWidth="3.83333"
-            strokeLinecap="round"
-          />
-          <path
-            d="M9.58331 32.5833H36.4166"
-            stroke="white"
-            strokeWidth="3.83333"
-            strokeLinecap="round"
-          />
-        </svg>
-      </button>
+          <HamburgerMenu />
+        </button>
+      </div>
+      <div className=" bg-hunter-green w-[24.375rem] h-[0.375rem] absolute bottom-0" />
 
       {showMenu && (
-        <div className="fixed top-20 right-0 h-full w-3/5 bg-[#ebf0e4] shadow-lg">
-          <h1 className="text-xl text-black font-bold p-4">WELCOME</h1>
-          <ul className="p-4">
-            <Link href="/" className="block mb-2 text-black">
+        <div className="bg-[#1414148F] w-[24.375rem] h-full flex justify-end fixed top-28">
+          <div className="bg-ivory w-[14.9375rem] h-full relative p-[1.31rem]">
+            <h1 className="text-scary-forest text-sm font-normal mt-[1.5rem]">WELCOME</h1>
+            <Link
+              href="/"
+              className="text-night text-lg font-semibold block relative left-4 mt-[1.25rem]"
+            >
               Home
             </Link>
-          </ul>
 
-          <h1 className="text-xl text-black font-bold p-4">VISIT</h1>
-          <ul className="p-4">
-            <Link href="/hoursAdmissionPage" className="block mb-2 text-black">
+            <h1 className="text-scary-forest text-sm font-normal mt-[2.12rem]">VISIT</h1>
+            <Link
+              href="/hoursAdmissionPage"
+              className="text-night text-lg font-semibold block relative left-4 mt-[1.25rem]"
+            >
               Hours & Admission
             </Link>
-            <Link href="/featuredToursPage" className="block mb-2 text-black">
-              Featured Tours
+            <Link
+              href="/featuredToursPage"
+              className="text-night text-lg font-semibold block relative left-4 mt-[1.25rem]"
+            >
+              Tours
             </Link>
-            <Link href="/spotlightPage" className="block mb-2 text-black">
-              Spotlight Tours
-            </Link>
-            <Link href="/siteMapPage" className="block mb-2 text-black">
+            <Link
+              href="/siteMapPage"
+              className="text-night text-lg font-semibold block relative left-4 mt-[1.25rem]"
+            >
               Site Map
             </Link>
-            <Link href="/qrCodeTourPage" className="block text-black">
-              QR Code Tour
-            </Link>
-            <Link href="/qrCodeScanner" className="block text-black">
+            <Link
+              href="/qrCodeTourPage"
+              className="text-night text-lg font-semibold block relative left-4 mt-[1.25rem]"
+            >
               QR Scanner
             </Link>
-          </ul>
-          <h1 className="text-xl text-black font-bold p-4">LEARN & EXPLORE</h1>
-          <ul className="p-4">
-            <Link href="/collectionsPage" className="block mb-2 text-black">
-              Collections
+
+            <h1 className="text-scary-forest text-sm font-normal mt-[2.13rem]">
+              LEARN & EXPLORE
+            </h1>
+            <Link
+              href="/spotlightPage"
+              className="text-night text-lg font-semibold block relative left-4 mt-[1.25rem]"
+            >
+              Spotlights
             </Link>
-            <Link href="/newsFeedPage" className="block mb-2 text-black">
+            <Link
+              href="/newsFeedPage"
+              className="text-night text-lg font-semibold block relative left-4 mt-[1.25rem]"
+            >
               News Feed
             </Link>
-          </ul>
+          </div>
         </div>
       )}
     </nav>
   );
 }
-
-export default NavBar;
