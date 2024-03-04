@@ -140,12 +140,13 @@ export default function TourStopPage({
         <h1 className="text-[#333333] text-3xl font-semibold">
           {display && display.title}
         </h1>
-        <p className="text-[#333333] font-normal">
-          Raccoons adapt to a variety of habitats, making them highly versatile
-          mammals.
+        <p className="text-[#333333] font-medium">
+          This is a placeholder for the display summary, which is coming very soon...
         </p>
       </div>
-      {media.length > 0 && <Carousel media={media} />}
+      <div className="my-6">
+        {media.length > 0 && <Carousel media={media} />}
+      </div>
       <div className="px-[1.56rem] pb-[2.5rem]">
         <p className="text-[#333333]">
           {display && display.description}
