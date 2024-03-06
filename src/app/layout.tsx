@@ -48,6 +48,7 @@ export default function RootLayout({
           crossOrigin=""
         />
         <script src="html5-qrcode.min.js" />
+        
       </head>
 
       <body className={inter.className}>{children}</body>
