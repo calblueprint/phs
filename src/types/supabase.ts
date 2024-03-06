@@ -216,6 +216,30 @@ export interface Database {
         }
         Relationships: []
       }
+      news: {
+        Row: {
+          content_link: string
+          created_at: string
+          id: string
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          content_link?: string
+          created_at?: string
+          id?: string
+          title?: string
+          updated_at?: string | null
+        }
+        Update: {
+          content_link?: string
+          created_at?: string
+          id?: string
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
