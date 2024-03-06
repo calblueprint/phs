@@ -59,28 +59,30 @@ function DisplayPreviewCard({
 
   return (
     <Link href={`/spotlightPage/${id}`}>
-      <div className="flex flex-col items-center justify-center max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto p-4">
+      <div className="flex flex-col items-center justify-center w-[25rem] h-[8.25rem] max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto p-4 pb-[2.87rem] pr-[1.19rem] pl-[1.19rem] rounded-md">
         <div
-          className="flex flex-row items-center rounded-md overflow-hidden bg-ivory cursor-pointer w-full sm:w-3/4 md:w-3/5 lg:w-1/2 xl:w-4/5 h-[8.25rem] flex-shrink-0 shadow-xl" 
+          className="flex flex-row items-center rounded-md overflow-hidden bg-ivory cursor-pointer w-full sm:w-4/4 md:w-5/5 lg:w-2/2 xl:w-5/5 flex-shrink-0 shadow-xl" 
           // style={{ width: '22rem', height: '8.25rem', flexShrink: 0, borderRadius: '0.5rem', boxShadow: '0px 4px 24px 0px rgba(20, 20, 20, 0.16)' }}
           aria-hidden="true"
         >
           {!loading && 
-          <div className="relative w-[7.8125rem] h-[8.25rem] flex-none ">
+          <div className="relative w-[7.8125rem] h-[8.25rem] shrink-0 rounded-tl-md rounded-tr-none rounded-br-none rounded-bl-md">
+           
             <Image
-              className="shrink"
+              // className="shrink"
               src={previewImage}
               alt='placeholder'
               // width={100%} // Example width
               // height={200} // Example height
+              // "relative w-[7.8125rem] h-[7rem] flex-none "
               layout="fill"
-              // objectFit="cover"
+              objectFit="cover"
 
             /> 
             </div>
           }
           <div
-            className="bg-white rounded-r-md align-center justify-items-center align-middle pt-6 pb-4 px-3.5 w-10/12 overflow-hidden"
+            className="justify-items-center align-middle overflow-hidden w-full h-full"
             onClick={handleClick}
             onKeyDown={e => {
               if (handleClick && e.key === 'Enter') {
@@ -90,14 +92,22 @@ function DisplayPreviewCard({
             role="button"
             tabIndex={0}
           >
-            <div className="flex-grow p-1"> 
+            <div className=""> 
               <h3
-                className="overflow-hidden text-[var(--Night,#3B3B3B)] truncate font-lato text-base font-bold leading-normal"
+                className="relative truncate font-bold font-lato text-night pr-[0.31rem] pl-[0.75rem] pt-[2.31rem] pb-[0rem] text-base"
                 // style={{ fontWeight: 'bolder' }}
+                // "flex-grow p-1"
+                // overflow-hidden text-night truncate font-lato text-base font-bold leading-normal
               >
                 {name}
               </h3>
-              <h4 className="text-gray-600 truncate">{description}</h4>
+      
+              <h4 className="relative font-lato h-[2.0625rem] pr-[0.31rem] pt-[0.37rem] pl-[0.75rem] pb-[2.38rem] text-shadow line-clamp-2 text-sm">
+                {description}
+              </h4>
+                
+          
+   
             </div>
           </div>
         </div>
