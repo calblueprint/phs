@@ -8,6 +8,9 @@ import { fetchAllNewsByDate } from '../../supabase/news/queries';
 import NewsDisplay from '../../components/userComponents/NewsDisplay/NewsDisplay';
 
 /**
+ * used as an onClick which goes back to previous page 
+ */
+/**
  * @param evt on click of button
  */
 function goBack(evt: React.SyntheticEvent) {
