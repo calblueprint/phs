@@ -29,6 +29,7 @@ export default function RootLayout({
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
           crossOrigin=""
         />
+        <script src="https://kit.fontawesome.com/578b960d2a.js" crossOrigin="anonymous"></script>
         <link 
           href="https://fonts.googleapis.com/css?family=Lato:400,700"
           rel="stylesheet"
