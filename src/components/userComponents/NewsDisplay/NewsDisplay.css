@@ -10,12 +10,13 @@
   font-family: Lato;
 }
 
-#icon {
-  position: relative;
-  top: 2px;
-}
-#title-line {
-  display: flex;
+#title::after {
+  font-family: 'Font Awesome 5 Free';
+  content: '\f08e';
+  display: inline-block;
+  margin-left: 3px;
+  font-size: 14px;
+  font-weight: 900;
 }
 
 #title {

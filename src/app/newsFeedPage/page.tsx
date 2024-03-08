@@ -7,6 +7,9 @@ import { fetchAllNewsByDate } from '../../supabase/news/queries';
 import NewsDisplay from '../../components/userComponents/NewsDisplay/NewsDisplay'
 import { IoIosArrowRoundBack } from "react-icons/io";
 
+/**
+ * used as an onClick which goes back to previous page 
+ */
 function goBack(evt: React.SyntheticEvent) {
   // ignore the native anchor action
   evt.preventDefault();

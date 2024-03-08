@@ -15,15 +15,13 @@ export default function NewsDisplay(
         content_link: string;
         id: string;
     }) {
+    // format to readable date
     const date = moment(created_at).format("MMMM Do, YYYY");
     return (
         <li key={id}>
             <a href={ content_link }>
                 <div className="article">
-                    <div id="title-line">
-                        <span id="title"> { title } </span>
-                        <div id="icon"> <FiExternalLink color="#3B3B3B"/> </div>
-                    </div>
+                    <p id="title"> { title } </p>
                     <p id="date"> { date } </p>
                 </div>
             </a>
