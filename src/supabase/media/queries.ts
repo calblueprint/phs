@@ -35,6 +35,28 @@ export async function fetchImagesForDisplay(
 
   return data; 
 }
+
+/**
+ *
+ * @param tourId id of the tour to fetch images for 
+ * @returns an array of image objects corresponding to the display
+ */
+export async function fetchImagesForTour(
+  tourId: string | undefined,
+): Promise<MediaRow[] | null> {
+  if (!tourId) {
+    return null;
+  }
+  const { data, error } = await supabase.rpc('fetchimagesfortour', {
+    tourid: tourId,
+  });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data; 
+}
 /**
  *
  * @param id of media to delete
