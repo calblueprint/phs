@@ -80,7 +80,7 @@ export default function TourStartPage({
         <ol className="px-12">
           {tourDisplays.map(tourDisplay => (
             <li key={tourDisplay.display_id}>
-              <div className='text-night'>
+              <div className="text-night">
                 <Link
                   href={`/featuredToursPage/${params.tourId}/${tourDisplay.display_id}`}
                 >
