@@ -9,7 +9,9 @@ import {
   fetchTour,
 } from '../../../supabase/tours/queries';
 import NavBar from '../../../components/userComponents/navBar/navBar';
-import { fetchDisplayfromSpotlight } from '../../../supabase/tour_displays/queries';
+import {
+  fetchDisplayfromSpotlight,
+} from '../../../supabase/tour_displays/queries';
 
 /**
  * @param root0 -
@@ -95,7 +97,6 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
           </Link>
         ))}
       </div>
-      if
       <h1 className="text-black font-Lato font-bold text-[18px] font-medium pl-[18px] pb-[16px]">
         Related Spotlights
       </h1>
