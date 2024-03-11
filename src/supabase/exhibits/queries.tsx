@@ -17,7 +17,8 @@ import { ExhibitRow } from '../../types/types';
 import supabase from '../client';
 
 /**
- *
+ * @params nothing
+ * @returns all exhibits
  */
 export async function fetchAllExhibits() {
   const { data, error } = await supabase.from('exhibits').select('*');
@@ -139,6 +140,7 @@ export async function deleteExhibit(
 /**
  *
  * @param id
+ * @returns nothing
  */
 export async function deleteDisplay(id: string) {
   const { error } = await supabase.from('exhibits').delete().eq('id', id);
@@ -153,6 +155,7 @@ export async function deleteDisplay(id: string) {
 /**
  *
  * @param exhibitData
+ * @returns new exhibit row
  */
 export async function createExhibit(exhibitData: ExhibitRow) {
   const { data, error } = await supabase.from('exhibits').upsert([exhibitData]);
