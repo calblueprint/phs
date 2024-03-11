@@ -3,6 +3,9 @@
 import React from 'react';
 import NavBar from '../../components/userComponents/navBar/navBar';
 
+/**
+ *
+ */
 function App() {
   return (
     <div style={{ backgroundColor: '#ebf0e4', height: '100vh' }}>
