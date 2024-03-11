@@ -1,13 +1,16 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
-import { DisplayRow, TourDisplaysRow, TourRow } from '../../../types/types';
+import { DisplayRow, TourDisplaysRow, TourRow, MediaRow, TourMediaRow } from '../../../types/types';
 import NavBar from '../../../components/userComponents/navBar/navBar';
 import { fetchTour } from '../../../supabase/tours/queries';
 import { fetchTourDisplays } from '../../../supabase/tour_displays/queries';
 import { fetchAllDisplays } from '../../../supabase/displays/queries';
+import { fetchMedia } from '../../../supabase/media/queries';
+import { fetchTourMedia } from '../../../supabase/tour_media/queries';
 import BackButton from '../../../components/userComponents/BackButton/BackButton';
 
 /**
@@ -21,6 +24,8 @@ export default function TourStartPage({
 }: {
   params: { tourId: string };
 }) {
+  const [media, setMedia] = useState<MediaRow[]>([]);
+  const [tourMedia, setTourMedia] = useState<TourMediaRow[]>([]);
   const [displays, setDisplays] = useState<DisplayRow[]>([]);
   const [tour, setTour] = useState<TourRow>();
   const [tourDisplays, setTourDisplays] = useState<TourDisplaysRow[]>([]);
@@ -44,9 +49,23 @@ export default function TourStartPage({
       setDisplays(fetchedDisplays);
     };
 
+    // Get tour media
+    const getTourMedia = async () => {
+      const fetchedTourMedia = await fetchTourMedia(params.tourId);
+      setTourMedia(fetchedTourMedia);
+    };
+
+    // Get media
+    const getMedia = async () => {
+      const fetchedMedia = await fetchMedia();
+      setMedia(fetchedMedia);
+    };
+
     getTour();
     getTourDisplays();
     getDisplays();
+    getTourMedia();
+    getMedia();
   }, [params.tourId]);
 
   return (
@@ -59,11 +78,19 @@ export default function TourStartPage({
       >
         <BackButton />
       </Link>
-      <img
-        className="w-[24.375rem] h-[15.3125rem] relative"
-        src="https://images.unsplash.com/photo-1615812214207-34e3be6812df?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        alt="placeholder"
-      />
+      {media.length > 0 && (
+        <Image
+          className="w-[24.375rem] h-[15.3125rem] relative"
+          key={media.find(m => m.id === tourMedia[0]?.media_id)?.id}
+          src={media.find(m => m.id === tourMedia[0]?.media_id)?.url ?? ''}
+          alt={media.find(m => m.id === tourMedia[0]?.media_id)?.text ?? 'Tour start image'}
+          layout="responsive"
+          width={390}
+          height={245}
+          objectFit="cover"
+          priority
+        />
+      )}
 
       <div className="w-[24.375rem] flex flex-col px-[1.125rem] absolute top-[20.56rem] gap-6 mb-[2.5rem]">
         <div className="bg-mint-cream w-[22.125rem] rounded-md px-[2.1875rem] py-[2.1875rem] flex-col items-center gap-3 inline-flex">
