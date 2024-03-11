@@ -187,4 +187,7 @@ export async function updateExhibit(id: number, updatedInfo: ExhibitRow) {
   const newExhibit = data;
   return newExhibit;
 }
+<<<<<<< HEAD
 >>>>>>> b191485 (added database and page)
+=======
+>>>>>>> 7599b67 (prettier)
