@@ -33,7 +33,6 @@ export async function fetchMatchingTourDisplayIdsfromSpotlight(tourId: string) {
     );
   }
   const displayIds = data.map(item => item.display_id);
-  console.log('hello?');
   return displayIds;
 }
 
