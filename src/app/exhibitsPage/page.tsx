@@ -6,7 +6,7 @@ import { ExhibitRow } from '../../types/types';
 import { fetchAllExhibits } from '../../supabase/exhibits/queries';
 
 /**
- *
+ * @returns exhibit page
  */
 function App() {
   const [exhibits, setExhibits] = useState<ExhibitRow[]>([]);
