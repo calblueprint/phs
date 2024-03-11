@@ -43,7 +43,7 @@ jobs:
       # Lint codebase #
       ################################
       - name: Run ESLint
-        run: npx eslint .
+        run: npx lint-staged
       ################################
       # Check Prettier on codebase #
       ################################
