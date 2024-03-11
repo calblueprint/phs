@@ -29,7 +29,7 @@ function DisplayPreviewCard({
 }: DisplayCardProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [previewImage, setPreviewImage] = useState<string>('');
-  const { id, name, description, coordinates } = tour;
+  const { id, name, description, coordinates, category } = tour;
 
   // Map Context
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -66,7 +66,7 @@ function DisplayPreviewCard({
           aria-hidden="true"
         >
           {!loading && 
-          <div className="relative w-[7.8125rem] h-[8.25rem] shrink-0 rounded-tl-md rounded-tr-none rounded-br-none rounded-bl-md">
+          <div className="relative w-[7.8125rem] z-10 h-[8.25rem] shrink-0 rounded-tl-md rounded-tr-none rounded-br-none rounded-bl-md">
            
             <Image
               // className="shrink"
@@ -77,12 +77,13 @@ function DisplayPreviewCard({
               // "relative w-[7.8125rem] h-[7rem] flex-none "
               layout="fill"
               objectFit="cover"
+              // objectPosition='center'
 
             /> 
             </div>
           }
           <div
-            className="justify-items-center align-middle overflow-hidden w-full h-full"
+            className="justify-items-center align-middle z-20 overflow-hidden w-full h-full"
             onClick={handleClick}
             onKeyDown={e => {
               if (handleClick && e.key === 'Enter') {
@@ -93,6 +94,14 @@ function DisplayPreviewCard({
             tabIndex={0}
           >
             <div className=""> 
+              <h3
+                className="relative text-asparagus font-lato"
+                // style={{ fontWeight: 'bolder' }}
+                // "flex-grow p-1"
+                // overflow-hidden text-night truncate font-lato text-base font-bold leading-normal
+              >
+                {category}
+              </h3>
               <h3
                 className="relative truncate font-bold font-lato text-night pr-[0.31rem] pl-[0.75rem] pt-[2.31rem] pb-[0rem] text-base"
                 // style={{ fontWeight: 'bolder' }}
