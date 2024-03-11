@@ -5,6 +5,9 @@ import NavBar from '../../components/userComponents/navBar/navBar';
 import { ExhibitRow } from '../../types/types';
 import { fetchAllExhibits } from '../../supabase/exhibits/queries';
 
+/**
+ *
+ */
 function App() {
   const [exhibits, setExhibits] = useState<ExhibitRow[]>([]);
   useEffect(() => {
