@@ -52,5 +52,13 @@ jobs:
       ################################
       # Check for TypeScript errors #
       ################################
-      - name: Run TypeScript compiler (tsc)
-        run: npx tsc --noEmit
+      - name: Run TypeScript compiler (tsc) on staged files
+        run: |
+            # Get list of staged TypeScript files
+            files=$(git diff --cached --name-only --diff-filter=d | grep '\.tsx\?$')
+
+            # Run tsc on each file
+            for file in $files
+            do
+                npx tsc --noEmit $file || exit 1
+            done
