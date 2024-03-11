@@ -1,5 +1,6 @@
 'use client';
 
+<<<<<<< HEAD
 import supabase from '../client';
 import { ExhibitRow } from '../../types/types';
 
@@ -7,13 +8,28 @@ import { ExhibitRow } from '../../types/types';
  * Fetches all tours from the database.
  * @returns A promise that resolves to an array of ExhibitRow objects.
  */
-export async function fetchAllExhibits() {
-  const { data, error } = await supabase.rpc('get_exhibit_details');
+export async function fetchAllExhibits(): Promise<ExhibitRow[]> {
+  const { data, error } = await supabase.from('exhibits').select('*');
   if (error) {
     throw new Error(error.message);
+=======
+import { ExhibitRow } from '../../types/types';
+import supabase from '../client';
+
+/**
+ *
+ */
+export async function fetchAllExhibits() {
+  const { data, error } = await supabase.from('exhibits').select('*');
+  if (error) {
+    throw new Error(`An error occurred trying to read exhibits: ${error}`);
+>>>>>>> b191485 (added database and page)
   }
   return data;
 }
+
+<<<<<<< HEAD
+
 
 /**
  * Fetches a single exhibit from the database.
@@ -148,3 +164,54 @@ export async function deleteExhibit(
   }
   return data;
 }
+=======
+/**
+ *
+ * @param id
+ */
+export async function deleteDisplay(id: string) {
+  const { error } = await supabase.from('exhibits').delete().eq('id', id);
+
+  if (error) {
+    throw new Error(`An error occurred trying to delete displays: ${error}`);
+  } else {
+    fetchAllExhibits();
+  }
+}
+
+/**
+ *
+ * @param exhibitData
+ */
+export async function createExhibit(exhibitData: ExhibitRow) {
+  const { data, error } = await supabase.from('exhibits').upsert([exhibitData]);
+
+  if (error) {
+    throw new Error(
+      `An error occurred trying to create displays: ${error.message}`,
+    );
+  }
+  const newExhibit = data;
+  return newExhibit;
+}
+
+/**
+ *
+ * @param id - id number
+ * @param updatedInfo - the exhibit row to update
+ * @returns - updates that given exhibit row
+ */
+export async function updateExhibit(id: number, updatedInfo: ExhibitRow) {
+  const { data, error } = await supabase
+    .from('exhibits')
+    .update(updatedInfo)
+    .eq('id', updatedInfo.id);
+
+  if (error) {
+    throw new Error(`Error updating exhibit data: ${error.message}`);
+  }
+
+  const newExhibit = data;
+  return newExhibit;
+}
+>>>>>>> b191485 (added database and page)
