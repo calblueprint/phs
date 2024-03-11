@@ -4,6 +4,7 @@ import { ExhibitRow } from '../../types/types';
 import supabase from '../client';
 
 /**
+ * @params nothing
  * @returns all exhibits
  */
 export async function fetchAllExhibits() {
@@ -16,7 +17,7 @@ export async function fetchAllExhibits() {
 
 /**
  *
- * @param id display id
+ * @param id
  * @returns nothing
  */
 export async function deleteDisplay(id: string) {
@@ -31,7 +32,7 @@ export async function deleteDisplay(id: string) {
 
 /**
  *
- * @param exhibitData row of exhibit data
+ * @param exhibitData
  * @returns new exhibit row
  */
 export async function createExhibit(exhibitData: ExhibitRow) {
