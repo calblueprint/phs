@@ -14,13 +14,12 @@ export async function fetchAllExhibits() {
     throw new Error(error.message);
 =======
 import { ExhibitRow } from '../../types/types';
-import supabase from '../client';
 
 /**
- * @params nothing
- * @returns all exhibits
+ * Fetches all tours from the database.
+ * @returns A promise that resolves to an array of ExhibitRow objects.
  */
-export async function fetchAllExhibits() {
+export async function fetchAllExhibits(): Promise<ExhibitRow[]> {
   const { data, error } = await supabase.from('exhibits').select('*');
   if (error) {
     throw new Error(`An error occurred trying to read exhibits: ${error}`);
@@ -138,57 +137,50 @@ export async function deleteExhibit(
 }
 =======
 /**
- *
- * @param id
- * @returns nothing
+ * Updates a single exhibit in the database.
+ * @param newExhibitData - The updated exhibit data.
+ * @returns A promise that resolves to a ExhibitRow object.
  */
-export async function deleteDisplay(id: string) {
-  const { error } = await supabase.from('exhibits').delete().eq('id', id);
-
-  if (error) {
-    throw new Error(`An error occurred trying to delete displays: ${error}`);
-  } else {
-    fetchAllExhibits();
-  }
-}
-
-/**
- *
- * @param exhibitData
- * @returns new exhibit row
- */
-export async function createExhibit(exhibitData: ExhibitRow) {
-  const { data, error } = await supabase.from('exhibits').upsert([exhibitData]);
-
-  if (error) {
-    throw new Error(
-      `An error occurred trying to create displays: ${error.message}`,
-    );
-  }
-  const newExhibit = data;
-  return newExhibit;
-}
-
-/**
- *
- * @param id - id number
- * @param updatedInfo - the exhibit row to update
- * @returns - updates that given exhibit row
- */
-export async function updateExhibit(id: number, updatedInfo: ExhibitRow) {
+export async function updateExhibit(
+    newExhibitData: ExhibitRow,
+): Promise<ExhibitRow | null> {
   const { data, error } = await supabase
     .from('exhibits')
-    .update(updatedInfo)
-    .eq('id', updatedInfo.id);
-
+    .update(newExhibitData)
+    .eq('id', newExhibitData.id);
   if (error) {
-    throw new Error(`Error updating exhibit data: ${error.message}`);
+    throw new Error(error.message);
   }
-
-  const newExhibit = data;
-  return newExhibit;
+  return data;
 }
-<<<<<<< HEAD
+
+/**
+ * Upserts a single exhibit into the database.
+ * @param exhibitData - The exhibit to upsert.
+ * @returns A promise that resolves to a ExhibitRow object.
+ */
+export async function upsertTour(exhibitData: ExhibitRow): Promise<ExhibitRow | null> {
+  const { data, error } = await supabase.from('exhibits').upsert(exhibitData);
+  if (error) {
+    throw new Error(error.message);
+  }
+  return data;
+}
+
+/**
+ * Deletes a single exhibit from the database.
+ * @param exhibitId - The id of the exhibit to delete.
+ * @returns A promise that resolves to a ExhibitRow object.
+ */
+export async function deleteExhibit(exhibitId: string): Promise<ExhibitRow | null> {
+  const { data, error } = await supabase
+    .from('exhibits')
+    .delete()
+    .eq('id', exhibitId);
+  if (error) {
+    throw new Error(error.message);
+  }
+  return data;
+}
+
 >>>>>>> b191485 (added database and page)
-=======
->>>>>>> 7599b67 (prettier)
