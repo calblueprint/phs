@@ -94,7 +94,9 @@ These styles are applied automatically to certain div tags, but you can also cal
     )
     rgb(var(--background-start-rgb));
 } */
-body,
+body {
+  @apply bg-ivory
+}
 html {
   height: 100%;
 }

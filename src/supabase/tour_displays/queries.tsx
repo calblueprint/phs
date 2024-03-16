@@ -74,7 +74,7 @@ export async function fetchRelatedSpotlightIdsFromSpotlight(
  * @returns the spotlights that have the corresponding ids
  */
 export async function fetchRelatedSpotlightsfromIds(
-  relatedSpotlightIds: string[],
+  relatedSpotlightIds: TourRow[],
 ) {
   const { data, error } = await supabase
     .from('tours')

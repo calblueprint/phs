@@ -6,7 +6,10 @@ import React, { useEffect, useState } from 'react';
 import { TourRow, DisplayRow } from '../../../types/types';
 import { fetchTour } from '../../../supabase/tours/queries';
 import NavBar from '../../../components/userComponents/navBar/navBar';
-import { fetchDisplayfromSpotlight, fetchRelatedSpotlightIdsFromSpotlight } from '../../../supabase/tour_displays/queries';
+import {
+  fetchDisplayfromSpotlight,
+  fetchRelatedSpotlightIdsFromSpotlight,
+} from '../../../supabase/tour_displays/queries';
 
 /**
  * @param -.params
@@ -26,6 +29,9 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
     spotlight: true,
     preview_text: 'N/A',
     stop_count: 0,
+    category: 'BuildingsAndServices',
+    coordinates: {},
+    preview_text: null,
   });
 
   const [displays, setDisplays] = useState<DisplayRow[]>([]);
@@ -45,10 +51,9 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
         const responseDataForDisplays: DisplayRow[] =
           await fetchDisplayfromSpotlight(params.spotlightId);
         setDisplays(responseDataForDisplays);
-
-        // const responseDataForRelatedSpotlights: TourRow[] = await fetchRelatedSpotlightsfromSpotlightId(params.spotlightId);
-        // setRelatedSpotlight(responseDataForRelatedSpotlights);
-
+        const responseDataForRelatedSpotlights: TourRow[] =
+          await fetchRelatedSpotlightIdsFromSpotlight(params.spotlightId);
+        setRelatedSpotlight(responseDataForRelatedSpotlights);
       } catch (error) {
         console.error(error);
       }
