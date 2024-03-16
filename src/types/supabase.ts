@@ -5,7 +5,6 @@ export type Json =
   | null
   | { [key: string]: Json | undefined }
   | Json[];
-  | Json[];
 
 export type Database = {
   public: {
