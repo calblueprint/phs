@@ -9,7 +9,7 @@ import { FiExternalLink } from 'react-icons/fi';
  * @param root0.id id of article
  * @param root0.createdAt time article added
  * @param root0.contentLink link to article
- * @returns Single Newsdisplay
+ * @returns A Single News Display Component
  */
 export default function NewsDisplay({
   title,
@@ -27,7 +27,7 @@ export default function NewsDisplay({
   return (
     <li key={id}>
       <a href={contentLink}>
-        <div className="w-[95%] m-auto flex flex-col items-start gap-[12px] mb-[24px] mt-[24px] font-[Lato]">
+        <div className="flex flex-col items-start gap-3 mb-6 mt-6 font-[Lato]">
           <div className="flex m-auto flex-row justify-between w-full">
             <p className="text-night text-[16px] not-italic font-medium leading-[normal] w-[90%]">
               {' '}
@@ -43,7 +43,7 @@ export default function NewsDisplay({
           </p>
         </div>
       </a>
-      <hr className="border-silver w-[95%] m-auto h-[.5px] mb-[10px]" />
+      <hr className="border-silver m-auto h-[.5px] mb-[10px]" />
     </li>
   );
 }
