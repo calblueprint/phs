@@ -44,7 +44,7 @@ export default function RootLayout({
         />
         <script src="html5-qrcode.min.js" />
       </head>
-
+      
       <body
         className={`${inter.className} ${lato.className} ${manrope.className}`}
       >
