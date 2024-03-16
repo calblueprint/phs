@@ -8,13 +8,13 @@ import { NewsRow } from '../../types/types';
  * @param newsData - The news to insert.
  * @returns A promise that resolves to a NewsRow object.
  */
-export async function insertNews(newsData: NewsRow): Promise<NewsRow| null> {
-    const { data, error } = await supabase.from('news').insert(newsData);
-    if (error) {
-      throw new Error(error.message);
-    }
-    return data;
+export async function insertNews(newsData: NewsRow): Promise<NewsRow | null> {
+  const { data, error } = await supabase.from('news').insert(newsData);
+  if (error) {
+    throw new Error(error.message);
   }
+  return data;
+}
 
 /**
  * Deletes a single news from the database.
@@ -22,15 +22,12 @@ export async function insertNews(newsData: NewsRow): Promise<NewsRow| null> {
  * @returns A promise that resolves to a NewsRowobject.
  */
 export async function deleteNews(newsId: string): Promise<NewsRow | null> {
-    const { data, error } = await supabase
-      .from('news')
-      .delete()
-      .eq('id', newsId);
-    if (error) {
-      throw new Error(error.message);
-    }
-    return data;
+  const { data, error } = await supabase.from('news').delete().eq('id', newsId);
+  if (error) {
+    throw new Error(error.message);
   }
+  return data;
+}
 
 /**
  * Updates a single news in the database.
@@ -38,55 +35,58 @@ export async function deleteNews(newsId: string): Promise<NewsRow | null> {
  * @returns A promise that resolves to a NewsRow object.
  */
 export async function updateNews(
-    newNewsData: NewsRow,
-  ): Promise<NewsRow | null> {
-    const { data, error } = await supabase
-      .from('news')
-      .update(newNewsData)
-      .eq('id', newNewsData.id);
-    if (error) {
-      throw new Error(error.message);
-    }
-    return data;
+  newNewsData: NewsRow,
+): Promise<NewsRow | null> {
+  const { data, error } = await supabase
+    .from('news')
+    .update(newNewsData)
+    .eq('id', newNewsData.id);
+  if (error) {
+    throw new Error(error.message);
   }
+  return data;
+}
 
 /**
  * Fetches all news from the database.
  * @returns A promise that resolves to an array of NewsRow objects.
  */
 export async function fetchAllNews(): Promise<NewsRow[]> {
-    const { data, error } = await supabase.from('news').select('*');
-    if (error) {
-      throw new Error(error.message);
-    }
-    return data;
+  const { data, error } = await supabase.from('news').select('*');
+  if (error) {
+    throw new Error(error.message);
   }
+  return data;
+}
 
 /**
  * Fetches all news from the database sorted by created_by time recent first.
  * @returns A promise that resolves to an array of NewsRow objects.
  */
-  export async function fetchAllNewsByDate(): Promise<NewsRow[]> {
-    const { data, error } = await supabase.from('news').select('*').order('created_at', { ascending: false});
-    if (error) {
-      throw new Error(error.message);
-    }
-    return data;
+export async function fetchAllNewsByDate(): Promise<NewsRow[]> {
+  const { data, error } = await supabase
+    .from('news')
+    .select('*')
+    .order('created_at', { ascending: false });
+  if (error) {
+    throw new Error(error.message);
   }
-  
-  /**
-   * Fetches a single news from the database.
-   * @param newsId - The id of the news to fetch.
-   * @returns A promise that resolves to a NewsRow object.
-   */
-  export async function fetchNews(newsId: string): Promise<NewsRow> {
-    const { data, error } = await supabase
-      .from('news')
-      .select('*')
-      .eq('id', newsId)
-      .single();
-    if (error) {
-      throw new Error(error.message);
-    }
-    return data;
+  return data;
+}
+
+/**
+ * Fetches a single news from the database.
+ * @param newsId - The id of the news to fetch.
+ * @returns A promise that resolves to a NewsRow object.
+ */
+export async function fetchNews(newsId: string): Promise<NewsRow> {
+  const { data, error } = await supabase
+    .from('news')
+    .select('*')
+    .eq('id', newsId)
+    .single();
+  if (error) {
+    throw new Error(error.message);
   }
+  return data;
+}
