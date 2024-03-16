@@ -118,7 +118,7 @@ function SiteMap() {
           />
         ))}
         {selectedTour && (
-          <Control position="bottomleft">
+          <Control position="bottomright">
             <DisplayPreviewCard
               tour={selectedTour}
               handleClose={handlePreviewClose}
