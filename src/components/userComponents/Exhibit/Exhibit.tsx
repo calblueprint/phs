@@ -11,6 +11,39 @@ import Image from 'next/image';
  * @param root0.id id of exhibit
  * @returns exhibit component
  */
+
+/**
+ * @param evt on click of button
+ */
+function goBack(evt: React.SyntheticEvent) {
+    // ignore the native anchor action
+    evt.preventDefault();
+  
+    window.history.back();
+  }
+  
+  /**
+   * @returns back button
+   */
+  function BackButton() {
+    return (
+      <button type="button" style={{ backgroundColor: '#4b711d' }} onClick={goBack}>
+        {' '}
+        <IoIosArrowRoundBack size={40} />
+      </button>
+    );
+  }
+  
+/**
+ *
+ * @param root0 passed in
+ * @param root0.title title of exhibit
+ * @param root0.description description of exhibit
+ * @param root0.category category of exhibit
+ * @param root0.image image
+ * @param root0.id id of exhibit
+ * @returns exhibit component
+ */
 export default function Exhibit({
   title,
   description,
