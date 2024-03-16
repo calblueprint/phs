@@ -44,11 +44,11 @@ function App() {
   }, [news]);
 
   return (
-    <div style={{ backgroundColor: '#ebf0e4', height: '100vh' }}>
+    <div className="bg-ivory h-screen">
       <NavBar />
-      <div style={{ padding: '16px' }}>
+      <div className="p-4">
         <BackButton />
-        <h1 style={{ color: '#333333', fontSize: '2rem', fontWeight: 700 }}>
+        <h1 className="text-night text-3xl font-bold mt-2">
           News Feed
         </h1>
         <ul>
