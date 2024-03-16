@@ -4,8 +4,7 @@ export type Json =
   | boolean
   | null
   | { [key: string]: Json | undefined }
-  | Json[];
-  | Json[];
+  | Json[]
 
 export type Database = {
   public: {
@@ -39,66 +38,46 @@ export type Database = {
       };
       display_media: {
         Row: {
-          display_id: string;
-          media_id: string;
-          media_placement: string | null;
-        };
+          display_id: string
+          media_id: string
+          media_placement: string | null
+        }
         Insert: {
-          display_id: string;
-          media_id: string;
-          media_placement?: string | null;
-        };
+          display_id: string
+          media_id: string
+          media_placement?: string | null
+        }
         Update: {
-          display_id?: string;
-          media_id?: string;
-          media_placement?: string | null;
-        };
+          display_id?: string
+          media_id?: string
+          media_placement?: string | null
+        }
         Relationships: [
           {
-            foreignKeyName: 'display_media_display_id_fkey';
-            columns: ['display_id'];
-            isOneToOne: false;
-            referencedRelation: 'displays';
-            referencedColumns: ['id'];
-            foreignKeyName: 'display_media_display_id_fkey';
-            columns: ['display_id'];
-            isOneToOne: false;
-            referencedRelation: 'displays';
-            referencedColumns: ['id'];
+            foreignKeyName: "display_media_display_id_fkey"
+            columns: ["display_id"]
+            isOneToOne: false
+            referencedRelation: "displays"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: 'display_media_media_id_fkey';
-            columns: ['media_id'];
-            isOneToOne: false;
-            referencedRelation: 'media';
-            referencedColumns: ['id'];
-          },
-        ];
-      };
-            foreignKeyName: 'display_media_media_id_fkey';
-            columns: ['media_id'];
-            isOneToOne: false;
-            referencedRelation: 'media';
-            referencedColumns: ['id'];
-          },
-        ];
-      };
+            foreignKeyName: "display_media_media_id_fkey"
+            columns: ["media_id"]
+            isOneToOne: false
+            referencedRelation: "media"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       displays: {
         Row: {
-          coordinates: Json | null;
-          created_at: string;
-          description: string;
-          id: string;
-          title: string;
-          updated_at: string | null;
-        };
-          coordinates: Json | null;
-          created_at: string;
-          description: string;
-          id: string;
-          title: string;
-          updated_at: string | null;
-        };
+          coordinates: Json | null
+          created_at: string
+          description: string
+          id: string
+          title: string
+          updated_at: string | null
+        }
         Insert: {
           coordinates?: Json | null;
           created_at?: string;
@@ -126,35 +105,21 @@ export type Database = {
       };
       media: {
         Row: {
-          created_at: string;
-          id: string;
-          text: string | null;
-          title: string | null;
-          type: string | null;
-          url: string;
-        };
-          created_at: string;
-          id: string;
-          text: string | null;
-          title: string | null;
-          type: string | null;
-          url: string;
-        };
+          created_at: string
+          id: string
+          text: string | null
+          title: string | null
+          type: string | null
+          url: string
+        }
         Insert: {
-          created_at?: string;
-          id?: string;
-          text?: string | null;
-          title?: string | null;
-          type?: string | null;
-          url?: string;
-        };
-          created_at?: string;
-          id?: string;
-          text?: string | null;
-          title?: string | null;
-          type?: string | null;
-          url?: string;
-        };
+          created_at?: string
+          id?: string
+          text?: string | null
+          title?: string | null
+          type?: string | null
+          url?: string
+        }
         Update: {
           created_at?: string;
           id?: string;
@@ -167,166 +132,97 @@ export type Database = {
       };
       spotlight_recommendations: {
         Row: {
-          source_display_id: string;
-          target_display_id: string;
-        };
-          source_display_id: string;
-          target_display_id: string;
-        };
+          source_display_id: string
+          target_display_id: string
+        }
         Insert: {
-          source_display_id: string;
-          target_display_id: string;
-        };
-          source_display_id: string;
-          target_display_id: string;
-        };
+          source_display_id: string
+          target_display_id: string
+        }
         Update: {
-          source_display_id?: string;
-          target_display_id?: string;
-        };
-          source_display_id?: string;
-          target_display_id?: string;
-        };
+          source_display_id?: string
+          target_display_id?: string
+        }
         Relationships: [
           {
-            foreignKeyName: 'spotlight_recommendations_source_display_id_fkey';
-            columns: ['source_display_id'];
-            isOneToOne: false;
-            referencedRelation: 'tours';
-            referencedColumns: ['id'];
-            foreignKeyName: 'spotlight_recommendations_source_display_id_fkey';
-            columns: ['source_display_id'];
-            isOneToOne: false;
-            referencedRelation: 'tours';
-            referencedColumns: ['id'];
+            foreignKeyName: "spotlight_recommendations_source_display_id_fkey"
+            columns: ["source_display_id"]
+            isOneToOne: false
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: 'spotlight_recommendations_target_display_id_fkey';
-            columns: ['target_display_id'];
-            isOneToOne: false;
-            referencedRelation: 'tours';
-            referencedColumns: ['id'];
-          },
-        ];
-      };
-            foreignKeyName: 'spotlight_recommendations_target_display_id_fkey';
-            columns: ['target_display_id'];
-            isOneToOne: false;
-            referencedRelation: 'tours';
-            referencedColumns: ['id'];
-          },
-        ];
-      };
+            foreignKeyName: "spotlight_recommendations_target_display_id_fkey"
+            columns: ["target_display_id"]
+            isOneToOne: false
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       tour_displays: {
         Row: {
-          display_id: string;
-          display_order: number | null;
-          tour_id: string;
-        };
-          display_id: string;
-          display_order: number | null;
-          tour_id: string;
-        };
+          display_id: string
+          display_order: number | null
+          tour_id: string
+        }
         Insert: {
-          display_id: string;
-          display_order?: number | null;
-          tour_id: string;
-        };
-          display_id: string;
-          display_order?: number | null;
-          tour_id: string;
-        };
+          display_id: string
+          display_order?: number | null
+          tour_id: string
+        }
         Update: {
-          display_id?: string;
-          display_order?: number | null;
-          tour_id?: string;
-        };
-          display_id?: string;
-          display_order?: number | null;
-          tour_id?: string;
-        };
+          display_id?: string
+          display_order?: number | null
+          tour_id?: string
+        }
         Relationships: [
           {
-            foreignKeyName: 'tour_displays_display_id_fkey';
-            columns: ['display_id'];
-            isOneToOne: false;
-            referencedRelation: 'displays';
-            referencedColumns: ['id'];
-            foreignKeyName: 'tour_displays_display_id_fkey';
-            columns: ['display_id'];
-            isOneToOne: false;
-            referencedRelation: 'displays';
-            referencedColumns: ['id'];
+            foreignKeyName: "tour_displays_display_id_fkey"
+            columns: ["display_id"]
+            isOneToOne: false
+            referencedRelation: "displays"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: 'tour_displays_tour_id_fkey';
-            columns: ['tour_id'];
-            isOneToOne: false;
-            referencedRelation: 'tours';
-            referencedColumns: ['id'];
-          },
-        ];
-      };
-            foreignKeyName: 'tour_displays_tour_id_fkey';
-            columns: ['tour_id'];
-            isOneToOne: false;
-            referencedRelation: 'tours';
-            referencedColumns: ['id'];
-          },
-        ];
-      };
+            foreignKeyName: "tour_displays_tour_id_fkey"
+            columns: ["tour_id"]
+            isOneToOne: false
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       tour_media: {
         Row: {
-          media_id: string;
-          tour_id: string;
-        };
-          media_id: string;
-          tour_id: string;
-        };
+          media_id: string
+          tour_id: string
+        }
         Insert: {
-          media_id: string;
-          tour_id: string;
-        };
-          media_id: string;
-          tour_id: string;
-        };
+          media_id: string
+          tour_id: string
+        }
         Update: {
-          media_id?: string;
-          tour_id?: string;
-        };
-          media_id?: string;
-          tour_id?: string;
-        };
+          media_id?: string
+          tour_id?: string
+        }
         Relationships: [
           {
-            foreignKeyName: 'tour_media_media_id_fkey';
-            columns: ['media_id'];
-            isOneToOne: false;
-            referencedRelation: 'media';
-            referencedColumns: ['id'];
-            foreignKeyName: 'tour_media_media_id_fkey';
-            columns: ['media_id'];
-            isOneToOne: false;
-            referencedRelation: 'media';
-            referencedColumns: ['id'];
+            foreignKeyName: "tour_media_media_id_fkey"
+            columns: ["media_id"]
+            isOneToOne: false
+            referencedRelation: "media"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: 'tour_media_tour_id_fkey';
-            columns: ['tour_id'];
-            isOneToOne: false;
-            referencedRelation: 'tours';
-            referencedColumns: ['id'];
-          },
-        ];
-      };
-            foreignKeyName: 'tour_media_tour_id_fkey';
-            columns: ['tour_id'];
-            isOneToOne: false;
-            referencedRelation: 'tours';
-            referencedColumns: ['id'];
-          },
-        ];
-      };
+            foreignKeyName: "tour_media_tour_id_fkey"
+            columns: ["tour_id"]
+            isOneToOne: false
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       tours: {
         Row: {
           category: Database['public']['Enums']['tour_category'];
@@ -365,34 +261,32 @@ export type Database = {
       };
     };
     Views: {
-      [_ in never]: never;
-    };
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Functions: {
       fetchimagesfordisplay: {
         Args: {
-          displayid: string;
-        };
-          displayid: string;
-        };
+          displayid: string
+        }
+          displayid: string
+        }
         Returns: {
-          id: string;
-          url: string;
-          type: string;
-          title: string;
-          text: string;
-          created_at: string;
-        }[];
-      };
-          id: string;
-          url: string;
-          type: string;
-          title: string;
-          text: string;
-          created_at: string;
-        }[];
-      };
+          id: string
+          url: string
+          type: string
+          title: string
+          text: string
+          created_at: string
+        }[]
+      }
+          id: string
+          url: string
+          type: string
+          title: string
+          text: string
+          created_at: string
+        }[]
+      }
       fetchimagesfortour: {
         Args: {
           tourid: string;
@@ -481,8 +375,8 @@ export type Database = {
         }[];
       };
       join_tours_with_media: {
-        Args: Record<PropertyKey, never>;
-        Args: Record<PropertyKey, never>;
+        Args: Record<PropertyKey, never>
+        Args: Record<PropertyKey, never>
         Returns: {
           id: string;
           name: string;
@@ -549,10 +443,10 @@ export type TablesInsert<
     ? keyof Database[PublicTableNameOrOptions['schema']]['Tables']
     : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicTableNameOrOptions['schema']]['Tables'][TableName] extends {
-      Insert: infer I;
-  ? Database[PublicTableNameOrOptions['schema']]['Tables'][TableName] extends {
-      Insert: infer I;
+  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Insert: infer I
+  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Insert: infer I
     }
     ? I
     : never
@@ -572,10 +466,10 @@ export type TablesUpdate<
     ? keyof Database[PublicTableNameOrOptions['schema']]['Tables']
     : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicTableNameOrOptions['schema']]['Tables'][TableName] extends {
-      Update: infer U;
-  ? Database[PublicTableNameOrOptions['schema']]['Tables'][TableName] extends {
-      Update: infer U;
+  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Update: infer U
+  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Update: infer U
     }
     ? U
     : never
