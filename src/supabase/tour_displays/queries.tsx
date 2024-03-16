@@ -1,7 +1,7 @@
 'use client';
 
 import supabase from '../client';
-import { TourDisplaysRow, DisplayRow, TourRow } from '../../types/types';
+import { TourDisplaysRow, DisplayRow } from '../../types/types';
 import { fetchDisplaysfromIds } from '../displays/queries';
 
 /**
@@ -33,7 +33,6 @@ export async function fetchMatchingTourDisplayIdsfromSpotlight(tourId: string) {
     );
   }
   const displayIds = data.map(item => item.display_id);
-  console.log('hello?');
   return displayIds;
 }
 

@@ -10,11 +10,11 @@ import { fetchTourDisplays } from '../../../supabase/tour_displays/queries';
 import { fetchAllDisplays } from '../../../supabase/displays/queries';
 
 /**
- * The page that displays the start of a tour.
+ * Displays the start page for a tour
  * @param params -
  * @param params.params -
- * @param params.params.tourId - The tour ID.
- * @returns The tour start page.
+ * @param params.params.tourId - The tour ID
+ * @returns The tour start page
  */
 export default function TourStartPage({
   params,
