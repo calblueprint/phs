@@ -59,6 +59,7 @@ export type Database = {
           title?: string;
           updated_at?: string | null;
         };
+<<<<<<< HEAD
         Update: {
           coordinates?: Json | null;
           created_at?: string;
@@ -103,6 +104,18 @@ export type Database = {
         }
         Relationships: []
       }
+=======
+        Update: {
+          coordinates?: Json | null;
+          created_at?: string;
+          description?: string;
+          id?: string;
+          title?: string;
+          updated_at?: string | null;
+        };
+        Relationships: [];
+      };
+>>>>>>> 5f80cb5 (style changes)
       media: {
         Row: {
           created_at: string;
@@ -121,6 +134,7 @@ export type Database = {
           url?: string;
         };
         Update: {
+<<<<<<< HEAD
           created_at?: string
           id?: string
           text?: string | null
@@ -154,6 +168,17 @@ export type Database = {
         }
         Relationships: []
       }
+=======
+          created_at?: string;
+          id?: string;
+          text?: string | null;
+          title?: string | null;
+          type?: string | null;
+          url?: string;
+        };
+        Relationships: [];
+      };
+>>>>>>> 5f80cb5 (style changes)
       spotlight_recommendations: {
         Row: {
           source_display_id: string;
@@ -249,6 +274,7 @@ export type Database = {
       };
       tours: {
         Row: {
+<<<<<<< HEAD
           category: Database["public"]["Enums"]["tour_category"]
           coordinates: Json | null
           created_at: string
@@ -283,37 +309,65 @@ export type Database = {
         }
         Relationships: []
       }
+=======
+          created_at: string;
+          description: string | null;
+          id: string;
+          name: string | null;
+          spotlight: boolean;
+          stop_count: number | null;
+        };
+        Insert: {
+          created_at?: string;
+          description?: string | null;
+          id?: string;
+          name?: string | null;
+          spotlight?: boolean;
+          stop_count?: number | null;
+        };
+        Update: {
+          created_at?: string;
+          description?: string | null;
+          id?: string;
+          name?: string | null;
+          spotlight?: boolean;
+          stop_count?: number | null;
+        };
+        Relationships: [];
+      };
+>>>>>>> 5f80cb5 (style changes)
       news: {
         Row: {
-          content_link: string
-          created_at: string
-          id: string
-          title: string
-          updated_at: string | null
-        }
+          content_link: string;
+          created_at: string;
+          id: string;
+          title: string;
+          updated_at: string | null;
+        };
         Insert: {
-          content_link?: string
-          created_at?: string
-          id?: string
-          title?: string
-          updated_at?: string | null
-        }
+          content_link?: string;
+          created_at?: string;
+          id?: string;
+          title?: string;
+          updated_at?: string | null;
+        };
         Update: {
-          content_link?: string
-          created_at?: string
-          id?: string
-          title?: string
-          updated_at?: string | null
-        }
-        Relationships: []
-      }
-    }
+          content_link?: string;
+          created_at?: string;
+          id?: string;
+          title?: string;
+          updated_at?: string | null;
+        };
+        Relationships: [];
+      };
+    };
     Views: {
       [_ in never]: never;
     };
     Functions: {
       fetchimagesfordisplay: {
         Args: {
+<<<<<<< HEAD
           displayid: string
         }
         Returns: {
@@ -374,10 +428,33 @@ export type Database = {
         | "ParksAviariesEnclosures"
         | "SiteFeatures"
     }
+=======
+          display_id: string;
+        };
+        Returns: Record<string, unknown>;
+      };
+      joinspotlightswithmedia: {
+        Args: Record<PropertyKey, never>;
+        Returns: {
+          id: string;
+          name: string;
+          description: string;
+          created_at: string;
+          stop_count: number;
+          spotlight: boolean;
+          media_url: string;
+        }[];
+      };
+    };
+    Enums: {
+      media_type: 'image' | 'video' | 'link';
+    };
+>>>>>>> 5f80cb5 (style changes)
     CompositeTypes: {
       [_ in never]: never;
     };
   };
+<<<<<<< HEAD
 };
 
 export type Tables<
@@ -483,3 +560,6 @@ export type Enums<
   : PublicEnumNameOrOptions extends keyof Database["public"]["Enums"]
   ? Database["public"]["Enums"][PublicEnumNameOrOptions]
   : never
+=======
+}
+>>>>>>> 5f80cb5 (style changes)

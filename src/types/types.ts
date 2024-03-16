@@ -17,7 +17,7 @@ export type SpotlightWithMediaRow = TourRow & { media_url: string };
 =======
 export type NewsRow = Database['public']['Tables']['news']['Row'];
 export type SpotlightRow = {
-    tour_row: TourRow;
-    url: string;
+  tour_row: TourRow;
+  url: string;
 };
 >>>>>>> 9410475 (added news feed database and frontend)
