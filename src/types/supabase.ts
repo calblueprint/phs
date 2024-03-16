@@ -90,6 +90,48 @@ export type Database = {
         };
         Relationships: [];
       };
+      emails: {
+        Row: {
+          emails: string | null;
+          id: number;
+        };
+        Insert: {
+          emails?: string | null;
+          id?: number;
+        };
+        Update: {
+          emails?: string | null;
+          id?: number;
+        };
+        Relationships: [];
+      };
+      exhibits: {
+        Row: {
+          category: string;
+          coordinates: Json | null;
+          description: string | null;
+          id: string;
+          image: string | null;
+          title: string;
+        };
+        Insert: {
+          category: string;
+          coordinates?: Json | null;
+          description?: string | null;
+          id?: string;
+          image?: string | null;
+          title: string;
+        };
+        Update: {
+          category?: string;
+          coordinates?: Json | null;
+          description?: string | null;
+          id?: string;
+          image?: string | null;
+          title?: string;
+        };
+        Relationships: [];
+      };
       media: {
         Row: {
           created_at: string;
@@ -337,6 +379,22 @@ export type Database = {
           category: Database["public"]["Enums"]["tour_category"]
         }[]
       }
+      get_spotlight_recommendations: {
+        Args: {
+          source_display_id: string;
+        };
+        Returns: {
+          id: string;
+          name: string;
+          description: string;
+          created_at: string;
+          stop_count: number;
+          spotlight: boolean;
+          preview_text: string;
+          coordinates: Json;
+          category: Database['public']['Enums']['tour_category'];
+        }[];
+      };
       join_spotlights_with_media: {
         Args: Record<PropertyKey, never>
         Returns: {
