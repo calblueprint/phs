@@ -1,11 +1,14 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
 import { fetchAllTours } from '../../supabase/tours/queries';
+import { fetchMedia } from '../../supabase/media/queries';
+import { fetchAllTourMedia } from '../../supabase/tour_media/queries';
 import NavBar from '../../components/userComponents/navBar/navBar';
-import { TourRow } from '../../types/types';
+import { TourRow, MediaRow, TourMediaRow } from '../../types/types';
 import BackButton from '../../components/userComponents/BackButton/BackButton';
 import NextButton from '../../components/userComponents/NextButton/NextButton';
 /**
@@ -13,6 +16,8 @@ import NextButton from '../../components/userComponents/NextButton/NextButton';
  */
 export default function FeaturedToursPage() {
   const [tours, setTours] = useState<TourRow[]>([]);
+  const [media, setMedia] = useState<MediaRow[]>([]);
+  const [allTourMedia, setAllTourMedia] = useState<TourMediaRow[]>([]);
 
   useEffect(() => {
     // Get tours
@@ -21,7 +26,21 @@ export default function FeaturedToursPage() {
       setTours(fetchedTours);
     };
 
+    // Get all tour media
+    const getAllTourMedia = async () => {
+      const fetchedAllTourMedia = await fetchAllTourMedia();
+      setAllTourMedia(fetchedAllTourMedia);
+    };
+
+    // Get media
+    const getMedia = async () => {
+      const fetchedMedia = await fetchMedia();
+      setMedia(fetchedMedia);
+    };
+
     getTours();
+    getAllTourMedia();
+    getMedia();
   }, []);
 
   return (
@@ -35,7 +54,9 @@ export default function FeaturedToursPage() {
           </Link>
         </div>
 
-        <h1 className="text-night text-3xl font-semibold mb-4">Featured Tours</h1>
+        <h1 className="text-night text-3xl font-semibold mb-4">
+          Featured Tours
+        </h1>
         <p className="text-night mb-4">
           Embark on a tour and explore our exhibits from anywhere - at home or
           in person!
@@ -48,18 +69,39 @@ export default function FeaturedToursPage() {
                 <li className="my-4" key={tour.id}>
                   <Link
                     href={`/featuredToursPage/${tour.id}`}
-                    className="w-full rounded-lg"
+                    className="w-full rounded-lg block"
                   >
-                    <div className="bg-[#386131] h-48 rounded-lg p-[1.31rem] flex flex-col justify-end">
-                      <h4 className="text-white text-[0.8125rem] font-medium mt-0.5 relative bottom-[0.44rem]">
-                        {tour.stop_count} stops
-                      </h4>
-                      <div className="flex items-center justify-between">
-                        <h2 className="text-white text-xl font-bold truncate relative bottom-[0.31rem]">
-                          {tour.name}
-                        </h2>
-                        <div className="relative bottom-[0.35rem]">
-                          <NextButton />
+                    <div className="relative w-full">
+                      {media.length > 0 && (
+                        <Image
+                          className="w-[24.375rem] h-[15.3125rem] rounded-lg"
+                          key={
+                            media.find(m => m.id === (allTourMedia.find(m => m.tour_id === tour.id))?.media_id)?.id
+                          }
+                          src={
+                            media.find(m => m.id === (allTourMedia.find(m => m.tour_id === tour.id))?.media_id)?.url ?? ''
+                          }
+                          alt={
+                            media.find(m => m.id === (allTourMedia.find(m => m.tour_id === tour.id))?.media_id)?.text ?? 'Tour start image'
+                          }
+                          layout="responsive"
+                          width={390}
+                          height={245}
+                          objectFit="cover"
+                          priority
+                        />
+                      )}
+                      <div className="absolute bottom-0 w-full h-48 rounded-lg p-[1.31rem] flex flex-col justify-end" style={{background: 'linear-gradient(to bottom, #14141400 0%, #14141426 15%, #1E1E1E65 39.56%, #000000BF 75%, #333333BF 100%)'}}>
+                        <h4 className="text-white text-[0.8125rem] font-medium mt-0.5 relative bottom-[0.44rem]">
+                          {tour.stop_count} stops
+                        </h4>
+                        <div className="flex items-center justify-between">
+                          <h2 className="text-white text-xl font-bold truncate relative bottom-[0.31rem]">
+                            {tour.name}
+                          </h2>
+                          <div className="relative bottom-[0.35rem]">
+                            <NextButton />
+                          </div>
                         </div>
                       </div>
                     </div>
