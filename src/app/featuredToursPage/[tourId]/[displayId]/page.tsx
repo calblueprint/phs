@@ -11,12 +11,12 @@ import { fetchImagesForDisplay } from '../../../../supabase/media/queries';
 import Carousel from '../../../../components/userComponents/ImageScroller/ImageScroller';
 
 /**
- * The page that displays a tour stop.
+ * Displays a stop page for the current tour
  * @param params -
  * @param params.params -
- * @param params.params.tourId - The tour ID.
- * @param params.params.displayId - The display ID.
- * @returns The tour stop page.
+ * @param params.params.tourId - The tour ID
+ * @param params.params.displayId - The display ID
+ * @returns The tour stop page
  */
 export default function TourStopPage({
   params,

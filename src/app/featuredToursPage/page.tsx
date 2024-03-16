@@ -8,8 +8,8 @@ import NavBar from '../../components/userComponents/navBar/navBar';
 import { TourRow } from '../../types/types';
 
 /**
- * The page that displays all the featured tours.
- * @returns The featured tours page.
+ * Displays a list of all featured tours
+ * @returns The featured tours page
  */
 export default function FeaturedToursPage() {
   const [tours, setTours] = useState<TourRow[]>([]);

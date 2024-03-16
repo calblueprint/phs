@@ -4,6 +4,9 @@ import React from 'react';
 import Link from 'next/link';
 import NavBar from '../../components/userComponents/navBar/navBar';
 
+/**
+ * @returns The hours and admission page
+ */
 function App() {
   return (
     <div style={{ backgroundColor: '#ebf0e4', height: '100vh' }}>
