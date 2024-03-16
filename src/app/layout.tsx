@@ -36,7 +36,12 @@ export default function RootLayout({
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
           crossOrigin=""
         />
-
+        <link
+          href="https://fonts.googleapis.com/css?family=Lato:200,300,400,700"
+          rel="stylesheet"
+          integrity="sha384-S/0sPWyivHb0nXEN1JbIZoAHSDK4PQv0Zdl6399sbd0mYRatVZsKWdfflTIgipPy"
+          crossOrigin=""
+        />
         <script
           src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
