@@ -10,6 +10,10 @@ import {
   fetchDisplayfromSpotlight,
   fetchRelatedSpotlightsfromSpotlightId,
 } from '../../../supabase/tour_displays/queries';
+import {
+  fetchDisplayfromSpotlight,
+  fetchRelatedSpotlightsfromSpotlightId,
+} from '../../../supabase/tour_displays/queries';
 
 /**
  * @param -.params
@@ -39,6 +43,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
   const [displays, setDisplays] = useState<DisplayRow[]>([]);
 
   const [relatedSpolights, setRelatedSpotlight] = useState<TourRow[]>([]);
+  const [relatedSpolights, setRelatedSpotlight] = useState<TourRow[]>([]);
 
   useEffect(() => {
     /**
@@ -58,6 +63,8 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
         const responseDataForDisplays: DisplayRow[] =
           await fetchDisplayfromSpotlight(params.spotlightId);
         setDisplays(responseDataForDisplays);
+        const responseDataForRelatedSpotlights: TourRow[] =
+          await fetchRelatedSpotlightsfromSpotlightId(params.spotlightId);
         const responseDataForRelatedSpotlights: TourRow[] =
           await fetchRelatedSpotlightsfromSpotlightId(params.spotlightId);
         setRelatedSpotlight(responseDataForRelatedSpotlights);
@@ -132,6 +139,23 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
       </h1>
 
       <ul className="list-none p-0 flex">
+        {relatedSpolights.map(otherSpotlight => (
+          <li
+            className="pl-[18px] w-[162px] overflow-x-auto"
+            key={otherSpotlight.id}
+          >
+            <Link href={`/spotlightPage/${spotlight.id}`}>
+              <div className="bg-[#386131] h-[169px] rounded-2xl p-[18px] flex flex-col" />
+              <h4 className="text-black font-Lato text-20 font-bold mt-2">
+                {otherSpotlight.name}
+              </h4>
+              <h2 className="text-gray font-Lato text-sm font-normal">
+                {otherSpotlight.description}
+              </h2>
+            </Link>
+          </li>
+        ))}
+      </ul>
         {relatedSpolights.map(otherSpotlight => (
           <li
             className="pl-[18px] w-[162px] overflow-x-auto"
