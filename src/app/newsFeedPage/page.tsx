@@ -33,7 +33,7 @@ function BackButton() {
 }
 
 /**
- * @returns The news feed page
+ * @returns news feed page
  */
 function App() {
   const [news, setNews] = useState<NewsRow[]>([]);
