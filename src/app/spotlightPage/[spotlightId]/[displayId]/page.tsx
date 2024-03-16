@@ -81,19 +81,15 @@ export default function Page({
       </h1>
 
       <div className="flex space-x-[14px] pl-[25px] pt-[16px] w-screen overflow-x-auto">
-        {otherDisplays.map(otherDisplay => (
-          <Link
-            key={otherDisplay.id}
-            href={`/spotlightPage/${params.spotlightId}/${otherDisplay.id}?spotlightId=${params.spotlightId}`}
-          >
-            <button
-              type="button"
-              className="bg-[#7CA24E] w-[163px] h-[74px] text-white font-bold rounded-2xl p-[25px]"
-            >
-              {otherDisplay.title}
-            </button>
-          </Link>
-        ))}
+      {otherDisplays.map( 
+            otherDisplay => (
+                <Link key={otherDisplay.id} href={`/spotlightPage/${params.spotlightId}/${otherDisplay.id}?spotlightId=${params.spotlightId}`} >
+                    <button type="button" className="bg-[#7CA24E] w-[163px] h-[74px] text-white font-bold rounded-2xl p-[25px]">
+                        {otherDisplay.title}
+                    </button>
+                </Link>
+
+            ))}
       </div>
     </div>
   );
