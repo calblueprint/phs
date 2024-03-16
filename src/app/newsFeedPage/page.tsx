@@ -22,7 +22,7 @@ function goBack(evt: React.SyntheticEvent) {
  */
 function BackButton() {
   return (
-    <button type="button" style={{ backgroundColor: '#4b711d' }} onClick={goBack}>
+    <button type="button" onClick={goBack} className="text-scary-forest">
       {' '}
       <IoIosArrowRoundBack size={40} />
     </button>
@@ -48,9 +48,7 @@ function App() {
       <NavBar />
       <div className="p-4">
         <BackButton />
-        <h1 className="text-night text-3xl font-bold mt-2">
-          News Feed
-        </h1>
+        <h1 className="text-night text-3xl font-bold mt-2">News Feed</h1>
         <ul>
           {news.map(article => (
             <NewsDisplay
