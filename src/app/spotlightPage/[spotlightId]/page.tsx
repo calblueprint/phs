@@ -27,12 +27,13 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
     id: '0',
     name: 'N/A',
     spotlight: true,
+    preview_text: 'N/A',
     stop_count: 0,
   });
 
   const [displays, setDisplays] = useState<DisplayRow[]>([]);
 
-  const [relatedSpolights, setRelatedSpotlight] = useState<TourRow[]>([]);
+  // const [relatedSpolights, setRelatedSpotlight] = useState<TourRow[]>([])
 
   useEffect(() => {
     /**
@@ -47,9 +48,10 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
         const responseDataForDisplays: DisplayRow[] =
           await fetchDisplayfromSpotlight(params.spotlightId);
         setDisplays(responseDataForDisplays);
-        const responseDataForRelatedSpotlights: TourRow[] =
-          await fetchRelatedSpotlightsfromSpotlightId(params.spotlightId);
-        setRelatedSpotlight(responseDataForRelatedSpotlights);
+
+        // const responseDataForRelatedSpotlights: TourRow[] = await fetchRelatedSpotlightsfromSpotlightId(params.spotlightId);
+        // setRelatedSpotlight(responseDataForRelatedSpotlights);
+
       } catch (error) {
         console.error(error);
       }
@@ -98,7 +100,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
       </h1>
 
       <ul className="list-none p-0 flex">
-        {relatedSpolights.map(otherSpotlight => (
+        {/* {relatedSpolights.map(otherSpotlight => (
           <li
             className="pl-[18px] w-[162px] overflow-x-auto"
             key={otherSpotlight.id}
@@ -113,7 +115,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
               </h2>
             </Link>
           </li>
-        ))}
+        ))} */}
       </ul>
     </div>
   );
