@@ -14,6 +14,7 @@ export const metadata: Metadata = {
  *
  * @param root0
  * @param root0.children
+ * @returns head of page
  */
 export default function RootLayout({
   children,
@@ -27,6 +28,12 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossOrigin=""
+        />
+        <link
+          href="https://fonts.googleapis.com/css?family=Lato:200,300,400,700"
+          rel="stylesheet"
+          integrity="sha384-S/0sPWyivHb0nXEN1JbIZoAHSDK4PQv0Zdl6399sbd0mYRatVZsKWdfflTIgipPy"
           crossOrigin=""
         />
         <script
