@@ -19,6 +19,7 @@ export async function fetchAllTourDisplays(): Promise<TourDisplaysRow[]> {
 /**
  *
  *
+ *
  * @param tourId - an id from the tours table
  * @returns given a tour id in spotlights, fetch from the tours_display table to get all the corresponding display_ids
  */
@@ -52,6 +53,9 @@ export async function fetchMatchingTourDisplayIdsfromSpotlight(tourId: string) {
  * @returns given a spotlight ID, get all the displays
  */
 export async function fetchDisplayfromSpotlight(spotlightId: string) {
+  const displayIds: string[] =
+    await fetchMatchingTourDisplayIdsfromSpotlight(spotlightId);
+  const displays: DisplayRow[] = await fetchDisplaysfromIds(displayIds);
   const displayIds: string[] =
     await fetchMatchingTourDisplayIdsfromSpotlight(spotlightId);
   const displays: DisplayRow[] = await fetchDisplaysfromIds(displayIds);

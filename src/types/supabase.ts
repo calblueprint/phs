@@ -6,6 +6,7 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[];
   | Json[];
+  | Json[];
 
 export type Database = {
   public: {
@@ -77,6 +78,13 @@ export type Database = {
           title: string;
           updated_at: string | null;
         };
+          coordinates: Json | null;
+          created_at: string;
+          description: string;
+          id: string;
+          title: string;
+          updated_at: string | null;
+        };
         Insert: {
           coordinates?: Json | null;
           created_at?: string;
@@ -85,7 +93,23 @@ export type Database = {
           title?: string;
           updated_at?: string | null;
         };
+          coordinates?: Json | null;
+          created_at?: string;
+          description?: string;
+          id: string;
+          title?: string;
+          updated_at?: string | null;
+        };
         Update: {
+          coordinates?: Json | null;
+          created_at?: string;
+          description?: string;
+          id?: string;
+          title?: string;
+          updated_at?: string | null;
+        };
+        Relationships: [];
+      };
           coordinates?: Json | null;
           created_at?: string;
           description?: string;
@@ -119,7 +143,23 @@ export type Database = {
           type?: string | null;
           url?: string;
         };
+          created_at?: string;
+          id?: string;
+          text?: string | null;
+          title?: string | null;
+          type?: string | null;
+          url?: string;
+        };
         Update: {
+          created_at?: string;
+          id?: string;
+          text?: string | null;
+          title?: string | null;
+          type?: string | null;
+          url?: string;
+        };
+        Relationships: [];
+      };
           created_at?: string;
           id?: string;
           text?: string | null;
@@ -326,6 +366,39 @@ export type Database = {
           title: string;
           updated_at: string | null;
         };
+          created_at: string;
+          description: string | null;
+          id: string;
+          name: string | null;
+          spotlight: boolean;
+          stop_count: number | null;
+        };
+        Insert: {
+          created_at?: string;
+          description?: string | null;
+          id?: string;
+          name?: string | null;
+          spotlight?: boolean;
+          stop_count?: number | null;
+        };
+        Update: {
+          created_at?: string;
+          description?: string | null;
+          id?: string;
+          name?: string | null;
+          spotlight?: boolean;
+          stop_count?: number | null;
+        };
+        Relationships: [];
+      };
+      news: {
+        Row: {
+          content_link: string;
+          created_at: string;
+          id: string;
+          title: string;
+          updated_at: string | null;
+        };
         Insert: {
           content_link?: string;
           created_at?: string;
@@ -333,7 +406,22 @@ export type Database = {
           title?: string;
           updated_at?: string | null;
         };
+          content_link?: string;
+          created_at?: string;
+          id?: string;
+          title?: string;
+          updated_at?: string | null;
+        };
         Update: {
+          content_link?: string;
+          created_at?: string;
+          id?: string;
+          title?: string;
+          updated_at?: string | null;
+        };
+        Relationships: [];
+      };
+    };
           content_link?: string;
           created_at?: string;
           id?: string;
@@ -384,7 +472,14 @@ export type Database = {
     Enums: {
       media_type: 'image' | 'video' | 'link';
     };
+      media_type: 'image' | 'video' | 'link';
+    };
     CompositeTypes: {
+      [_ in never]: never;
+    };
+  };
+}
+
       [_ in never]: never;
     };
   };
