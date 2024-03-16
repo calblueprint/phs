@@ -40,13 +40,14 @@ export async function deleteDisplay(id: string) {
   if (error) {
     throw new Error(`An error occurred trying to delete displays: ${error}`);
   } else {
-    fetchDisplays();
+    fetchDisplay(id);
   }
 }
 
 /**
  *
- * @param displayData
+ * @param displayData - displays the data
+ * @returns a new display object
  */
 export async function createDisplay(displayData: DisplayRow) {
   const { data, error } = await supabase.from('displays').upsert([displayData]);

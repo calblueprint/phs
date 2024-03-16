@@ -10,7 +10,7 @@ import {
   Popup,
   ZoomControl,
 } from 'react-leaflet';
-import { fetchDisplays } from '../../../supabase/displays/queries';
+import { fetchAllDisplays } from '../../../supabase/displays/queries';
 import { DisplayRow } from '../../../types/types';
 
 const center: LatLngExpression = {
@@ -36,7 +36,7 @@ function SiteMap() {
      */
     async function fetchData() {
       try {
-        const data = await fetchDisplays();
+        const data = await fetchAllDisplays();
         setDisplays(data);
       } catch (error) {
         console.error(error);
