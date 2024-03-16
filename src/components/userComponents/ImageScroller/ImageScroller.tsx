@@ -19,14 +19,14 @@ export default function Carousel({ media }: CarouselProps) {
     setCurrentIndex(prevIndex =>
       prevIndex === 0 ? media.length - 1 : prevIndex - 1,
     );
-  }
+  };
 
   // Goes to next image
   const goToNext = () => {
     setCurrentIndex(prevIndex =>
       prevIndex === media.length - 1 ? 0 : prevIndex + 1,
     );
-  }
+  };
 
   return (
     <div className="relative w-full flex items-center justify-center">

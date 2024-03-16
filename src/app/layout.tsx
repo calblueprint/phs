@@ -29,8 +29,11 @@ export default function RootLayout({
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
           crossOrigin=""
         />
-        <script src="https://kit.fontawesome.com/578b960d2a.js" crossOrigin="anonymous" />
-        <link 
+        <script
+          src="https://kit.fontawesome.com/578b960d2a.js"
+          crossOrigin="anonymous"
+        />
+        <link
           href="https://fonts.googleapis.com/css?family=Lato:200,300,400,700"
           rel="stylesheet"
           integrity="sha384-S/0sPWyivHb0nXEN1JbIZoAHSDK4PQv0Zdl6399sbd0mYRatVZsKWdfflTIgipPy"
@@ -43,9 +46,8 @@ export default function RootLayout({
         />
         <script src="html5-qrcode.min.js" />
       </head>
-      
-      <body className={inter.className}>{children}</body>
 
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
