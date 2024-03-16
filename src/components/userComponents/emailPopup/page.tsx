@@ -5,9 +5,10 @@ import { Dialog, Transition } from '@headlessui/react';
 import { PiPaperPlaneTiltBold , PiSealCheck } from "react-icons/pi";
 import { VscClose } from "react-icons/vsc";
 import { BiErrorCircle } from "react-icons/bi";
+import Link from 'next/link';
 import supabase from '../../../supabase/client';
 
-import Link from 'next/link';
+
 
 
 /**
