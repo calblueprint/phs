@@ -93,6 +93,9 @@ export default function NavBar() {
             <Link href="/exhibitsPage" className="block mb-2 text-black">
               Exhibits
             </Link>
+            <Link href="/exhibitsPage" className="block mb-2 text-black">
+              Exhibits
+            </Link>
             <Link href="/qrCodeTourPage" className="block text-black">
               QR Code Tour
             </Link>
