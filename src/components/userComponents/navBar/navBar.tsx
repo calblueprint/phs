@@ -97,6 +97,9 @@ function NavBar() {
             <Link href="/siteMapPage" className="block mb-2 text-black">
               Site Map
             </Link>
+            <Link href="/exhibitsPage" className="block mb-2 text-black">
+              Exhibits
+            </Link>
             <Link href="/qrCodeTourPage" className="block text-black">
               QR Code Tour
             </Link>
