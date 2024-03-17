@@ -45,20 +45,35 @@ function App() {
   }, [exhibits]);
   return (
     <div className="bg-ivory">
-      <NavBar/>
+      <NavBar />
       <div className="p-4 m-auto">
-        <BackButton/>
+        <BackButton />
         <div className="flex-col justify-start items-start mb-6 mt-3">
-          <div className="text-night text-neutral-700 text-[32px] font-bold leading-9 font-['Lato'] mb-4">Our Exhibits </div>
-          <div className="text-night text-neutral-700 text-base leading-5 font-light font-['Lato']">Saratoga is home to an abundance of plant and animal life. As you explore these exhibits you will learn about species that are endangered and being carefully monitored by scientists with protective efforts in place.</div>
+          <div className="text-night text-neutral-700 text-[32px] font-bold leading-9 font-['Lato'] mb-4">
+            Our Exhibits{' '}
+          </div>
+          <div className="text-night text-neutral-700 text-base leading-5 font-light font-['Lato']">
+            Saratoga is home to an abundance of plant and animal life. As you
+            explore these exhibits you will learn about species that are
+            endangered and being carefully monitored by scientists with
+            protective efforts in place.
+          </div>
         </div>
         <Link href="/siteMapPage">
           <div className="px-4 py-2 rounded-md border border-asparagus justify-start items-start gap-2.5 inline-flex">
-            <div className="text-center text-asparagus text-base font-bold font-['Lato'] leading-tight">Go to Map</div>
+            <div className="text-center text-asparagus text-base font-bold font-['Lato'] leading-tight">
+              Go to Map
+            </div>
           </div>
         </Link>
         {exhibits.map(exhibit => (
-          <Exhibit title={exhibit.title} description={exhibit.description} image={exhibit.image || ''} key={exhibit.id} id={exhibit.id}/>
+          <Exhibit
+            title={exhibit.title}
+            description={exhibit.description}
+            image={exhibit.image || ''}
+            key={exhibit.id}
+            id={exhibit.id}
+          />
         ))}
       </div>
     </div>
