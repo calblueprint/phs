@@ -26,7 +26,7 @@ export default function NewsDisplay({
   const date = moment(createdAt).format('MMMM Do, YYYY');
   return (
     <li key={id}>
-      <a href={contentLink}>
+      <a href={contentLink} target="_blank" rel="noreferrer noopener">
         <div className="flex flex-col items-start gap-3 mb-6 mt-6 font-[Lato]">
           <div className="flex m-auto flex-row justify-between w-full">
             <p className="text-night text-[16px] not-italic font-medium leading-[normal] w-[90%]">
