@@ -90,6 +90,22 @@ export default function NavBar() {
             >
               Wildlife Spotlights
             </Link>
+            <Link href="/exhibitsPage" className="block mb-2 text-black">
+              Exhibits
+            </Link>
+            <Link href="/qrCodeTourPage" className="block text-black">
+              QR Code Tour
+            </Link>
+            <Link href="/qrCodeScanner" className="block text-black">
+              QR Scanner
+            </Link>
+          </ul>
+          <h1 className="text-xl text-black font-bold p-4">LEARN & EXPLORE</h1>
+          <ul className="p-4">
+            <Link href="/collectionsPage" className="block mb-2 text-black">
+              Collections
+            </Link>
+            <Link href="/newsFeedPage" className="block mb-2 text-black">
             <Link
               href="/newsFeedPage"
               className="text-night font-lato text-lg font-bold block relative left-4 mt-[1.25rem]"
