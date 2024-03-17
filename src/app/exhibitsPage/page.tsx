@@ -58,7 +58,7 @@ function App() {
           </div>
         </Link>
         {exhibits.map(exhibit => (
-          <Exhibit title={exhibit.title} description={exhibit.description} category={exhibit.category} image={exhibit.image || ''} key={exhibit.id} id={exhibit.id}/>
+          <Exhibit title={exhibit.title} description={exhibit.description} image={exhibit.image || ''} key={exhibit.id} id={exhibit.id}/>
         ))}
       </div>
     </div>
