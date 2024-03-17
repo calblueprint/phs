@@ -6,7 +6,7 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[]
 
-export interface Database {
+export type Database = {
   public: {
     Tables: {
       display_media: {
@@ -69,6 +69,48 @@ export interface Database {
         }
         Relationships: []
       }
+      emails: {
+        Row: {
+          emails: string | null
+          id: number
+        }
+        Insert: {
+          emails?: string | null
+          id?: number
+        }
+        Update: {
+          emails?: string | null
+          id?: number
+        }
+        Relationships: []
+      }
+      exhibits: {
+        Row: {
+          category: string
+          coordinates: Json | null
+          description: string
+          id: string
+          image: string | null
+          title: string
+        }
+        Insert: {
+          category: string
+          coordinates?: Json | null
+          description: string
+          id?: string
+          image?: string | null
+          title: string
+        }
+        Update: {
+          category?: string
+          coordinates?: Json | null
+          description?: string
+          id?: string
+          image?: string | null
+          title?: string
+        }
+        Relationships: []
+      }
       media: {
         Row: {
           created_at: string
@@ -93,6 +135,30 @@ export interface Database {
           title?: string | null
           type?: string | null
           url?: string
+        }
+        Relationships: []
+      }
+      news: {
+        Row: {
+          content_link: string
+          created_at: string
+          id: string
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          content_link: string
+          created_at?: string
+          id?: string
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          content_link?: string
+          created_at?: string
+          id?: string
+          title?: string
+          updated_at?: string | null
         }
         Relationships: []
       }
@@ -196,7 +262,7 @@ export interface Database {
           created_at: string
           description: string | null
           id: string
-          name: string | null
+          name: string
           preview_text: string | null
           spotlight: boolean
           stop_count: number | null
@@ -207,7 +273,7 @@ export interface Database {
           created_at?: string
           description?: string | null
           id?: string
-          name?: string | null
+          name: string
           preview_text?: string | null
           spotlight?: boolean
           stop_count?: number | null
@@ -218,7 +284,7 @@ export interface Database {
           created_at?: string
           description?: string | null
           id?: string
-          name?: string | null
+          name?: string
           preview_text?: string | null
           spotlight?: boolean
           stop_count?: number | null
@@ -256,6 +322,36 @@ export interface Database {
           created_at: string
         }[]
       }
+      get_spotlight_recommendations: {
+        Args: {
+          source_display_id: string
+        }
+        Returns: {
+          id: string
+          name: string
+          description: string
+          created_at: string
+          stop_count: number
+          spotlight: boolean
+          preview_text: string
+          coordinates: Json
+          category: Database["public"]["Enums"]["tour_category"]
+        }[]
+      }
+      get_spotlight_tours: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          id: string
+          name: string
+          description: string
+          created_at: string
+          stop_count: number
+          spotlight: boolean
+          preview_text: string
+          coordinates: Json
+          category: Database["public"]["Enums"]["tour_category"]
+        }[]
+      }
       join_spotlights_with_media: {
         Args: Record<PropertyKey, never>
         Returns: {
@@ -266,6 +362,8 @@ export interface Database {
           stop_count: number
           spotlight: boolean
           preview_text: string
+          coordinates: Json
+          category: Database["public"]["Enums"]["tour_category"]
           media_url: string
         }[]
       }

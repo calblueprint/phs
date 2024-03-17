@@ -3,11 +3,12 @@ import { LatLngExpression } from 'leaflet';
 import { useMapEvents } from 'react-leaflet';
 import Link from 'next/link';
 import Image from 'next/image';
-import { TourRow } from '../../../types/types';
+import { ExhibitRow, TourRow } from '../../../types/types';
 import { fetchImagesForTour } from '../../../supabase/media/queries';
+import { fetchExhibitImage } from '../../../supabase/exhibits/queries';
 
 interface DisplayCardProps {
-  tour: TourRow;
+  tour: TourRow | ExhibitRow;
   handleClose: () => void;
   handleClick?: () => void;
 }
@@ -29,7 +30,9 @@ function DisplayPreviewCard({
 }: DisplayCardProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [previewImage, setPreviewImage] = useState<string>('');
-  const { id, name, description, coordinates, category } = tour;
+  const [name1, setname1] = useState<string>('');
+  const { id, description, coordinates, category } = tour;
+  // name, for tour title for exhibit
 
   // Map Context
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -43,17 +46,37 @@ function DisplayPreviewCard({
 
   // fetch image to use for preview
   useEffect(() => {
-    const fetchImages = async () => {
+    const fetchDetails = async () => {
       setLoading(true);
-      const images = await fetchImagesForTour(id);
-      if (images) {
-        setPreviewImage(images[0].url);
+  
+      let imageUrl = ''; // Initialize with a default image URL or an empty string.
+      let displayName = ''; // This will hold the name/title of the tour or exhibit.
+  
+      if ('name' in tour) { // Assuming this distinguishes a TourRow
+        // Fetch images for a tour
+        const images = await fetchImagesForTour(tour.id);
+        if (images && images.length > 0) {
+          imageUrl = images[0].url; // Assume the first image is what you want to display.
+        }
+        displayName = tour.name; // Directly use the 'name' property from TourRow.
+      } else {
+        // Handle as an ExhibitRow
+        const imageObj = await fetchExhibitImage(tour.id); // This expects a single image object.
+        if (imageObj) {
+          imageUrl = imageObj.image; // Use the 'image' property from the object returned by fetchExhibitImage.
+        }
+        displayName = tour.title; // Assuming 'title' is the equivalent property in ExhibitRow.
       }
+  
+      // Set state variables
+      setPreviewImage(imageUrl);
+      setname1(displayName);
       setLoading(false);
     };
-
-    fetchImages();
-  }, [tour]);
+  
+    fetchDetails();
+  }, [tour]); // Dependency on 'tour' ensures this effect runs whenever the 'tour' object changes.
+  
 
   /** route this to spotlights */
 
@@ -100,7 +123,7 @@ function DisplayPreviewCard({
                 className="relative truncate font-medium font-lato text-night pr-[0.31rem] pl-[0.75rem] pt-[0.30rem] pb-[0rem] text-base leading-normal"
 
               >
-                {name}
+                {name1}
               </h3>
       
               <h4 className="relative font-lato h-[2rem] pr-[0.31rem] pt-[0rem] pl-[0.75rem] pb-[2.4rem] text-shadow line-clamp-2 text-sm">
