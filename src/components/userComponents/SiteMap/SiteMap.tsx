@@ -8,6 +8,7 @@ import { ExhibitRow, TourRow } from '../../../types/types';
 import Control from './Control';
 import DisplayPreviewCard from './DisplayPreviewCard';
 import { fetchExhibit, fetchAllExhibits } from '../../../supabase/exhibits/queries';
+import { get_category_color } from '../../../supabase/category/queries';
 
 const center: LatLngExpression = {
   lat: 37.587480,
@@ -45,12 +46,12 @@ const defaultMarkerIcon = L.divIcon({
   iconSize: [30, 35],
 });
 
-const selectedMarkerIcon = L.divIcon({
+const selectedMarkerIcon = (color = '#F17373') => L.divIcon({
   html: `
   <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
   <g filter="url(#filter0_d_5161_2252)">
-  <circle cx="20" cy="20" r="18" fill="#F17373"/>
-  <circle cx="20" cy="20" r="16.3" stroke="#F17373" stroke-width="3.4"/>
+  <circle cx="20" cy="20" r="18" fill="${color}"/>
+  <circle cx="20" cy="20" r="16.3" stroke="${color}" stroke-width="3.4"/>
   </g>
   <circle cx="20" cy="20" r="6" fill="#FFFDF7"/>
   <defs>
@@ -75,11 +76,14 @@ interface SiteMapProps {
 }
 
 /**
+ * @param root0
+ * @param root0.mode
  * @params mode - will
  * @returns Interactive map based on React Leaflet, holds the markers which lead to exhibits
  */
 function SiteMap({ mode }: SiteMapProps) {
   const [spotlightTours, setSpotlightTours] = useState<TourRow[] | ExhibitRow[] | null>(null);
+  const [colorsMap, setColorsMap] = useState<{ [key: string]: string }>({});
   const [selectedTour, setSelectedTour] = useState<TourRow | ExhibitRow | null>(
     null,
   );
@@ -97,16 +101,33 @@ function SiteMap({ mode }: SiteMapProps) {
         if (mode === "tours") {
           data = await fetchSpotlightTours();
         } else if (mode === "exhibits") {
-          // Assuming you have a similar function to fetch exhibits
           data = await fetchAllExhibits();
+        }
+        if (data) {
+          const colors = await Promise.all(data.map(async (item) => ({
+            id: item.id,
+            color: await get_category_color(item.category)
+            
+          })));
+          const newColorsMap = colors.reduce((acc, curr) => ({
+            
+            ...acc,
+            [curr.id]: curr.color
+          }), {});
+          setColorsMap(newColorsMap);
+          console.log("Colors Map:", newColorsMap); // Log here
         }
         setSpotlightTours(data ?? []);
       } catch (error) {
-        throw new Error(`Encountered an error fetching data: ${error}`);
-        
+        console.error(`Encountered an error fetching data: ${error}`);
       }
     }
     fetchData();
+  }, [mode]);
+  useEffect(() => {
+    // Reset selectedTour and selectedMarker when mode changes to ensure popups start closed
+    setSelectedTour(null);
+    setSelectedMarker(null);
   }, [mode]);
 
   useEffect(() => {
@@ -141,6 +162,7 @@ function SiteMap({ mode }: SiteMapProps) {
     >
       <TileLayer {...tileLayer} />
       <LayersControl position="topright">
+       
         {spotlightTours && spotlightTours.map((tour, i) => (
           <Marker
             key={tour.id}
@@ -149,7 +171,7 @@ function SiteMap({ mode }: SiteMapProps) {
               lng: (tour.coordinates as { lng: number })?.lng ?? 0,
             }}
             eventHandlers={{ click: () => handleMarkerSelect(tour, i) }}
-            icon={selectedMarker === i ? selectedMarkerIcon : defaultMarkerIcon}
+            icon={selectedMarker === i ? selectedMarkerIcon(colorsMap[tour.id]) : defaultMarkerIcon}
           />
         ))}
         {selectedTour && (
