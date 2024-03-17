@@ -41,9 +41,8 @@ export async function fetchMatchingTourDisplayIdsfromSpotlight(tourId: string) {
  * @returns given a spotlight ID, get all the displays
  */
 export async function fetchDisplayfromSpotlight(spotlightId: string) {
-  const displayIds: string[] = await fetchMatchingTourDisplayIdsfromSpotlight(
-    spotlightId,
-  );
+  const displayIds: string[] =
+    await fetchMatchingTourDisplayIdsfromSpotlight(spotlightId);
   const displays: DisplayRow[] = await fetchDisplaysfromIds(displayIds);
   return displays;
 }
