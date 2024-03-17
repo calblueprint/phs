@@ -14,13 +14,11 @@ import Image from 'next/image';
 export default function Exhibit({
   title,
   description,
-  category,
   image,
   id,
 }: {
   title: string;
   description: string;
-  category: string;
   image: string;
   id: string;
 }) {
