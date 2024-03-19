@@ -8,93 +8,21 @@ import { ExhibitRow, TourRow } from '../../../types/types';
 import Control from './Control';
 import DisplayPreviewCard from './DisplayPreviewCard';
 import { fetchExhibit, fetchAllExhibits } from '../../../supabase/exhibits/queries';
-import { get_category_color1 } from '../../../supabase/category/queries';
+import { getCategoryColor1 } from '../../../supabase/category/queries';
+import RecenterMap from './MapInteractionHandler';
 
 const center: LatLngExpression = {
   lat: 37.587480,
   lng: -122.331010,
 };
-// have to change fetchSpsotlightTours to tours
+
 
 const tileLayer: { attribution: string; url: string } = {
   attribution: '',
   url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 };
 
-// const createMarkerIcon = (svgContent, className, iconSize) => (color : string) => L.divIcon({
-//   html: svgContent.replace('#F17373', color),
-//   className,
-//   iconSize,
-// });
 
-// const defaultMarkerIcon = createMarkerIcon(`
-//   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-//     <g filter="url(#filter0_d_5161_2353)">
-//       <circle cx="10" cy="10" r="9" fill="#F17373"/>
-//       <circle cx="10" cy="10" r="8.1" stroke="#FFFDF7" stroke-width="1.8"/>
-//     </g>
-//     <defs>...</defs>
-//   </svg>`, 'default-icon', [30, 35]);
-
-// const selectedMarkerIcon = createMarkerIcon(`
-//   <svg xmlns="http://www.w3.org/2000/svg" width="41" height="40" viewBox="0 0 41 40" fill="none">
-//     <g filter="url(#filter0_d_5531_6851)">
-//       <circle cx="20.5" cy="20" r="18" fill="#F17373"/>
-//       <circle cx="20.5" cy="20" r="16.3" stroke="#F17373" stroke-width="3.4"/>
-//     </g>
-//     <circle cx="20.5" cy="20" r="6" fill="#FFFDF7"/>
-//     <defs>...</defs>
-//   </svg>`, 'selected-icon', [30, 35]);
-
-
-// const defaultMarkerIcon = L.divIcon({
-//   html: `
-//   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-//   <g filter="url(#filter0_d_5161_2353)">
-//   <circle cx="10" cy="10" r="9" fill="#F17373"/>
-//   <circle cx="10" cy="10" r="8.1" stroke="#FFFDF7" stroke-width="1.8"/>
-//   </g>
-//   <defs>
-//   <filter id="filter0_d_5161_2353" x="0" y="0" width="20" height="20" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-//   <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-//   <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-//   <feOffset/>
-//   <feGaussianBlur stdDeviation="0.5"/>
-//   <feComposite in2="hardAlpha" operator="out"/>
-//   <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
-//   <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_5161_2353"/>
-//   <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_5161_2353" result="shape"/>
-//   </filter>
-//   </defs>
-//   </svg>
-//   `,
-//   className: 'default-icon',
-//   iconSize: [30, 35],
-// });
-// const selectedMarkerIcon = L.divIcon({
-//   html: `
-//   <svg xmlns="http://www.w3.org/2000/svg" width="41" height="40" viewBox="0 0 41 40" fill="none">
-//   <g filter="url(#filter0_d_5531_6851)">
-//     <circle cx="20.5" cy="20" r="18" fill="#F17373"/>
-//     <circle cx="20.5" cy="20" r="16.3" stroke="#F17373" stroke-width="3.4"/>
-//   </g>
-//   <circle cx="20.5" cy="20" r="6" fill="#FFFDF7"/>
-//   <defs>
-//     <filter id="filter0_d_5531_6851" x="0.5" y="0" width="40" height="40" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-//       <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-//       <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-//       <feOffset/>
-//       <feGaussianBlur stdDeviation="1"/>
-//       <feComposite in2="hardAlpha" operator="out"/>
-//       <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
-//       <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_5531_6851"/>
-//       <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_5531_6851" result="shape"/>
-//     </filter>
-//   </defs>
-// </svg>`,
-//   className: 'selected-icon',
-//   iconSize: [30, 35],
-// });
 const createDefaultMarkerIcon = (color : string) => L.divIcon({
     html: `
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -117,7 +45,7 @@ const createDefaultMarkerIcon = (color : string) => L.divIcon({
     </svg>
     `,
     className: 'default-icon',
-    iconSize: [20, 20], // Adjusted to match the SVG size
+    iconSize: [20, 20], 
   });
 
 
@@ -143,7 +71,7 @@ const createSelectedMarkerIcon = (color : string) => L.divIcon({
       </defs>
     </svg>`,
       className: 'selected-icon',
-      iconSize: [41, 40], // Adjusted to match the SVG size
+      iconSize: [41, 40], 
     });
 
 
@@ -165,6 +93,7 @@ function SiteMap({ mode }: SiteMapProps) {
   );
   const [mapCenter, setMapCenter] = useState<LatLngExpression>(center);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
+  const [resetCenter, setResetCenter] = useState(center); // New state to trigger recentering
 
   // fetch tours where spotlight == True
   useEffect(() => {
@@ -182,7 +111,7 @@ function SiteMap({ mode }: SiteMapProps) {
         if (data) {
           const colors = await Promise.all(data.map(async (item) => ({
             id: item.id,
-            color: await get_category_color1(item.category)
+            color: await getCategoryColor1(item.category)
             
           })));
           const newColorsMap = colors.reduce((acc, curr) => ({
@@ -220,6 +149,7 @@ function SiteMap({ mode }: SiteMapProps) {
 
   const handlePreviewClose = () => {
     setSelectedTour(null);
+    setResetCenter(center); // Trigger recentering
   };
 
   return (
@@ -239,17 +169,6 @@ function SiteMap({ mode }: SiteMapProps) {
       <TileLayer {...tileLayer} />
       <LayersControl position="topright">
        
-        {/* {spotlightTours && spotlightTours.map((tour, i) => (
-          <Marker
-            key={tour.id}
-            position={{
-              lat: (tour.coordinates as { lat: number })?.lat ?? 0,
-              lng: (tour.coordinates as { lng: number })?.lng ?? 0,
-            }}
-            eventHandlers={{ click: () => handleMarkerSelect(tour, i) }}
-            icon={selectedMarker === i ? selectedMarkerIcon : defaultMarkerIcon}
-          />
-        ))} */}
         {spotlightTours && spotlightTours.map((tour, i) => {
             // Fetch the color for this tour/exhibit; fallback to a default color if not found
             const color = colorsMap[tour.id] || '#F17373'; // Fallback color
@@ -275,6 +194,7 @@ function SiteMap({ mode }: SiteMapProps) {
           </Control>
         )}
       </LayersControl>
+      {selectedTour == null && <RecenterMap center={center} />} 
     </MapContainer>
   );
 }
