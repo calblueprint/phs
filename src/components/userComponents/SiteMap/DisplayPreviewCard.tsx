@@ -49,23 +49,23 @@ function DisplayPreviewCard({
     const fetchDetails = async () => {
       setLoading(true);
   
-      let imageUrl = ''; // Initialize with a default image URL or an empty string.
-      let displayName = ''; // This will hold the name/title of the tour or exhibit.
+      let imageUrl = ''; 
+      let displayName = ''; 
   
-      if ('name' in tour) { // Assuming this distinguishes a TourRow
+      if ('name' in tour) { 
         // Fetch images for a tour
         const images = await fetchImagesForTour(tour.id);
         if (images && images.length > 0) {
-          imageUrl = images[0].url; // Assume the first image is what you want to display.
+          imageUrl = images[0].url; 
         }
-        displayName = tour.name; // Directly use the 'name' property from TourRow.
+        displayName = tour.name; 
       } else {
         // Handle as an ExhibitRow
-        const imageObj = await fetchExhibitImage(tour.id); // This expects a single image object.
+        const imageObj = await fetchExhibitImage(tour.id); 
         if (imageObj) {
-          imageUrl = imageObj.image; // Use the 'image' property from the object returned by fetchExhibitImage.
+          imageUrl = imageObj.image; 
         }
-        displayName = tour.title; // Assuming 'title' is the equivalent property in ExhibitRow.
+        displayName = tour.title; 
       }
   
       // Set state variables
@@ -75,7 +75,7 @@ function DisplayPreviewCard({
     };
   
     fetchDetails();
-  }, [tour]); // Dependency on 'tour' ensures this effect runs whenever the 'tour' object changes.
+  }, [tour]); ]
   
 
   /** route this to spotlights */
