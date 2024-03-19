@@ -24,7 +24,7 @@ import supabase from '../client';
  *
  */
 // eslint-disable-next-line import/prefer-default-export
-export async function get_category_color1(category: string) {
+export async function getCategoryColor1(category: string) {
     try {
         const { data, error } = await supabase
             .from('categories') // Adjust according to your actual table name
