@@ -79,12 +79,11 @@ export default function TourStopPage({
         );
       }
     };
-    };
 
     // Fetch the display media
     const fetchDisplayMedia = async () => {
       const displayMedia = await fetchImagesForDisplay(params.displayId);
-      setMedia(displayMedia);
+      setMedia(displayMedia || []);
     };
 
     getDisplay();
