@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { HamburgerMenu } from '../../../../public/Icons';
+import { HamburgerMenu, CloseMenu } from '../../../../public/Icons';
 
 /**
  * @returns The navigation bar for the web app
  */
 export default function NavBar() {
   const [showMenu, setShowMenu] = useState(false);
+
+  useEffect(() => {
+    if (showMenu) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [showMenu]);
 
   /**
    * Toggles the side menu
@@ -31,7 +39,9 @@ export default function NavBar() {
           onClick={handleClick}
           aria-label="Toggle Menu"
         >
-          <HamburgerMenu />
+          <div className="flex justify-center items-center w-full h-full">
+            {showMenu ? <CloseMenu /> : <HamburgerMenu />}
+          </div>
         </button>
       </div>
       <div className=" bg-hunter-green w-[24.375rem] h-[0.375rem] absolute bottom-0" />
