@@ -66,15 +66,17 @@ function App() {
             </div>
           </div>
         </Link>
-        {exhibits.map(exhibit => (
-          <Exhibit
-            title={exhibit.title}
-            description={exhibit.description}
-            image={exhibit.image || ''}
-            key={exhibit.id}
-            id={exhibit.id}
-          />
-        ))}
+        <ul>
+          {exhibits.map(exhibit => (
+            <Exhibit
+              title={exhibit.title}
+              description={exhibit.description}
+              image={exhibit.image || ''}
+              key={exhibit.id}
+              id={exhibit.id}
+            />
+          ))}
+        </ul>
       </div>
     </div>
   );
