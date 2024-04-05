@@ -55,11 +55,14 @@ export default function FeaturedToursPage() {
         </div>
 
         <h1 className="text-night text-3xl font-semibold mb-4">
-          Featured Tours
+          Virtual Tours
         </h1>
         <p className="text-night mb-4">
-          Embark on a tour and explore our exhibits from anywhere - at home or
-          in person!
+          In order to prioritize the well-being of our animals and provide them
+          with the space to fully recover, some parts of our facility remain
+          closed to the public. However, you're invited to explore them
+          virtually and learn about our fascinating inhabitants through our
+          online featured tours!
         </p>
 
         <ul className="list-none mb-6">
@@ -76,13 +79,28 @@ export default function FeaturedToursPage() {
                         <Image
                           className="w-[24.375rem] h-[15.3125rem] rounded-lg"
                           key={
-                            media.find(m => m.id === (allTourMedia.find(m => m.tour_id === tour.id))?.media_id)?.id
+                            media.find(
+                              m =>
+                                m.id ===
+                                allTourMedia.find(m => m.tour_id === tour.id)
+                                  ?.media_id,
+                            )?.id
                           }
                           src={
-                            media.find(m => m.id === (allTourMedia.find(m => m.tour_id === tour.id))?.media_id)?.url ?? ''
+                            media.find(
+                              m =>
+                                m.id ===
+                                allTourMedia.find(m => m.tour_id === tour.id)
+                                  ?.media_id,
+                            )?.url ?? ''
                           }
                           alt={
-                            media.find(m => m.id === (allTourMedia.find(m => m.tour_id === tour.id))?.media_id)?.text ?? 'Tour start image'
+                            media.find(
+                              m =>
+                                m.id ===
+                                allTourMedia.find(m => m.tour_id === tour.id)
+                                  ?.media_id,
+                            )?.text ?? 'Tour start image'
                           }
                           layout="responsive"
                           width={390}
@@ -91,7 +109,13 @@ export default function FeaturedToursPage() {
                           priority
                         />
                       )}
-                      <div className="absolute bottom-0 w-full h-48 rounded-lg p-[1.31rem] flex flex-col justify-end" style={{background: 'linear-gradient(to bottom, #14141400 0%, #14141426 15%, #1E1E1E65 39.56%, #000000BF 75%, #333333BF 100%)'}}>
+                      <div
+                        className="absolute bottom-0 w-full h-48 rounded-lg p-[1.31rem] flex flex-col justify-end"
+                        style={{
+                          background:
+                            'linear-gradient(to bottom, #14141400 0%, #14141426 15%, #1E1E1E65 39.56%, #000000BF 75%, #333333BF 100%)',
+                        }}
+                      >
                         <h4 className="text-white text-[0.8125rem] font-medium mt-0.5 relative bottom-[0.44rem]">
                           {tour.stop_count} stops
                         </h4>
