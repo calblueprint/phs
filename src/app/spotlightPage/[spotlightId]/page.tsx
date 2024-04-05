@@ -1,10 +1,13 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
-import { TourRow, DisplayRow } from '../../../types/types';
+import { TourRow, DisplayRow, MediaRow, TourMediaRow } from '../../../types/types';
 import { fetchTour } from '../../../supabase/tours/queries';
+import { fetchMedia } from '../../../supabase/media/queries';
+import { fetchTourMedia } from '../../../supabase/tour_media/queries';
 import NavBar from '../../../components/userComponents/navBar/navBar';
 import { fetchDisplayfromSpotlight, fetchRelatedSpotlightIdsFromSpotlight } from '../../../supabase/tour_displays/queries';
 
@@ -29,6 +32,8 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
   });
 
   const [displays, setDisplays] = useState<DisplayRow[]>([]);
+  const [media, setMedia] = useState<MediaRow[]>([]);
+  const [tourMedia, setTourMedia] = useState<TourMediaRow[]>([]);
 
   // const [relatedSpolights, setRelatedSpotlight] = useState<TourRow[]>([])
 
@@ -54,17 +59,39 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
       }
     }
 
+    // Get tour media
+    const getTourMedia = async () => {
+      const fetchedTourMedia = await fetchTourMedia(params.spotlightId);
+      setTourMedia(fetchedTourMedia);
+    };
+
+    // Get media
+    const getMedia = async () => {
+      const fetchedMedia = await fetchMedia();
+      setMedia(fetchedMedia);
+    };
+
     fetchData();
+    getTourMedia();
+    getMedia();
   }, []);
 
   return (
     <div className="bg-[#ebf0e4]">
       <NavBar />
-      <img
-        src="https://images.unsplash.com/photo-1615812214207-34e3be6812df?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        alt="placeholder"
-        height={145}
-      />
+      {media.length > 0 && (
+        <Image
+          className="w-[24.375rem] h-[15.3125rem] relative"
+          key={media.find(m => m.id === tourMedia[0]?.media_id)?.id}
+          src={media.find(m => m.id === tourMedia[0]?.media_id)?.url ?? ''}
+          alt={media.find(m => m.id === tourMedia[0]?.media_id)?.text ?? 'Spotlight display image'}
+          layout="responsive"
+          width={390}
+          height={245}
+          objectFit="cover"
+          priority
+        />
+      )}
       <h1 className="text-green-700 font-Lato text-base font-normal pl-[18px] pt-[31px]">
         {' '}
         CATEGORY TWO
