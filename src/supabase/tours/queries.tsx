@@ -15,19 +15,6 @@ export async function fetchAllTours(): Promise<TourRow[]> {
   return data;
 }
 
-/**
- * @returns all spotlight tours from the tours table
- */
-export async function fetchSpotlightTours(): Promise<TourRow[] | null> {
-  const { data, error } = await supabase
-    .from('tours')
-    .select('*')
-    .is('spotlight', true);
-  if (error) {
-    throw new Error(`Error fetching spotlight tours: ${error.message}`);
-  }
-  return data;
-}
 
 /**
  * Fetches all spotlights from the database.
