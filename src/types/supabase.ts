@@ -9,6 +9,27 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      categories: {
+        Row: {
+          category: string | null
+          color: string | null
+          created_at: string
+          id: number
+        }
+        Insert: {
+          category?: string | null
+          color?: string | null
+          created_at?: string
+          id?: number
+        }
+        Update: {
+          category?: string | null
+          color?: string | null
+          created_at?: string
+          id?: number
+        }
+        Relationships: []
+      }
       display_media: {
         Row: {
           display_id: string;
@@ -191,10 +212,13 @@ export type Database = {
       };
       tours: {
         Row: {
+          category: Database["public"]["Enums"]["tour_category"]
+          coordinates: Json | null
           created_at: string;
           description: string | null;
           id: string;
           name: string | null;
+          preview_text: string | null
           spotlight: boolean;
           stop_count: number | null;
         };
@@ -226,16 +250,22 @@ export type Database = {
         };
         Insert: {
           content_link?: string;
+          category?: Database["public"]["Enums"]["tour_category"]
+          coordinates?: Json | null
           created_at?: string;
           id?: string;
           title?: string;
+          preview_text?: string | null
           updated_at?: string | null;
         };
         Update: {
           content_link?: string;
+          category?: Database["public"]["Enums"]["tour_category"]
+          coordinates?: Json | null
           created_at?: string;
           id?: string;
           title?: string;
+          preview_text?: string | null
           updated_at?: string | null;
         };
         Relationships: [];
@@ -247,12 +277,68 @@ export type Database = {
     Functions: {
       fetchimagesfordisplay: {
         Args: {
-          display_id: string;
-        };
-        Returns: Record<string, unknown>;
-      };
-      joinspotlightswithmedia: {
-        Args: Record<PropertyKey, never>;
+          displayid: string
+        }
+        Returns: {
+          id: string
+          url: string
+          type: string
+          title: string
+          text: string
+          created_at: string
+        }[]
+      }
+      fetchimagesfortour: {
+        Args: {
+          tourid: string
+        }
+        Returns: {
+          id: string
+          url: string
+          type: string
+          title: string
+          text: string
+          created_at: string
+        }[]
+      }
+      get_category_color: {
+        Args: {
+          category_in: string
+        }
+        Returns: string
+      }
+      get_spotlight_recommendations: {
+        Args: {
+          source_display_id: string
+        }
+        Returns: {
+          id: string
+          name: string
+          description: string
+          created_at: string
+          stop_count: number
+          spotlight: boolean
+          preview_text: string
+          coordinates: Json
+          category: Database["public"]["Enums"]["tour_category"]
+        }[]
+      }
+      get_spotlight_tours: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          id: string
+          name: string
+          description: string
+          created_at: string
+          stop_count: number
+          spotlight: boolean
+          preview_text: string
+          coordinates: Json
+          category: Database["public"]["Enums"]["tour_category"]
+        }[]
+      }
+      join_spotlights_with_media: {
+        Args: Record<PropertyKey, never>
         Returns: {
           id: string;
           name: string;
@@ -260,15 +346,115 @@ export type Database = {
           created_at: string;
           stop_count: number;
           spotlight: boolean;
+          preview_text: string
           media_url: string;
         }[];
       };
+      join_tours_with_media: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          id: string
+          name: string
+          description: string
+          created_at: string
+          stop_count: number
+          spotlight: boolean
+          preview_text: string
+          url: string
+        }[]
+      }
     };
     Enums: {
       media_type: 'image' | 'video' | 'link';
+      tour_category:
+        | "BuildingsAndServices"
+        | "ParksAviariesEnclosures"
+        | "SiteFeatures"
     };
     CompositeTypes: {
       [_ in never]: never;
     };
   };
 }
+
+type PublicSchema = Database[Extract<keyof Database, "public">]
+
+export type Tables<
+  PublicTableNameOrOptions extends
+    | keyof (PublicSchema["Tables"] & PublicSchema["Views"])
+    | { schema: keyof Database },
+  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
+    ? keyof (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
+        Database[PublicTableNameOrOptions["schema"]]["Views"])
+    : never = never,
+> = PublicTableNameOrOptions extends { schema: keyof Database }
+  ? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
+      Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+      Row: infer R
+    }
+    ? R
+    : never
+  : PublicTableNameOrOptions extends keyof (PublicSchema["Tables"] &
+        PublicSchema["Views"])
+    ? (PublicSchema["Tables"] &
+        PublicSchema["Views"])[PublicTableNameOrOptions] extends {
+        Row: infer R
+      }
+      ? R
+      : never
+    : never
+
+export type TablesInsert<
+  PublicTableNameOrOptions extends
+    | keyof PublicSchema["Tables"]
+    | { schema: keyof Database },
+  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
+    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+    : never = never,
+> = PublicTableNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Insert: infer I
+    }
+    ? I
+    : never
+  : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
+    ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
+        Insert: infer I
+      }
+      ? I
+      : never
+    : never
+
+export type TablesUpdate<
+  PublicTableNameOrOptions extends
+    | keyof PublicSchema["Tables"]
+    | { schema: keyof Database },
+  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
+    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+    : never = never,
+> = PublicTableNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Update: infer U
+    }
+    ? U
+    : never
+  : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
+    ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
+        Update: infer U
+      }
+      ? U
+      : never
+    : never
+
+export type Enums<
+  PublicEnumNameOrOptions extends
+    | keyof PublicSchema["Enums"]
+    | { schema: keyof Database },
+  EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
+    ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
+    : never = never,
+> = PublicEnumNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
+  : PublicEnumNameOrOptions extends keyof PublicSchema["Enums"]
+    ? PublicSchema["Enums"][PublicEnumNameOrOptions]
+    : never

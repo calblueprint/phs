@@ -1,28 +1,42 @@
 import React, { useState } from 'react';
 
+// interface FilterButtonProps {
+//   content: string;
+//   onClick?: () => void;
+// }
 interface FilterButtonProps {
   content: string;
-  onClick?: () => void;
+  onClick: () => void;
+  isSelected: boolean; // Added isSelected prop
 }
 
-function FilterButton({ content, ...children }: FilterButtonProps) {
-  const [isSelected, setIsSelected] = useState<boolean>(false);
+/**
+ *
+ * @param onClick.content
+ * @param onClick function to handle the functionality we want to tie to our filter buttons
+ * @param content is the content to be rendered in the button
+ * @param root0.onClick
+ * @param onClick.onClick
+ */
 
-  const defaultStyle = 'bg-[#4b711d]/[0.13] text-[#4B711D] border-[#547829]';
-  const selectedStyle = 'bg-[#547829] text-white border-[#547829]';
 
-  const handleClick = () => {
-    setIsSelected(!isSelected);
-  };
+
+
+/**
+ *
+ */
+function FilterButton({ content, onClick, isSelected }: FilterButtonProps) {
+  const selectedStyle = 'bg-mint-cream text-scary-forest';
+
+  const buttonClass = `py-2 px-6 whitespace-nowrap border-[0.8px] border-scary-forest border-solid text-night flex-grow ${
+    isSelected ? selectedStyle : ''
+  }`;
 
   return (
     <button
       type="button"
-      className={`${
-        isSelected ? selectedStyle : defaultStyle
-      } py-2 px-4 rounded-full whitespace-nowrap border border-solid flex-nowrap`}
-      onClick={handleClick}
-      {...children}
+      className={buttonClass}
+      onClick={onClick}
     >
       {content}
     </button>
