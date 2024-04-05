@@ -20,8 +20,9 @@ function App() {
      */
     async function fetchData() {
       try {
-        const responseData: SpotlightWithMediaRow[] = await joinAllSpotlightsWithMedia();
-        console.log({"AllJoinedSpotlights": responseData});
+        const responseData: SpotlightWithMediaRow[] =
+          await joinAllSpotlightsWithMedia();
+        console.log({ AllJoinedSpotlights: responseData });
         setSpotlights(responseData);
       } catch (error) {
         console.error(error);

@@ -4,7 +4,10 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 import { TourRow, DisplayRow } from '../../../types/types';
-import { fetchRecommendedSpotlights, fetchTour } from '../../../supabase/tours/queries';
+import {
+  fetchRecommendedSpotlights,
+  fetchTour,
+} from '../../../supabase/tours/queries';
 import NavBar from '../../../components/userComponents/navBar/navBar';
 import { fetchDisplayfromSpotlight } from '../../../supabase/tour_displays/queries';
 
@@ -36,11 +39,13 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
 
   const [displays, setDisplays] = useState<DisplayRow[]>([]);
 
-  const [recommendedSpotlights, setRecommendedSpotlights] = useState<TourRow[]>([]);
+  const [recommendedSpotlights, setRecommendedSpotlights] = useState<TourRow[]>(
+    [],
+  );
 
   useEffect(() => {
     /**
-     * 
+     *
      */
     async function fetchData() {
       try {

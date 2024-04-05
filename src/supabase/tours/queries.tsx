@@ -34,7 +34,10 @@ export async function fetchSpotlightTours(): Promise<TourRow[] | null> {
  * @returns A promise that resolves to an array of TourRow objects, selected based on being spotlights
  */
 export async function fetchAllSpotlights(): Promise<TourRow[]> {
-  const { data, error } = await supabase.from('tours').select('*').eq('spotlight', true);
+  const { data, error } = await supabase
+    .from('tours')
+    .select('*')
+    .eq('spotlight', true);
   if (error) {
     throw new Error(
       `An error occurred while trying to read tour displays: ${error}`,
@@ -46,12 +49,14 @@ export async function fetchAllSpotlights(): Promise<TourRow[]> {
 /**
  * @param spotlightId - a spotlight ID
  * @returns A promise that resolves to an array of TourRow objects, selected based on being spotlights
- * 
+ *
  * given a spotlight ID, get all the objects of the related spotlights
  * TODO: Switching this function to be a database function
  */
 export async function fetchRecommendedSpotlights(spotlightId: string) {
-  const { data, error } = await supabase.rpc('fetch_recommended_spotlights',{source_spotlight_id: spotlightId});
+  const { data, error } = await supabase.rpc('fetch_recommended_spotlights', {
+    source_spotlight_id: spotlightId,
+  });
   if (error) {
     throw new Error(
       `An error occurred while trying to read tour displays: ${error}`,
