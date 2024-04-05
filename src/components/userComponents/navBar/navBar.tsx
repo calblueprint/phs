@@ -29,6 +29,7 @@ export default function NavBar() {
           type="button"
           className="w-10 h-10 relative right-[0.81rem]"
           onClick={handleClick}
+          aria-label="Toggle Menu"
         >
           <HamburgerMenu />
         </button>
@@ -51,35 +52,29 @@ export default function NavBar() {
               href="/hoursAdmissionPage"
               className="text-night text-lg font-semibold block relative left-4 mt-[1.25rem]"
             >
-              Hours & Admission
-            </Link>
-            <Link
-              href="/featuredToursPage"
-              className="text-night text-lg font-semibold block relative left-4 mt-[1.25rem]"
-            >
-              Tours
+              Hours & Location
             </Link>
             <Link
               href="/siteMapPage"
               className="text-night text-lg font-semibold block relative left-4 mt-[1.25rem]"
             >
-              Site Map
-            </Link>
-            <Link
-              href="/qrCodeTourPage"
-              className="text-night text-lg font-semibold block relative left-4 mt-[1.25rem]"
-            >
-              QR Scanner
+              Site Maps
             </Link>
 
             <h1 className="text-scary-forest text-sm font-normal mt-[2.13rem]">
               LEARN & EXPLORE
             </h1>
             <Link
+              href="/featuredToursPage"
+              className="text-night text-lg font-semibold block relative left-4 mt-[1.25rem]"
+            >
+              Featured Tours
+            </Link>
+            <Link
               href="/spotlightPage"
               className="text-night text-lg font-semibold block relative left-4 mt-[1.25rem]"
             >
-              Spotlights
+              Wildlife Spotlights
             </Link>
             <Link
               href="/newsFeedPage"
