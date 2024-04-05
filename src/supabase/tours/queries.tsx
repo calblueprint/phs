@@ -15,7 +15,6 @@ export async function fetchAllTours(): Promise<TourRow[]> {
   return data;
 }
 
-
 /**
  * Fetches all spotlights from the database.
  * @returns A promise that resolves to an array of TourRow objects, selected based on being spotlights
