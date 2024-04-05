@@ -19,9 +19,7 @@ export async function fetchMedia() {
  * @param displayId id of the display to fetch pictures for
  * @returns array of image objects corresponding to the display
  */
-export async function fetchImagesForDisplay(
-  displayId: string | undefined,
-) {
+export async function fetchImagesForDisplay(displayId: string | undefined) {
   if (!displayId) {
     return null;
   }
@@ -33,15 +31,43 @@ export async function fetchImagesForDisplay(
     throw new Error(error.message);
   }
 
+  return data;
+}
+
+/**
+ *
+ * @param tourId id of the tour to fetch images for 
+ * @returns an array of image objects corresponding to the display
+ */
+export async function fetchImagesForTour(
+  tourId: string | undefined,
+): Promise<MediaRow[] | null> {
+  if (!tourId) {
+    return null;
+  }
+  const { data, error } = await supabase.rpc('fetchimagesfortour', {
+    tourid: tourId,
+  });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
   return data; 
 }
 /**
  *
  * @param id of media to delete
- * @returns deletes a media row where id == media_id 
+ * @returns deletes a media row where id == media_id
  */
 export async function deleteMedia(id: number) {
-  const { error } = await supabase.from('media').delete().eq('id', id);
+  let { error } = await supabase.from('media').delete().eq('id', id);
+  if (error) {
+    throw new Error(`An error occurred trying to delete displays: ${error}`);
+  } else {
+    fetchMedia();
+  }
+  ({ error } = await supabase.from('media').delete().eq('id', id));
   if (error) {
     throw new Error(`An error occurred trying to delete displays: ${error}`);
   } else {

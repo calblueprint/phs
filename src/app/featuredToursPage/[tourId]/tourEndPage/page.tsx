@@ -20,8 +20,8 @@ import BackButton from '../../../../components/userComponents/BackButton/BackBut
 /**
  * @param params -
  * @param params.params -
- * @param params.params.tourId - The tour ID.
- * @returns The tour end page.
+ * @param params.params.tourId - The tour ID
+ * @returns The tour end page
  */
 export default function TourEndPage({
   params,

@@ -1,19 +1,44 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import BackButton from '../../components/userComponents/BackButton/page';
 import NavBar from '../../components/userComponents/navBar/navBar';
+import { NewsRow } from '../../types/types';
+import { fetchAllNewsByDate } from '../../supabase/news/queries';
+import NewsDisplay from '../../components/userComponents/NewsDisplay/NewsDisplay';
+
 
 /**
- * @returns The news feed page.
+ * @returns news feed page
  */
-export default function NewsFeedPage() {
+function App() {
+  const [news, setNews] = useState<NewsRow[]>([]);
+  useEffect(() => {
+    // Get news
+    const getNews = async () => {
+      const fetchedNews: NewsRow[] = await fetchAllNewsByDate();
+      setNews(fetchedNews);
+    };
+    getNews();
+  }, [news]);
+
   return (
-    <div className='bg-ivory h-full'>
+    <div className="bg-ivory h-screen">
       <NavBar />
-      <div className='p-4'>
-        <h1 className='text-night text-3xl font-bold mb-4'>
-          News Feed
-        </h1>
+      <div className="p-4">
+        <BackButton />
+        <h1 className="text-night text-3xl font-bold mt-2">News Feed</h1>
+        <ul>
+          {news.map(article => (
+            <NewsDisplay
+              key={article.updated_at}
+              id={article.id}
+              contentLink={article.content_link}
+              createdAt={article.created_at}
+              title={article.title}
+            />
+          ))}
+        </ul>
       </div>
     </div>
   );

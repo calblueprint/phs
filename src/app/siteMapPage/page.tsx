@@ -1,14 +1,13 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import NavBar from '../../components/userComponents/navBar/navBar';
 import FilterButton from '../../components/userComponents/FilterButton/FilterButton';
 
 const filterButtonContent: string[] = [
-  'Buildings & Services',
-  'Pools, Aviaries, Enclosures',
-  'Site Features',
+  'Virtual Tour Map',
+  'Exhibits Map',
 ];
 
 const SiteMap = dynamic(
@@ -18,26 +17,53 @@ const SiteMap = dynamic(
     loading: () => <p>Loading...</p>,
   },
 );
+type ModeState = 'tours' | 'exhibits';
 
 /**
  * @returns Page for the interactive map
  */
 function MapPage() {
+
+  const [selectedMap, setSelectedMap] = useState(filterButtonContent[0]); // "Virtual Tour Map" by default
+  const [mode, setMode] = useState<ModeState>('tours');
+
+  // move tour logic here: need to share state between filter 
+  const handleFilter = (mapName) => {
+    setSelectedMap(mapName);
+    if (mapName === "Virtual Tour Map") {
+      setMode("tours");
+    } else if (mapName === "Exhibits Map") {
+      setMode("exhibits");
+    }
+  };
+
+  const renderFilterContainer = () => (
+    <div className="mb-6 w-full pl-0 pr-0 ">
+      <div className='pt-9 pr-2 pl-2'>
+      <p className="text-night font-lato text-2xl font-semibold">Wildlife Care Center Maps</p>
+      </div>
+      <div className="flex flex-row items-center gap-x-0  justify-center text-scary-forest text-center font-lato text-base font-medium pt-7 pr-2 pl-2 w-full">
+        {filterButtonContent &&
+          filterButtonContent.map(text => (
+           
+            <FilterButton 
+            key={text} 
+            content={text} 
+            onClick={() => handleFilter(text)} // Fixed here
+            isSelected={selectedMap === text}/>
+          
+          ))}
+      </div>
+    </div>
+  );
+
   return (
     <div className="bg-ivory">
       <NavBar />
-      <div className="flex flex-col items-start pl-6">
-        <div className="container mb-6 mt-9">
-          <h1 style={{ fontSize: '2rem', fontWeight: 700 }}>Site Map</h1>
-          <div className="inline-flex flex-row items-center gap-x-2.5 w-full overflow-x-scroll no-scrollbar">
-            {filterButtonContent &&
-              filterButtonContent.map(text => (
-                <FilterButton key={text} content={text} />
-              ))}
-          </div>
-        </div>
-        <div className=" w-full pr-6 flex h-2/3 mb-8">
-          <SiteMap />
+      <div className="pt-0 pl-2 pr-2 bg-ivory">
+        {renderFilterContainer()}
+        <div className=" w-full pr-2 pl-2 flex h-2/3 mb-8">
+        <SiteMap mode={mode} />
         </div>
       </div>
     </div>
