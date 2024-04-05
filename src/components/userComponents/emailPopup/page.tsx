@@ -136,7 +136,7 @@ function EmailInput({inputValue, handleChange, handleSubmit, showError, errorMsg
  * if an invalid email is entered and the user clicks the submit button, another error message will pop up. 
  * otherwise, if a valid email is submitted and properly subscribed, another pop up will appear that will tell the user they are subscribed and direct them to another page.
  */
-export default function EmailPopup(
+export default function EmailPopup({backLink}: {backLink: string}
  ) {
   const [isOpen, setIsOpen] = useState(true);
   const [inputValue, setInputValue] = useState('');
