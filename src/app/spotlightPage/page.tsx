@@ -5,14 +5,18 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 import { fetchSpotlightTours } from '../../supabase/tours/queries';
+import { fetchMedia } from '../../supabase/media/queries';
+import { fetchAllTourMedia } from '../../supabase/tour_media/queries';
 import NavBar from '../../components/userComponents/navBar/navBar';
-import { TourRow } from '../../types/types';
+import { TourRow, MediaRow, TourMediaRow } from '../../types/types';
 
 /**
  * @returns spotlights from tours table
  */
 function App() {
   const [spotlights, setSpotlights] = useState<TourRow[]>([]);
+  const [media, setMedia] = useState<MediaRow[]>([]);
+  const [allTourMedia, setAllTourMedia] = useState<TourMediaRow[]>([]);
 
   useEffect(() => {
     /**
@@ -27,14 +31,28 @@ function App() {
       }
     }
 
+    // Get all tour media
+    const getAllTourMedia = async () => {
+      const fetchedAllTourMedia = await fetchAllTourMedia();
+      setAllTourMedia(fetchedAllTourMedia);
+    };
+
+    // Get media
+    const getMedia = async () => {
+      const fetchedMedia = await fetchMedia();
+      setMedia(fetchedMedia);
+    };
+
     fetchData();
+    getAllTourMedia();
+    getMedia();
   }, []);
 
   return (
     <div className="bg-ivory">
       <NavBar />
 
-      <div className="pl-[19.5px] pb-[16px] pt-[61px]">
+      <div className="px-[19.5px] pb-[16px] pt-[61px]">
         <h1 className="text-night text-3xl font-bold mb-4">
           Our Wildlife Spotlights
         </h1>
@@ -50,17 +68,41 @@ function App() {
                 href={`/spotlightPage/${spotlight.id}`}
                 className="w-full rounded-2xl"
               >
-                <div className="bg-[#386131] h-48 rounded-2xl p-[19px] flex flex-col">
-                  <div className="relative top-28">
+                <div className="bg-[#386131] rounded-2xl flex flex-col">
+                  {media.length > 0 && (
                     <Image
-                      key={spotlight.id}
-                      src={spotlight.url}
-                      alt="Media Image"
+                      className="w-[24.375rem] h-[15.3125rem] rounded-lg"
+                      key={
+                        media.find(
+                          m =>
+                            m.id ===
+                            allTourMedia.find(m => m.tour_id === spotlight.id)
+                              ?.media_id,
+                        )?.id
+                      }
+                      src={
+                        media.find(
+                          m =>
+                            m.id ===
+                            allTourMedia.find(m => m.tour_id === spotlight.id)
+                              ?.media_id,
+                        )?.url ?? ''
+                      }
+                      alt={
+                        media.find(
+                          m =>
+                            m.id ===
+                            allTourMedia.find(m => m.tour_id === spotlight.id)
+                              ?.media_id,
+                        )?.text ?? 'Tour start image'
+                      }
+                      layout="responsive"
                       width={100}
                       height={214}
+                      objectFit="cover"
                       priority
                     />
-                  </div>
+                  )}
                 </div>
                 <h4 className="text-black font-Lato text-20 font-bold pt-[14px]">
                   {spotlight.name}
