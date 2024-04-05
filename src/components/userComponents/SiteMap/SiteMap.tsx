@@ -3,7 +3,7 @@
 import L, { LatLngExpression } from 'leaflet';
 import React, { useEffect, useState } from 'react';
 import { LayersControl, MapContainer, TileLayer, Marker } from 'react-leaflet';
-import { fetchSpotlightTours } from '../../../supabase/tours/queries';
+import { fetchAllSpotlights } from '../../../supabase/tours/queries';
 import { ExhibitRow, TourRow } from '../../../types/types';
 import Control from './Control';
 import DisplayPreviewCard from './DisplayPreviewCard';
@@ -107,7 +107,7 @@ function SiteMap({ mode }: SiteMapProps) {
       try {
         let data;
         if (mode === 'tours') {
-          data = await fetchSpotlightTours();
+          data = await fetchAllSpotlights();
         } else if (mode === 'exhibits') {
           data = await fetchAllExhibits();
         }
