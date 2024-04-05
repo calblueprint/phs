@@ -19,3 +19,4 @@ export type SpotlightRow = {
   tour_row: TourRow;
   url: string;
 };
+export type SpotlightWithMediaRow = TourRow & { media_url: string };

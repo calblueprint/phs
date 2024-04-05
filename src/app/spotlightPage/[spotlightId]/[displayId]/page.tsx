@@ -27,6 +27,7 @@ export default function Page({
     created_at: 'N/A',
     description: 'N/A',
     id: '0',
+    summary: 'N/A',
     title: 'N/A',
     updated_at: 'N/A',
   });
