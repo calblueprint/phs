@@ -22,9 +22,9 @@ function App() {
       try {
         const responseData: SpotlightWithMediaRow[] =
           await joinAllSpotlightsWithMedia();
-        console.log({ AllJoinedSpotlights: responseData });
         setSpotlights(responseData);
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.error(error);
       }
     }

@@ -19,9 +19,6 @@ interface FilterButtonProps {
  * @param onClick.onClick
  */
 
-
-
-
 /**
  *
  */
@@ -33,11 +30,7 @@ function FilterButton({ content, onClick, isSelected }: FilterButtonProps) {
   }`;
 
   return (
-    <button
-      type="button"
-      className={buttonClass}
-      onClick={onClick}
-    >
+    <button type="button" className={buttonClass} onClick={onClick}>
       {content}
     </button>
   );

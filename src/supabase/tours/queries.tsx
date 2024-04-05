@@ -142,35 +142,8 @@ export async function upsertTour(tourData: TourRow): Promise<TourRow | null> {
   return newTour;
 }
 
-// Delete a tour
 /**
- * @param id
- */
-export async function deleteTour(id: number) {
-  const { data, error } = await supabase.from('tours').delete().eq('id', id);
-  if (error) {
-    throw new Error(error.message);
-  }
-  return data;
-}
-
-/**
- * !!! WIP !!!
- * @returns - Uses rpc to call Database function of the same name on Supabase.
- * Used to call a join on a tour and the media table, in order to retrieve its cover image + the rest of the tour info.
- */
-export async function joinSpotlightsWithMedia() {
-  const { data, error } = await supabase.rpc('join_spotlights_with_media');
-  if (error) {
-    throw new Error(
-      `An error occurred while trying to load spotlights: ${error.message}`,
-    );
-  }
-  return data;
-}
-
-/**
- *
+ * @returns A promise that resolves to an array of TourRow objects,
  */
 export async function joinToursWithMedia() {
   const { data, error } = await supabase.rpc('join_tours_with_media');

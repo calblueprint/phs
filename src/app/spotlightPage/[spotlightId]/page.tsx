@@ -12,15 +12,9 @@ import NavBar from '../../../components/userComponents/navBar/navBar';
 import { fetchDisplayfromSpotlight } from '../../../supabase/tour_displays/queries';
 
 /**
- * @param root0
- * @param root0.params
- * @param root0.params.spotlightId
- * @param root0
- * @param root0.params
- * @param root0.params.spotlightId
- * @param root0
- * @param root0.params
- * @param root0.params.spotlightId
+ * @param root0 -
+ * @param root0.params -
+ * @param root0.params.spotlightId - Spotlight ID of page that is linked on the spotlight page.
  * @returns a single spotlight page given a spotlight Id
  */
 export default function Page({ params }: { params: { spotlightId: string } }) {
@@ -34,7 +28,6 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
     stop_count: 0,
     category: 'BuildingsAndServices',
     coordinates: {},
-    preview_text: null,
   });
 
   const [displays, setDisplays] = useState<DisplayRow[]>([]);
@@ -60,12 +53,13 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
           await fetchRecommendedSpotlights(params.spotlightId);
         setRecommendedSpotlights(responseDataForRecommendedSpotlights);
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.error(error);
       }
     }
 
     fetchData();
-  }, []);
+  }, [params.spotlightId]);
 
   return (
     <div className="bg-[#ebf0e4]">
@@ -121,7 +115,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
               </h2>
             </Link>
           </li>
-        ))} */}
+        ))}
       </ul>
     </div>
   );

@@ -25,29 +25,24 @@ import supabase from '../client';
  */
 // eslint-disable-next-line import/prefer-default-export
 export async function getCategoryColor1(category: string) {
-    try {
-        const { data, error } = await supabase
-            .from('categories') // Adjust according to your actual table name
-            .select('color')
-            .eq('category', category); // Use this if you're sure there's only one entry per category
+  try {
+    const { data, error } = await supabase
+      .from('categories') // Adjust according to your actual table name
+      .select('color')
+      .eq('category', category); // Use this if you're sure there's only one entry per category
 
-        if (error) {
-            throw new Error(error.message);
-        }
-
-        // Assuming 'color' is the column you want and each category has a unique color.
-        // 'data' would be the object containing 'color', so we return data.color.
-        // Check if 'data' exists to avoid accessing property 'color' of null.
-        console.log(`Color for ${category}:`, data[0].color);
-        return data ? data[0].color : null;
-    } catch (error) {
-        console.error(`Error fetching color for category ${category}:`, error);
-        // Return null or a default color to handle errors gracefully
-        return null;
+    if (error) {
+      throw new Error(error.message);
     }
+
+    // Assuming 'color' is the column you want and each category has a unique color.
+    // 'data' would be the object containing 'color', so we return data.color.
+    // Check if 'data' exists to avoid accessing property 'color' of null.
+    console.log(`Color for ${category}:`, data[0].color);
+    return data ? data[0].color : null;
+  } catch (error) {
+    console.error(`Error fetching color for category ${category}:`, error);
+    // Return null or a default color to handle errors gracefully
+    return null;
+  }
 }
-
-
-
-
-

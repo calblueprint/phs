@@ -1,7 +1,9 @@
+/* eslint-disable jsdoc/require-param-description */
+/* eslint-disable jsdoc/check-param-names */
 import React, { useEffect, useState } from 'react';
 import { HiChevronRight } from 'react-icons/hi';
 import Link from 'next/link';
-import { joinSpotlightsWithMedia } from '../../../supabase/tours/queries';
+import { joinAllSpotlightsWithMedia } from '../../../supabase/tours/queries';
 import { SpotlightWithMediaRow } from '../../../types/types';
 
 /**
@@ -26,9 +28,10 @@ function HomeWildlifeSpotlights(): React.JSX.Element {
     async function fetchData() {
       try {
         const responseData: SpotlightWithMediaRow[] =
-          await joinSpotlightsWithMedia();
+          await joinAllSpotlightsWithMedia();
         setSpotlightsWithMedia(responseData);
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.error('Error in fetch data: ', error);
       }
     }

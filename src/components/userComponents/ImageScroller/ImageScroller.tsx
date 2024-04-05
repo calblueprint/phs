@@ -47,8 +47,8 @@ export default function Carousel({ media }: CarouselProps) {
               objectFit="cover"
               priority
             />
-          )}
-        </div>
+          </div>
+        ))}
       </div>
       {media.length > 1 && (
         <button
