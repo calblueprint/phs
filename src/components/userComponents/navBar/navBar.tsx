@@ -78,7 +78,7 @@ export default function NavBar() {
               href="/featuredToursPage"
               className="text-night text-lg font-semibold block relative left-4 mt-[1.25rem]"
             >
-              Featured Tours
+              Virtual Tours
             </Link>
             <Link
               href="/spotlightPage"
