@@ -56,21 +56,21 @@ export default function Exhibit({
   id: string;
 }) {
   return (
-    <ul key={id}>
+    <li key={id}>
       <div className="w-[100%] px-4 pt-6 pb-7 bg-mint-cream rounded flex-col justify-start items-start gap-2.5 inline-flex mt-6">
         <div className="flex-col justify-start items-start gap-5 flex">
           <div className="justify-start items-center gap-2 inline-flex">
-            <div className="text-neutral-700 text-lg font-bold font-['Lato']">
+            <h2 className="text-neutral-700 text-lg font-bold font-['Lato']">
               {' '}
               {title}
-            </div>
+            </h2>
           </div>
-          <div className="text-black text-base font-light font-['Lato']">
+          <p className="text-black text-base font-light font-['Lato']">
             {description}
-          </div>
+          </p>
           <Image src={image} alt="Exhibit" width={354} height={150} />
         </div>
       </div>
-    </ul>
+    </li>
   );
 }
