@@ -75,7 +75,7 @@ function DisplayPreviewCard({
     };
   
     fetchDetails();
-  }, [tour]); ]
+  }, [tour]);
   
 
   /** route this to spotlights */
@@ -115,7 +115,7 @@ function DisplayPreviewCard({
                   handleClose(); // Then, your handleClose function is called
                 }}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
-                    <path d="M10.0523 11.0274L3.35083 4.32596M10.0524 4.32596L3.35083 11.0275" stroke="#272929" stroke-width="1.11692" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10.0523 11.0274L3.35083 4.32596M10.0524 4.32596L3.35083 11.0275" stroke="#272929" strokeWidth="1.11692" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </div>
               <Link href={`/spotlightPage/${id}`}>

@@ -19,8 +19,6 @@ const SiteMap = dynamic(
 );
 type ModeState = 'tours' | 'exhibits';
 
-
-
 /**
  * @returns Page for the interactive map
  */
@@ -40,7 +38,7 @@ function MapPage() {
   };
 
   const renderFilterContainer = () => (
-    <div className="container mb-6  pl-0 pr-0 ">
+    <div className="mb-6 w-full pl-0 pr-0 ">
       <div className='pt-9 pr-2 pl-2'>
       <p className="text-night font-lato text-2xl font-semibold">Wildlife Care Center Maps</p>
       </div>
