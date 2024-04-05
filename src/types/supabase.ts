@@ -9,6 +9,27 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      category: {
+        Row: {
+          category: string | null
+          color: string | null
+          created_at: string
+          id: number
+        }
+        Insert: {
+          category?: string | null
+          color?: string | null
+          created_at?: string
+          id?: number
+        }
+        Update: {
+          category?: string | null
+          color?: string | null
+          created_at?: string
+          id?: number
+        }
+        Relationships: []
+      }
       display_media: {
         Row: {
           display_id: string;
@@ -254,6 +275,12 @@ export type Database = {
       [_ in never]: never;
     };
     Functions: {
+      color_generator: {
+        Args: {
+          category_in: string
+        }
+        Returns: undefined
+      }
       fetchimagesfordisplay: {
         Args: {
           displayid: string

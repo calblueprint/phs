@@ -6,10 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { TourRow, DisplayRow } from '../../../types/types';
 import { fetchTour } from '../../../supabase/tours/queries';
 import NavBar from '../../../components/userComponents/navBar/navBar';
-import {
-  fetchDisplayfromSpotlight,
-  fetchRelatedSpotlightsfromSpotlightId,
-} from '../../../supabase/tour_displays/queries';
+import { fetchDisplayfromSpotlight, fetchRelatedSpotlightIdsFromSpotlight } from '../../../supabase/tour_displays/queries';
 
 /**
  * @param -.params
