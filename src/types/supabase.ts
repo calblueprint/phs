@@ -86,7 +86,6 @@ export type Database = {
       };
       exhibits: {
         Row: {
-          category: string;
           coordinates: Json | null;
           description: string;
           id: string;
@@ -94,7 +93,6 @@ export type Database = {
           title: string;
         };
         Insert: {
-          category: string;
           coordinates?: Json | null;
           description?: string;
           id?: string;
@@ -102,7 +100,6 @@ export type Database = {
           title: string;
         };
         Update: {
-          category?: string;
           coordinates?: Json | null;
           description?: string;
           id?: string;
