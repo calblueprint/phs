@@ -141,7 +141,7 @@ export default function TourStopPage({
           {display && display.title}
         </h1>
         <p className="text-[#333333] font-medium">
-          This is a placeholder for the display summary, which is coming very soon...
+          {display && display.summary}
         </p>
       </div>
       <div className="my-6">
