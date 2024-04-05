@@ -1,36 +1,11 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { IoIosArrowRoundBack } from 'react-icons/io';
+import BackButton from '../../components/userComponents/BackButton/page';
 import NavBar from '../../components/userComponents/navBar/navBar';
 import { NewsRow } from '../../types/types';
 import { fetchAllNewsByDate } from '../../supabase/news/queries';
 import NewsDisplay from '../../components/userComponents/NewsDisplay/NewsDisplay';
-
-/**
- * used as an onClick which goes back to previous page 
- */
-/**
- * @param evt on click of button
- */
-function goBack(evt: React.SyntheticEvent) {
-  // ignore the native anchor action
-  evt.preventDefault();
-
-  window.history.back();
-}
-
-/**
- * @returns back button
- */
-function BackButton() {
-  return (
-    <button type="button" onClick={goBack} className="text-scary-forest">
-      {' '}
-      <IoIosArrowRoundBack size={40} />
-    </button>
-  );
-}
 
 /**
  * @returns news feed page
