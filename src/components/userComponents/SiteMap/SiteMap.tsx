@@ -108,10 +108,11 @@ function SiteMap({ mode }: SiteMapProps) {
         } else if (mode === "exhibits") {
           data = await fetchAllExhibits();
         }
-        if (data) {
+        if (data && mode === "tours") {
           const colors = await Promise.all(data.map(async (item) => ({
             id: item.id,
             color: await getCategoryColor1(item.category)
+            
             
           })));
           const newColorsMap = colors.reduce((acc, curr) => ({
@@ -120,7 +121,29 @@ function SiteMap({ mode }: SiteMapProps) {
             [curr.id]: curr.color
           }), {});
           setColorsMap(newColorsMap);
+
+          
           console.log("Colors Map:", newColorsMap); // Log here
+        } else if (data && mode === "exhibits") {
+          const colors = await Promise.all(data.map(async (item) => ({
+            id: item.id,
+            color: await getCategoryColor1(item.title)
+            
+            
+          })));
+          const newColorsMap = colors.reduce((acc, curr) => ({
+            
+            ...acc,
+            [curr.id]: curr.color
+          }), {});
+          setColorsMap(newColorsMap);
+
+          
+          console.log("Colors Map:", newColorsMap); // Log here
+
+
+
+
         }
         setSpotlightTours(data ?? []);
       } catch (error) {

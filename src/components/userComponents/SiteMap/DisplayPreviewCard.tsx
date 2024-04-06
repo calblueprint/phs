@@ -75,7 +75,7 @@ function DisplayPreviewCard({
     };
   
     fetchDetails();
-  }, [tour]); ]
+  }, [tour]); 
   
 
   /** route this to spotlights */

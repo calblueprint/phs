@@ -12,19 +12,19 @@ export type Database = {
       categories: {
         Row: {
           category: string | null
-          color: string | null
+          color_hex: string
           created_at: string
           id: number
         }
         Insert: {
           category?: string | null
-          color?: string | null
+          color_hex: string
           created_at?: string
           id?: number
         }
         Update: {
           category?: string | null
-          color?: string | null
+          color_hex?: string
           created_at?: string
           id?: number
         }
@@ -69,6 +69,7 @@ export type Database = {
           created_at: string
           description: string
           id: string
+          summary: string | null
           title: string
           updated_at: string | null
         }
@@ -77,6 +78,7 @@ export type Database = {
           created_at?: string
           description?: string
           id: string
+          summary?: string | null
           title?: string
           updated_at?: string | null
         }
@@ -85,6 +87,7 @@ export type Database = {
           created_at?: string
           description?: string
           id?: string
+          summary?: string | null
           title?: string
           updated_at?: string | null
         }
@@ -107,7 +110,6 @@ export type Database = {
       }
       exhibits: {
         Row: {
-          category: string
           coordinates: Json | null
           description: string
           id: string
@@ -115,7 +117,6 @@ export type Database = {
           title: string
         }
         Insert: {
-          category: string
           coordinates?: Json | null
           description: string
           id?: string
@@ -123,7 +124,6 @@ export type Database = {
           title: string
         }
         Update: {
-          category?: string
           coordinates?: Json | null
           description?: string
           id?: string
@@ -317,6 +317,22 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      fetch_recommended_spotlights: {
+        Args: {
+          source_spotlight_id: string
+        }
+        Returns: {
+          id: string
+          name: string
+          description: string
+          created_at: string
+          stop_count: number
+          spotlight: boolean
+          preview_text: string
+          coordinates: Json
+          category: Database["public"]["Enums"]["tour_category"]
+        }[]
+      }
       fetchimagesfordisplay: {
         Args: {
           displayid: string
@@ -349,37 +365,7 @@ export type Database = {
         }
         Returns: string
       }
-      get_spotlight_recommendations: {
-        Args: {
-          source_display_id: string
-        }
-        Returns: {
-          id: string
-          name: string
-          description: string
-          created_at: string
-          stop_count: number
-          spotlight: boolean
-          preview_text: string
-          coordinates: Json
-          category: Database["public"]["Enums"]["tour_category"]
-        }[]
-      }
-      get_spotlight_tours: {
-        Args: Record<PropertyKey, never>
-        Returns: {
-          id: string
-          name: string
-          description: string
-          created_at: string
-          stop_count: number
-          spotlight: boolean
-          preview_text: string
-          coordinates: Json
-          category: Database["public"]["Enums"]["tour_category"]
-        }[]
-      }
-      join_spotlights_with_media: {
+      join_all_spotlights_with_media: {
         Args: Record<PropertyKey, never>
         Returns: {
           id: string
