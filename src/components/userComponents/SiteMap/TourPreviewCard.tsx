@@ -72,13 +72,13 @@ function TourPreviewCard({
   /** route this to spotlights */
 
   return (
-      <div className="flex flex-col items-center justify-center w-[25rem] h-[8.25rem] max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto p-4 pb-[2.87rem] pr-[1.19rem] pl-[1.19rem] rounded-md">
+      <div className="flex flex-col items-center justify-center w-[25rem] h-[7.25rem] max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto p-4 pb-[2.87rem] pr-[1.19rem] pl-[1.19rem] rounded-md">
         <div
           className="flex flex-row items-center rounded-md overflow-hidden bg-ivory cursor-pointer w-full sm:w-4/4 md:w-5/5 lg:w-2/2 xl:w-5/5 flex-shrink-0 shadow-xl" 
           aria-hidden="true"
         >
           {!loading && 
-          <div className="relative w-[7.8125rem] z-10 h-[8.25rem] shrink-0 rounded-tl-md rounded-tr-none rounded-br-none rounded-bl-md">
+          <div className="relative w-[5.8125rem] z-10 h-full shrink-0 rounded-tl-md rounded-tr-none rounded-br-none rounded-bl-md">
            
             <Image
             
@@ -101,7 +101,7 @@ function TourPreviewCard({
             tabIndex={0}
           >
             <div className=""> 
-            <div className="flex justify-end items-center pt-2 pr-2" onClick={(e) => {
+            <div className="flex justify-end items-center pt-2 pr-[0.5rem]" onClick={(e) => {
                   e.stopPropagation(); //  prevents the click from propagating to the parent link
                   handleClose(); 
                 }}>
@@ -110,13 +110,12 @@ function TourPreviewCard({
                   </svg>
                 </div>
               <Link href={`/spotlightPage/${id}`}>
+                <div className=' pl-[0.75rem] pr-[9.87] pt-[0rem] font-lato text-xs text-shadow bg-[#F173731A]  rounded-lg w-[8rem]'>
+                    {category}
+                </div>
+
               <h3
-                className="relative truncate text-asparagus pr-[0.31rem] pl-[0.75rem] pt-[0rem] uppercase font-light text-xs leading-normal"
-              >
-                {category}
-              </h3>
-              <h3
-                className="relative truncate font-medium font-lato text-night pr-[0.31rem] pl-[0.75rem] pt-[0.30rem] pb-[0rem] text-base leading-normal"
+                className="relative truncate font-medium font-lato text-night pr-[0.31rem] pl-[0.75rem] pt-[0.3rem] pb-[0rem] text-base leading-normal"
 
               >
                 {name1}
@@ -125,6 +124,9 @@ function TourPreviewCard({
               <h4 className="relative font-lato h-[2rem] pr-[0.31rem] pt-[0rem] pl-[0.75rem] pb-[2.4rem] text-shadow line-clamp-2 text-sm">
                 {description}
               </h4>
+              <h6 className='relative pt-[0.2rem] pr-[1rem] pb-[0.4rem] text-silver font-lato text-xs text-right'>
+                Go to virtual tour > 
+                </h6>
               </Link>
             </div>
           </div>
