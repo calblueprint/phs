@@ -3,35 +3,35 @@ import { LatLngExpression } from 'leaflet';
 import { useMapEvents } from 'react-leaflet';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ExhibitRow, TourRow } from '../../../types/types';
-import { fetchImagesForTour } from '../../../supabase/media/queries';
+import { ExhibitRow } from '../../../types/types';
+
 import { fetchExhibitImage } from '../../../supabase/exhibits/queries';
 
-interface DisplayCardProps {
-  tour: TourRow | ExhibitRow;
+interface ExhibitCardProps {
+  tour: ExhibitRow;
   handleClose: () => void;
   handleClick?: () => void;
 }
 
 /**
- * @param DisplayCardProps.display display to preview
- * @param DisplayCardProps.handleClick function to handle actions when clicked
- * @param DisplayCardProps.handleClose function to handle closing of preview card
- * @param DisplayCardProps.display.display
- * @param DisplayCardProps.display.handleClick
- * @param DisplayCardProps.display.handleClose
- * @param DisplayCardProps.display.tour
+ * @param ExhibitCardProps.display display to preview
+ * @param ExhibitCardProps.handleClick function to handle actions when clicked
+ * @param ExhibitCardProps.handleClose function to handle closing of preview card
+ * @param ExhibitCardProps.display.display
+ * @param ExhibitCardProps.display.handleClick
+ * @param ExhibitCardProps.display.handleClose
+ * @param ExhibitCardProps.display.tour
  * @returns preview card component to display within leaflet map container
  */
-function DisplayPreviewCard({
+function ExhibitPreviewCard({
   tour,
   handleClick,
   handleClose,
-}: DisplayCardProps) {
+}: ExhibitCardProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [previewImage, setPreviewImage] = useState<string>('');
   const [name1, setname1] = useState<string>('');
-  const [tourType, setTourType] = useState<string>('');
+
   const { id, description, coordinates, category } = tour;
   // name, for tour title for exhibit
 
@@ -53,23 +53,14 @@ function DisplayPreviewCard({
       let imageUrl = ''; 
       let displayName = ''; 
   
-      if ('name' in tour) {  // because title is name for type TourExhibit
-        // Fetch images for a tour
-        const images = await fetchImagesForTour(tour.id);
-        if (images && images.length > 0) {
-          imageUrl = images[0].url; 
-        }
-        displayName = tour.name; 
-        setTourType('tour');
-      } else {
-        // Handle as an ExhibitRow
-        const imageObj = await fetchExhibitImage(tour.id); 
-        if (imageObj) {
-          imageUrl = imageObj.image; 
-        }
-        displayName = tour.title;
-        setTourType('exhibit'); 
-      }
+
+    const imageObj = await fetchExhibitImage(tour.id); 
+    if (imageObj) {
+        imageUrl = imageObj.image; 
+    }
+    displayName = tour.title;
+
+      
   
       // Set state variables
       setPreviewImage(imageUrl);
@@ -130,7 +121,6 @@ function DisplayPreviewCard({
               </h3>
               <h3
                 className="relative truncate font-medium font-lato text-night pr-[0.31rem] pl-[0.75rem] pt-[0.30rem] pb-[0rem] text-base leading-normal"
-
               >
                 {name1}
               </h3>
@@ -148,4 +138,4 @@ function DisplayPreviewCard({
   );
 }
 
-export default DisplayPreviewCard;
+export default ExhibitPreviewCard;

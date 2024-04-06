@@ -10,6 +10,8 @@ import DisplayPreviewCard from './DisplayPreviewCard';
 import { fetchExhibit, fetchAllExhibits } from '../../../supabase/exhibits/queries';
 import { getCategoryColor1 } from '../../../supabase/category/queries';
 import RecenterMap from './MapInteractionHandler';
+import TourPreviewCard from './TourPreviewCard';
+import ExhibitPreviewCard from './ExhibitPreviewCard';
 
 const center: LatLngExpression = {
   lat: 37.587480,
@@ -208,14 +210,29 @@ function SiteMap({ mode }: SiteMapProps) {
               />
             );
           })}
-        {selectedTour && (
+        {/* {selectedTour && (
           <Control position="bottomright">
             <DisplayPreviewCard
               tour={selectedTour}
               handleClose={handlePreviewClose}
             />
           </Control>
-        )}
+        )} */}
+        {selectedTour && (
+        <Control position="bottomright">
+          {mode === 'tours' ? (
+            <TourPreviewCard
+              tour={selectedTour as TourRow} // Assuming you have proper type checks or type casting
+              handleClose={handlePreviewClose}
+            />
+          ) : (
+            <ExhibitPreviewCard
+              tour={selectedTour as ExhibitRow} // Assuming you have proper type checks or type casting
+              handleClose={handlePreviewClose}
+            />
+          )}
+        </Control>
+      )}
       </LayersControl>
       {selectedTour == null && <RecenterMap center={center} />} 
     </MapContainer>
