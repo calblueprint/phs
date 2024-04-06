@@ -1,9 +1,16 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Lato, Manrope } from 'next/font/google';
 import React from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
+
+const manrope = Manrope({ weight: ['400', '700'], subsets: ['latin'] });
+
+const lato = Lato({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -11,9 +18,9 @@ export const metadata: Metadata = {
 };
 
 /**
- *
- * @param root0
- * @param root0.children
+ * @param root0 - Destructured object containing the properties.
+ * @param root0.children - The child elements to be rendered within the RootLayout component.
+ * @returns - The rendered RootLayout component
  */
 export default function RootLayout({
   children,
@@ -44,9 +51,8 @@ export default function RootLayout({
         <script src="html5-qrcode.min.js" />
         
       </head>
-      
-      <body className={inter.className}>{children}</body>
 
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

@@ -2,21 +2,20 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 
 /**
- *
+ * @returns The navigation bar for the web app
  */
 function NavBar() {
   const [showMenu, setShowMenu] = useState(false);
 
   /**
-   *
+   * Toggles the side menu
    */
   function handleClick() {
     setShowMenu(!showMenu);
   }
 
   /**
-   *
-   * @param event
+   * @param event - Close the side menu when the escape key is pressed
    */
   function handleKeyDown(event: React.KeyboardEvent<HTMLButtonElement>) {
     if (event.key === 'Escape') {

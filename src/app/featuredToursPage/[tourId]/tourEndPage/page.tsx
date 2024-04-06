@@ -10,11 +10,11 @@ import { fetchTour } from '../../../../supabase/tours/queries';
 import { fetchTourMedia } from '../../../../supabase/tour_media/queries';
 
 /**
- * The page that displays the end of a tour.
+ * Displays end page for a tour
  * @param params -
  * @param params.params -
- * @param params.params.tourId - The tour ID.
- * @returns The tour end page.
+ * @param params.params.tourId - The tour ID
+ * @returns The tour end page
  */
 export default function TourEndPage({
   params,

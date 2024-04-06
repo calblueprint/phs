@@ -10,11 +10,11 @@ import { fetchTourDisplays } from '../../../supabase/tour_displays/queries';
 import { fetchAllDisplays } from '../../../supabase/displays/queries';
 
 /**
- * The page that displays the start of a tour.
+ * Displays the start page for a tour
  * @param params -
  * @param params.params -
- * @param params.params.tourId - The tour ID.
- * @returns The tour start page.
+ * @param params.params.tourId - The tour ID
+ * @returns The tour start page
  */
 export default function TourStartPage({
   params,
@@ -75,12 +75,12 @@ export default function TourStartPage({
             </div>
           </div>
         </div>
-        <p className="p-4">{tour && tour.description}</p>
-        <h3 className="p-4 text-lg font-bold">In this tour</h3>
+        <p className="p-4 text-night">{tour && tour.description}</p>
+        <h3 className="p-4 text-lg font-bold text-night">In this tour</h3>
         <ol className="px-12">
           {tourDisplays.map(tourDisplay => (
             <li key={tourDisplay.display_id}>
-              <div>
+              <div className="text-night">
                 <Link
                   href={`/featuredToursPage/${params.tourId}/${tourDisplay.display_id}`}
                 >

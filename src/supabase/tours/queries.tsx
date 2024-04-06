@@ -85,23 +85,50 @@ export async function updateTour(
 export async function upsertTour(tourData: TourRow): Promise<TourRow | null> {
   const { data, error } = await supabase.from('tours').upsert(tourData);
   if (error) {
+    throw new Error(
+      `An error occurred while trying to upsert tour: ${error.message}`,
+    );
+  }
+  const newTour = data;
+  return newTour;
+}
+
+// Delete a tour
+/**
+ * @param id
+ */
+export async function deleteTour(id: number) {
+  const { data, error } = await supabase.from('tours').delete().eq('id', id);
+  if (error) {
     throw new Error(error.message);
   }
   return data;
 }
 
 /**
- * Deletes a single tour from the database.
- * @param tourId - The id of the tour to delete.
- * @returns A promise that resolves to a TourRow object.
+ * !!! WIP !!!
+ * @returns - Uses rpc to call Database function of the same name on Supabase.
+ * Used to call a join on a tour and the media table, in order to retrieve its cover image + the rest of the tour info.
  */
-export async function deleteTour(tourId: string): Promise<TourRow | null> {
-  const { data, error } = await supabase
-    .from('tours')
-    .delete()
-    .eq('id', tourId);
+export async function joinSpotlightsWithMedia() {
+  const { data, error } = await supabase.rpc('join_spotlights_with_media');
   if (error) {
-    throw new Error(error.message);
+    throw new Error(
+      `An error occurred while trying to load spotlights: ${error.message}`,
+    );
+  }
+  return data;
+}
+
+/**
+ *
+ */
+export async function joinToursWithMedia() {
+  const { data, error } = await supabase.rpc('join_tours_with_media');
+  if (error) {
+    throw new Error(
+      `An error occurred while trying to load spotlights: ${error.message}`,
+    );
   }
   return data;
 }

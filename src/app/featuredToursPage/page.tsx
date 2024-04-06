@@ -3,13 +3,16 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-import { fetchAllTours } from '../../supabase/tours/queries';
+import {
+  fetchAllTours,
+  joinSpotlightsWithMedia,
+} from '../../supabase/tours/queries';
 import NavBar from '../../components/userComponents/navBar/navBar';
 import { TourRow } from '../../types/types';
 
 /**
- * The page that displays all the featured tours.
- * @returns The featured tours page.
+ * Displays a list of all featured tours
+ * @returns The featured tours page
  */
 export default function FeaturedToursPage() {
   const [tours, setTours] = useState<TourRow[]>([]);

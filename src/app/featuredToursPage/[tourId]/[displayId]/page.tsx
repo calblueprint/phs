@@ -11,12 +11,12 @@ import { fetchImagesForDisplay } from '../../../../supabase/media/queries';
 import Carousel from '../../../../components/userComponents/ImageScroller/ImageScroller';
 
 /**
- * The page that displays a tour stop.
+ * Displays a stop page for the current tour
  * @param params -
  * @param params.params -
- * @param params.params.tourId - The tour ID.
- * @param params.params.displayId - The display ID.
- * @returns The tour stop page.
+ * @param params.params.tourId - The tour ID
+ * @param params.params.displayId - The display ID
+ * @returns The tour stop page
  */
 export default function TourStopPage({
   params,
@@ -78,13 +78,13 @@ export default function TourStopPage({
           }`,
         );
       }
-    }
+    };
 
     // Fetch the display media
     const fetchDisplayMedia = async () => {
       const displayMedia = await fetchImagesForDisplay(params.displayId);
-      setMedia(displayMedia);
-    }
+      setMedia(displayMedia || []);
+    };
 
     getDisplay();
     getLinks();
@@ -92,7 +92,7 @@ export default function TourStopPage({
   }, [params.displayId, params.tourId]);
 
   return (
-    <div className="bg-[#ebf0e4] h-full">
+    <div className="bg-[ivory] min-h-screen">
       <NavBar />
       <h1 className="text-[#333333] text-3xl font-bold p-4">
         {display && display.title}
