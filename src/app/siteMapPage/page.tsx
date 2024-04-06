@@ -44,7 +44,7 @@ function MapPage() {
       <div className='pt-9 pr-2 pl-2 pb-7'>
       <p className="text-night font-lato text-2xl font-semibold">Wildlife Care Center Maps</p>
       </div>
-      <div className="flex flex-row items-center gap-x-0  justify-center text-scary-forest text-center font-lato text-base font-medium pr-1 pl-1 w-full rounded-lg bg-mint-cream  border-mint-cream border-[5px]">
+      <div className="flex flex-row items-center gap-x-0 pr-1 pl-1 w-full rounded-lg bg-mint-cream  border-mint-cream border-[5px]">
        
 
         {filterButtonContent &&
