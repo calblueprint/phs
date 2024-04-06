@@ -81,7 +81,7 @@ function ExhibitPreviewCard({
           aria-hidden="true"
         >
           {!loading && 
-          <div className="relative w-[7.8125rem] z-10 h-[8.25rem] shrink-0 rounded-tl-md rounded-tr-none rounded-br-none rounded-bl-md">
+          <div className="relative w-[5.8125rem] z-10 h-[8.25rem] shrink-0 rounded-tl-md rounded-tr-none rounded-br-none rounded-bl-md">
            
             <Image
             
@@ -114,12 +114,6 @@ function ExhibitPreviewCard({
                 </div>
               <Link href={`/spotlightPage/${id}`}>
               <h3
-                className="relative truncate text-asparagus pr-[0.31rem] pl-[0.75rem] pt-[0rem] uppercase font-light text-xs leading-normal"
-  
-              >
-                {category}
-              </h3>
-              <h3
                 className="relative truncate font-medium font-lato text-night pr-[0.31rem] pl-[0.75rem] pt-[0.30rem] pb-[0rem] text-base leading-normal"
               >
                 {name1}
@@ -129,7 +123,14 @@ function ExhibitPreviewCard({
                 {description}
               </h4>
               </Link>
+              <h6 className='relative pt-[0.78rem] pr-[1rem] text-silver font-lato text-xs text-right'>
+                Go to exhibit > 
+                </h6>
+          
             </div>
+            {/* <div>
+                <h6>Go to exhibit > </h6>
+            </div> */}
           </div>
         </div>
       </div>
