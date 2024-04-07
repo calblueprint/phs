@@ -47,9 +47,11 @@ export function CloseMenu() {
 }
 
 /**
+ * @param root0 -
+ * @param root0.strokeColor - The color of the arrow
  * @returns the BackArrow icon
  */
-export function BackArrow() {
+export function BackArrow({strokeColor = "#386131"}) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +62,7 @@ export function BackArrow() {
     >
       <path
         d="M15.75 9H2.25M2.25 9L6 12.75M2.25 9L6 5.25"
-        stroke="#386131"
+        stroke={strokeColor}
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"

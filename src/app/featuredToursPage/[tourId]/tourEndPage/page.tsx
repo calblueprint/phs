@@ -14,8 +14,7 @@ import { fetchMedia } from '../../../../supabase/media/queries';
 import { fetchTour } from '../../../../supabase/tours/queries';
 import { fetchTourDisplays } from '../../../../supabase/tour_displays/queries';
 import { fetchTourMedia } from '../../../../supabase/tour_media/queries';
-import { Congratulations, ExternalLinkIcon } from '../../../../../public/Icons';
-import BackButton from '../../../../components/userComponents/BackButton/BackButton';
+import { BackArrow, Congratulations, ExternalLinkIcon } from '../../../../../public/Icons';
 
 /**
  * @param params -
@@ -76,26 +75,26 @@ export default function TourEndPage({
     <div className="bg-ivory w-[24.375rem] min-h-screen">
       <NavBar />
       <Link href={backLink} className="relative top-4 left-[1.12rem]">
-        <BackButton />
+        <BackArrow />
       </Link>
 
       <div className="flex flex-col gap-10 mt-8 mb-10">
         <div className="flex flex-col items-center gap-8 mx-[3.47rem]">
-          <div className="flex flex-col gap-6 text-center">
+          <div className="flex flex-col gap-3 text-center">
             <div className="flex flex-col items-center gap-5 mx-[2.34rem]">
               <Congratulations />
-              <h1 className="text-[#333333] text-xl font-bold">
+              <h1 className="text-[#333333] text-xl font-normal">
                 {`You've reached the end of this tour!`}
               </h1>
             </div>
-            <p className="text-[#333333] text-sm font-extralight">
+            <p className="text-[#333333] text-sm font-light">
               Thanks for visiting {tour?.name}.
             </p>
           </div>
-          <div className="bg-asparagus w-[17.375rem] text-center rounded-lg">
+          <div className="bg-asparagus w-[13.75rem] text-center rounded-lg">
             <Link href="/featuredToursPage">
               <h2 className="text-ivory text-base font-semibold p-3">
-                Back to Featured Tours
+                Back to Virtual Tours
               </h2>
             </Link>
           </div>
@@ -104,7 +103,7 @@ export default function TourEndPage({
         <div className="bg-[#F5F6F5] mb-10">
           <div className="bg-[#BDBDBD] h-[0.03125rem]" />
           <div className="flex flex-col px-[1.12rem] py-8 gap-6">
-            <h3 className="text-night font-semibold">Related Links</h3>
+            <h3 className="text-night font-medium">Related Links</h3>
             <ol className="px-[0.88rem]">
               {tourMedia.map((tm, index) => (
                 <li key={tm.media_id} className="flex flex-col gap-4">
@@ -118,7 +117,7 @@ export default function TourEndPage({
                       </h4>
                       <ExternalLinkIcon />
                     </div>
-                    <h4 className="font-medium">
+                    <h4 className="font-normal">
                       {media.find(m => m.id === tm.media_id)?.title}
                     </h4>
                   </Link>

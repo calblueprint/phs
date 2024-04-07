@@ -10,11 +10,11 @@ export default function HoursAdmissionPage() {
   return (
     <div className="bg-ivory h-full">
       <NavBar />
-      <div className="p-4">
-        <h1 className="text-night text-3xl font-bold mb-4">
-          Hours & Admission
+      <div className="px-[1.12rem] py-[2.56rem]">
+        <h1 className="text-night text-3xl font-semibold mb-4">
+          Hours & Location
         </h1>
-        <h3 className="text-night text-xl font-semibold mb-4">
+        <h3 className="text-night text-xl font-medium mb-4">
           Site Information
         </h3>
 
@@ -31,10 +31,10 @@ export default function HoursAdmissionPage() {
           </p>
         </div>
 
-        <h3 className="text-night text-xl font-semibold mb-4">
+        <h3 className="text-night text-xl font-medium mb-4">
           Contact Us
         </h3>
-        <p className='text-night mx-4'>
+        <p className='text-night'>
           For dog, small animal, or exotic adoptions please call 650-340-7022
           for an appointment or submit your adoption application to
           adoptinquire@PHS-SPCA.org.

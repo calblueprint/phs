@@ -9,8 +9,8 @@ import { fetchMedia } from '../../supabase/media/queries';
 import { fetchAllTourMedia } from '../../supabase/tour_media/queries';
 import NavBar from '../../components/userComponents/navBar/navBar';
 import { TourRow, MediaRow, TourMediaRow } from '../../types/types';
-import BackButton from '../../components/userComponents/BackButton/BackButton';
 import NextButton from '../../components/userComponents/NextButton/NextButton';
+import { BackArrow } from '../../../public/Icons';
 /**
  * @returns The featured tours page.
  */
@@ -50,7 +50,7 @@ export default function FeaturedToursPage() {
       <div className="p-4">
         <div className="mb-3">
           <Link href="/">
-            <BackButton />
+            <BackArrow />
           </Link>
         </div>
 
@@ -74,37 +74,27 @@ export default function FeaturedToursPage() {
                     href={`/featuredToursPage/${tour.id}`}
                     className="w-full rounded-lg block"
                   >
-                    <div className="relative w-full">
+                    <div className="relative w-full h-[12.3125rem] rounded-lg overflow-hidden">
                       {media.length > 0 && (
                         <Image
-                          className="w-[24.375rem] h-[15.3125rem] rounded-lg"
-                          key={
-                            media.find(
-                              m =>
-                                m.id ===
-                                allTourMedia.find(m => m.tour_id === tour.id)
-                                  ?.media_id,
-                            )?.id
-                          }
+                          className="rounded-lg"
                           src={
                             media.find(
                               m =>
                                 m.id ===
-                                allTourMedia.find(m => m.tour_id === tour.id)
+                                allTourMedia.find(tm => tm.tour_id === tour.id)
                                   ?.media_id,
-                            )?.url ?? ''
+                            )?.url ?? '' // Can add a default image's url here
                           }
                           alt={
                             media.find(
                               m =>
                                 m.id ===
-                                allTourMedia.find(m => m.tour_id === tour.id)
+                                allTourMedia.find(tm => tm.tour_id === tour.id)
                                   ?.media_id,
                             )?.text ?? 'Tour start image'
                           }
-                          layout="responsive"
-                          width={390}
-                          height={245}
+                          layout="fill"
                           objectFit="cover"
                           priority
                         />
@@ -113,14 +103,14 @@ export default function FeaturedToursPage() {
                         className="absolute bottom-0 w-full h-48 rounded-lg p-[1.31rem] flex flex-col justify-end"
                         style={{
                           background:
-                            'linear-gradient(to bottom, #14141400 0%, #14141426 15%, #1E1E1E65 39.56%, #000000BF 75%, #333333BF 100%)',
+                            'linear-gradient(180deg, rgba(51, 51, 51, 0.0) 0%, rgba(51, 51, 51, 0.4) 50%, rgba(0, 0, 0, 0.8) 100%)',
                         }}
                       >
-                        <h4 className="text-white text-[0.8125rem] font-medium mt-0.5 relative bottom-[0.44rem]">
+                        <h4 className="text-white text-xs font-normal mt-0.5 relative bottom-[0.44rem]">
                           {tour.stop_count} stops
                         </h4>
                         <div className="flex items-center justify-between">
-                          <h2 className="text-white text-xl font-bold truncate relative bottom-[0.31rem]">
+                          <h2 className="text-ivory text-2xl font-medium truncate relative bottom-[0.31rem]">
                             {tour.name}
                           </h2>
                           <div className="relative bottom-[0.35rem]">

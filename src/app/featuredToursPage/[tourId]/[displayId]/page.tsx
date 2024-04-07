@@ -131,11 +131,15 @@ export default function TourStopPage({
   return (
     <div className="bg-ivory w-[24.375rem] min-h-screen">
       <NavBar />
-      <ProgressBar
-        tourName={tour?.name || ''}
-        currentStop={currentStop || 0}
-        totalStops={tour?.stop_count || 0}
-      />
+      {
+        (currentStop && tour?.stop_count) > 0 && (
+          <ProgressBar
+            tourName={tour?.name || ''}
+            currentStop={currentStop || 0}
+            totalStops={tour?.stop_count || 0}
+          />
+        )
+      }
       <div className="flex flex-col px-[1.56rem] gap-2 mt-8">
         <h1 className="text-[#333333] text-3xl font-semibold">
           {display && display.title}

@@ -93,14 +93,14 @@ export default function TourStartPage({
       )}
 
       <div className="w-[24.375rem] flex flex-col px-[1.125rem] absolute top-[20.56rem] gap-6 mb-[2.5rem]">
-        <div className="bg-mint-cream w-[22.125rem] rounded-md px-[2.1875rem] py-[2.1875rem] flex-col items-center gap-3 inline-flex">
-          <div className="flex flex-col text-center gap-1">
+        <div className="bg-mint-cream w-[22.125rem] rounded-md px-[2.1875rem] py-[2.25rem] flex-col items-center gap-3 inline-flex">
+          <div className="flex flex-col w-[22.125rem] rounded-md px-[2.1875rem] text-center gap-1">
             <h2 className="text-night text-sm font-normal">WELCOME TO</h2>
-            <h1 className="text-night text-[2rem] font-semibold">
+            <h1 className="text-night text-[2rem] truncate font-semibold">
               {tour.name}
             </h1>
           </div>
-          <div className="w-[12.625rem] px-4 py-3 bg-asparagus rounded-lg justify-center items-center gap-2.5">
+          <div className="w-[12.625rem] px-4 py-[0.62rem] bg-asparagus rounded-lg justify-center items-center gap-2.5">
             <Link
               href={`/featuredToursPage/${params.tourId}/${tourDisplays[0]?.display_id}`}
             >
@@ -116,7 +116,7 @@ export default function TourStartPage({
         <div className="flex flex-col relative gap-4 mb-10">
           <div className="flex justify-between items-center">
             <h3 className="text-night text-lg font-medium">In this tour</h3>
-            <div className="bg-[#F5EDCF80] w-[4.375rem] h-[1.5rem] rounded-lg px-3 py-[0.31rem]">
+            <div className="bg-[#F5EDCF80] w-[4.375rem] h-[1.5rem] rounded-[0.5625rem] px-3 py-1">
               <p className="text-night text-xs text-center">
                 {tour.stop_count} stops
               </p>

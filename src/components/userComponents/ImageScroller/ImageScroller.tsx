@@ -34,7 +34,7 @@ export default function Carousel({ media }: CarouselProps) {
         <button
           type="button"
           onClick={goToPrevious}
-          className="absolute left-[1.56rem] z-10 rounded-full"
+          className="absolute left-[1.25rem] z-10 rounded-full"
           aria-label="Previous image"
         >
           <svg
@@ -73,7 +73,7 @@ export default function Carousel({ media }: CarouselProps) {
         <button
           type="button"
           onClick={goToNext}
-          className="absolute right-[1.56rem] z-10 rounded-full"
+          className="absolute right-[1.25rem] z-10 rounded-full"
           aria-label="Next image"
         >
           <svg
