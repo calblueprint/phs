@@ -379,6 +379,7 @@ export type Database = {
     };
     Enums: {
       media_type: 'image' | 'video' | 'link';
+      media_type: 'image' | 'video' | 'link';
       tour_category:
         | "BuildingsAndServices"
         | "ParksAviariesEnclosures"
@@ -427,6 +428,8 @@ export type TablesInsert<
 > = PublicTableNameOrOptions extends { schema: keyof Database }
   ? Database[PublicTableNameOrOptions['schema']]['Tables'][TableName] extends {
       Insert: infer I;
+  ? Database[PublicTableNameOrOptions['schema']]['Tables'][TableName] extends {
+      Insert: infer I;
     }
     ? I
     : never
@@ -446,6 +449,8 @@ export type TablesUpdate<
     ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
     : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicTableNameOrOptions['schema']]['Tables'][TableName] extends {
+      Update: infer U;
   ? Database[PublicTableNameOrOptions['schema']]['Tables'][TableName] extends {
       Update: infer U;
     }
