@@ -24,8 +24,8 @@ export default function NavBar() {
   }
 
   return (
-    <nav className="bg-scary-forest w-[24.375rem] h-[7rem] flex flex-col relative z-[9999]">
-      <div className="flex flex-row justify-between relative top-[3.25rem]">
+    <nav className="bg-scary-forest w-[24.375rem] h-[4.25rem] flex flex-col relative z-[9999]">
+      <div className="flex flex-row justify-between relative top-2">
         <Link href="/">
           <img
             src="https://phs-spca.org/wp-content/uploads/2017/03/PHSLogo.jpg"
@@ -44,10 +44,10 @@ export default function NavBar() {
           </div>
         </button>
       </div>
-      <div className=" bg-hunter-green w-[24.375rem] h-[0.375rem] absolute bottom-0" />
+      <div className="bg-hunterGreen w-[24.375rem] h-[0.375rem] absolute bottom-0" />
 
       {showMenu && (
-        <div className="bg-[#1414148F] w-[24.375rem] h-full flex justify-end fixed top-28">
+        <div className="bg-[#1414148F] w-[24.375rem] h-full flex justify-end fixed top-[4.25rem]">
           <div className="bg-ivory w-[14.9375rem] h-full relative p-[1.31rem]">
             <h1 className="text-scary-forest text-sm font-normal mt-[1.5rem]">WELCOME</h1>
             <Link
