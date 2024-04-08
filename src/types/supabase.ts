@@ -20,11 +20,9 @@ export type Database = {
         }
         Insert: {
           category?: string | null
-          color_hex: string
+          color?: string | null
           created_at?: string
-          description: string
           id?: number
-          image: string
         }
         Update: {
           category?: string | null
@@ -119,27 +117,23 @@ export type Database = {
           title: string
         }
         Insert: {
-          category_id: number
-          coordinates?: Json | null
-          id?: string
-          title: string
-        }
+          coordinates?: Json | null;
+          created_at?: string;
+          description?: string;
+          id: string;
+          title?: string;
+          updated_at?: string | null;
+        };
         Update: {
-          category_id?: number
-          coordinates?: Json | null
-          id?: string
-          title?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "public_exhibits_category_id_fkey"
-            columns: ["category_id"]
-            isOneToOne: false
-            referencedRelation: "categories"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
+          coordinates?: Json | null;
+          created_at?: string;
+          description?: string;
+          id?: string;
+          title?: string;
+          updated_at?: string | null;
+        };
+        Relationships: [];
+      };
       media: {
         Row: {
           created_at: string
@@ -183,14 +177,15 @@ export type Database = {
           updated_at?: string | null
         }
         Update: {
-          content_link?: string
-          created_at?: string
-          id?: string
-          title?: string
-          updated_at?: string | null
-        }
-        Relationships: []
-      }
+          created_at?: string;
+          id?: string;
+          text?: string | null;
+          title?: string | null;
+          type?: string | null;
+          url?: string;
+        };
+        Relationships: [];
+      };
       spotlight_recommendations: {
         Row: {
           source_display_id: string
@@ -288,102 +283,116 @@ export type Database = {
         Row: {
           category: Database["public"]["Enums"]["tour_category"]
           coordinates: Json | null
-          created_at: string
-          description: string | null
-          id: string
-          name: string
+          created_at: string;
+          description: string | null;
+          id: string;
+          name: string | null;
           preview_text: string | null
-          spotlight: boolean
-          stop_count: number | null
-        }
+          spotlight: boolean;
+          stop_count: number | null;
+        };
         Insert: {
-          category?: Database["public"]["Enums"]["tour_category"]
-          coordinates?: Json | null
-          created_at?: string
-          description?: string | null
-          id?: string
-          name: string
-          preview_text?: string | null
-          spotlight?: boolean
-          stop_count?: number | null
-        }
+          created_at?: string;
+          description?: string | null;
+          id?: string;
+          name?: string | null;
+          spotlight?: boolean;
+          stop_count?: number | null;
+        };
         Update: {
+          created_at?: string;
+          description?: string | null;
+          id?: string;
+          name?: string | null;
+          spotlight?: boolean;
+          stop_count?: number | null;
+        };
+        Relationships: [];
+      };
+      news: {
+        Row: {
+          content_link: string;
+          created_at: string;
+          id: string;
+          title: string;
+          updated_at: string | null;
+        };
+        Insert: {
+          content_link?: string;
           category?: Database["public"]["Enums"]["tour_category"]
           coordinates?: Json | null
-          created_at?: string
-          description?: string | null
-          id?: string
-          name?: string
+          created_at?: string;
+          id?: string;
+          title?: string;
           preview_text?: string | null
-          spotlight?: boolean
-          stop_count?: number | null
-        }
-        Relationships: []
-      }
-    }
+          updated_at?: string | null;
+        };
+        Update: {
+          content_link?: string;
+          category?: Database["public"]["Enums"]["tour_category"]
+          coordinates?: Json | null
+          created_at?: string;
+          id?: string;
+          title?: string;
+          preview_text?: string | null
+          updated_at?: string | null;
+        };
+        Relationships: [];
+      };
+    };
     Views: {
       [_ in never]: never
     }
     Functions: {
-      fetch_recommended_spotlights: {
-        Args: {
-          source_spotlight_id: string
-        }
-        Returns: {
-          id: string
-          name: string
-          description: string
-          created_at: string
-          stop_count: number
-          spotlight: boolean
-          preview_text: string
-          coordinates: Json
-          category: Database["public"]["Enums"]["tour_category"]
-        }[]
-      }
       fetchimagesfordisplay: {
         Args: {
-          displayid: string
-        }
+          displayid: string;
+        };
         Returns: {
-          id: string
-          url: string
-          type: string
-          title: string
-          text: string
-          created_at: string
-        }[]
-      }
+          id: string;
+          url: string;
+          type: string;
+          title: string;
+          text: string;
+          created_at: string;
+        }[];
+      };
       fetchimagesfortour: {
         Args: {
-          tourid: string
-        }
+          tourid: string;
+        };
         Returns: {
-          id: string
-          url: string
-          type: string
-          title: string
-          text: string
-          created_at: string
-        }[]
-      }
+          id: string;
+          url: string;
+          type: string;
+          title: string;
+          text: string;
+          created_at: string;
+        }[];
+      };
       get_category_color: {
         Args: {
           category_in: string
         }
         Returns: string
       }
-      get_exhibit_details: {
-        Args: Record<PropertyKey, never>
+      get_spotlight_recommendations: {
+        Args: {
+          source_display_id: string
+        }
         Returns: {
-          coordinates: Json
-          id: number
-          category: string
+          id: string
+          name: string
           description: string
-          image: string
+          created_at: string
+          stop_count: number
+          spotlight: boolean
+          preview_text: string
+          coordinates: Json
+          category: Database["public"]["Enums"]["tour_category"]
         }[]
       }
-      get_non_spotlight_tours: {
+      get_spotlight_tours: {
         Args: Record<PropertyKey, never>
         Returns: {
           id: string
@@ -397,7 +406,20 @@ export type Database = {
           category: Database["public"]["Enums"]["tour_category"]
         }[]
       }
-      join_all_spotlights_with_media: {
+      join_spotlights_with_media: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          id: string;
+          name: string;
+          description: string;
+          created_at: string;
+          stop_count: number;
+          spotlight: boolean;
+          preview_text: string
+          media_url: string;
+        }[];
+      };
+      join_tours_with_media: {
         Args: Record<PropertyKey, never>
         Returns: {
           id: string
@@ -407,118 +429,101 @@ export type Database = {
           stop_count: number
           spotlight: boolean
           preview_text: string
-          coordinates: Json
-          category: Database["public"]["Enums"]["tour_category"]
-          media_url: string
+          url: string
         }[]
       }
-      join_all_tours_with_media: {
-        Args: Record<PropertyKey, never>
-        Returns: {
-          id: string
-          name: string
-          description: string
-          created_at: string
-          stop_count: number
-          spotlight: boolean
-          preview_text: string
-          coordinates: Json
-          category: Database["public"]["Enums"]["tour_category"]
-          media_url: string
-        }[]
-      }
-    }
+    };
     Enums: {
       media_type: "image" | "video" | "link"
       tour_category:
         | "BuildingsAndServices"
         | "ParksAviariesEnclosures"
         | "SiteFeatures"
-    }
+    };
     CompositeTypes: {
-      [_ in never]: never
-    }
-  }
+      [_ in never]: never;
+    };
+  };
 }
 
-type PublicSchema = Database[Extract<keyof Database, "public">]
+type PublicSchema = Database[Extract<keyof Database, 'public'>];
 
 export type Tables<
   PublicTableNameOrOptions extends
-    | keyof (PublicSchema["Tables"] & PublicSchema["Views"])
+    | keyof (PublicSchema['Tables'] & PublicSchema['Views'])
     | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
-        Database[PublicTableNameOrOptions["schema"]]["Views"])
+    ? keyof (Database[PublicTableNameOrOptions['schema']]['Tables'] &
+        Database[PublicTableNameOrOptions['schema']]['Views'])
     : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
-      Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
-      Row: infer R
+  ? (Database[PublicTableNameOrOptions['schema']]['Tables'] &
+      Database[PublicTableNameOrOptions['schema']]['Views'])[TableName] extends {
+      Row: infer R;
     }
     ? R
     : never
-  : PublicTableNameOrOptions extends keyof (PublicSchema["Tables"] &
-        PublicSchema["Views"])
-    ? (PublicSchema["Tables"] &
-        PublicSchema["Views"])[PublicTableNameOrOptions] extends {
-        Row: infer R
-      }
-      ? R
-      : never
+  : PublicTableNameOrOptions extends keyof (PublicSchema['Tables'] &
+      PublicSchema['Views'])
+  ? (PublicSchema['Tables'] &
+      PublicSchema['Views'])[PublicTableNameOrOptions] extends {
+      Row: infer R;
+    }
+    ? R
     : never
+  : never;
 
 export type TablesInsert<
   PublicTableNameOrOptions extends
-    | keyof PublicSchema["Tables"]
+    | keyof PublicSchema['Tables']
     | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+    ? keyof Database[PublicTableNameOrOptions['schema']]['Tables']
     : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Insert: infer I
+  ? Database[PublicTableNameOrOptions['schema']]['Tables'][TableName] extends {
+      Insert: infer I;
     }
     ? I
     : never
-  : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
-    ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
-        Insert: infer I
-      }
-      ? I
-      : never
+  : PublicTableNameOrOptions extends keyof PublicSchema['Tables']
+  ? PublicSchema['Tables'][PublicTableNameOrOptions] extends {
+      Insert: infer I;
+    }
+    ? I
     : never
+  : never;
 
 export type TablesUpdate<
   PublicTableNameOrOptions extends
-    | keyof PublicSchema["Tables"]
+    | keyof PublicSchema['Tables']
     | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+    ? keyof Database[PublicTableNameOrOptions['schema']]['Tables']
     : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Update: infer U
+  ? Database[PublicTableNameOrOptions['schema']]['Tables'][TableName] extends {
+      Update: infer U;
     }
     ? U
     : never
-  : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
-    ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
-        Update: infer U
-      }
-      ? U
-      : never
+  : PublicTableNameOrOptions extends keyof PublicSchema['Tables']
+  ? PublicSchema['Tables'][PublicTableNameOrOptions] extends {
+      Update: infer U;
+    }
+    ? U
     : never
+  : never;
 
 export type Enums<
   PublicEnumNameOrOptions extends
-    | keyof PublicSchema["Enums"]
+    | keyof PublicSchema['Enums']
     | { schema: keyof Database },
   EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
+    ? keyof Database[PublicEnumNameOrOptions['schema']]['Enums']
     : never = never,
 > = PublicEnumNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
-  : PublicEnumNameOrOptions extends keyof PublicSchema["Enums"]
-    ? PublicSchema["Enums"][PublicEnumNameOrOptions]
-    : never
+  ? Database[PublicEnumNameOrOptions['schema']]['Enums'][EnumName]
+  : PublicEnumNameOrOptions extends keyof PublicSchema['Enums']
+  ? PublicSchema['Enums'][PublicEnumNameOrOptions]
+  : never;

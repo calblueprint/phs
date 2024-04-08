@@ -30,7 +30,16 @@ const config: Config = {
       },
       /** Default font is Lato */
       fontFamily: {
+        sans: ['Lato'],
         lato: ['Lato'],
+      },
+      theme: {
+        fontSize: {
+          sm: ['14px', '20px'],
+          base: ['16px', '19px'],
+          lg: ['20px', '28px'],
+          xl: ['24px', '32px'],
+        },
       },
     },
   },
