@@ -74,23 +74,22 @@ export default function TourStartPage({
       <NavBar />
       <Link
         href="/featuredToursPage"
-        className="absolute top-32 left-[1.12rem] z-10"
+        className="absolute top-[5.25rem] left-[1.12rem] z-10"
       >
         <BackButton />
       </Link>
-      {media.length > 0 && (
-        <Image
-          className="w-[24.375rem] h-[15.3125rem] relative"
-          key={media.find(m => m.id === tourMedia[0]?.media_id)?.id}
-          src={media.find(m => m.id === tourMedia[0]?.media_id)?.url ?? ''}
-          alt={media.find(m => m.id === tourMedia[0]?.media_id)?.text ?? 'Tour start image'}
-          layout="responsive"
-          width={390}
-          height={245}
-          objectFit="cover"
-          priority
-        />
-      )}
+      <div className="relative w-[24.375rem] h-[15.3125rem]">
+        {media.length > 0 && (
+          <Image
+            key={media.find(m => m.id === tourMedia[0]?.media_id)?.id}
+            src={media.find(m => m.id === tourMedia[0]?.media_id)?.url ?? ''}
+            alt={media.find(m => m.id === tourMedia[0]?.media_id)?.text ?? 'Tour start image'}
+            layout="fill"
+            objectFit="cover"
+            priority
+          />
+        )}
+      </div>
 
       <div className="w-[24.375rem] flex flex-col px-[1.125rem] absolute top-[20.56rem] gap-6 mb-[2.5rem]">
         <div className="bg-mint-cream w-[22.125rem] rounded-md px-[2.1875rem] py-[2.25rem] flex-col items-center gap-3 inline-flex">

@@ -89,6 +89,22 @@ export async function fetchRelatedSpotlightsfromIds(
 }
 
 /**
+ * @param spotlightId - a spotlight ID
+ * @returns fetches all the related spotlights from the spotlight ID
+ */
+export async function fetchRelatedSpotlightsfromSpotlightId(
+  spotlightId: string,
+) {
+  const relatedSpotlightIds = await fetchRelatedSpotlightIdsFromSpotlight(
+    spotlightId,
+  );
+  const relatedSpotlights = await fetchRelatedSpotlightsfromIds(
+    relatedSpotlightIds,
+  );
+  return relatedSpotlights;
+}
+
+/**
  * Fetches all tour displays for a single tour from the database sorted by display_order.
  * @param tourId - The id of the tour to fetch.
  * @returns A promise that resolves to an array of TourDisplaysRow objects.

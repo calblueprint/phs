@@ -140,17 +140,12 @@ export default function TourStopPage({
           />
         )
       }
-      <div className="flex flex-col px-[1.56rem] gap-2 mt-8">
-        <h1 className="text-[#333333] text-3xl font-semibold">
-          {display && display.title}
-        </h1>
-        <p className="text-[#333333] font-medium">
-          {display && display.summary}
-        </p>
-      </div>
-      <div className="my-6">
+      <div className="mb-6">
         {media.length > 0 && <Carousel media={media} />}
       </div>
+      <h1 className="text-[#333333] text-3xl font-semibold px-[1.56rem] gap-4 mt-6 mb-4">
+        {display && display.title}
+      </h1>
       <div className="px-[1.56rem] pb-[2.5rem]">
         <p className="text-[#333333]">
           {display && display.description}
