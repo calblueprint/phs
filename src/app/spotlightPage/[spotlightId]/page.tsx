@@ -101,7 +101,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
             >
               <button
                 type="button"
-                className="bg-mint-cream w-[354px] h-[60px] text-scary-forest text-lato truncate rounded-2xl px-[31px]"
+                className="bg-mint-cream w-[354px] h-[60px] text-scary-forest font-lato truncate rounded-2xl px-[31px]"
               >
                 {display.title}
               </button>
@@ -125,10 +125,10 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
             >
               <Link href={`/spotlightPage/${spotlight.id}`}>
                 <div className="bg-[#386131] h-[169px] rounded-2xl p-[18px] flex flex-col" />
-                <h4 className="text-night font-Lato text-20 font-bold mt-2">
+                <h4 className="text-night font-lato text-20 font-bold mt-2">
                   {otherSpotlight.name}
                 </h4>
-                <h2 className="text-gray font-Lato text-sm font-normal">
+                <h2 className="text-gray font-lato text-sm font-normal">
                   {otherSpotlight.preview_text}
                 </h2>
               </Link>

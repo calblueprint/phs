@@ -47,48 +47,48 @@ export default function NavBar() {
       <div className="bg-hunterGreen w-[24.375rem] h-[0.375rem] absolute bottom-0" />
 
       {showMenu && (
-        <div className="bg-[#1414148F] w-[24.375rem] h-full flex justify-end fixed top-[4.25rem]">
+        <div className="bg-[#000000B2] w-[24.375rem] h-full flex justify-end fixed top-[4.25rem]">
           <div className="bg-ivory w-[14.9375rem] h-full relative p-[1.31rem]">
-            <h1 className="text-scary-forest text-sm font-normal mt-[1.5rem]">WELCOME</h1>
+            <h1 className="text-scary-forest font-lato text-sm font-normal mt-[1.5rem]">WELCOME</h1>
             <Link
               href="/"
-              className="text-night text-lg font-semibold block relative left-4 mt-[1.25rem]"
+              className="text-night font-lato text-lg font-semibold block relative left-4 mt-[1.25rem]"
             >
               Home
             </Link>
 
-            <h1 className="text-scary-forest text-sm font-normal mt-[2.12rem]">VISIT</h1>
+            <h1 className="text-scary-forest font-lato text-sm font-normal mt-[2.12rem]">VISIT</h1>
             <Link
               href="/hoursAdmissionPage"
-              className="text-night text-lg font-semibold block relative left-4 mt-[1.25rem]"
+              className="text-night font-lato text-lg font-semibold block relative left-4 mt-[1.25rem]"
             >
               Hours & Location
             </Link>
             <Link
               href="/siteMapPage"
-              className="text-night text-lg font-semibold block relative left-4 mt-[1.25rem]"
+              className="text-night font-lato text-lg font-semibold block relative left-4 mt-[1.25rem]"
             >
               Site Maps
             </Link>
 
-            <h1 className="text-scary-forest text-sm font-normal mt-[2.13rem]">
+            <h1 className="text-scary-forest font-lato text-sm font-normal mt-[2.13rem]">
               LEARN & EXPLORE
             </h1>
             <Link
               href="/featuredToursPage"
-              className="text-night text-lg font-semibold block relative left-4 mt-[1.25rem]"
+              className="text-night font-lato text-lg font-semibold block relative left-4 mt-[1.25rem]"
             >
               Virtual Tours
             </Link>
             <Link
               href="/spotlightPage"
-              className="text-night text-lg font-semibold block relative left-4 mt-[1.25rem]"
+              className="text-night font-lato text-lg font-semibold block relative left-4 mt-[1.25rem]"
             >
               Wildlife Spotlights
             </Link>
             <Link
               href="/newsFeedPage"
-              className="text-night text-lg font-semibold block relative left-4 mt-[1.25rem]"
+              className="text-night font-lato text-lg font-semibold block relative left-4 mt-[1.25rem]"
             >
               News Feed
             </Link>

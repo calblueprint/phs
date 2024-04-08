@@ -91,11 +91,11 @@ export default function TourStartPage({
         )}
       </div>
 
-      <div className="w-[24.375rem] flex flex-col px-[1.125rem] absolute top-[20.56rem] gap-6 mb-[2.5rem]">
+      <div className="w-[24.375rem] flex flex-col px-[1.125rem] absolute top-[17.81rem] gap-6 mb-[2.5rem]">
         <div className="bg-mint-cream w-[22.125rem] rounded-md px-[2.1875rem] py-[2.25rem] flex-col items-center gap-3 inline-flex">
           <div className="flex flex-col w-[22.125rem] rounded-md px-[2.1875rem] text-center gap-1">
-            <h2 className="text-night text-sm font-normal">WELCOME TO</h2>
-            <h1 className="text-night text-[2rem] truncate font-semibold">
+            <h2 className="text-night text-sm font-lato font-normal">WELCOME TO</h2>
+            <h1 className="text-night font-lato text-[2rem] truncate font-semibold">
               {tour.name}
             </h1>
           </div>
@@ -103,20 +103,20 @@ export default function TourStartPage({
             <Link
               href={`/featuredToursPage/${params.tourId}/${tourDisplays[0]?.display_id}`}
             >
-              <h2 className="text-ivory text-center text-base font-medium">
+              <h2 className="text-ivory text-center text-base font-lato font-medium">
                 Start Tour
               </h2>
             </Link>
           </div>
         </div>
 
-        <p className="text-night">{tour.description}</p>
+        <p className="text-night font-lato font-normal">{tour.description}</p>
 
         <div className="flex flex-col relative gap-4 mb-10">
           <div className="flex justify-between items-center">
-            <h3 className="text-night text-lg font-medium">In this tour</h3>
+            <h3 className="text-night font-lato text-lg font-bold">In this tour</h3>
             <div className="bg-[#F5EDCF80] w-[4.375rem] h-[1.5rem] rounded-[0.5625rem] px-3 py-1">
-              <p className="text-night text-xs text-center">
+              <p className="text-night font-lato font-normal text-xs text-center">
                 {tour.stop_count} stops
               </p>
             </div>
@@ -124,7 +124,7 @@ export default function TourStartPage({
           <ol>
             {tourDisplays.map(tourDisplay => (
               <li key={tourDisplay.display_id} className="mb-[0.44rem] ml-4">
-                <h4 className="font-light">
+                <h4 className="font-normal font-lato">
                   {tourDisplay.display_order != null
                     ? tourDisplay.display_order + 1
                     : ''}

@@ -3,13 +3,15 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-import { DisplayRow, MediaRow } from '../../../../types/types';
+import { DisplayRow, MediaRow, TourMediaRow } from '../../../../types/types';
 import NavBar from '../../../../components/userComponents/navBar/navBar';
 import { fetchDisplayFromId } from '../../../../supabase/displays/queries';
 import { fetchDisplayfromSpotlight } from '../../../../supabase/tour_displays/queries';
 import BackButton from '../../../../components/userComponents/BackButton/BackButton';
 import Carousel from '../../../../components/userComponents/ImageScroller/ImageScroller';
 import { fetchImagesForDisplay } from '../../../../supabase/media/queries';
+import { ExternalLinkIcon } from '../../../../../public/Icons';
+import { fetchTourMedia } from '../../../../supabase/tour_media/queries';
 
 /**
  * @param root0 -
@@ -23,17 +25,10 @@ export default function Page({
 }: {
   params: { displayId: string; spotlightId: string };
 }) {
-  const [display, setDisplay] = useState<DisplayRow>({
-    coordinates: { 0: 0 },
-    created_at: 'N/A',
-    description: 'N/A',
-    id: '0',
-    title: 'N/A',
-    updated_at: 'N/A',
-  });
-
+  const [display, setDisplay] = useState<DisplayRow>([]);
   const [otherDisplays, setOtherDisplays] = useState<DisplayRow[]>([]);
   const [media, setMedia] = useState<MediaRow[]>([]);
+  const [tourMedia, setTourMedia] = useState<TourMediaRow[]>([]);
 
   useEffect(() => {
     /**
@@ -59,6 +54,12 @@ export default function Page({
       }
     }
 
+    // Get tour media
+    const getTourMedia = async () => {
+      const fetchedTourMedia = await fetchTourMedia(params.spotlightId);
+      setTourMedia(fetchedTourMedia);
+    };
+
     // Fetch the display media
     const fetchDisplayMedia = async () => {
       const displayMedia = await fetchImagesForDisplay(params.displayId);
@@ -66,6 +67,7 @@ export default function Page({
     };
 
     fetchData();
+    getTourMedia();
     fetchDisplayMedia();
   }, []);
 
@@ -87,7 +89,7 @@ export default function Page({
       <p className="text-night font-lato px-[18px] pt-[16px] pb-[32px]">
         {display.description}
       </p>
-      <h1 className="text-night font-bold font-Lato text-[18px] px-[18px]">
+      <h1 className="text-night font-bold font-lato text-[18px] px-[18px]">
         More in this spotlight...
       </h1>
 
@@ -99,7 +101,7 @@ export default function Page({
           >
             <button
               type="button"
-              className="bg-mint-cream text-scary-forest w-[354px] h-[60px] text-ivory font-bold rounded-2xl px-[31px] truncate"
+              className="bg-mint-cream text-scary-forest font-lato w-[354px] h-[60px] font-bold rounded-2xl px-[31px] truncate"
             >
               {otherDisplay.title}
             </button>
@@ -107,10 +109,10 @@ export default function Page({
         ))}
       </div>
 
-      {/* <div className="bg-[#F5F6F5] mb-10">
+      <div className="bg-[#F5F6F5] mb-4">
         <div className="bg-[#BDBDBD] h-[0.03125rem]" />
         <div className="flex flex-col px-[1.12rem] py-8 gap-6">
-          <h3 className="text-night font-medium">Related Links</h3>
+          <h3 className="text-night font-lato font-normal">Related Links</h3>
           <ol className="px-[0.88rem]">
             {tourMedia.map((tm, index) => (
               <li key={tm.media_id} className="flex flex-col gap-4">
@@ -119,12 +121,12 @@ export default function Page({
                   className="flex flex-col gap-1"
                 >
                   <div className="flex flex-row items-center gap-2">
-                    <h4 className="text-shadow text-sm font-light uppercase">
+                    <h4 className="text-shadow font-lato text-sm font-light uppercase">
                       {media.find(m => m.id === tm.media_id)?.type}
                     </h4>
                     <ExternalLinkIcon />
                   </div>
-                  <h4 className="font-normal">
+                  <h4 className="text-night font-lato font-normal">
                     {media.find(m => m.id === tm.media_id)?.title}
                   </h4>
                 </Link>
@@ -136,7 +138,11 @@ export default function Page({
           </ol>
         </div>
         <div className="bg-[#BDBDBD] h-[0.03125rem]" />
-      </div> */}
+      </div>
+
+      <h4 className="text-[#386131] font-lato font-semibold px-[25px] pb-[40px]">
+        <Link href="/spotlightPage">See all spotlights</Link>
+      </h4>
     </div>
   );
 }

@@ -143,18 +143,18 @@ export default function TourStopPage({
       <div className="mb-6">
         {media.length > 0 && <Carousel media={media} />}
       </div>
-      <h1 className="text-[#333333] text-3xl font-semibold px-[1.56rem] gap-4 mt-6 mb-4">
+      <h1 className="text-night font-lato text-3xl font-semibold px-[1.31rem] gap-4 mt-6 mb-4">
         {display && display.title}
       </h1>
-      <div className="px-[1.56rem] pb-[2.5rem]">
-        <p className="text-[#333333]">
+      <div className="px-[1.31rem] pb-[2.5rem]">
+        <p className="text-night font-lato">
           {display && display.description}
         </p>
         <div className="flex flex-row justify-between mt-8">
           <LastStopButton text={prevText} link={prev} />
           <NextStopButton text={nextText} link={next} />
         </div>
-        <h4 className="text-[#386131] font-semibold mt-4">
+        <h4 className="text-scary-forest font-lato font-semibold mt-4">
           <Link href="/featuredToursPage">Exit this tour</Link>
         </h4>
       </div>
