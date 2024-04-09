@@ -30,7 +30,7 @@
     "leaflet": "^1.9.4",
     "moment": "^2.30.1",
     "next": "latest",
-    "node": "^21.7.1",
+    "npm": "^10.2.4",
     "react": "latest",
     "react-bootstrap": "^2.9.0",
     "react-dom": "latest",

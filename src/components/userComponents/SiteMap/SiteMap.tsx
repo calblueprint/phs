@@ -4,22 +4,20 @@ import L, { LatLngExpression } from 'leaflet';
 import React, { useEffect, useState } from 'react';
 import { LayersControl, MapContainer, TileLayer, Marker } from 'react-leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { fetchAllSpotlights } from '../../../supabase/tours/queries';
+import { fetchSpotlightTours } from '../../../supabase/tours/queries';
 import { ExhibitRow, TourRow } from '../../../types/types';
 import Control from './Control';
 import DisplayPreviewCard from './DisplayPreviewCard';
-import {
-  fetchExhibit,
-  fetchAllExhibits,
-} from '../../../supabase/exhibits/queries';
+import { fetchExhibit, fetchAllExhibits } from '../../../supabase/exhibits/queries';
 import { getCategoryColor1 } from '../../../supabase/category/queries';
 import RecenterMap from './MapInteractionHandler';
 import { DefaultMarkerIcon, SelectedMarkerIcon } from '../../../../public/icons';
 
 const center: LatLngExpression = {
-  lat: 37.58748,
-  lng: -122.33101,
+  lat: 37.587480,
+  lng: -122.331010,
 };
+
 
 const tileLayer: { attribution: string; url: string } = {
   attribution: '',
@@ -30,7 +28,7 @@ const createDefaultMarkerIcon = (color: string) =>
   L.divIcon({
     html: renderToStaticMarkup(<DefaultMarkerIcon color={color} />),
     className: 'default-icon',
-    iconSize: [20, 20],
+    iconSize: [20, 20], 
   });
 
 const createSelectedMarkerIcon = (color: string) =>
@@ -39,6 +37,7 @@ const createSelectedMarkerIcon = (color: string) =>
     className: 'selected-icon',
     iconSize: [41, 40],
   });
+
 
 interface SiteMapProps {
   mode: 'tours' | 'exhibits';
@@ -51,9 +50,7 @@ interface SiteMapProps {
  * @returns Interactive map based on React Leaflet, holds the markers which lead to exhibits
  */
 function SiteMap({ mode }: SiteMapProps) {
-  const [spotlightTours, setSpotlightTours] = useState<
-    TourRow[] | ExhibitRow[] | null
-  >(null);
+  const [spotlightTours, setSpotlightTours] = useState<TourRow[] | ExhibitRow[] | null>(null);
   const [colorsMap, setColorsMap] = useState<{ [key: string]: string }>({});
   const [selectedTour, setSelectedTour] = useState<TourRow | ExhibitRow | null>(
     null,
@@ -70,27 +67,24 @@ function SiteMap({ mode }: SiteMapProps) {
     async function fetchData() {
       try {
         let data;
-        if (mode === 'tours') {
-          data = await fetchAllSpotlights();
-        } else if (mode === 'exhibits') {
+        if (mode === "tours") {
+          data = await fetchSpotlightTours();
+        } else if (mode === "exhibits") {
           data = await fetchAllExhibits();
         }
         if (data) {
-          const colors = await Promise.all(
-            data.map(async item => ({
-              id: item.id,
-              color: await getCategoryColor1(item.category),
-            })),
-          );
-          const newColorsMap = colors.reduce(
-            (acc, curr) => ({
-              ...acc,
-              [curr.id]: curr.color,
-            }),
-            {},
-          );
+          const colors = await Promise.all(data.map(async (item) => ({
+            id: item.id,
+            color: await getCategoryColor1(item.category)
+            
+          })));
+          const newColorsMap = colors.reduce((acc, curr) => ({
+            
+            ...acc,
+            [curr.id]: curr.color
+          }), {});
           setColorsMap(newColorsMap);
-          console.log('Colors Map:', newColorsMap); // Log here
+          console.log("Colors Map:", newColorsMap); // Log here
         }
         setSpotlightTours(data ?? []);
       } catch (error) {
@@ -111,10 +105,7 @@ function SiteMap({ mode }: SiteMapProps) {
     }
   }, [selectedTour]);
 
-  const handleMarkerSelect = (
-    tour: TourRow | ExhibitRow,
-    markerIndex: number,
-  ) => {
+  const handleMarkerSelect = (tour: TourRow | ExhibitRow, markerIndex: number) => {
     setSelectedTour(tour);
     setSelectedMarker(markerIndex);
     setMapCenter(tour.coordinates as LatLngExpression);
@@ -141,8 +132,8 @@ function SiteMap({ mode }: SiteMapProps) {
     >
       <TileLayer {...tileLayer} />
       <LayersControl position="topright">
-        {spotlightTours &&
-          spotlightTours.map((tour, i) => {
+       
+        {spotlightTours && spotlightTours.map((tour, i) => {
             // Fetch the color for this tour/exhibit; fallback to a default color if not found
             const color = colorsMap[tour.id] || '#F17373'; // Fallback color
             return (
@@ -153,11 +144,8 @@ function SiteMap({ mode }: SiteMapProps) {
                   lng: (tour.coordinates as { lng: number })?.lng ?? 0,
                 }}
                 eventHandlers={{ click: () => handleMarkerSelect(tour, i) }}
-                icon={
-                  selectedMarker === i
-                    ? createSelectedMarkerIcon(color)
-                    : createDefaultMarkerIcon(color)
-                }
+                
+                icon={(selectedMarker === i ? createSelectedMarkerIcon(color) : createDefaultMarkerIcon(color))}
               />
             );
           })}
@@ -170,7 +158,7 @@ function SiteMap({ mode }: SiteMapProps) {
           </Control>
         )}
       </LayersControl>
-      {selectedTour == null && <RecenterMap center={center} />}
+      {selectedTour == null && <RecenterMap center={center} />} 
     </MapContainer>
   );
 }

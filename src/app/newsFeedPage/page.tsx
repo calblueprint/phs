@@ -7,6 +7,7 @@ import { NewsRow } from '../../types/types';
 import { fetchAllNewsByDate } from '../../supabase/news/queries';
 import NewsDisplay from '../../components/userComponents/NewsDisplay/NewsDisplay';
 
+
 /**
  * @returns news feed page
  */

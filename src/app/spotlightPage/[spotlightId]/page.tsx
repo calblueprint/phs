@@ -4,18 +4,18 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 import { TourRow, DisplayRow } from '../../../types/types';
-import {
-  fetchRecommendedSpotlights,
-  fetchTour,
-} from '../../../supabase/tours/queries';
+import { fetchTour } from '../../../supabase/tours/queries';
 import NavBar from '../../../components/userComponents/navBar/navBar';
-import { fetchDisplayfromSpotlight } from '../../../supabase/tour_displays/queries';
+import { fetchDisplayfromSpotlight, fetchRelatedSpotlightIdsFromSpotlight } from '../../../supabase/tour_displays/queries';
 
 /**
- * @param root0 -
- * @param root0.params -
- * @param root0.params.spotlightId - Spotlight ID of page that is linked on the spotlight page.
- * @returns a single spotlight page given a spotlight Id
+ * @param -.params
+ * @param -.params.spotlightId
+ * @param -.params.params
+ * @param -.params.params.spotlightId
+ * @param -.params.params
+ * @param -.params.params.spotlightId
+ * @returns a spotlight page given a spotlight Id
  */
 export default function Page({ params }: { params: { spotlightId: string } }) {
   const [spotlight, setSpotlight] = useState<TourRow>({
@@ -26,19 +26,15 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
     spotlight: true,
     preview_text: 'N/A',
     stop_count: 0,
-    category: 'BuildingsAndServices',
-    coordinates: {},
   });
 
   const [displays, setDisplays] = useState<DisplayRow[]>([]);
 
-  const [recommendedSpotlights, setRecommendedSpotlights] = useState<TourRow[]>(
-    [],
-  );
+  // const [relatedSpolights, setRelatedSpotlight] = useState<TourRow[]>([])
 
   useEffect(() => {
     /**
-     *
+     * @returns data from tour table and display table
      */
     async function fetchData() {
       try {
@@ -49,17 +45,17 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
         const responseDataForDisplays: DisplayRow[] =
           await fetchDisplayfromSpotlight(params.spotlightId);
         setDisplays(responseDataForDisplays);
-        const responseDataForRecommendedSpotlights: TourRow[] =
-          await fetchRecommendedSpotlights(params.spotlightId);
-        setRecommendedSpotlights(responseDataForRecommendedSpotlights);
+
+        // const responseDataForRelatedSpotlights: TourRow[] = await fetchRelatedSpotlightsfromSpotlightId(params.spotlightId);
+        // setRelatedSpotlight(responseDataForRelatedSpotlights);
+
       } catch (error) {
-        // eslint-disable-next-line no-console
         console.error(error);
       }
     }
 
     fetchData();
-  }, [params.spotlightId]);
+  }, []);
 
   return (
     <div className="bg-[#ebf0e4]">
@@ -95,27 +91,28 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
           </Link>
         ))}
       </div>
-      if
+
       <h1 className="text-black font-Lato font-bold text-[18px] font-medium pl-[18px] pb-[16px]">
         Related Spotlights
       </h1>
+
       <ul className="list-none p-0 flex">
-        {recommendedSpotlights.map(recSpotlight => (
+        {/* {relatedSpolights.map(otherSpotlight => (
           <li
             className="pl-[18px] w-[162px] overflow-x-auto"
-            key={recSpotlight.id}
+            key={otherSpotlight.id}
           >
             <Link href={`/spotlightPage/${spotlight.id}`}>
               <div className="bg-[#386131] h-[169px] rounded-2xl p-[18px] flex flex-col" />
               <h4 className="text-black font-Lato text-20 font-bold mt-2">
-                {recSpotlight.name}
+                {otherSpotlight.name}
               </h4>
               <h2 className="text-gray font-Lato text-sm font-normal">
-                {recSpotlight.description}
+                {otherSpotlight.description}
               </h2>
             </Link>
           </li>
-        ))}
+        ))} */}
       </ul>
     </div>
   );

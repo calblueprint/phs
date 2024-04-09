@@ -16,54 +16,19 @@ export async function fetchAllTours(): Promise<TourRow[]> {
 }
 
 /**
- * Fetches all spotlights from the database.
- * @returns A promise that resolves to an array of TourRow objects, selected based on being spotlights
+ * @returns all spotlight tours from the tours table
  */
-export async function fetchAllSpotlights(): Promise<TourRow[]> {
+export async function fetchSpotlightTours(): Promise<TourRow[] | null> {
   const { data, error } = await supabase
     .from('tours')
     .select('*')
-    .eq('spotlight', true);
+    .is('spotlight', true);
   if (error) {
-    throw new Error(
-      `An error occurred while trying to read tour displays: ${error}`,
-    );
+    throw new Error(`Error fetching spotlight tours: ${error.message}`);
   }
   return data;
 }
 
-/**
- * @param spotlightId - a spotlight ID
- * @returns A promise that resolves to an array of TourRow objects, selected based on being spotlights
- *
- * given a spotlight ID, get all the objects of the related spotlights
- * TODO: Switching this function to be a database function
- */
-export async function fetchRecommendedSpotlights(spotlightId: string) {
-  const { data, error } = await supabase.rpc('fetch_recommended_spotlights', {
-    source_spotlight_id: spotlightId,
-  });
-  if (error) {
-    throw new Error(
-      `An error occurred while trying to read tour displays: ${error}`,
-    );
-  }
-  return data;
-}
-
-/**
- * Queries all of the spotlights, then queries their join tables to retrieve the media associated with each of them.
- *  @returns A promise that resolves to an array of TourRow objects, selected based on being spotlights
- */
-export async function joinAllSpotlightsWithMedia() {
-  const { data, error } = await supabase.rpc('join_all_spotlights_with_media');
-  if (error) {
-    throw new Error(
-      `An error occurred while trying to read tour displays: ${error}`,
-    );
-  }
-  return data;
-}
 /**
  * Fetches a single tour from the database.
  * @param tourId - The id of the tour to fetch.
@@ -128,8 +93,35 @@ export async function upsertTour(tourData: TourRow): Promise<TourRow | null> {
   return newTour;
 }
 
+// Delete a tour
 /**
- * @returns A promise that resolves to an array of TourRow objects,
+ * @param id
+ */
+export async function deleteTour(id: number) {
+  const { data, error } = await supabase.from('tours').delete().eq('id', id);
+  if (error) {
+    throw new Error(error.message);
+  }
+  return data;
+}
+
+/**
+ * !!! WIP !!!
+ * @returns - Uses rpc to call Database function of the same name on Supabase.
+ * Used to call a join on a tour and the media table, in order to retrieve its cover image + the rest of the tour info.
+ */
+export async function joinSpotlightsWithMedia() {
+  const { data, error } = await supabase.rpc('join_spotlights_with_media');
+  if (error) {
+    throw new Error(
+      `An error occurred while trying to load spotlights: ${error.message}`,
+    );
+  }
+  return data;
+}
+
+/**
+ *
  */
 export async function joinToursWithMedia() {
   const { data, error } = await supabase.rpc('join_tours_with_media');
