@@ -4,12 +4,11 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 import { TourRow, DisplayRow } from '../../../types/types';
-import {
-  fetchRecommendedSpotlights,
-  fetchTour,
-} from '../../../supabase/tours/queries';
+
+import { fetchTour } from '../../../supabase/tours/queries';
 import NavBar from '../../../components/userComponents/navBar/navBar';
-import { fetchDisplayfromSpotlight } from '../../../supabase/tour_displays/queries';
+import { fetchDisplayfromSpotlight, fetchRelatedSpotlightIdsFromSpotlight } from '../../../supabase/tour_displays/queries';
+
 
 /**
  * @param root0 -

@@ -19,18 +19,31 @@ interface FilterButtonProps {
  * @param onClick.onClick
  */
 
+
+
+
+
 /**
  *
  */
 function FilterButton({ content, onClick, isSelected }: FilterButtonProps) {
-  const selectedStyle = 'bg-mint-cream text-scary-forest';
+  const selectedStyle = 'bg-hunterGreen text-white font-lato text-base font-medium rounded-lg';
+  
 
-  const buttonClass = `py-2 px-6 whitespace-nowrap border-[0.8px] border-scary-forest border-solid text-night flex-grow ${
+  const buttonClass = `py-2 px-6 whitespace-nowrap border-solid text-scary-forest flex-grow font-lato text-base font-medium  ${
+
     isSelected ? selectedStyle : ''
   }`;
 
   return (
-    <button type="button" className={buttonClass} onClick={onClick}>
+
+    <button
+      type="button"
+      className={buttonClass}
+      onClick={onClick}
+      style={{ outline: 'none' }}
+    >
+
       {content}
     </button>
   );

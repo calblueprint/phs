@@ -16,6 +16,16 @@ export async function fetchAllTours(): Promise<TourRow[]> {
 }
 
 /**
+
+ * @returns all spotlight tours from the tours table
+ */
+export async function fetchSpotlightTours(): Promise<TourRow[] | null> {
+  const { data, error } = await supabase
+    .from('tours')
+    .select('*')
+    .is('spotlight', true);
+  if (error) {
+    throw new Error(`Error fetching spotlight tours: ${error.message}`);
  * Fetches all spotlights from the database.
  * @returns A promise that resolves to an array of TourRow objects, selected based on being spotlights
  */
@@ -33,6 +43,7 @@ export async function fetchAllSpotlights(): Promise<TourRow[]> {
 }
 
 /**
+
  * @param spotlightId - a spotlight ID
  * @returns A promise that resolves to an array of TourRow objects, selected based on being spotlights
  *
@@ -65,6 +76,7 @@ export async function joinAllSpotlightsWithMedia() {
   return data;
 }
 /**
+
  * Fetches a single tour from the database.
  * @param tourId - The id of the tour to fetch.
  * @returns A promise that resolves to a TourRow object.
@@ -139,4 +151,6 @@ export async function joinToursWithMedia() {
     );
   }
   return data;
+
 }
+

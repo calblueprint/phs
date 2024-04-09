@@ -12,4 +12,6 @@ function RecenterMap({ center }) {
 
   return null;
 }
+
 export default RecenterMap;
+
