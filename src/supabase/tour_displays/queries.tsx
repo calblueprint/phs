@@ -49,46 +49,6 @@ export async function fetchDisplayfromSpotlight(spotlightId: string) {
 }
 
 /**
- * @param spotlightId - a spotlight ID
- * @returns given a spotlight ID, get all the ids of the spotlight recommendations for related spotlights
- */
-export async function fetchRelatedSpotlightIdsFromSpotlight(
-  spotlightId: string,
-) {
-  const { data, error } = await supabase
-    .from('spotlight_recommendations')
-    .select('*')
-    .eq('source_display_id', spotlightId);
-
-  if (error) {
-    throw new Error(
-      `An error occurred while trying to read tour displays: ${error}`,
-    );
-  }
-  const relatedSpotlightIds = data.map(item => item.target_display_id);
-  return relatedSpotlightIds;
-}
-
-/**
- * @param relatedSpotlightIds - list of all the spotlight ids that go under related spotlights
- * @returns the spotlights that have the corresponding ids
- */
-export async function fetchRelatedSpotlightsfromIds(
-  relatedSpotlightIds: string[],
-) {
-  const { data, error } = await supabase
-    .from('tours')
-    .select('*')
-    .in('id', relatedSpotlightIds);
-
-  if (error) {
-    throw new Error(`Error updating display data: ${error.message}`);
-  }
-
-  return data;
-}
-
-/**
  * Fetches all tour displays for a single tour from the database sorted by display_order.
  * @param tourId - The id of the tour to fetch.
  * @returns A promise that resolves to an array of TourDisplaysRow objects.

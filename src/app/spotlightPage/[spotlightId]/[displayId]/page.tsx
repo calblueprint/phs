@@ -1,3 +1,5 @@
+/* eslint-disable jsdoc/check-param-names */
+
 'use client';
 
 import Link from 'next/link';
@@ -8,13 +10,11 @@ import NavBar from '../../../../components/userComponents/navBar/navBar';
 import { fetchDisplayFromId } from '../../../../supabase/displays/queries';
 import { fetchDisplayfromSpotlight } from '../../../../supabase/tour_displays/queries';
 
+// eslint-disable-next-line jsdoc/require-param
 /**
- *
- *
- * @param root0
- * @param root0.params
- * @param root0.params.displayId
- * @param root0.params.spotlightId
+ * @param root0 - For a spotlight, it's composed of displays which have their own pages.  This will handle one of those pages.
+ * @param root0.params.displayId - Display ID
+ * @param root0.params.spotlightId - Spotlight ID
  * @returns display page
  */
 export default function Page({
@@ -27,6 +27,7 @@ export default function Page({
     created_at: 'N/A',
     description: 'N/A',
     id: '0',
+    summary: 'N/A',
     title: 'N/A',
     updated_at: 'N/A',
   });
@@ -53,12 +54,13 @@ export default function Page({
 
         setOtherDisplays(responseDataOtherDisplays);
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.error(error);
       }
     }
 
     fetchData();
-  }, []);
+  }, [params.displayId, params.spotlightId]);
 
   return (
     <div className="bg-[#ebf0e4]">
@@ -81,15 +83,19 @@ export default function Page({
       </h1>
 
       <div className="flex space-x-[14px] pl-[25px] pt-[16px] w-screen overflow-x-auto">
-      {otherDisplays.map( 
-            otherDisplay => (
-                <Link key={otherDisplay.id} href={`/spotlightPage/${params.spotlightId}/${otherDisplay.id}?spotlightId=${params.spotlightId}`} >
-                    <button type="button" className="bg-[#7CA24E] w-[163px] h-[74px] text-white font-bold rounded-2xl p-[25px]">
-                        {otherDisplay.title}
-                    </button>
-                </Link>
-
-            ))}
+        {otherDisplays.map(otherDisplay => (
+          <Link
+            key={otherDisplay.id}
+            href={`/spotlightPage/${params.spotlightId}/${otherDisplay.id}?spotlightId=${params.spotlightId}`}
+          >
+            <button
+              type="button"
+              className="bg-[#7CA24E] w-[163px] h-[74px] text-white font-bold rounded-2xl p-[25px]"
+            >
+              {otherDisplay.title}
+            </button>
+          </Link>
+        ))}
       </div>
     </div>
   );
