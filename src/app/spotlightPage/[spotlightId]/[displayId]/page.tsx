@@ -72,7 +72,7 @@ export default function Page({
   }, []);
 
   return (
-    <div className="bg-ivory">
+    <div className="bg-ivory w-[24.375rem] min-h-full">
       <NavBar />
       <Link
         href={`/spotlightPage/${params.spotlightId}`}

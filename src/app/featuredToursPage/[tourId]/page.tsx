@@ -95,7 +95,7 @@ export default function TourStartPage({
         <div className="bg-mint-cream w-[22.125rem] rounded-md px-[2.1875rem] py-[2.25rem] flex-col items-center gap-3 inline-flex">
           <div className="flex flex-col w-[22.125rem] rounded-md px-[2.1875rem] text-center gap-1">
             <h2 className="text-night text-sm font-lato font-normal">WELCOME TO</h2>
-            <h1 className="text-night font-lato text-[2rem] truncate font-semibold">
+            <h1 className="text-night font-lato text-[2rem] truncate font-bold">
               {tour.name}
             </h1>
           </div>
@@ -103,7 +103,7 @@ export default function TourStartPage({
             <Link
               href={`/featuredToursPage/${params.tourId}/${tourDisplays[0]?.display_id}`}
             >
-              <h2 className="text-ivory text-center text-base font-lato font-medium">
+              <h2 className="text-ivory text-center text-base font-lato font-bold">
                 Start Tour
               </h2>
             </Link>

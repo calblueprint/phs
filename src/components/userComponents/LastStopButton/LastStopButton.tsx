@@ -21,7 +21,7 @@ export default function LastStopButton({ text, link }: LastStopButtonProps) {
     >
       <div className="flex items-center justify-start w-full gap-[1.31rem]">
         <CaretLeft />
-        <h4 className="text-scary-forest font-lato font-semibold text-center">
+        <h4 className="text-scary-forest font-lato font-bold text-center">
           {text}
         </h4>
       </div>

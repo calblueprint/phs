@@ -8,7 +8,7 @@ import NavBar from '../../components/userComponents/navBar/navBar';
  */
 export default function HoursAdmissionPage() {
   return (
-    <div className="bg-ivory h-full">
+    <div className="bg-ivory min-h-screen">
       <NavBar />
       <div className="px-[1.12rem] py-[2.56rem]">
         <h1 className="text-night font-lato text-3xl font-bold mb-4">

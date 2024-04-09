@@ -44,7 +44,7 @@ export default function FeaturedToursPage() {
   }, []);
 
   return (
-    <div className="bg-ivory w-[24.375rem] min-h-screen">
+    <div className="bg-ivory min-h-screen">
       <NavBar />
 
       <div className="p-4">
@@ -106,11 +106,11 @@ export default function FeaturedToursPage() {
                             'linear-gradient(180deg, rgba(51, 51, 51, 0.0) 0%, rgba(51, 51, 51, 0.4) 50%, rgba(0, 0, 0, 0.8) 100%)',
                         }}
                       >
-                        <h4 className="text-ivory font-['Lato'] text-xs font-medium mt-0.5 relative bottom-[0.44rem]">
+                        <h4 className="text-ivory font-lato text-xs font-semibold mt-0.5 relative bottom-[0.44rem]">
                           {tour.stop_count} stops
                         </h4>
                         <div className="flex items-center justify-between">
-                          <h2 className="text-ivory font-['Lato'] text-2xl font-medium truncate relative bottom-[0.31rem]">
+                          <h2 className="text-ivory font-lato text-2xl font-semibold truncate relative bottom-[0.31rem]">
                             {tour.name}
                           </h2>
                           <div className="relative bottom-[0.35rem]">

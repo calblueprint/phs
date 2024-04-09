@@ -60,10 +60,10 @@ function App() {
           </Link>
         </div>
 
-        <h1 className="text-night font-['Lato'] text-3xl font-semibold mb-4">
+        <h1 className="text-night font-lato text-3xl font-bold mb-4">
           Our Wildlife Spotlights
         </h1>
-        <p className="text-night font-['Lato'] mb-6">
+        <p className="text-night font-normal font-lato mb-6">
           Welcome to our Wildlife Spotlights! Here, you'll find information
           about our center, including our facilities, processes, and the diverse
           range of species we care for. Explore our dedicated efforts to
@@ -113,10 +113,10 @@ function App() {
                     />
                   )}
                 </div>
-                <h4 className="text-night font-['Lato'] text-2xl truncate font-medium pt-[14px]">
+                <h4 className="text-night font-lato text-2xl truncate font-semibold pt-[14px]">
                   {spotlight.name}
                 </h4>
-                <h2 className="text-shadow font-['Lato'] text-sm font-light pt-[4px]">
+                <h2 className="text-shadow font-lato text-sm font-normal pt-[4px]">
                   {spotlight.preview_text}
                 </h2>
               </Link>
