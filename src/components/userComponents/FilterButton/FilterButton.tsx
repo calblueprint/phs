@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 // interface FilterButtonProps {
 //   content: string;
@@ -24,6 +24,10 @@ interface FilterButtonProps {
 
 /**
  *
+ * @param root0
+ * @param root0.content
+ * @param root0.onClick
+ * @param root0.isSelected
  */
 function FilterButton({ content, onClick, isSelected }: FilterButtonProps) {
   const selectedStyle = 'bg-hunterGreen text-white font-lato text-base font-medium rounded-lg';

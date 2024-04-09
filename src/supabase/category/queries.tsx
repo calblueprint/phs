@@ -1,6 +1,5 @@
 'use client';
 
-import { DisplayRow, ExhibitRow } from '../../types/types';
 import supabase from '../client';
 
 /**
