@@ -92,7 +92,7 @@ export default function FeaturedToursPage() {
                                 m.id ===
                                 allTourMedia.find(tm => tm.tour_id === tour.id)
                                   ?.media_id,
-                            )?.text ?? 'Tour start image'
+                            )?.text ?? ''
                           }
                           layout="fill"
                           objectFit="cover"
