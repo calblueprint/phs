@@ -12,6 +12,7 @@ export type Database = {
     Tables: {
       categories: {
         Row: {
+
           category: string | null
           color_hex: string
           created_at: string
@@ -52,6 +53,7 @@ export type Database = {
         }
         Relationships: []
       }
+
       display_media: {
         Row: {
           display_id: string;
@@ -87,6 +89,7 @@ export type Database = {
       }
       displays: {
         Row: {
+
           coordinates: Json | null
           created_at: string
           description: string
@@ -154,6 +157,7 @@ export type Database = {
         }
         Relationships: []
       }
+
       media: {
         Row: {
           created_at: string;
@@ -172,6 +176,7 @@ export type Database = {
           url?: string;
         };
         Update: {
+
           created_at?: string
           id?: string
           text?: string | null
@@ -205,6 +210,7 @@ export type Database = {
         }
         Relationships: []
       }
+
       spotlight_recommendations: {
         Row: {
           source_display_id: string;
@@ -300,6 +306,7 @@ export type Database = {
       }
       tours: {
         Row: {
+
           category: Database["public"]["Enums"]["tour_category"]
           coordinates: Json | null
           created_at: string
@@ -335,12 +342,14 @@ export type Database = {
         Relationships: []
       }
     }
+
     Views: {
       [_ in never]: never;
     };
     Functions: {
       fetch_recommended_spotlights: {
         Args: {
+
           source_spotlight_id: string
         }
         Returns: {
@@ -510,3 +519,4 @@ export type Enums<
   : PublicEnumNameOrOptions extends keyof PublicSchema["Enums"]
     ? PublicSchema["Enums"][PublicEnumNameOrOptions]
     : never
+

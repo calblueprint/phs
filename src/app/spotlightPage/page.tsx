@@ -4,15 +4,15 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-import { fetchSpotlightTours } from '../../supabase/tours/queries';
+import { joinAllSpotlightsWithMedia } from '../../supabase/tours/queries';
 import NavBar from '../../components/userComponents/navBar/navBar';
-import { TourRow } from '../../types/types';
+import { SpotlightWithMediaRow } from '../../types/types';
 
 /**
  * @returns spotlights from tours table
  */
 function App() {
-  const [spotlights, setSpotlights] = useState<TourRow[]>([]);
+  const [spotlights, setSpotlights] = useState<SpotlightWithMediaRow[]>([]);
 
   useEffect(() => {
     /**
@@ -20,9 +20,11 @@ function App() {
      */
     async function fetchData() {
       try {
-        const responseData: TourRow[] = await fetchSpotlightTours();
+        const responseData: SpotlightWithMediaRow[] =
+          await joinAllSpotlightsWithMedia();
         setSpotlights(responseData);
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.error(error);
       }
     }
@@ -54,11 +56,12 @@ function App() {
                   <div className="relative top-28">
                     <Image
                       key={spotlight.id}
-                      src={spotlight.url}
+                      src={spotlight.media_url}
                       alt="Media Image"
                       width={100}
                       height={214}
                       priority
+                      style={{ objectFit: 'cover' }}
                     />
                   </div>
                 </div>

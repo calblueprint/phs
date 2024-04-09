@@ -31,7 +31,9 @@ function DisplayPreviewCard({
   const [loading, setLoading] = useState<boolean>(false);
   const [previewImage, setPreviewImage] = useState<string>('');
   const [name1, setname1] = useState<string>('');
+
   const [tourType, setTourType] = useState<string>('');
+
   const { id, description, coordinates, category } = tour;
   // name, for tour title for exhibit
 
@@ -49,6 +51,7 @@ function DisplayPreviewCard({
   useEffect(() => {
     const fetchDetails = async () => {
       setLoading(true);
+
   
       let imageUrl = ''; 
       let displayName = ''; 
@@ -71,19 +74,23 @@ function DisplayPreviewCard({
         setTourType('exhibit'); 
       }
   
+
       // Set state variables
       setPreviewImage(imageUrl);
       setname1(displayName);
       setLoading(false);
     };
+
   
     fetchDetails();
   }, [tour]); 
   
 
+
   /** route this to spotlights */
 
   return (
+
       <div className="flex flex-col items-center justify-center w-[25rem] h-[8.25rem] max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto p-4 pb-[2.87rem] pr-[1.19rem] pl-[1.19rem] rounded-md">
         <div
           className="flex flex-row items-center rounded-md overflow-hidden bg-ivory cursor-pointer w-full sm:w-4/4 md:w-5/5 lg:w-2/2 xl:w-5/5 flex-shrink-0 shadow-xl" 
@@ -143,6 +150,7 @@ function DisplayPreviewCard({
           </div>
         </div>
       </div>
+
 
 
   );

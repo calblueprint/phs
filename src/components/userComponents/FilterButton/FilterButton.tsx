@@ -22,6 +22,7 @@ interface FilterButtonProps {
 
 
 
+
 /**
  *
  */
@@ -30,16 +31,19 @@ function FilterButton({ content, onClick, isSelected }: FilterButtonProps) {
   
 
   const buttonClass = `py-2 px-6 whitespace-nowrap border-solid text-scary-forest flex-grow font-lato text-base font-medium  ${
+
     isSelected ? selectedStyle : ''
   }`;
 
   return (
+
     <button
       type="button"
       className={buttonClass}
       onClick={onClick}
       style={{ outline: 'none' }}
     >
+
       {content}
     </button>
   );

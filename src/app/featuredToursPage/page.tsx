@@ -3,10 +3,7 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-import {
-  fetchAllTours,
-  joinSpotlightsWithMedia,
-} from '../../supabase/tours/queries';
+import { fetchAllTours } from '../../supabase/tours/queries';
 import NavBar from '../../components/userComponents/navBar/navBar';
 import { TourRow } from '../../types/types';
 

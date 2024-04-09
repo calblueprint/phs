@@ -1,18 +1,22 @@
 'use client';
 
+
 import { DisplayRow, ExhibitRow } from '../../types/types';
 import supabase from '../client';
+
 
 /**
  *
  * @param category_in
  */
+
 // Assume this function is in `supabase/category/queries.js`
 /**
  *
  */
 // eslint-disable-next-line import/prefer-default-export
 export async function getCategoryColor1(category: string) {
+
     try {
         const { data, error } = await supabase
             .from('categories') 
@@ -37,3 +41,4 @@ export async function getCategoryColor1(category: string) {
         return null; // Return null on unexpected error
     }
 }
+
