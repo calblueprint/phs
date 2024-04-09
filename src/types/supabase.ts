@@ -7,9 +7,31 @@ export type Json =
   | Json[];
 
 export type Database = {
+export type Database = {
   public: {
     Tables: {
       categories: {
+        Row: {
+          category: string | null
+          color_hex: string
+          created_at: string
+          id: number
+        }
+        Insert: {
+          category?: string | null
+          color_hex: string
+          created_at?: string
+          id?: number
+        }
+        Update: {
+          category?: string | null
+          color_hex?: string
+          created_at?: string
+          id?: number
+        }
+        Relationships: []
+      }
+      display_media: {
         Row: {
           category: string | null
           color: string | null
@@ -55,41 +77,83 @@ export type Database = {
             referencedColumns: ['id'];
           },
           {
-            foreignKeyName: 'display_media_media_id_fkey';
-            columns: ['media_id'];
-            isOneToOne: false;
-            referencedRelation: 'media';
-            referencedColumns: ['id'];
+            foreignKeyName: "display_media_media_id_fkey"
+            columns: ["media_id"]
+            isOneToOne: false
+            referencedRelation: "media"
+            referencedColumns: ["id"]
           },
-        ];
-      };
+        ]
+      }
       displays: {
         Row: {
-          coordinates: Json | null;
-          created_at: string;
-          description: string;
-          id: string;
-          title: string;
-          updated_at: string | null;
-        };
+          coordinates: Json | null
+          created_at: string
+          description: string
+          id: string
+          summary: string | null
+          title: string
+          updated_at: string | null
+        }
         Insert: {
-          coordinates?: Json | null;
-          created_at?: string;
-          description?: string;
-          id: string;
-          title?: string;
-          updated_at?: string | null;
-        };
+          coordinates?: Json | null
+          created_at?: string
+          description?: string
+          id: string
+          summary?: string | null
+          title?: string
+          updated_at?: string | null
+        }
         Update: {
-          coordinates?: Json | null;
-          created_at?: string;
-          description?: string;
-          id?: string;
-          title?: string;
-          updated_at?: string | null;
-        };
-        Relationships: [];
-      };
+          coordinates?: Json | null
+          created_at?: string
+          description?: string
+          id?: string
+          summary?: string | null
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      emails: {
+        Row: {
+          emails: string | null
+          id: number
+        }
+        Insert: {
+          emails?: string | null
+          id?: number
+        }
+        Update: {
+          emails?: string | null
+          id?: number
+        }
+        Relationships: []
+      }
+      exhibits: {
+        Row: {
+          coordinates: Json | null
+          description: string
+          id: string
+          image: string | null
+          title: string
+        }
+        Insert: {
+          coordinates?: Json | null
+          description: string
+          id?: string
+          image?: string | null
+          title: string
+        }
+        Update: {
+          coordinates?: Json | null
+          description?: string
+          id?: string
+          image?: string | null
+          title?: string
+        }
+        Relationships: []
+      }
       media: {
         Row: {
           created_at: string;
@@ -108,15 +172,39 @@ export type Database = {
           url?: string;
         };
         Update: {
-          created_at?: string;
-          id?: string;
-          text?: string | null;
-          title?: string | null;
-          type?: string | null;
-          url?: string;
-        };
-        Relationships: [];
-      };
+          created_at?: string
+          id?: string
+          text?: string | null
+          title?: string | null
+          type?: string | null
+          url?: string
+        }
+        Relationships: []
+      }
+      news: {
+        Row: {
+          content_link: string
+          created_at: string
+          id: string
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          content_link: string
+          created_at?: string
+          id?: string
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          content_link?: string
+          created_at?: string
+          id?: string
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       spotlight_recommendations: {
         Row: {
           source_display_id: string;
@@ -139,14 +227,14 @@ export type Database = {
             referencedColumns: ['id'];
           },
           {
-            foreignKeyName: 'spotlight_recommendations_target_display_id_fkey';
-            columns: ['target_display_id'];
-            isOneToOne: false;
-            referencedRelation: 'tours';
-            referencedColumns: ['id'];
+            foreignKeyName: "spotlight_recommendations_target_display_id_fkey"
+            columns: ["target_display_id"]
+            isOneToOne: false
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
           },
-        ];
-      };
+        ]
+      }
       tour_displays: {
         Row: {
           display_id: string;
@@ -172,14 +260,14 @@ export type Database = {
             referencedColumns: ['id'];
           },
           {
-            foreignKeyName: 'tour_displays_tour_id_fkey';
-            columns: ['tour_id'];
-            isOneToOne: false;
-            referencedRelation: 'tours';
-            referencedColumns: ['id'];
+            foreignKeyName: "tour_displays_tour_id_fkey"
+            columns: ["tour_id"]
+            isOneToOne: false
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
           },
-        ];
-      };
+        ]
+      }
       tour_media: {
         Row: {
           media_id: string;
@@ -202,79 +290,71 @@ export type Database = {
             referencedColumns: ['id'];
           },
           {
-            foreignKeyName: 'tour_media_tour_id_fkey';
-            columns: ['tour_id'];
-            isOneToOne: false;
-            referencedRelation: 'tours';
-            referencedColumns: ['id'];
+            foreignKeyName: "tour_media_tour_id_fkey"
+            columns: ["tour_id"]
+            isOneToOne: false
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
           },
-        ];
-      };
+        ]
+      }
       tours: {
         Row: {
           category: Database["public"]["Enums"]["tour_category"]
           coordinates: Json | null
-          created_at: string;
-          description: string | null;
-          id: string;
-          name: string | null;
+          created_at: string
+          description: string | null
+          id: string
+          name: string
           preview_text: string | null
-          spotlight: boolean;
-          stop_count: number | null;
-        };
+          spotlight: boolean
+          stop_count: number | null
+        }
         Insert: {
-          created_at?: string;
-          description?: string | null;
-          id?: string;
-          name?: string | null;
-          spotlight?: boolean;
-          stop_count?: number | null;
-        };
-        Update: {
-          created_at?: string;
-          description?: string | null;
-          id?: string;
-          name?: string | null;
-          spotlight?: boolean;
-          stop_count?: number | null;
-        };
-        Relationships: [];
-      };
-      news: {
-        Row: {
-          content_link: string;
-          created_at: string;
-          id: string;
-          title: string;
-          updated_at: string | null;
-        };
-        Insert: {
-          content_link?: string;
           category?: Database["public"]["Enums"]["tour_category"]
           coordinates?: Json | null
-          created_at?: string;
-          id?: string;
-          title?: string;
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
           preview_text?: string | null
-          updated_at?: string | null;
-        };
+          spotlight?: boolean
+          stop_count?: number | null
+        }
         Update: {
-          content_link?: string;
           category?: Database["public"]["Enums"]["tour_category"]
           coordinates?: Json | null
-          created_at?: string;
-          id?: string;
-          title?: string;
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
           preview_text?: string | null
-          updated_at?: string | null;
-        };
-        Relationships: [];
-      };
-    };
+          spotlight?: boolean
+          stop_count?: number | null
+        }
+        Relationships: []
+      }
+    }
     Views: {
       [_ in never]: never;
     };
     Functions: {
+      fetch_recommended_spotlights: {
+        Args: {
+          source_spotlight_id: string
+        }
+        Returns: {
+          id: string
+          name: string
+          description: string
+          created_at: string
+          stop_count: number
+          spotlight: boolean
+          preview_text: string
+          coordinates: Json
+          category: Database["public"]["Enums"]["tour_category"]
+        }[]
+      }
       fetchimagesfordisplay: {
         Args: {
           displayid: string
@@ -307,23 +387,7 @@ export type Database = {
         }
         Returns: string
       }
-      get_spotlight_recommendations: {
-        Args: {
-          source_display_id: string
-        }
-        Returns: {
-          id: string
-          name: string
-          description: string
-          created_at: string
-          stop_count: number
-          spotlight: boolean
-          preview_text: string
-          coordinates: Json
-          category: Database["public"]["Enums"]["tour_category"]
-        }[]
-      }
-      get_spotlight_tours: {
+      join_all_spotlights_with_media: {
         Args: Record<PropertyKey, never>
         Returns: {
           id: string
@@ -335,21 +399,9 @@ export type Database = {
           preview_text: string
           coordinates: Json
           category: Database["public"]["Enums"]["tour_category"]
+          media_url: string
         }[]
       }
-      join_spotlights_with_media: {
-        Args: Record<PropertyKey, never>
-        Returns: {
-          id: string;
-          name: string;
-          description: string;
-          created_at: string;
-          stop_count: number;
-          spotlight: boolean;
-          preview_text: string
-          media_url: string;
-        }[];
-      };
       join_tours_with_media: {
         Args: Record<PropertyKey, never>
         Returns: {
@@ -363,18 +415,18 @@ export type Database = {
           url: string
         }[]
       }
-    };
+    }
     Enums: {
-      media_type: 'image' | 'video' | 'link';
+      media_type: "image" | "video" | "link"
       tour_category:
         | "BuildingsAndServices"
         | "ParksAviariesEnclosures"
         | "SiteFeatures"
-    };
+    }
     CompositeTypes: {
-      [_ in never]: never;
-    };
-  };
+      [_ in never]: never
+    }
+  }
 }
 
 type PublicSchema = Database[Extract<keyof Database, "public">]
