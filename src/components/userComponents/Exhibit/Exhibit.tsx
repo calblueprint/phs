@@ -56,7 +56,7 @@ export default function Exhibit({
   id: string;
 }) {
   return (
-    <li key={id}>
+    <li key={id} id={`a${id}`}>
       <div className="w-[100%] px-4 pt-6 pb-7 bg-mint-cream rounded flex-col justify-start items-start gap-2.5 inline-flex mt-6">
         <div className="flex-col justify-start items-start gap-5 flex">
           <div className="justify-start items-center gap-2 inline-flex">
