@@ -3,32 +3,12 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { IoIosArrowRoundBack } from 'react-icons/io';
 import NavBar from '../../components/userComponents/navBar/navBar';
 import { ExhibitRow } from '../../types/types';
 import { fetchAllExhibits } from '../../supabase/exhibits/queries';
 import Exhibit from '../../components/userComponents/Exhibit/Exhibit';
+import BackButton from '../../components/userComponents/BackButton/page';
 
-/**
- * @param evt on click of button
- */
-function goBack(evt : React.SyntheticEvent) {
-  // ignore the native anchor action
-  evt.preventDefault();
-  window.history.back();
-}
-
-/**
- * @returns back button
- */
-function BackButton() {
-  return (
-    <button type="button" className="text-scary-forest" onClick={goBack}>
-      {' '}
-      <IoIosArrowRoundBack size={40} />
-    </button>
-  );
-}
 
 /**
  * @returns exhibit page
@@ -53,7 +33,8 @@ function App() {
         const yOffset = -50;
         const y =
           element.getBoundingClientRect().top + window.scrollY + yOffset;
-        window.scrollTo({ top: y, behavior: 'smooth' });
+        // check on this offset later
+        window.scrollTo({ top: y, behavior: 'instant' });
       }, 1000);
     }
   }, []);
@@ -62,11 +43,11 @@ function App() {
       <NavBar />
       <div className="p-4 m-auto">
         <BackButton />
-        <div className="flex-col justify-start items-start mb-6 mt-3">
-          <div className="text-night text-neutral-700 text-[32px] font-bold leading-9 font-['Lato'] mb-4">
+        <div className="flex-col justify-start items-start mt-2">
+          <div className="text-night text-[32px] font-bold leading-9 font-['Lato'] mb-4">
             Our Exhibits{' '}
           </div>
-          <div className="text-night text-neutral-700 text-base leading-5 font-light font-['Lato']">
+          <div className="text-night text-base leading-5 font-normal font-['Lato']">
             Saratoga is home to an abundance of plant and animal life. As you
             explore these exhibits you will learn about species that are
             endangered and being carefully monitored by scientists with
@@ -74,8 +55,8 @@ function App() {
           </div>
         </div>
         <Link href="/siteMapPage">
-          <div className="px-4 py-2 rounded-md border border-asparagus justify-start items-start gap-2.5 inline-flex">
-            <div className="text-center text-asparagus text-base font-bold font-['Lato'] leading-tight">
+          <div className="px-4 py-2 mb-2 mt-6 rounded-md border active:border-hunterGreen border-asparagus justify-start items-start inline-flex">
+            <div className="active:text-hunterGreen text-center text-asparagus text-base font-bold font-['Lato'] leading-tight">
               Go to Map
             </div>
           </div>
