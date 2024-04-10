@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -11,10 +12,9 @@ import Exhibit from '../../components/userComponents/Exhibit/Exhibit';
 /**
  * @param evt on click of button
  */
-function goBack(evt: React.SyntheticEvent) {
+function goBack(evt : React.SyntheticEvent) {
   // ignore the native anchor action
   evt.preventDefault();
-
   window.history.back();
 }
 
@@ -42,7 +42,21 @@ function App() {
       setExhibits(fetchedExhibits);
     };
     getExhibits();
+    // Detect the hash in URL and scroll to the element with the corresponding ID
   }, [exhibits]);
+
+  useEffect(() => {
+    const { hash } = window.location;
+    if (hash) {
+      setTimeout(() => {
+        const element = document.querySelector(hash);
+        const yOffset = -50;
+        const y =
+          element.getBoundingClientRect().top + window.scrollY + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }, 1000);
+    }
+  }, []);
   return (
     <div className="bg-ivory">
       <NavBar />
@@ -70,7 +84,7 @@ function App() {
           {exhibits.map(exhibit => (
             <Exhibit
               title={exhibit.title}
-              description={exhibit.description}
+              description={exhibit.description || ''}
               image={exhibit.image || ''}
               key={exhibit.id}
               id={exhibit.id}
