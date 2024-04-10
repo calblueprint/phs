@@ -44,18 +44,7 @@ export async function fetchExhibitImage(
     .select('image')
     .eq('id', exhibitId)
     .single();
-export async function fetchExhibitImage(
-  exhibitId: string,
-): Promise<{ image: string }> {
-  const { data, error } = await supabase
-    .from('exhibits')
-    .select('image')
-    .eq('id', exhibitId)
-    .single();
 
-  if (error) {
-    throw new Error(error.message);
-  }
   if (error) {
     throw new Error(error.message);
   }
@@ -64,12 +53,7 @@ export async function fetchExhibitImage(
   const imageUrl =
     data?.image ??
     'https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg'; // Adjust the default image path as needed
-  // Provide a default image URL if the image is null
-  const imageUrl =
-    data?.image ??
-    'https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg'; // Adjust the default image path as needed
 
-  return { image: imageUrl };
   return { image: imageUrl };
 }
 
@@ -78,9 +62,6 @@ export async function fetchExhibitImage(
  * @param exhibitData - The exhibit to insert.
  * @returns A promise that resolves to a ExhibitRow object.
  */
-export async function insertExhibit(
-  exhibitData: ExhibitRow,
-): Promise<ExhibitRow | null> {
 export async function insertExhibit(
   exhibitData: ExhibitRow,
 ): Promise<ExhibitRow | null> {
@@ -97,7 +78,6 @@ export async function insertExhibit(
  * @returns A promise that resolves to a ExhibitRow object.
  */
 export async function updateExhibit(
-  newExhibitData: ExhibitRow,
   newExhibitData: ExhibitRow,
 ): Promise<ExhibitRow | null> {
   const { data, error } = await supabase
@@ -118,9 +98,6 @@ export async function updateExhibit(
 export async function upsertTour(
   exhibitData: ExhibitRow,
 ): Promise<ExhibitRow | null> {
-export async function upsertTour(
-  exhibitData: ExhibitRow,
-): Promise<ExhibitRow | null> {
   const { data, error } = await supabase.from('exhibits').upsert(exhibitData);
   if (error) {
     throw new Error(error.message);
@@ -133,9 +110,6 @@ export async function upsertTour(
  * @param exhibitId - The id of the exhibit to delete.
  * @returns A promise that resolves to a ExhibitRow object.
  */
-export async function deleteExhibit(
-  exhibitId: string,
-): Promise<ExhibitRow | null> {
 export async function deleteExhibit(
   exhibitId: string,
 ): Promise<ExhibitRow | null> {

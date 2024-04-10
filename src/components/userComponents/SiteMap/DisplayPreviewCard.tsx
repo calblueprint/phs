@@ -53,31 +53,20 @@ function DisplayPreviewCard({
       let displayName = '';
 
       if ('name' in tour) {
-
-      let imageUrl = '';
-      let displayName = '';
-
-      if ('name' in tour) {
         // Fetch images for a tour
         const images = await fetchImagesForTour(tour.id);
         if (images && images.length > 0) {
           imageUrl = images[0].url;
-          imageUrl = images[0].url;
         }
-        displayName = tour.name;
         displayName = tour.name;
       } else {
         // Handle as an ExhibitRow
         const imageObj = await fetchExhibitImage(tour.id);
-        const imageObj = await fetchExhibitImage(tour.id);
         if (imageObj) {
-          imageUrl = imageObj.image;
           imageUrl = imageObj.image;
         }
         displayName = tour.title;
-        displayName = tour.title;
       }
-
 
       // Set state variables
       setPreviewImage(imageUrl);
@@ -85,10 +74,8 @@ function DisplayPreviewCard({
       setLoading(false);
     };
 
-
     fetchDetails();
   }, [tour]);
-
 
   /** route this to spotlights */
 
@@ -99,16 +86,9 @@ function DisplayPreviewCard({
         aria-hidden="true"
       >
         {!loading && (
-    <div className="flex flex-col items-center justify-center w-[25rem] h-[8.25rem] max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto p-4 pb-[2.87rem] pr-[1.19rem] pl-[1.19rem] rounded-md">
-      <div
-        className="flex flex-row items-center rounded-md overflow-hidden bg-ivory cursor-pointer w-full sm:w-4/4 md:w-5/5 lg:w-2/2 xl:w-5/5 flex-shrink-0 shadow-xl"
-        aria-hidden="true"
-      >
-        {!loading && (
           <div className="relative w-[7.8125rem] z-10 h-[8.25rem] shrink-0 rounded-tl-md rounded-tr-none rounded-br-none rounded-bl-md">
             <Image
               src={previewImage}
-              alt="placeholder"
               alt="placeholder"
               layout="fill"
               objectFit="cover"
@@ -155,19 +135,12 @@ function DisplayPreviewCard({
                 {category}
               </h3>
               <h3 className="relative truncate font-medium font-lato text-night pr-[0.31rem] pl-[0.75rem] pt-[0.30rem] pb-[0rem] text-base leading-normal">
-              <h3 className="relative truncate font-medium font-lato text-night pr-[0.31rem] pl-[0.75rem] pt-[0.30rem] pb-[0rem] text-base leading-normal">
                 {name1}
               </h3>
-
 
               <h4 className="relative font-lato h-[2rem] pr-[0.31rem] pt-[0rem] pl-[0.75rem] pb-[2.4rem] text-shadow line-clamp-2 text-sm">
                 {description}
               </h4>
-            </Link>
-          </div>
-        </div>
-      </div>
-    </div>
             </Link>
           </div>
         </div>
