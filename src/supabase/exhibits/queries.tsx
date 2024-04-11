@@ -8,7 +8,7 @@ import { ExhibitRow } from '../../types/types';
  * @returns A promise that resolves to an array of ExhibitRow objects.
  */
 export async function fetchAllExhibits() {
-  const { data, error } = await supabase.rpc('get_exhibits');
+  const { data, error } = await supabase.rpc('get_exhibit_details');
   if (error) {
     throw new Error(error.message);
   }
