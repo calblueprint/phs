@@ -12,26 +12,19 @@ interface TourCardProps {
   handleClose: () => void;
   handleClick?: () => void;
 }
-
 /**
- * @param TourCardProps.display display to preview
- * @param TourCardProps.handleClick function to handle actions when clicked
- * @param TourCardProps.handleClose function to handle closing of preview card
- * @param TourCardProps.display.display
- * @param TourCardProps.display.handleClick
- * @param TourCardProps.display.handleClose
- * @param TourCardProps.display.tour
- * @returns preview card component to display within leaflet map container
+ * Props for the tour preview card component.
+ * @param props - The props for the tour preview card.
+ * @param props.tour – tour to render preview
+ * @param props.handleClick – onClick function for preview card
+ * @param props.handleClose – close function for preview card
+ * @returns - The rendered tour preview card component.
  */
-function TourPreviewCard({
-  tour,
-  handleClick,
-  handleClose,
-}: TourCardProps) {
+function TourPreviewCard({ tour, handleClick, handleClose }: TourCardProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [previewImage, setPreviewImage] = useState<string>('');
   const [name1, setname1] = useState<string>('');
-  
+
   const { id, description, coordinates, category } = tour;
   // name, for tour title for exhibit
 
@@ -49,25 +42,24 @@ function TourPreviewCard({
   useEffect(() => {
     const fetchDetails = async () => {
       setLoading(true);
-  
-      let imageUrl = ''; 
-      let displayName = ''; 
-  
-    // Fetch images for a tour
-    const images = await fetchImagesForTour(tour.id);
-    if (images && images.length > 0) {
-        imageUrl = images[0].url; 
-    }
-    displayName = tour.name; 
-    // Set state variables
-    setPreviewImage(imageUrl);
-    setname1(displayName);
-    setLoading(false);
+
+      let imageUrl = '';
+      let displayName = '';
+
+      // Fetch images for a tour
+      const images = await fetchImagesForTour(tour.id);
+      if (images && images.length > 0) {
+        imageUrl = images[0].url;
+      }
+      displayName = tour.name;
+      // Set state variables
+      setPreviewImage(imageUrl);
+      setname1(displayName);
+      setLoading(false);
     };
-  
+
     fetchDetails();
-  }, [tour]); 
-  
+  }, [tour]);
 
   /** route this to spotlights */
 
@@ -77,18 +69,16 @@ function TourPreviewCard({
         className="flex flex-row items-center rounded-md overflow-hidden bg-ivory cursor-pointer w-full sm:w-4/4 md:w-5/5 lg:w-2/2 xl:w-5/5 flex-shrink-0 shadow-xl"
         aria-hidden="true"
       >
-        {!loading &&
+        {!loading && (
           <div className="relative w-[5.8125rem] z-10 h-full shrink-0 rounded-tl-md rounded-tr-none rounded-br-none rounded-bl-md">
-
             <Image
-
               src={previewImage}
-              alt='placeholder'
+              alt="placeholder"
               layout="fill"
               objectFit="cover"
             />
           </div>
-        }
+        )}
         <div
           className="justify-items-center align-middle z-20 overflow-hidden w-full h-full"
           onClick={handleClick}
@@ -101,9 +91,20 @@ function TourPreviewCard({
           tabIndex={0}
         >
           <div className="">
-            <div className="flex justify-end items-center pt-2 pr-[0.5rem]" onClick={(e) => {
+            <div
+              aria-label="Close preview card"
+              className="flex justify-end items-center pt-2 pr-[0.5rem]"
+              role="button"
+              tabIndex={0}
+              onClick={e => {
                 e.stopPropagation(); //  prevents the click from propagating to the parent link
                 handleClose();
+              }}
+              onKeyDown={e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.stopPropagation();
+                  handleClose();
+                }
               }}
             >
               <svg
@@ -123,21 +124,18 @@ function TourPreviewCard({
               </svg>
             </div>
             <Link href={`/spotlightPage/${id}`}>
-              <div className=' pl-[0.75rem] pr-[9.87] pt-[0rem] font-lato text-xs text-shadow bg-[#F173731A]  rounded-lg w-[8rem]'>
+              <div className=" pl-[0.75rem] pr-[9.87] pt-[0rem] font-lato text-xs text-shadow bg-[#F173731A]  rounded-lg w-[8rem]">
                 {category}
               </div>
 
-              <h3
-                className="relative truncate font-medium font-lato text-night pr-[0.31rem] pl-[0.75rem] pt-[0.3rem] pb-[0rem] text-base leading-normal"
-
-              >
+              <h3 className="relative truncate font-medium font-lato text-night pr-[0.31rem] pl-[0.75rem] pt-[0.3rem] pb-[0rem] text-base leading-normal">
                 {name1}
               </h3>
 
               <h4 className="relative font-lato h-[2rem] pr-[0.31rem] pt-[0rem] pl-[0.75rem] pb-[2.4rem] text-shadow line-clamp-2 text-sm">
                 {description}
               </h4>
-              <h6 className='relative pt-[0.2rem] pr-[1rem] pb-[0.4rem] text-silver font-lato text-xs text-right'>
+              <h6 className="relative pt-[0.2rem] pr-[1rem] pb-[0.4rem] text-silver font-lato text-xs text-right">
                 Go to virtual tour `&gt;`
               </h6>
             </Link>

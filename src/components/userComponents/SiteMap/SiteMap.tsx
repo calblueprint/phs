@@ -10,7 +10,12 @@ import Control from './Control';
 import { fetchAllExhibits } from '../../../supabase/exhibits/queries';
 import { getCategoryColor1 } from '../../../supabase/category/queries';
 import RecenterMap from './MapInteractionHandler';
-import { DefaultMarkerIcon, SelectedMarkerIcon } from '../../../../public/icons';
+import {
+  DefaultMarkerIcon,
+  SelectedMarkerIcon,
+} from '../../../../public/icons';
+import ExhibitPreviewCard from './ExhibitPreviewCard';
+import TourPreviewCard from './TourPreviewCard';
 
 const center: LatLngExpression = {
   lat: 37.58748,
@@ -41,10 +46,10 @@ interface SiteMapProps {
 }
 
 /**
- * @param root0
- * @param root0.mode
- * @params mode - will
- * @returns Interactive map based on React Leaflet, holds the markers which lead to exhibits
+ * Render a site map component.
+ * @param SiteMapProps - The props for the site map component.
+ * @param SiteMapProps.mode - The mode for the site map, either 'tours' or 'exhibits'.
+ * @returns The site map component based on the provided mode.
  */
 function SiteMap({ mode }: SiteMapProps) {
   const [spotlightTours, setSpotlightTours] = useState<
@@ -56,7 +61,6 @@ function SiteMap({ mode }: SiteMapProps) {
   );
   const [mapCenter, setMapCenter] = useState<LatLngExpression>(center);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
-  // const [resetCenter, setResetCenter] = useState(center); // New state to trigger recentering
 
   // fetch tours where spotlight == True
   useEffect(() => {
@@ -86,8 +90,6 @@ function SiteMap({ mode }: SiteMapProps) {
             {},
           );
           setColorsMap(newColorsMap);
-
-          console.log('Colors Map:', newColorsMap); // Log here
         } else if (data && mode === 'exhibits') {
           const colors = await Promise.all(
             data.map(async item => ({
@@ -103,8 +105,6 @@ function SiteMap({ mode }: SiteMapProps) {
             {},
           );
           setColorsMap(newColorsMap);
-
-          console.log('Colors Map:', newColorsMap); // Log here
         }
         setSpotlightTours(data ?? []);
       } catch (error) {
@@ -175,14 +175,6 @@ function SiteMap({ mode }: SiteMapProps) {
               />
             );
           })}
-        {/* {selectedTour && (
-          <Control position="bottomright">
-            <DisplayPreviewCard
-              tour={selectedTour}
-              handleClose={handlePreviewClose}
-            />
-          </Control>
-        )} */}
         {selectedTour && (
           <Control position="bottomright">
             {mode === 'tours' ? (
