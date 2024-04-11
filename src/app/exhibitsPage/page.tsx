@@ -1,24 +1,22 @@
-
 'use client';
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import NavBar from '../../components/userComponents/navBar/navBar';
-import { ExhibitRow } from '../../types/types';
-import { fetchAllExhibits } from '../../supabase/exhibits/queries';
+import { CategoryRow } from '../../types/types';
+import { fetchAllCategories } from '../../supabase/category/queries';
 import Exhibit from '../../components/userComponents/Exhibit/Exhibit';
 import BackButton from '../../components/userComponents/BackButton/page';
-
 
 /**
  * @returns exhibit page
  */
 function App() {
-  const [exhibits, setExhibits] = useState<ExhibitRow[]>([]);
+  const [exhibits, setExhibits] = useState<CategoryRow[]>([]);
   useEffect(() => {
     // Get exhibits
     const getExhibits = async () => {
-      const fetchedExhibits: ExhibitRow[] = await fetchAllExhibits();
+      const fetchedExhibits: CategoryRow[] = await fetchAllCategories();
       setExhibits(fetchedExhibits);
     };
     getExhibits();
@@ -31,10 +29,12 @@ function App() {
       setTimeout(() => {
         const element = document.querySelector(hash);
         const yOffset = -50;
-        const y =
-          element.getBoundingClientRect().top + window.scrollY + yOffset;
-        // check on this offset later
-        window.scrollTo({ top: y, behavior: 'instant' });
+        if (element) {
+          const y =
+            element.getBoundingClientRect().top + window.scrollY + yOffset;
+          // check on this offset later
+          window.scrollTo({ top: y, behavior: 'instant' });
+        }
       }, 1000);
     }
   }, []);
@@ -64,7 +64,7 @@ function App() {
         <ul>
           {exhibits.map(exhibit => (
             <Exhibit
-              title={exhibit.title}
+              title={exhibit.category || ''}
               description={exhibit.description || ''}
               image={exhibit.image || ''}
               key={exhibit.id}

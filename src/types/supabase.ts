@@ -14,44 +14,44 @@ export type Database = {
           category: string | null;
           color_hex: string;
           created_at: string;
-          description: string | null;
+          description: string;
           id: number;
-          image: string | null;
+          image: string;
         };
         Insert: {
           category?: string | null;
           color_hex: string;
           created_at?: string;
-          description?: string | null;
+          description: string;
           id?: number;
-          image?: string | null;
+          image: string;
         };
         Update: {
           category?: string | null;
           color_hex?: string;
           created_at?: string;
-          description?: string | null;
+          description?: string;
           id?: number;
-          image?: string | null;
+          image?: string;
         };
         Relationships: [];
       };
       display_media: {
         Row: {
-          display_id: string
-          media_id: string
-          media_placement: string | null
-        }
+          display_id: string;
+          media_id: string;
+          media_placement: string | null;
+        };
         Insert: {
-          display_id: string
-          media_id: string
-          media_placement?: string | null
-        }
+          display_id: string;
+          media_id: string;
+          media_placement?: string | null;
+        };
         Update: {
-          display_id?: string
-          media_id?: string
-          media_placement?: string | null
-        }
+          display_id?: string;
+          media_id?: string;
+          media_placement?: string | null;
+        };
         Relationships: [
           {
             foreignKeyName: 'display_media_display_id_fkey';
@@ -82,7 +82,7 @@ export type Database = {
           coordinates?: Json | null;
           created_at?: string;
           description?: string;
-          id: string;
+          id?: string;
           title?: string;
           updated_at?: string | null;
         };
@@ -95,6 +95,50 @@ export type Database = {
           updated_at?: string | null;
         };
         Relationships: [];
+      };
+      emails: {
+        Row: {
+          emails: string | null;
+          id: number;
+        };
+        Insert: {
+          emails?: string | null;
+          id?: number;
+        };
+        Update: {
+          emails?: string | null;
+          id?: number;
+        };
+        Relationships: [];
+      };
+      exhibits: {
+        Row: {
+          category_id: number;
+          coordinates: Json | null;
+          id: string;
+          title: string;
+        };
+        Insert: {
+          category_id: number;
+          coordinates?: Json | null;
+          id?: string;
+          title: string;
+        };
+        Update: {
+          category_id?: number;
+          coordinates?: Json | null;
+          id?: string;
+          title?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'public_exhibits_category_id_fkey';
+            columns: ['category_id'];
+            isOneToOne: false;
+            referencedRelation: 'categories';
+            referencedColumns: ['id'];
+          },
+        ];
       };
       media: {
         Row: {
@@ -120,6 +164,30 @@ export type Database = {
           title?: string | null;
           type?: string | null;
           url?: string;
+        };
+        Relationships: [];
+      };
+      news: {
+        Row: {
+          content_link: string;
+          created_at: string;
+          id: string;
+          title: string;
+          updated_at: string | null;
+        };
+        Insert: {
+          content_link: string;
+          created_at?: string;
+          id?: string;
+          title: string;
+          updated_at?: string | null;
+        };
+        Update: {
+          content_link?: string;
+          created_at?: string;
+          id?: string;
+          title?: string;
+          updated_at?: string | null;
         };
         Relationships: [];
       };
@@ -257,6 +325,22 @@ export type Database = {
       [_ in never]: never;
     };
     Functions: {
+      fetch_recommended_spotlights: {
+        Args: {
+          source_spotlight_id: string;
+        };
+        Returns: {
+          id: string;
+          name: string;
+          description: string;
+          created_at: string;
+          stop_count: number;
+          spotlight: boolean;
+          preview_text: string;
+          coordinates: Json;
+          category: Database['public']['Enums']['tour_category'];
+        }[];
+      };
       fetchimagesfordisplay: {
         Args: {
           displayid: string;
@@ -283,44 +367,23 @@ export type Database = {
           created_at: string;
         }[];
       };
-      get_spotlight_recommendations: {
-        Args: {
-          source_display_id: string
-        }
-        Returns: {
-          id: string
-          url: string
-          type: string
-          title: string
-          text: string
-          created_at: string
-        }[]
-      }
       get_category_color: {
         Args: {
           category_in: string;
         };
         Returns: string;
       };
-      get_spotlight_recommendations: {
-        Args: {
-          source_display_id: string;
-        };
-          source_display_id: string;
-        };
+      get_exhibits: {
+        Args: Record<PropertyKey, never>;
         Returns: {
-          id: string;
-          name: string;
-          description: string;
-          created_at: string;
-          stop_count: number;
-          spotlight: boolean;
-          preview_text: string;
+          id: number;
           coordinates: Json;
-          category: Database['public']['Enums']['tour_category'];
+          category: string;
+          description: string;
+          image: string;
         }[];
       };
-      get_spotlight_tours: {
+      get_non_spotlight_tours: {
         Args: Record<PropertyKey, never>;
         Returns: {
           id: string;
@@ -334,8 +397,8 @@ export type Database = {
           category: Database['public']['Enums']['tour_category'];
         }[];
       };
-      join_spotlights_with_media: {
-        Args: Record<PropertyKey, never>
+      join_all_spotlights_with_media: {
+        Args: Record<PropertyKey, never>;
         Returns: {
           id: string;
           name: string;
@@ -349,19 +412,21 @@ export type Database = {
           media_url: string;
         }[];
       };
-      join_tours_with_media: {
+      join_all_tours_with_media: {
         Args: Record<PropertyKey, never>;
         Returns: {
-          id: string
-          name: string
-          description: string
-          created_at: string
-          stop_count: number
-          spotlight: boolean
-          preview_text: string
-          url: string
-        }[]
-      }
+          id: string;
+          name: string;
+          description: string;
+          created_at: string;
+          stop_count: number;
+          spotlight: boolean;
+          preview_text: string;
+          coordinates: Json;
+          category: Database['public']['Enums']['tour_category'];
+          media_url: string;
+        }[];
+      };
     };
     Enums: {
       media_type: 'image' | 'video' | 'link';
@@ -393,15 +458,15 @@ export type Tables<
     }
     ? R
     : never
-  : PublicTableNameOrOptions extends keyof (PublicSchema["Tables"] &
-        PublicSchema["Views"])
-    ? (PublicSchema["Tables"] &
-        PublicSchema["Views"])[PublicTableNameOrOptions] extends {
-        Row: infer R
-      }
-      ? R
-      : never
+  : PublicTableNameOrOptions extends keyof (PublicSchema['Tables'] &
+      PublicSchema['Views'])
+  ? (PublicSchema['Tables'] &
+      PublicSchema['Views'])[PublicTableNameOrOptions] extends {
+      Row: infer R;
+    }
+    ? R
     : never
+  : never;
 
 export type TablesInsert<
   PublicTableNameOrOptions extends
@@ -416,13 +481,13 @@ export type TablesInsert<
     }
     ? I
     : never
-  : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
-    ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
-        Insert: infer I
-      }
-      ? I
-      : never
+  : PublicTableNameOrOptions extends keyof PublicSchema['Tables']
+  ? PublicSchema['Tables'][PublicTableNameOrOptions] extends {
+      Insert: infer I;
+    }
+    ? I
     : never
+  : never;
 
 export type TablesUpdate<
   PublicTableNameOrOptions extends
@@ -437,13 +502,13 @@ export type TablesUpdate<
     }
     ? U
     : never
-  : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
-    ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
-        Update: infer U
-      }
-      ? U
-      : never
+  : PublicTableNameOrOptions extends keyof PublicSchema['Tables']
+  ? PublicSchema['Tables'][PublicTableNameOrOptions] extends {
+      Update: infer U;
+    }
+    ? U
     : never
+  : never;
 
 export type Enums<
   PublicEnumNameOrOptions extends
