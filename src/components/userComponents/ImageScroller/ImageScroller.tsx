@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { MediaRow } from '../../../types/types';
+import { RightChevron } from '../../../../public/icons';
 
 interface CarouselProps {
   media: MediaRow[];
@@ -57,20 +58,7 @@ export default function Carousel({ media }: CarouselProps) {
           className="absolute right-[1.56rem] z-10 rounded-full"
           aria-label="Next image"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="1rem"
-            height="1.9rem"
-            viewBox="0 0 21 34"
-            fill="none"
-          >
-            <path
-              d="M2 2L18 17.2L2 32.4"
-              stroke="#FFFDF7"
-              strokeWidth="3"
-              strokeLinecap="round"
-            />
-          </svg>
+          <RightChevron />
         </button>
       )}
     </div>
