@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { MenuIcon } from '../../../../public/icons';
 
 /**
  * @returns The navigation bar for the web app
@@ -45,32 +46,7 @@ function NavBar() {
         tabIndex={0}
         aria-label="Menu"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="46"
-          height="46"
-          viewBox="0 0 46 46"
-          fill="none"
-        >
-          <path
-            d="M9.58331 13.4167H36.4166"
-            stroke="white"
-            strokeWidth="3.83333"
-            strokeLinecap="round"
-          />
-          <path
-            d="M9.58331 23H36.4166"
-            stroke="white"
-            strokeWidth="3.83333"
-            strokeLinecap="round"
-          />
-          <path
-            d="M9.58331 32.5833H36.4166"
-            stroke="white"
-            strokeWidth="3.83333"
-            strokeLinecap="round"
-          />
-        </svg>
+        <MenuIcon />
       </button>
 
       {showMenu && (

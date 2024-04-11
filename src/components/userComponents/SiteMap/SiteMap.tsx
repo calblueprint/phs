@@ -3,6 +3,7 @@
 import L, { LatLngExpression } from 'leaflet';
 import React, { useEffect, useState } from 'react';
 import { LayersControl, MapContainer, TileLayer, Marker } from 'react-leaflet';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { fetchAllSpotlights } from '../../../supabase/tours/queries';
 import { ExhibitRow, TourRow } from '../../../types/types';
 import Control from './Control';
@@ -13,6 +14,7 @@ import {
 } from '../../../supabase/exhibits/queries';
 import { getCategoryColor1 } from '../../../supabase/category/queries';
 import RecenterMap from './MapInteractionHandler';
+import { DefaultMarkerIcon, SelectedMarkerIcon } from '../../../../public/icons';
 
 const center: LatLngExpression = {
   lat: 37.58748,
@@ -26,52 +28,14 @@ const tileLayer: { attribution: string; url: string } = {
 
 const createDefaultMarkerIcon = (color: string) =>
   L.divIcon({
-    html: `
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-    <g filter="url(#filter0_d_5161_2353)">
-      <circle cx="10" cy="10" r="9" fill="${color}"/>
-      <circle cx="10" cy="10" r="8.1" stroke="#FFFDF7" stroke-width="1.8"/>
-    </g>
-    <defs>
-      <filter id="filter0_d_5161_2353" x="0" y="0" width="20" height="20" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-        <feOffset/>
-        <feGaussianBlur stdDeviation="0.5"/>
-        <feComposite in2="hardAlpha" operator="out"/>
-        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
-        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_5161_2353"/>
-        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_5161_2353" result="shape"/>
-      </filter>
-    </defs>
-    </svg>
-    `,
+    html: renderToStaticMarkup(<DefaultMarkerIcon color={color} />),
     className: 'default-icon',
     iconSize: [20, 20],
   });
 
 const createSelectedMarkerIcon = (color: string) =>
   L.divIcon({
-    html: `
-      <svg xmlns="http://www.w3.org/2000/svg" width="41" height="40" viewBox="0 0 41 40" fill="none">
-      <g filter="url(#filter0_d_5531_6851)">
-        <circle cx="20.5" cy="20" r="18" fill="${color}"/>
-        <circle cx="20.5" cy="20" r="16.3" stroke="${color}" stroke-width="3.4"/>
-      </g>
-      <circle cx="20.5" cy="20" r="6" fill="#FFFDF7"/>
-      <defs>
-        <filter id="filter0_d_5531_6851" x="0.5" y="0" width="40" height="40" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-          <feOffset/>
-          <feGaussianBlur stdDeviation="1"/>
-          <feComposite in2="hardAlpha" operator="out"/>
-          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
-          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_5531_6851"/>
-          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_5531_6851" result="shape"/>
-        </filter>
-      </defs>
-    </svg>`,
+    html: renderToStaticMarkup(<SelectedMarkerIcon color={color} />),
     className: 'selected-icon',
     iconSize: [41, 40],
   });

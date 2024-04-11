@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { FiExternalLink } from 'react-icons/fi';
+import { ExternalLinkIcon } from '../../../../public/icons';
 
 /**
  *
@@ -34,12 +34,11 @@ export default function NewsDisplay({
               {title}{' '}
             </p>
             <div className="mt-[1px]">
-              <FiExternalLink />
+              <ExternalLinkIcon />
             </div>
           </div>
-          <p className="text-shadow not-italic font-light leading-[normal] uppercase text-xs">
-            {' '}
-            {date}{' '}
+          <p className="text-shadow leading-[normal] text-xs font-normal font-[Lato] uppercase">
+            {date}
           </p>
         </div>
       </a>
