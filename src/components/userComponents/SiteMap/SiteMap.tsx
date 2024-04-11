@@ -4,17 +4,18 @@ import L, { LatLngExpression } from 'leaflet';
 import React, { useEffect, useState } from 'react';
 import { LayersControl, MapContainer, TileLayer, Marker } from 'react-leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { fetchAllSpotlights } from '../../../supabase/tours/queries';
+import { fetchSpotlightTours } from '../../../supabase/tours/queries';
 import { ExhibitRow, TourRow } from '../../../types/types';
 import Control from './Control';
-import DisplayPreviewCard from './DisplayPreviewCard';
-import {
-  fetchExhibit,
-  fetchAllExhibits,
-} from '../../../supabase/exhibits/queries';
+import { fetchAllExhibits } from '../../../supabase/exhibits/queries';
 import { getCategoryColor1 } from '../../../supabase/category/queries';
 import RecenterMap from './MapInteractionHandler';
-import { DefaultMarkerIcon, SelectedMarkerIcon } from '../../../../public/icons';
+import {
+  DefaultMarkerIcon,
+  SelectedMarkerIcon,
+} from '../../../../public/icons';
+import ExhibitPreviewCard from './ExhibitPreviewCard';
+import TourPreviewCard from './TourPreviewCard';
 
 const center: LatLngExpression = {
   lat: 37.58748,
@@ -45,10 +46,10 @@ interface SiteMapProps {
 }
 
 /**
- * @param root0
- * @param root0.mode
- * @params mode - will
- * @returns Interactive map based on React Leaflet, holds the markers which lead to exhibits
+ * Render a site map component.
+ * @param SiteMapProps - The props for the site map component.
+ * @param SiteMapProps.mode - The mode for the site map, either 'tours' or 'exhibits'.
+ * @returns The site map component based on the provided mode.
  */
 function SiteMap({ mode }: SiteMapProps) {
   const [spotlightTours, setSpotlightTours] = useState<
@@ -60,7 +61,6 @@ function SiteMap({ mode }: SiteMapProps) {
   );
   const [mapCenter, setMapCenter] = useState<LatLngExpression>(center);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
-  const [resetCenter, setResetCenter] = useState(center); // New state to trigger recentering
 
   // fetch tours where spotlight == True
   useEffect(() => {
@@ -71,11 +71,11 @@ function SiteMap({ mode }: SiteMapProps) {
       try {
         let data;
         if (mode === 'tours') {
-          data = await fetchAllSpotlights();
+          data = await fetchSpotlightTours();
         } else if (mode === 'exhibits') {
           data = await fetchAllExhibits();
         }
-        if (data) {
+        if (data && mode === 'tours') {
           const colors = await Promise.all(
             data.map(async item => ({
               id: item.id,
@@ -90,7 +90,21 @@ function SiteMap({ mode }: SiteMapProps) {
             {},
           );
           setColorsMap(newColorsMap);
-          console.log('Colors Map:', newColorsMap); // Log here
+        } else if (data && mode === 'exhibits') {
+          const colors = await Promise.all(
+            data.map(async item => ({
+              id: item.id,
+              color: await getCategoryColor1(item.title),
+            })),
+          );
+          const newColorsMap = colors.reduce(
+            (acc, curr) => ({
+              ...acc,
+              [curr.id]: curr.color,
+            }),
+            {},
+          );
+          setColorsMap(newColorsMap);
         }
         setSpotlightTours(data ?? []);
       } catch (error) {
@@ -122,7 +136,6 @@ function SiteMap({ mode }: SiteMapProps) {
 
   const handlePreviewClose = () => {
     setSelectedTour(null);
-    setResetCenter(center); // Trigger recentering
   };
 
   return (
@@ -136,6 +149,7 @@ function SiteMap({ mode }: SiteMapProps) {
         width: '100%',
         minHeight: '544px',
         zIndex: '10',
+        marginBottom: '25px',
       }}
       key={new Date().getTime()}
     >
@@ -163,10 +177,17 @@ function SiteMap({ mode }: SiteMapProps) {
           })}
         {selectedTour && (
           <Control position="bottomright">
-            <DisplayPreviewCard
-              tour={selectedTour}
-              handleClose={handlePreviewClose}
-            />
+            {mode === 'tours' ? (
+              <TourPreviewCard
+                tour={selectedTour as TourRow} // Assuming you have proper type checks or type casting
+                handleClose={handlePreviewClose}
+              />
+            ) : (
+              <ExhibitPreviewCard
+                tour={selectedTour as ExhibitRow} // Assuming you have proper type checks or type casting
+                handleClose={handlePreviewClose}
+              />
+            )}
           </Control>
         )}
       </LayersControl>

@@ -3,33 +3,28 @@ import { LatLngExpression } from 'leaflet';
 import { useMapEvents } from 'react-leaflet';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ExhibitRow, TourRow } from '../../../types/types';
+import { TourRow } from '../../../types/types';
 import { fetchImagesForTour } from '../../../supabase/media/queries';
-import { fetchExhibitImage } from '../../../supabase/exhibits/queries';
-import { CloseIcon } from '../../../../public/icons';
+// import { fetchExhibitImage } from '../../../supabase/exhibits/queries';
 
-interface DisplayCardProps {
-  tour: TourRow | ExhibitRow;
+interface TourCardProps {
+  tour: TourRow;
   handleClose: () => void;
   handleClick?: () => void;
 }
-
 /**
- * Display a preview card component.
- * @param DisplayCardProps - The props for the display card component.
- * @param DisplayCardProps.tour - The tour or exhibit to preview.
- * @param DisplayCardProps.handleClick - The function to handle actions when clicked.
- * @param DisplayCardProps.handleClose - The function to handle closing of the preview card.
- * @returns The preview card component to display within the Leaflet map container.
+ * Props for the tour preview card component.
+ * @param props - The props for the tour preview card.
+ * @param props.tour – tour to render preview
+ * @param props.handleClick – onClick function for preview card
+ * @param props.handleClose – close function for preview card
+ * @returns - The rendered tour preview card component.
  */
-function DisplayPreviewCard({
-  tour,
-  handleClick,
-  handleClose,
-}: DisplayCardProps) {
+function TourPreviewCard({ tour, handleClick, handleClose }: TourCardProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [previewImage, setPreviewImage] = useState<string>('');
   const [name1, setname1] = useState<string>('');
+
   const { id, description, coordinates, category } = tour;
   // name, for tour title for exhibit
 
@@ -51,21 +46,12 @@ function DisplayPreviewCard({
       let imageUrl = '';
       let displayName = '';
 
-      if ('name' in tour) {
-        const images = await fetchImagesForTour(tour.id);
-        if (images && images.length > 0) {
-          imageUrl = images[0].url;
-        }
-        displayName = tour.name;
-      } else {
-        // Handle as an ExhibitRow
-        const imageObj = await fetchExhibitImage(tour.id);
-        if (imageObj) {
-          imageUrl = imageObj.image;
-        }
-        displayName = tour.title;
+      // Fetch images for a tour
+      const images = await fetchImagesForTour(tour.id);
+      if (images && images.length > 0) {
+        imageUrl = images[0].url;
       }
-
+      displayName = tour.name;
       // Set state variables
       setPreviewImage(imageUrl);
       setname1(displayName);
@@ -78,13 +64,13 @@ function DisplayPreviewCard({
   /** route this to spotlights */
 
   return (
-    <div className="flex flex-col items-center justify-center w-[25rem] h-[8.25rem] max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto p-4 pb-[2.87rem] pr-[1.19rem] pl-[1.19rem] rounded-md">
+    <div className="flex flex-col items-center justify-center w-[25rem] h-[7.25rem] max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto p-4 pb-[2.87rem] pr-[1.19rem] pl-[1.19rem] rounded-md">
       <div
         className="flex flex-row items-center rounded-md overflow-hidden bg-ivory cursor-pointer w-full sm:w-4/4 md:w-5/5 lg:w-2/2 xl:w-5/5 flex-shrink-0 shadow-xl"
         aria-hidden="true"
       >
         {!loading && (
-          <div className="relative w-[7.8125rem] z-10 h-[8.25rem] shrink-0 rounded-tl-md rounded-tr-none rounded-br-none rounded-bl-md">
+          <div className="relative w-[5.8125rem] z-10 h-full shrink-0 rounded-tl-md rounded-tr-none rounded-br-none rounded-bl-md">
             <Image
               src={previewImage}
               alt="placeholder"
@@ -106,8 +92,8 @@ function DisplayPreviewCard({
         >
           <div className="">
             <div
-              className="flex justify-end items-center pt-2 pr-2"
               aria-label="Close preview card"
+              className="flex justify-end items-center pt-2 pr-[0.5rem]"
               role="button"
               tabIndex={0}
               onClick={e => {
@@ -121,19 +107,37 @@ function DisplayPreviewCard({
                 }
               }}
             >
-              <CloseIcon />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="15"
+                viewBox="0 0 14 15"
+                fill="none"
+              >
+                <path
+                  d="M10.0523 11.0274L3.35083 4.32596M10.0524 4.32596L3.35083 11.0275"
+                  stroke="#272929"
+                  strokeWidth="1.11692"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </div>
             <Link href={`/spotlightPage/${id}`}>
-              <h3 className="relative truncate text-asparagus pr-[0.31rem] pl-[0.75rem] pt-[0rem] uppercase font-light text-xs leading-normal">
+              <div className=" pl-[0.75rem] pr-[9.87] pt-[0rem] font-lato text-xs text-shadow bg-[#F173731A]  rounded-lg w-[8rem]">
                 {category}
-              </h3>
-              <h3 className="relative truncate font-medium font-lato text-night pr-[0.31rem] pl-[0.75rem] pt-[0.30rem] pb-[0rem] text-base leading-normal">
+              </div>
+
+              <h3 className="relative truncate font-medium font-lato text-night pr-[0.31rem] pl-[0.75rem] pt-[0.3rem] pb-[0rem] text-base leading-normal">
                 {name1}
               </h3>
 
               <h4 className="relative font-lato h-[2rem] pr-[0.31rem] pt-[0rem] pl-[0.75rem] pb-[2.4rem] text-shadow line-clamp-2 text-sm">
                 {description}
               </h4>
+              <h6 className="relative pt-[0.2rem] pr-[1rem] pb-[0.4rem] text-silver font-lato text-xs text-right">
+                Go to virtual tour `&gt;`
+              </h6>
             </Link>
           </div>
         </div>
@@ -142,4 +146,4 @@ function DisplayPreviewCard({
   );
 }
 
-export default DisplayPreviewCard;
+export default TourPreviewCard;
