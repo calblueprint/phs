@@ -4,7 +4,7 @@ This file is meant to create clean type definitions that we can export to keep t
 Any updates to supabase.ts should be reflected here (new tables).
 */
 
-import { Database } from './supabase';
+import { Database, Json } from './supabase';
 
 export type DisplayRow = Database['public']['Tables']['displays']['Row'];
 export type MediaRow = Database['public']['Tables']['media']['Row'];
@@ -14,9 +14,17 @@ export type TourMediaRow = Database['public']['Tables']['tour_media']['Row'];
 export type TourRow = Database['public']['Tables']['tours']['Row'];
 export type NewsRow = Database['public']['Tables']['news']['Row'];
 export type ExhibitRow = Database['public']['Tables']['exhibits']['Row'];
+export type CategoryRow = Database['public']['Tables']['categories']['Row'];
 export type SpotlightRow = {
   tour_row: TourRow;
   url: string;
 };
 export type SpotlightWithMediaRow = TourRow & { media_url: string };
 export type ToursWithMediaRow = TourRow & { media_url: string };
+export type ExhibitWithCategoryRow = {
+  id: number;
+  category: string;
+  description: string;
+  image: string;
+  coordinates: Json;
+};

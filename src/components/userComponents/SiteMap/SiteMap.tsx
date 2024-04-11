@@ -4,13 +4,10 @@ import L, { LatLngExpression } from 'leaflet';
 import React, { useEffect, useState } from 'react';
 import { LayersControl, MapContainer, TileLayer, Marker } from 'react-leaflet';
 import { fetchAllSpotlights } from '../../../supabase/tours/queries';
-import { ExhibitRow, TourRow } from '../../../types/types';
+import { ExhibitWithCategoryRow, TourRow } from '../../../types/types';
 import Control from './Control';
 import DisplayPreviewCard from './DisplayPreviewCard';
-import {
-  fetchExhibit,
-  fetchAllExhibits,
-} from '../../../supabase/exhibits/queries';
+import { fetchAllExhibits } from '../../../supabase/exhibits/queries';
 import { getCategoryColor1 } from '../../../supabase/category/queries';
 import RecenterMap from './MapInteractionHandler';
 
@@ -88,12 +85,12 @@ interface SiteMapProps {
  */
 function SiteMap({ mode }: SiteMapProps) {
   const [spotlightTours, setSpotlightTours] = useState<
-    TourRow[] | ExhibitRow[] | null
+    TourRow[] | ExhibitWithCategoryRow[] | null
   >(null);
   const [colorsMap, setColorsMap] = useState<{ [key: string]: string }>({});
-  const [selectedTour, setSelectedTour] = useState<TourRow | ExhibitRow | null>(
-    null,
-  );
+  const [selectedTour, setSelectedTour] = useState<
+    TourRow | ExhibitWithCategoryRow | null
+  >(null);
   const [mapCenter, setMapCenter] = useState<LatLngExpression>(center);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
   const [resetCenter, setResetCenter] = useState(center); // New state to trigger recentering
@@ -148,7 +145,7 @@ function SiteMap({ mode }: SiteMapProps) {
   }, [selectedTour]);
 
   const handleMarkerSelect = (
-    tour: TourRow | ExhibitRow,
+    tour: TourRow | ExhibitWithCategoryRow,
     markerIndex: number,
   ) => {
     setSelectedTour(tour);

@@ -7,8 +7,8 @@ import { ExhibitRow } from '../../types/types';
  * Fetches all tours from the database.
  * @returns A promise that resolves to an array of ExhibitRow objects.
  */
-export async function fetchAllExhibits(): Promise<ExhibitRow[]> {
-  const { data, error } = await supabase.from('exhibits').select('*');
+export async function fetchAllExhibits() {
+  const { data, error } = await supabase.rpc('get_exhibits');
   if (error) {
     throw new Error(error.message);
   }
@@ -40,7 +40,7 @@ export async function fetchExhibitImage(
   exhibitId: string,
 ): Promise<{ image: string }> {
   const { data, error } = await supabase
-    .from('exhibits')
+    .from('categories')
     .select('image')
     .eq('id', exhibitId)
     .single();

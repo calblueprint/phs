@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-  
+
 /**
  *
  * @param root0 passed in
@@ -19,7 +19,7 @@ export default function Exhibit({
   title: string;
   description: string;
   image: string;
-  id: string;
+  id: number;
 }) {
   return (
     <li key={id} id={`a${id}`}>
