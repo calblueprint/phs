@@ -12,7 +12,10 @@ import {
 } from '../../../types/types';
 import { fetchTour } from '../../../supabase/tours/queries';
 import { fetchMedia } from '../../../supabase/media/queries';
-import { fetchAllTourMedia, fetchTourMedia } from '../../../supabase/tour_media/queries';
+import {
+  fetchAllTourMedia,
+  fetchTourMedia,
+} from '../../../supabase/tour_media/queries';
 import NavBar from '../../../components/userComponents/navBar/navBar';
 import {
   fetchDisplayfromSpotlight,
@@ -78,7 +81,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
   }, []);
 
   return (
-    <div className="bg-ivory w-[24.375rem] min-h-full">
+    <div className="bg-ivory w-[24.375rem] min-h-screen">
       <NavBar />
       <Link
         href="/spotlightPage"
@@ -86,16 +89,13 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
       >
         <BackButton />
       </Link>
-      <div className="relative w-[24.375rem] h-[15.3125rem]">
+      <div className="bg-scary-forest relative w-[24.375rem] h-[15.3125rem]">
         {media.length > 0 && (
           <Image
             className="w-[24.375rem] h-[15.3125rem] relative"
             key={media.find(m => m.id === tourMedia[0]?.media_id)?.id}
             src={media.find(m => m.id === tourMedia[0]?.media_id)?.url ?? ''}
-            alt={
-              media.find(m => m.id === tourMedia[0]?.media_id)?.text ??
-              'Spotlight display image'
-            }
+            alt={media.find(m => m.id === tourMedia[0]?.media_id)?.text ?? ''}
             layout="fill"
             objectFit="cover"
             priority
@@ -110,87 +110,95 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
           {spotlight.description}
         </p>
       </div>
-      <div className="flex flex-col px-[18px] gap-[20px]">
-        <h1 className="text-night font-lato font-bold text-[18px]">
-          In this spotlight...
-        </h1>
 
-        <div className="flex flex-wrap gap-[14px]">
-          {displays.map(display => (
-            <Link
-              key={display.id}
-              href={`/spotlightPage/${spotlight.id}/${display.id}?spotlightId=${spotlight.id}`}
-            >
-              <button
-                type="button"
-                className="bg-mint-cream w-[354px] h-[60px] text-scary-forest font-lato font-bold truncate rounded-2xl px-[31px]"
+      {displays.length > 0 && (
+        <div className="flex flex-col px-[18px] gap-[20px] pb-[40px]">
+          <h1 className="text-night font-lato font-bold text-[18px]">
+            In this spotlight...
+          </h1>
+
+          <div className="flex flex-wrap gap-[14px]">
+            {displays.map(display => (
+              <Link
+                key={display.id}
+                href={`/spotlightPage/${spotlight.id}/${display.id}?spotlightId=${spotlight.id}`}
               >
-                {display.title}
-              </button>
-            </Link>
-          ))}
-        </div>
-      </div>
-
-      <div className="bg-[#BDBDBD] h-[0.03125rem] my-[40px]" />
-
-      <div className="flex flex-col gap-4 pb-[40px]">
-        <h1 className="text-night font-lato font-bold text-[18px] px-[18px]">
-          Related Spotlights
-        </h1>
-
-        <ul className="list-none flex overflow-x-auto whitespace-nowrap px-[18px] gap-[12px]">
-          {relatedSpotlights.map(otherSpotlight => (
-            <li className="w-[162px]" key={otherSpotlight.id}>
-              <Link href={`/spotlightPage/${otherSpotlight.id}`}>
-                <div className="relative w-full h-[169px] rounded-2xl flex flex-col">
-                  {media.length > 0 && (
-                    <Image
-                      className="rounded-lg"
-                      key={
-                        media.find(
-                          m =>
-                            m.id ===
-                            allTourMedia.find(
-                              tm => tm.tour_id === otherSpotlight.id,
-                            )?.media_id,
-                        )?.id
-                      }
-                      src={
-                        media.find(
-                          m =>
-                            m.id ===
-                            allTourMedia.find(
-                              tm => tm.tour_id === otherSpotlight.id,
-                            )?.media_id,
-                        )?.url ?? ''
-                      }
-                      alt={
-                        media.find(
-                          m =>
-                            m.id ===
-                            allTourMedia.find(
-                              tm => tm.tour_id === otherSpotlight.id,
-                            )?.media_id,
-                        )?.text ?? ''
-                      }
-                      layout="fill"
-                      objectFit="cover"
-                      priority
-                    />
-                  )}
-                </div>
-                <h4 className="text-night font-lato text-20 font-bold mt-2 truncate">
-                  {otherSpotlight.name}
-                </h4>
-                <h2 className="text-shadow font-lato text-sm font-normal truncate mb-2">
-                  {otherSpotlight.preview_text}
-                </h2>
+                <button
+                  type="button"
+                  className="bg-mint-cream border-l-[0.3125rem] border-l-asparagus w-[354px] h-[60px] text-scary-forest font-lato font-bold truncate rounded-2xl px-[31px]"
+                >
+                  {display.title}
+                </button>
               </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+
+      {relatedSpotlights.length > 0 && (
+        <div>
+          <div className="bg-[#BDBDBD] h-[0.03125rem] mb-[40px]" />
+
+          <div className="flex flex-col gap-4 pb-[40px]">
+            <h1 className="text-night font-lato font-bold text-[18px] px-[18px]">
+              Related Spotlights
+            </h1>
+
+            <ul className="list-none flex overflow-x-auto whitespace-nowrap px-[18px] gap-[12px]">
+              {relatedSpotlights.map(otherSpotlight => (
+                <li className="w-[162px]" key={otherSpotlight.id}>
+                  <Link href={`/spotlightPage/${otherSpotlight.id}`}>
+                    <div className="relative w-full h-[169px] rounded-2xl flex flex-col">
+                      {media.length > 0 && (
+                        <Image
+                          className="rounded-lg"
+                          key={
+                            media.find(
+                              m =>
+                                m.id ===
+                                allTourMedia.find(
+                                  tm => tm.tour_id === otherSpotlight.id,
+                                )?.media_id,
+                            )?.id
+                          }
+                          src={
+                            media.find(
+                              m =>
+                                m.id ===
+                                allTourMedia.find(
+                                  tm => tm.tour_id === otherSpotlight.id,
+                                )?.media_id,
+                            )?.url ?? ''
+                          }
+                          alt={
+                            media.find(
+                              m =>
+                                m.id ===
+                                allTourMedia.find(
+                                  tm => tm.tour_id === otherSpotlight.id,
+                                )?.media_id,
+                            )?.text ?? ''
+                          }
+                          layout="fill"
+                          objectFit="cover"
+                          priority
+                        />
+                      )}
+                    </div>
+                    <h4 className="text-night font-lato text-20 font-bold mt-2 truncate">
+                      {otherSpotlight.name}
+                    </h4>
+                    <h2 className="text-shadow font-lato text-sm font-normal truncate mb-2">
+                      {otherSpotlight.preview_text}
+                    </h2>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

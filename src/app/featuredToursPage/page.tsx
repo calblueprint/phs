@@ -58,14 +58,14 @@ export default function FeaturedToursPage() {
           Virtual Tours
         </h1>
         <p className="text-night font-lato font-normal mb-4">
-          In order to prioritize the well-being of our animals and provide them
-          with the space to fully recover, some parts of our facility remain
-          closed to the public. However, you're invited to explore them
-          virtually and learn about our fascinating inhabitants through our
-          online featured tours!
+          Take a virtual sneak peek behind the scenes at our Wildlife Care
+          Center. Here you will find outside enclosures where sick, injured, and
+          orphaned wildlife recuperate and acclimate before being released back
+          into their natural habitat. Choose your favorite animal to start the
+          tour.
         </p>
 
-        <ul className="list-none mb-6">
+        <ul className="list-none mb-11">
           {tours.map(
             tour =>
               tour.spotlight === false && (
@@ -74,7 +74,7 @@ export default function FeaturedToursPage() {
                     href={`/featuredToursPage/${tour.id}`}
                     className="w-full rounded-lg block"
                   >
-                    <div className="relative w-full h-[12.3125rem] rounded-lg overflow-hidden">
+                    <div className="bg-scary-forest relative w-full h-[12.3125rem] rounded-lg overflow-hidden">
                       {media.length > 0 && (
                         <Image
                           className="rounded-lg"
@@ -84,7 +84,7 @@ export default function FeaturedToursPage() {
                                 m.id ===
                                 allTourMedia.find(tm => tm.tour_id === tour.id)
                                   ?.media_id,
-                            )?.url ?? '' // Can add a default image's url here
+                            )?.url ?? ''
                           }
                           alt={
                             media.find(

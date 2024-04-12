@@ -28,7 +28,7 @@ export default function NavBar() {
       <div className="flex flex-row justify-between relative top-2">
         <Link href="/">
           <img
-            src="https://phs-spca.org/wp-content/uploads/2017/03/PHSLogo.jpg"
+            src="https://qkkuacqtcsfjbnzmxmhk.supabase.co/storage/v1/object/public/images/PHSLogo.jpg"
             alt="PHSLogo"
             className="object-contain w-[6.5rem] h-[2.25rem] relative left-[1.13rem]"
           />

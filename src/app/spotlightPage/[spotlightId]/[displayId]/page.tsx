@@ -72,7 +72,7 @@ export default function Page({
   }, []);
 
   return (
-    <div className="bg-ivory w-[24.375rem] min-h-full">
+    <div className="bg-ivory w-[24.375rem] min-h-screen">
       <NavBar />
       <Link
         href={`/spotlightPage/${params.spotlightId}`}
@@ -81,7 +81,11 @@ export default function Page({
         <BackButton />
       </Link>
       <div className="mb-6">
-        {media.length > 0 && <Carousel media={media} />}
+        {media.length > 0 ? (
+          <Carousel media={media} />
+        ) : (
+          <div className="bg-scary-forest relative w-full h-[15.3125rem]" />
+        )}
       </div>
       <h1 className="text-night font-lato text-3xl text-14 font-bold px-[18px] pt-[8px]">
         {display.title}
@@ -89,56 +93,65 @@ export default function Page({
       <p className="text-night font-lato px-[18px] pt-[16px] pb-[32px]">
         {display.description}
       </p>
-      <h1 className="text-night font-bold font-lato text-[18px] px-[18px]">
-        More in this spotlight...
-      </h1>
 
-      <div className="flex flex-wrap flex-col gap-[14px] px-[18px] pt-[16px] pb-[48px] w-screen overflow-x-auto">
-        {otherDisplays.map(otherDisplay => (
-          <Link
-            key={otherDisplay.id}
-            href={`/spotlightPage/${params.spotlightId}/${otherDisplay.id}?spotlightId=${params.spotlightId}`}
-          >
-            <button
-              type="button"
-              className="bg-mint-cream text-scary-forest font-lato w-[354px] h-[60px] font-bold rounded-2xl px-[31px] truncate"
-            >
-              {otherDisplay.title}
-            </button>
-          </Link>
-        ))}
-      </div>
+      {otherDisplays.length > 0 && (
+        <div>
+          <h1 className="text-night font-bold font-lato text-[18px] px-[18px]">
+            More in this spotlight...
+          </h1>
 
-      <div className="bg-[#F5F6F5] mb-4">
-        <div className="bg-[#BDBDBD] h-[0.03125rem]" />
-        <div className="flex flex-col px-[1.12rem] py-8 gap-6">
-          <h3 className="text-night font-lato font-normal">Related Links</h3>
-          <ol className="px-[0.88rem]">
-            {tourMedia.map((tm, index) => (
-              <li key={tm.media_id} className="flex flex-col gap-4">
-                <Link
-                  href={media.find(m => m.id === tm.media_id)?.url ?? '-1'}
-                  className="flex flex-col gap-1"
+          <div className="flex flex-wrap flex-col gap-[14px] px-[18px] pt-[16px] pb-[48px] w-screen overflow-x-auto">
+            {otherDisplays.map(otherDisplay => (
+              <Link
+                key={otherDisplay.id}
+                href={`/spotlightPage/${params.spotlightId}/${otherDisplay.id}?spotlightId=${params.spotlightId}`}
+              >
+                <button
+                  type="button"
+                  className="bg-mint-cream border-l-[0.3125rem] border-l-asparagus text-scary-forest font-lato w-[354px] h-[60px] font-bold rounded-2xl px-[31px] truncate"
                 >
-                  <div className="flex flex-row items-center gap-2">
-                    <h4 className="text-shadow font-lato text-sm font-light uppercase">
-                      {media.find(m => m.id === tm.media_id)?.type}
-                    </h4>
-                    <ExternalLinkIcon />
-                  </div>
-                  <h4 className="text-night font-lato font-normal">
-                    {media.find(m => m.id === tm.media_id)?.title}
-                  </h4>
-                </Link>
-                {index !== tourMedia.length - 1 && (
-                  <div className="bg-[#BDBDBD] h-[0.03125rem] mb-6" />
-                )}
-              </li>
+                  {otherDisplay.title}
+                </button>
+              </Link>
             ))}
-          </ol>
+          </div>
         </div>
-        <div className="bg-[#BDBDBD] h-[0.03125rem]" />
-      </div>
+      )}
+
+      {tourMedia.length > 0 && (
+        <div>
+          <div className="bg-[#F5F6F5] mb-4">
+            <div className="bg-[#BDBDBD] h-[0.03125rem]" />
+            <div className="flex flex-col px-[1.12rem] py-8 gap-6">
+              <h3 className="text-night font-lato font-normal">Related Links</h3>
+              <ol className="px-[0.88rem]">
+                {tourMedia.map((tm, index) => (
+                  <li key={tm.media_id} className="flex flex-col gap-4">
+                    <Link
+                      href={media.find(m => m.id === tm.media_id)?.url ?? '-1'}
+                      className="flex flex-col gap-1"
+                    >
+                      <div className="flex flex-row items-center gap-2">
+                        <h4 className="text-shadow font-lato text-sm font-light uppercase">
+                          {media.find(m => m.id === tm.media_id)?.type}
+                        </h4>
+                        <ExternalLinkIcon />
+                      </div>
+                      <h4 className="text-night font-lato font-normal">
+                        {media.find(m => m.id === tm.media_id)?.title}
+                      </h4>
+                    </Link>
+                    {index !== tourMedia.length - 1 && (
+                      <div className="bg-[#BDBDBD] h-[0.03125rem] mb-6" />
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <div className="bg-[#BDBDBD] h-[0.03125rem]" />
+          </div>
+        </div>
+      )}
 
       <h4 className="text-[#386131] font-lato font-semibold px-[25px] pb-[40px]">
         <Link href="/spotlightPage">See all spotlights</Link>

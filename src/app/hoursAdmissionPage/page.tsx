@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { FiCalendar, FiCompass } from 'react-icons/fi';
 import NavBar from '../../components/userComponents/navBar/navBar';
 
 /**
@@ -19,12 +20,18 @@ export default function HoursAdmissionPage() {
         </h3>
 
         <div className="bg-[#EBF0E8] rounded-2xl p-8 mb-4">
-          <p className="text-night font-normal font-lato mb-2">
-            24103 Congress Springs Road, Saratoga, CA 95070
-          </p>
-          <p className="text-night font-normal font-lato mb-2">
-            Monday-Sunday | 11 a.m. - 6 p.m.
-          </p>
+          <div>
+            <FiCompass className="text-scary-forest w-[1.375rem] h-[1.375rem]" />
+            <p className="text-night font-normal font-lato mb-2">
+              24103 Congress Springs Road, Saratoga, CA 95070
+            </p>
+          </div>
+          <div>
+            <FiCalendar className="text-scary-forest w-[1.375rem] h-[1.375rem]" />
+            <p className="text-night font-normal font-lato mb-2">
+              Monday-Sunday | 11 a.m. - 6 p.m.
+            </p>
+          </div>
           <p className="text-night font-light font-lato italic mb-2">Closed on holidays*</p>
           <p className="text-night font-normal font-lato">
             Any additional information will be found in this space.

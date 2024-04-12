@@ -50,10 +50,10 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-ivory">
+    <div className="bg-ivory min-h-screen">
       <NavBar />
 
-      <div className="px-[18px] pt-[16px] pb-[60px]">
+      <div className="px-[18px] pt-[16px] pb-[44px]">
         <div className="mb-6">
           <Link href="/">
             <BackArrow />
@@ -64,25 +64,22 @@ function App() {
           Our Wildlife Spotlights
         </h1>
         <p className="text-night font-normal font-lato mb-6">
-          Welcome to our Wildlife Spotlights! Here, you'll find information
-          about our center, including our facilities, processes, and the diverse
-          range of species we care for. Explore our dedicated efforts to
-          rehabilitate and conserve wildlife, learn about our educational
-          programs, and discover ways you can support our cause.
+          Wildlife Spotlights offer insights into common questions we receive.
+          Browse a Spotlight to learn more about important wildlife topics.
         </p>
         <div className="bg-[#BDBDBD] h-[0.03125rem] mx-[-18px] mb-4" />
 
-        <ul className="list-none p-0">
+        <ul className="list-none">
           {spotlights.map(spotlight => (
             <li className="my-4" key={spotlight.id}>
               <Link
                 href={`/spotlightPage/${spotlight.id}`}
                 className="w-full rounded-lg"
               >
-                <div className="bg-[#386131] relative w-full h-[12.3125rem] rounded-2xl flex flex-col">
+                <div className="bg-scary-forest relative w-full h-[13.375rem] rounded-lg flex flex-col">
                   {media.length > 0 && (
                     <Image
-                      className="w-[24.375rem] h-[15.3125rem] rounded-lg"
+                      className="w-[24.375rem] h-[13.375rem] rounded-lg"
                       key={
                         media.find(
                           m =>
@@ -105,7 +102,7 @@ function App() {
                             m.id ===
                             allTourMedia.find(m => m.tour_id === spotlight.id)
                               ?.media_id,
-                        )?.text ?? 'Tour start image'
+                        )?.text ?? ''
                       }
                       layout="fill"
                       objectFit="cover"

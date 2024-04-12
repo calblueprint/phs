@@ -70,7 +70,7 @@ export default function TourStartPage({
 
   return (
     tour && (
-    <div className="bg-ivory w-[24.375rem] min-h-full">
+    <div className="bg-ivory w-[24.375rem] min-h-screen">
       <NavBar />
       <Link
         href="/featuredToursPage"
@@ -78,12 +78,12 @@ export default function TourStartPage({
       >
         <BackButton />
       </Link>
-      <div className="relative w-[24.375rem] h-[15.3125rem]">
+      <div className="bg-scary-forest relative w-[24.375rem] h-[15.3125rem]">
         {media.length > 0 && (
           <Image
             key={media.find(m => m.id === tourMedia[0]?.media_id)?.id}
             src={media.find(m => m.id === tourMedia[0]?.media_id)?.url ?? ''}
-            alt={media.find(m => m.id === tourMedia[0]?.media_id)?.text ?? 'Tour start image'}
+            alt={media.find(m => m.id === tourMedia[0]?.media_id)?.text ?? ''}
             layout="fill"
             objectFit="cover"
             priority

@@ -3,7 +3,12 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-import { DisplayRow, TourRow, TourDisplaysRow, MediaRow } from '../../../../types/types';
+import {
+  DisplayRow,
+  TourRow,
+  TourDisplaysRow,
+  MediaRow,
+} from '../../../../types/types';
 import NavBar from '../../../../components/userComponents/navBar/navBar';
 import { fetchTour } from '../../../../supabase/tours/queries';
 import { fetchDisplay } from '../../../../supabase/displays/queries';
@@ -96,7 +101,7 @@ export default function TourStopPage({
         );
         setNextText('Next Stop');
       }
-    }
+    };
 
     // Get the current stop number
     /**
@@ -131,17 +136,19 @@ export default function TourStopPage({
   return (
     <div className="bg-ivory w-[24.375rem] min-h-screen">
       <NavBar />
-      {
-        (currentStop && tour?.stop_count) > 0 && (
-          <ProgressBar
-            tourName={tour?.name || ''}
-            currentStop={currentStop || 0}
-            totalStops={tour?.stop_count || 0}
-          />
-        )
-      }
+      {(currentStop && tour?.stop_count) > 0 && (
+        <ProgressBar
+          tourName={tour?.name || ''}
+          currentStop={currentStop || 0}
+          totalStops={tour?.stop_count || 0}
+        />
+      )}
       <div className="mb-6">
-        {media.length > 0 && <Carousel media={media} />}
+        {media.length > 0 ? (
+          <Carousel media={media} />
+        ) : (
+          <div className="bg-scary-forest relative w-full h-[15.3125rem]" />
+        )}
       </div>
       <h1 className="text-night font-lato text-3xl font-bold px-[1.31rem] gap-4 mt-6 mb-4">
         {display && display.title}
