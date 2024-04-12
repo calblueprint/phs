@@ -123,7 +123,7 @@ function ExhibitPreviewCard({
                 {description}
               </h4>
               <h6 className='relative pt-[0.2rem] pr-[1rem] text-silver font-lato text-xs text-right'>
-                Go to exhibit `&gt;` 
+                Go to exhibit &gt;
                 </h6>
               </Link>
               

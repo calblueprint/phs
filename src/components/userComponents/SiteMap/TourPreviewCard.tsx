@@ -136,7 +136,7 @@ function TourPreviewCard({ tour, handleClick, handleClose }: TourCardProps) {
                 {description}
               </h4>
               <h6 className="relative pt-[0.2rem] pr-[1rem] pb-[0.4rem] text-silver font-lato text-xs text-right">
-                Go to virtual tour `&gt;`
+                Go to virtual tour &gt;
               </h6>
             </Link>
           </div>
