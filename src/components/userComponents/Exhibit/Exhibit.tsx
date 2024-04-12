@@ -23,15 +23,15 @@ export default function Exhibit({
 }) {
   return (
     <li key={id} id={`a${id}`}>
-      <div className="w-[100%] px-4 py-8 bg-mint-cream rounded-lg flex-col justify-start items-start gap-2.5 inline-flex mt-6">
+      <div className="w-full px-4 py-8 bg-mint-cream rounded-lg flex-col justify-start items-start gap-2.5 inline-flex mt-6">
         <div className="flex-col justify-start items-start gap-5 flex">
           <div className="justify-start items-center gap-2 inline-flex">
-            <h2 className="text-night text-2xl font-semibold font-['Lato']">
+            <h2 className="text-night font-semibold font-['Lato']">
               {' '}
               {title}
             </h2>
           </div>
-          <p className="text-night text-base leading-normal font-normal font-['Lato']">
+          <p className="text-night leading-normal font-normal font-['Lato']">
             {description}
           </p>
           <Image src={image} alt="Exhibit" width={354} height={150} />
