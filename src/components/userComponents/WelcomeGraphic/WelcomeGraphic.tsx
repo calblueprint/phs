@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import React from 'react';
 
 /**
@@ -15,14 +14,10 @@ function WelcomeGraphic() {
     >
       <div className="w-80 h-40 flex-col justify-start items-center gap-6 inline-flex">
         <div className="flex-col justify-start items-center gap-1 flex">
-          <p className="text-center">WELCOME TO</p>
-          <h1 className="text-center w-80">Ellison Conservation</h1>
-          <h1 className="text-center w-80">Center for Wildlife Care</h1>
-        </div>
-        <div className="w-52 px-4 py-3 bg-asparagus rounded-lg justify-center items-center gap-2.5 inline-flex">
-          <Link href="/featuredToursPage" className="text-center text-ivory">
-            Start Tour
-          </Link>
+          <p className=" font-light text-center">WELCOME TO</p>
+          <h1 className="text-center w-80">The Peninsula Humane</h1>
+          <h1 className="text-center w-80">Society & SPCA</h1>
+          <h1 className="text-center w-80">Wildlife Care Center</h1>
         </div>
       </div>
     </div>

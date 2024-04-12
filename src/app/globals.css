@@ -22,11 +22,11 @@ These styles are applied automatically to certain div tags, but you can also cal
   /* Mobile Text Styles */
   .h1 {
     /* Header 1 */
-    @apply text-3xl leading-9 font-semibold text-ivory font-lato;
+    @apply text-3xl leading-9 font-medium text-ivory font-lato;
   }
   .h2 {
     /* Header 2 */
-    @apply text-2xl leading-7 font-extrabold text-ivory font-lato;
+    @apply text-2xl leading-7 font-bold text-ivory font-lato;
   }
   .h3 {
     /* Header 3 */
@@ -38,7 +38,7 @@ These styles are applied automatically to certain div tags, but you can also cal
   }
   .b1 {
     /* Button */
-    @apply text-base leading-5 font-bold text-ivory font-lato;
+    @apply text-base leading-5 font-semibold text-ivory font-lato;
   }
   .b2 {
     /* Bolded Body */
@@ -50,7 +50,7 @@ These styles are applied automatically to certain div tags, but you can also cal
   }
   .s1 {
     /* Subtitle Text */
-    @apply text-sm leading-4 font-normal text-ivory font-lato;
+    @apply text-sm leading-4 font-light text-ivory font-lato;
   }
   .s2 {
     /* Category Label Text */
