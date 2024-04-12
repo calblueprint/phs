@@ -13,6 +13,7 @@ import BackButton from '../../components/userComponents/BackButton/page';
  */
 function App() {
   const [exhibits, setExhibits] = useState<CategoryRow[]>([]);
+  // fetches all the exhibits to display on the page
   useEffect(() => {
     // Get exhibits
     const getExhibits = async () => {
@@ -23,12 +24,15 @@ function App() {
     // Detect the hash in URL and scroll to the element with the corresponding ID
   }, [exhibits]);
 
+  // activates whenever the page opens. 
+  // checks if there's a "hash" which is an id of one of the exhibits to scroll to. 
+  // scrolls down to corresponding exhibit with slight offset 
   useEffect(() => {
     const { hash } = window.location;
     if (hash) {
       setTimeout(() => {
         const element = document.querySelector(hash);
-        const yOffset = -50;
+        const yOffset = -200;
         if (element) {
           const y =
             element.getBoundingClientRect().top + window.scrollY + yOffset;
@@ -44,21 +48,21 @@ function App() {
       <div className="p-4 m-auto">
         <BackButton />
         <div className="flex-col justify-start items-start mt-2">
-          <div className="text-night text-[32px] font-bold leading-9 font-['Lato'] mb-4">
+          <h1 className="text-night leading-9 font-['Lato'] mb-4">
             Our Exhibits{' '}
-          </div>
-          <div className="text-night text-base leading-5 font-normal font-['Lato']">
+          </h1>
+          <p className="text-night leading-5 font-normal font-['Lato']">
             Saratoga is home to an abundance of plant and animal life. As you
             explore these exhibits you will learn about species that are
             endangered and being carefully monitored by scientists with
             protective efforts in place.
-          </div>
+          </p>
         </div>
         <Link href="/siteMapPage">
           <div className="px-4 py-2 mb-2 mt-6 rounded-md border active:border-hunterGreen border-asparagus justify-start items-start inline-flex">
-            <div className="active:text-hunterGreen text-center text-asparagus text-base font-bold font-['Lato'] leading-tight">
+            <p className="active:text-hunterGreen text-center text-asparagus font-bold font-['Lato'] leading-tight">
               Go to Map
-            </div>
+            </p>
           </div>
         </Link>
         <ul>
