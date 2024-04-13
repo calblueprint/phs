@@ -33,22 +33,43 @@ function App() {
           <div className="flex justify-start pl-4">
             <FaRegCalendar className="text-scary-forest font-bold text-xl" />
             <p className="text-night font-normal font-lato pl-2 pb-[1.3125rem]">
-              Monday-Sunday | 11 a.m. - 6 p.m.
+              Monday-Sunday | 9 a.m. - 6 p.m.
             </p>
           </div>
           <p className="text-night font-lato text-base italic font-light pl-12 pb-[1.0625rem]">
             Closed on holidays*
           </p>
-          <p className="text-night font-normal font-lato pl-12 pr-20 pb-12">
-            Any additional information will be found in this space.
+          <p className="text-night font-bold font-lato pl-12 pr-20 pb-12">
+            If you&apos;ve found a wild animal that appears to be sick, injured,
+            or orphaned, safely contain it and either bring it to our nearest
+            shelter or contact us for guidance
           </p>
         </div>
-        <h3 className="text-night text-lg font-lato font-bold pt-[1.3125rem] pb-[1.0625]">
+        <h3 className="text-night text-lg font-lato font-bold pt-[1.3125rem] pb-[1.0625] mb-2">
           Contact Us
         </h3>
+        <div className="flex mb-3">
+          <div>
+            <p className="text-night font-bold font-lato">
+              Peninsula Intake - <a href="tel:650-340-7022">650-340-7022</a>
+            </p>
+            <p className="text-night font-bold font-lato">
+              South Bay Intake - <a href="tel:408-929-9453">408-929-9453</a>
+            </p>
+            <p className="text-night font-bold font-lato">
+              Wildlife Care Center -{' '}
+              <a href="tel:650-340-7022" className="text">
+                650-340-7022
+              </a>
+            </p>
+          </div>
+        </div>
         <p className="text-night font-normal font-lato">
-          For dog, small animal, or exotic adoptions please call 650-340-7022
-          for an appointment or submit your adoption application to
+          For dog, small animal, or exotic adoptions please call{' '}
+          <a href="tel:650-340-7022" className="text-night font-bold">
+            650-340-7022 
+          </a>
+          {' '}for an appointment or submit your adoption application to
           adoptinquire@PHS-SPCA.org.
         </p>
       </div>
