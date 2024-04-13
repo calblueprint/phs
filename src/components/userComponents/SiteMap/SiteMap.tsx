@@ -4,8 +4,10 @@ import L, { LatLngExpression } from 'leaflet';
 import React, { useEffect, useState } from 'react';
 import { LayersControl, MapContainer, TileLayer, Marker } from 'react-leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { fetchSpotlightTours } from '../../../supabase/tours/queries';
-import { ExhibitRow, TourRow } from '../../../types/types';
+
+import { fetchAllSpotlights } from '../../../supabase/tours/queries';
+import { ExhibitWithCategoryRow, TourRow } from '../../../types/types';
+
 import Control from './Control';
 import { fetchAllExhibits } from '../../../supabase/exhibits/queries';
 import { getCategoryColor1 } from '../../../supabase/category/queries';
@@ -53,10 +55,10 @@ interface SiteMapProps {
  */
 function SiteMap({ mode }: SiteMapProps) {
   const [spotlightTours, setSpotlightTours] = useState<
-    TourRow[] | ExhibitRow[] | null
+    TourRow[] | ExhibitWithCategoryRow[] | null
   >(null);
   const [colorsMap, setColorsMap] = useState<{ [key: string]: string }>({});
-  const [selectedTour, setSelectedTour] = useState<TourRow | ExhibitRow | null>(
+  const [selectedTour, setSelectedTour] = useState<TourRow | ExhibitWithCategoryRow | null>(
     null,
   );
   const [mapCenter, setMapCenter] = useState<LatLngExpression>(center);
@@ -76,10 +78,11 @@ function SiteMap({ mode }: SiteMapProps) {
           data = await fetchAllExhibits();
         }
         if (data && mode === 'tours') {
+
           const colors = await Promise.all(
             data.map(async item => ({
               id: item.id,
-              color: await getCategoryColor1(item.category),
+              color: await getCategoryColor1(item.id),
             })),
           );
           const newColorsMap = colors.reduce(
@@ -88,15 +91,18 @@ function SiteMap({ mode }: SiteMapProps) {
               [curr.id]: curr.color,
             }),
             {},
-          );
+          );   
           setColorsMap(newColorsMap);
         } else if (data && mode === 'exhibits') {
+          console.log(data);
+
           const colors = await Promise.all(
             data.map(async item => ({
               id: item.id,
-              color: await getCategoryColor1(item.title),
+              color: await getCategoryColor1(item.id),
             })),
           );
+          console.log(colors);
           const newColorsMap = colors.reduce(
             (acc, curr) => ({
               ...acc,
@@ -104,7 +110,11 @@ function SiteMap({ mode }: SiteMapProps) {
             }),
             {},
           );
+          console.log("COLOR MAP!!");
           setColorsMap(newColorsMap);
+
+          console.log(newColorsMap);
+
         }
         setSpotlightTours(data ?? []);
       } catch (error) {
@@ -126,7 +136,7 @@ function SiteMap({ mode }: SiteMapProps) {
   }, [selectedTour]);
 
   const handleMarkerSelect = (
-    tour: TourRow | ExhibitRow,
+    tour: TourRow | ExhibitWithCategoryRow,
     markerIndex: number,
   ) => {
     setSelectedTour(tour);
@@ -158,6 +168,7 @@ function SiteMap({ mode }: SiteMapProps) {
         {spotlightTours &&
           spotlightTours.map((tour, i) => {
             // Fetch the color for this tour/exhibit; fallback to a default color if not found
+            console.log(tour);
             const color = colorsMap[tour.id] || '#F17373'; // Fallback color
             return (
               <Marker
@@ -184,7 +195,9 @@ function SiteMap({ mode }: SiteMapProps) {
               />
             ) : (
               <ExhibitPreviewCard
-                tour={selectedTour as ExhibitRow} // Assuming you have proper type checks or type casting
+
+                tour={selectedTour as ExhibitWithCategoryRow} // Assuming you have proper type checks or type casting
+
                 handleClose={handlePreviewClose}
               />
             )}

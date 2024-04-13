@@ -7,8 +7,8 @@ import { ExhibitRow } from '../../types/types';
  * Fetches all tours from the database.
  * @returns A promise that resolves to an array of ExhibitRow objects.
  */
-export async function fetchAllExhibits(): Promise<ExhibitRow[]> {
-  const { data, error } = await supabase.from('exhibits').select('*');
+export async function fetchAllExhibits() {
+  const { data, error } = await supabase.rpc('get_exhibit_details');
   if (error) {
     throw new Error(error.message);
   }

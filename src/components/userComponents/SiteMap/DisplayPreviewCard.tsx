@@ -3,13 +3,13 @@ import { LatLngExpression } from 'leaflet';
 import { useMapEvents } from 'react-leaflet';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ExhibitRow, TourRow } from '../../../types/types';
+import { ExhibitWithCategoryRow, TourRow } from '../../../types/types';
 import { fetchImagesForTour } from '../../../supabase/media/queries';
 import { fetchExhibitImage } from '../../../supabase/exhibits/queries';
 import { CloseIcon } from '../../../../public/icons';
 
 interface DisplayCardProps {
-  tour: TourRow | ExhibitRow;
+  tour: TourRow | ExhibitWithCategoryRow;
   handleClose: () => void;
   handleClick?: () => void;
 }
@@ -58,12 +58,13 @@ function DisplayPreviewCard({
         }
         displayName = tour.name;
       } else {
-        // Handle as an ExhibitRow
-        const imageObj = await fetchExhibitImage(tour.id);
-        if (imageObj) {
-          imageUrl = imageObj.image;
-        }
-        displayName = tour.title;
+        // Handle as an ExhibitWithCategoryRow
+        // const imageObj = await fetchExhibitImage(tour.id);
+        // if (imageObj) {
+        imageUrl = tour.image;
+        console.log(tour)
+        // }
+        displayName = tour.category;
       }
 
       // Set state variables
