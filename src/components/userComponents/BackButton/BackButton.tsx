@@ -1,5 +1,5 @@
 import React from 'react';
-import { BackArrow } from '../../../../public/Icons';
+import { BackArrow } from '../../../../public/icons';
 
 /**
  * @returns the BackArrow button

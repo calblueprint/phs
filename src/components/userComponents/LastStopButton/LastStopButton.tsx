@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { CaretLeft } from '../../../../public/Icons';
+import { CaretLeft } from '../../../../public/icons';
 
 interface LastStopButtonProps {
   text: string;

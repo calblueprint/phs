@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { HamburgerMenu, CloseMenu } from '../../../../public/Icons';
+import { HamburgerMenu, CloseMenu } from '../../../../public/icons';
 
 /**
  * @returns The navigation bar for the web app

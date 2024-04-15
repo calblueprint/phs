@@ -4,7 +4,7 @@ import React from 'react';
 import { FiCalendar, FiCompass } from 'react-icons/fi';
 import Link from 'next/link';
 import NavBar from '../../components/userComponents/navBar/navBar';
-import { BackArrow } from '../../../public/Icons';
+import { BackArrow } from '../../../public/icons';
 
 /**
  * @returns The hours and admission page.

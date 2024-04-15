@@ -1,5 +1,5 @@
 import React from 'react';
-import { NextArrow } from '../../../../public/Icons';
+import { NextArrow } from '../../../../public/icons';
 
 /**
  * @returns the NextArrow button

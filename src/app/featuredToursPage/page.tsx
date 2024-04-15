@@ -9,7 +9,7 @@ import { fetchMedia } from '../../supabase/media/queries';
 import { fetchAllTourMedia } from '../../supabase/tour_media/queries';
 import { TourRow, MediaRow, TourMediaRow } from '../../types/types';
 
-import { BackArrow } from '../../../public/Icons';
+import { BackArrow } from '../../../public/icons';
 import NavBar from '../../components/userComponents/navBar/navBar';
 import NextButton from '../../components/userComponents/NextButton/NextButton';
 

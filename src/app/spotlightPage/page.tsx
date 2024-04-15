@@ -4,12 +4,12 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-import { fetchSpotlightTours } from '../../supabase/tours/queries';
+import { fetchAllSpotlights } from '../../supabase/tours/queries';
 import { fetchMedia } from '../../supabase/media/queries';
 import { fetchAllTourMedia } from '../../supabase/tour_media/queries';
 import NavBar from '../../components/userComponents/navBar/navBar';
 import { TourRow, MediaRow, TourMediaRow } from '../../types/types';
-import { BackArrow } from '../../../public/Icons';
+import { BackArrow } from '../../../public/icons';
 
 /**
  * @returns spotlights from tours table
@@ -25,7 +25,7 @@ function App() {
      */
     async function fetchData() {
       try {
-        const responseData: TourRow[] = await fetchSpotlightTours();
+        const responseData: TourRow[] = await fetchAllSpotlights();
         setSpotlights(responseData);
       } catch (error) {
         console.error(error);

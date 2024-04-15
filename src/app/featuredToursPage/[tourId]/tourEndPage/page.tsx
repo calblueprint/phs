@@ -14,7 +14,7 @@ import { fetchMedia } from '../../../../supabase/media/queries';
 import { fetchTour } from '../../../../supabase/tours/queries';
 import { fetchTourDisplays } from '../../../../supabase/tour_displays/queries';
 import { fetchTourMedia } from '../../../../supabase/tour_media/queries';
-import { BackArrow, Congratulations, ExternalLinkIcon } from '../../../../../public/Icons';
+import { BackArrow, Congratulations, ExternalLinkIcon } from '../../../../../public/icons';
 
 /**
  * @param params -

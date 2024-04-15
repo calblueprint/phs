@@ -10,7 +10,7 @@ import { fetchDisplayfromSpotlight } from '../../../../supabase/tour_displays/qu
 import BackButton from '../../../../components/userComponents/BackButton/BackButton';
 import Carousel from '../../../../components/userComponents/ImageScroller/ImageScroller';
 import { fetchImagesForDisplay } from '../../../../supabase/media/queries';
-import { ExternalLinkIcon } from '../../../../../public/Icons';
+import { ExternalLinkIcon } from '../../../../../public/icons';
 import { fetchTourMedia } from '../../../../supabase/tour_media/queries';
 
 /**
