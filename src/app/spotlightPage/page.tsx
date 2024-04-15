@@ -110,7 +110,7 @@ function App() {
                     />
                   )}
                 </div>
-                <h4 className="text-night font-lato text-2xl truncate font-semibold pt-[14px]">
+                <h4 className="text-night font-lato text-2xl truncate font-normal pt-[14px]">
                   {spotlight.name}
                 </h4>
                 <h2 className="text-shadow font-lato text-sm font-normal pt-[4px]">

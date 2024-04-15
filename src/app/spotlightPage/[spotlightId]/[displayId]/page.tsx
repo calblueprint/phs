@@ -90,7 +90,7 @@ export default function Page({
       <h1 className="text-night font-lato text-3xl text-14 font-bold px-[18px] pt-[8px]">
         {display.title}
       </h1>
-      <p className="text-night font-lato px-[18px] pt-[16px] pb-[32px]">
+      <p className="text-night font-normal font-lato px-[18px] pt-[16px] pb-[32px]">
         {display.description}
       </p>
 
