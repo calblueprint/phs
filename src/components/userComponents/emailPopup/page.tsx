@@ -46,8 +46,10 @@ function EmailSuccess({ backLink }: { backLink: string }) {
 }
 
 type EmailInputProps = {
-  inputValue: string;
-  handleChange: (e: any) => void;
+  inputValueName: string;
+  inputValueEmail: string;
+  handleNameChange: (e: any) => void;
+  handleEmailChange: (e: any) => void;
   handleSubmit: (e: any) => void;
   showError: boolean;
   errorMsg: string;
@@ -55,50 +57,58 @@ type EmailInputProps = {
 
 /**
  *
- * @param root0
- * @param root0.inputValue
- * @param root0.handleChange
- * @param root0.handleSubmit
- * @param root0.showError
- * @param root0.errorMsg
+ * @param root0 overall
+ * @param root0.inputValueName name input
+ * @param root0.inputValueEmail email input
+ * @param root0.handleSubmit submit change
+ * @param root0.showError shows error
+ * @param root0.errorMsg error message
+ * @param root0.handleNameChange when change name input
+ * @param root0.handleEmailChange when change email input
+ * @returns email input component
  */
 function EmailInput({
-  inputValue,
-  handleChange,
+  inputValueName,
+  inputValueEmail,
+  handleNameChange,
+  handleEmailChange,
   handleSubmit,
   showError,
   errorMsg,
 }: EmailInputProps) {
   return (
     <>
-      <div className="flex flex-col items-center justify-center absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <div className="mb-2.5">
-          <PiPaperPlaneTiltBold className="text-[#3F6A38] text-4xl" />
-        </div>
-
+      <div className="bg-hunterGreen w-full flex flex-col items-center justify-center absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <div>
-          <h2 className="pt-[10px] pl-[48.5px] pr-[48.5px] text-center font-Lato font-bold text-[19px] text-[#3B3B3B]">
-            JOIN OUR NEWSLETTER!
+          <h2 className="mt-10 pt-[10px] pl-[48.5px] pr-[48.5px] text-center font-Lato font-bold text-[19px] text-ivory">
+            SUBSCRIBE TO OUR NEWSLETTER!
           </h2>
         </div>
         <div>
-          <p className="text-center text-sm font-Lato text-[#3B3B3B] pt-[10px] pl-[30px] pr-[30px] text-[16px]">
-            Monthly updates on our work and involvement opportunities.
+          <p className="text-center text-sm font-Lato text-ivory pt-[10px] pl-[30px] pr-[30px] text-[16px]">
+            Sign up for our monthly news, events, and stories sent to your
+            inbox.
           </p>
         </div>
-        <div className="flex items-center justify-center pt-[15px]">
+        <div className="flex flex-col items-center justify-center gap-3.5 pt-[15px]">
           <input
             type="text"
-            placeholder="Enter your email"
-            value={inputValue}
-            onChange={handleChange}
+            placeholder="First Name"
+            value={inputValueName}
+            onChange={handleNameChange}
             className={`font-Lato text-sm bg-gray-100 border rounded-md pl-[13px] w-[283px] h-[43px] items-center ${
-              inputValue ? 'text-black' : 'text-[#BDBDBD]'
+              inputValueName ? 'text-black' : 'text-[#BDBDBD]'
             }`}
           />
-        </div>
-
-        <div className="flex items-center justify-center">
+          <input
+            type="text"
+            placeholder="Email Address"
+            value={inputValueEmail}
+            onChange={handleEmailChange}
+            className={`font-Lato text-sm bg-gray-100 border rounded-md pl-[13px] w-[283px] h-[43px] items-center ${
+              inputValueEmail ? 'text-black' : 'text-[#BDBDBD]'
+            }`}
+          />
           <button
             type="button"
             className="bg-[#7CA24E] w-[283px] h-[43px] text-white rounded-2xl p-[21px] mt-[8px] flex items-center justify-center"
@@ -106,6 +116,50 @@ function EmailInput({
           >
             Subscribe
           </button>
+        </div>
+        <div className="w-[322px] h-[76.79px] flex-col justify-start items-center gap-5 inline-flex">
+          <div className="flex-col justify-start items-center gap-2.5 flex">
+            <div className="flex-col justify-start items-center gap-[15px] flex">
+              <div className="flex-col justify-start items-center gap-1.5 flex">
+                <div className="text-center text-white text-base font-normal font-['Lato']">
+                  CONNECT WITH US
+                </div>
+              </div>
+            </div>
+            <div className="justify-start items-start gap-2.5 inline-flex">
+              <div className="w-[27px] h-[27px] justify-center items-center flex">
+                <img
+                  className="w-[27px] h-[27px]"
+                  src="https://via.placeholder.com/27x27"
+                />
+              </div>
+              <div className="w-[27px] h-[27.79px] flex-col justify-center items-center inline-flex">
+                <img
+                  className="w-[27px] h-[27.79px]"
+                  src="https://via.placeholder.com/27x28"
+                />
+              </div>
+              <div className="w-[27px] h-[27px] justify-center items-center flex">
+                <img
+                  className="w-[27px] h-[27px]"
+                  src="https://via.placeholder.com/27x27"
+                />
+              </div>
+              <div className="w-[27px] h-[27px] justify-center items-center flex">
+                <img
+                  className="w-[27px] h-[27px]"
+                  src="https://via.placeholder.com/27x27"
+                />
+              </div>
+              <div className="w-[27px] h-[27px] justify-center items-center flex">
+                <img
+                  className="w-[27px] h-[27px]"
+                  src="https://via.placeholder.com/27x27"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="w-[322px] h-[0px] border border-neutral-200" />
         </div>
       </div>
 
@@ -136,7 +190,8 @@ function EmailInput({
  */
 export default function EmailPopup({ backLink }: { backLink: string }) {
   const [isOpen, setIsOpen] = useState(true);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValueName, setNameValue] = useState('');
+  const [inputValueEmail, setEmailValue] = useState('');
   const [showError, setShowError] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [subscribed, setSubscribed] = useState(false);
@@ -145,8 +200,13 @@ export default function EmailPopup({ backLink }: { backLink: string }) {
     setIsOpen(false);
   };
 
-  const handleChange = e => {
-    setInputValue(e.target.value);
+  const handleNameChange = e => {
+    setNameValue(e.target.value);
+    setShowError(false);
+  };
+
+  const handleEmailChange = e => {
+    setEmailValue(e.target.value);
     setShowError(false);
   };
 
@@ -160,17 +220,18 @@ export default function EmailPopup({ backLink }: { backLink: string }) {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    if (!inputValue.trim()) {
+    if (!inputValueEmail.trim()) {
       // Handle the case for an empty email
       setShowError(true);
       setErrorMsg('Please enter an email address');
-    } else if (isValidEmail(inputValue)) {
+    } else if (isValidEmail(inputValueEmail)) {
       // Handle the submission for a valid email
       try {
         // Insert the email into the Supabase database
         const { error } = await supabase
           .from('emails')
-          .insert({ emails: inputValue });
+          .insert({ emails: inputValueEmail, first_name: inputValueName });
+        console.log('successfully inserted?');
       } catch (error) {
         console.error(error);
         return error;
@@ -180,7 +241,7 @@ export default function EmailPopup({ backLink }: { backLink: string }) {
 
       //
       setSubscribed(true);
-      console.log('Valid email:', inputValue);
+      console.log('Valid email:', inputValueEmail);
       // Additional logic for handling a valid email
     } else {
       // Handle the case for an invalid email
@@ -195,8 +256,10 @@ export default function EmailPopup({ backLink }: { backLink: string }) {
         <EmailSuccess backLink={backLink} />
       ) : (
         <EmailInput
-          inputValue={inputValue}
-          handleChange={handleChange}
+          inputValueName={inputValueName}
+          inputValueEmail={inputValueEmail}
+          handleNameChange={handleNameChange}
+          handleEmailChange={handleEmailChange}
           handleSubmit={handleSubmit}
           showError={showError}
           errorMsg={errorMsg}

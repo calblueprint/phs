@@ -6,6 +6,7 @@ import NavBar from '../../components/userComponents/navBar/navBar';
 import { NewsRow } from '../../types/types';
 import { fetchAllNewsByDate } from '../../supabase/news/queries';
 import NewsDisplay from '../../components/userComponents/NewsDisplay/NewsDisplay';
+import EmailPopup from '../../components/userComponents/emailPopup/page';
 
 /**
  * @returns news feed page
@@ -22,7 +23,7 @@ export default function App() {
   }, [news]);
 
   return (
-    <div className="bg-ivory h-screen">
+    <div className="bg-ivory">
       <NavBar />
       <div className="p-4">
         <BackButton />
@@ -39,6 +40,7 @@ export default function App() {
           ))}
         </ul>
       </div>
+      <EmailPopup backLink="https://google.com" />
     </div>
   );
 }

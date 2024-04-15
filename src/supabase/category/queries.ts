@@ -6,7 +6,6 @@ import { CategoryRow } from '../../types/types';
 /**
  *
  * @param category category to retreive color
-
  * @param id
  * @returns color for category, else null
  */
