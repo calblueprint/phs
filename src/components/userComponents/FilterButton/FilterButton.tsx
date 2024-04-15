@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 // interface FilterButtonProps {
 //   content: string;
@@ -24,11 +24,16 @@ interface FilterButtonProps {
 
 /**
  *
+ * @param root0
+ * @param root0.content
+ * @param root0.onClick
+ * @param root0.isSelected
  */
 function FilterButton({ content, onClick, isSelected }: FilterButtonProps) {
-  const selectedStyle = 'bg-mint-cream text-scary-forest';
+  const selectedStyle = 'bg-hunterGreen text-white font-lato text-base font-medium rounded-lg';
+  
 
-  const buttonClass = `py-2 px-6 whitespace-nowrap border-[0.8px] border-scary-forest border-solid text-night flex-grow ${
+  const buttonClass = `py-2 px-6 whitespace-nowrap border-solid text-scary-forest flex-grow font-lato text-base font-medium  ${
     isSelected ? selectedStyle : ''
   }`;
 
@@ -37,6 +42,7 @@ function FilterButton({ content, onClick, isSelected }: FilterButtonProps) {
       type="button"
       className={buttonClass}
       onClick={onClick}
+      style={{ outline: 'none' }}
     >
       {content}
     </button>

@@ -7,7 +7,6 @@ import { NewsRow } from '../../types/types';
 import { fetchAllNewsByDate } from '../../supabase/news/queries';
 import NewsDisplay from '../../components/userComponents/NewsDisplay/NewsDisplay';
 
-
 /**
  * @returns news feed page
  */
@@ -27,7 +26,9 @@ function App() {
       <NavBar />
       <div className="p-4">
         <BackButton />
-        <h1 className="text-night text-3xl font-bold mt-2">News Feed</h1>
+        <h1 className="text-night text-3xl font-bold mt-2 -ml-[1.8px]">
+          News
+        </h1>
         <ul>
           {news.map(article => (
             <NewsDisplay

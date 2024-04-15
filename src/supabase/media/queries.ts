@@ -34,6 +34,8 @@ export async function fetchImagesForDisplay(displayId: string | undefined) {
   return data;
 }
 
+
+
 /**
  *
  * @param tourId id of the tour to fetch images for 
