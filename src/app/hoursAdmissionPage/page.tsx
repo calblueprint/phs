@@ -1,79 +1,74 @@
 'use client';
 
 import React from 'react';
-import { IoCompassOutline } from 'react-icons/io5';
-import { FaRegCalendar } from 'react-icons/fa6';
+import { FiCalendar, FiCompass } from 'react-icons/fi';
+import Link from 'next/link';
 import NavBar from '../../components/userComponents/navBar/navBar';
+import { BackArrow } from '../../../public/icons';
+
 /**
- * @returns The hours and admission page
+ * @returns The hours and admission page.
  */
-function App() {
+export default function HoursAdmissionPage() {
   return (
-    <div className="bg-text-ivory h-screen">
+    <div className="bg-ivory min-h-screen">
       <NavBar />
-      <div className="pt-10 px-4">
-        <h1 className="text-night font-lato text-3.5xl font-bold pb-6">
+      <div className="px-[1.12rem] pt-4 pb-[2.5rem]">
+        <div className="mb-4">
+          <Link href="/">
+            <BackArrow />
+          </Link>
+        </div>
+        <h1 className="text-night font-lato text-3xl font-bold mb-4">
           Hours & Location
         </h1>
-        <h3 className="text-night text-lg font-lato font-bold pb-4">
+        <h3 className="text-night font-lato text-lg font-bold mb-4">
           Site Information
         </h3>
-        <div className="bg-mint-cream rounded-lg">
-          <div className="flex justify-start pt-8 pl-4">
-            <IoCompassOutline className="text-scary-forest font-bold text-2xl" />
-            <div className="flex flex-col">
-              <p className="text-night font-normal font-lato pl-2">
-                24103 Congress Springs Road,
-              </p>
-              <p className="text-night font-normal font-lato pl-2 pb-[0.938rem]">
-                Saratoga, CA 95070
-              </p>
-            </div>
-          </div>
-          <div className="flex justify-start pl-4">
-            <FaRegCalendar className="text-scary-forest font-bold text-xl" />
-            <p className="text-night font-normal font-lato pl-2 pb-[1.3125rem]">
-              Monday-Sunday | 9 a.m. - 6 p.m.
+
+        <div className="bg-[#EBF0E8] rounded-lg py-8 pl-[1.13rem] pr-[1.56rem] mb-[2.38rem]">
+          <div className="flex gap-[0.56rem] mb-[1.81rem]">
+            <FiCompass className="text-scary-forest w-[1.375rem] h-[1.375rem] flex-shrink-0" />
+            <p className="text-night font-normal font-lato">
+              24103 Congress Springs Road, Saratoga, CA 95070
             </p>
           </div>
-          <p className="text-night font-lato text-base italic font-light pl-12 pb-[1.0625rem]">
+          <div className="flex gap-[0.56rem] mb-[0.69rem]">
+            <FiCalendar className="text-scary-forest w-[1.375rem] h-[1.375rem] flex-shrink-0" />
+            <p className="text-night font-normal font-lato">
+              Monday-Sunday | 9 AM to 6 PM
+            </p>
+          </div>
+          <p className="text-night font-light font-lato italic pl-[1.93rem]">
             Closed on holidays*
           </p>
-          <p className="text-night font-bold font-lato pl-12 pr-20 pb-12">
-            If you&apos;ve found a wild animal that appears to be sick, injured,
-            or orphaned, safely contain it and either bring it to our nearest
-            shelter or contact us for guidance
-          </p>
         </div>
-        <h3 className="text-night text-lg font-lato font-bold pt-[1.3125rem] pb-[1.0625] mb-2">
+
+        <h3 className="text-night font-lato text-xl font-bold mb-[1.56rem]">
           Contact Us
         </h3>
-        <div className="flex mb-3">
-          <div>
-            <p className="text-night font-bold font-lato">
-              Peninsula Intake - <a href="tel:650-340-7022">650-340-7022</a>
+        <div className="flex flex-col gap-6 pl-[1.31rem] pb-[1.81rem]">
+          <div className="flex flex-row gap-[0.62rem]">
+            <p className="text-night font-normal font-lato">
+              Wildlife Care Center
             </p>
-            <p className="text-night font-bold font-lato">
-              South Bay Intake - <a href="tel:408-929-9453">408-929-9453</a>
-            </p>
-            <p className="text-night font-bold font-lato">
-              Wildlife Care Center -{' '}
-              <a href="tel:650-340-7022" className="text">
-                650-340-7022
-              </a>
-            </p>
+            <p className="text-shadow font-normal font-lato">650-340-7022</p>
+          </div>
+          <div className="flex flex-row gap-[0.62rem]">
+            <p className="text-night font-normal font-lato">Peninsula Intake</p>
+            <p className="text-shadow font-normal font-lato">650-340-7022</p>
+          </div>
+          <div className="flex flex-row gap-[0.62rem]">
+            <p className="text-night font-normal font-lato">South Bay Intake</p>
+            <p className="text-shadow font-normal font-lato">408-929-9453</p>
           </div>
         </div>
-        <p className="text-night font-normal font-lato">
-          For dog, small animal, or exotic adoptions please call{' '}
-          <a href="tel:650-340-7022" className="text-night font-bold">
-            650-340-7022 
-          </a>
-          {' '}for an appointment or submit your adoption application to
-          adoptinquire@PHS-SPCA.org.
+        <p className="text-night font-normal font-lato pl-[1.31rem]">
+          If you've found a wild animal that appears to be sick, injured, or
+          orphaned, safely contain it and either bring it to our nearest shelter
+          or contact us for guidance.
         </p>
       </div>
     </div>
   );
 }
-export default App;

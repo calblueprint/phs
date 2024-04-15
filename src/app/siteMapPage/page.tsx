@@ -58,7 +58,7 @@ function MapPage() {
   );
 
   return (
-    <>
+    <div className="bg-ivory">
       <NavBar />
       <div className="pt-0 pl-2 pr-2 bg-ivory">
         {renderFilterContainer()}
@@ -66,7 +66,7 @@ function MapPage() {
           <SiteMap mode={mode} />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
