@@ -15,26 +15,26 @@ function HomeNewsFeed() {
   useEffect(() => {
     // Get news
     const getNews = async () => {
-        const fetchedNews: NewsRow[] = await fetchAllNewsByDate();
-        const topThreeNews = fetchedNews.slice(0, 3);
-        setNews(topThreeNews);
+      const fetchedNews: NewsRow[] = await fetchAllNewsByDate();
+      const topThreeNews = fetchedNews.slice(0, 3);
+      setNews(topThreeNews);
     };
     getNews();
   }, [news]);
 
   return (
     <div className="bg-ivory h-full px-3 py-20">
-        <div className="w-full h-5 justify-between items-center inline-flex">
-            <h2 className="text-night font-medium">Latest News</h2>
-            <Link
-            className="b1 text-asparagus inline-flex items-center"
-            href="/newsFeedPage"
-            >
-                See All
-                <HiChevronRight className="text-2xl" />
-            </Link>
-        </div>
-        {/* <div className="w-full h-7 justify-start items-center gap-12 inline-flex bg-red-500">
+      <div className="w-full h-5 justify-between items-center inline-flex">
+        <h2 className="text-night font-medium">Latest News</h2>
+        <Link
+          className="b1 text-asparagus inline-flex items-center"
+          href="/newsFeedPage"
+        >
+          See All
+          <HiChevronRight className="text-2xl" />
+        </Link>
+      </div>
+      {/* <div className="w-full h-7 justify-start items-center gap-12 inline-flex bg-red-500">
             <h2 className="w-full text-neutral-700 text-2xl font-semibold font-['Lato']">
                 Latest News
             </h2>
@@ -46,18 +46,18 @@ function HomeNewsFeed() {
                 <HiChevronRight className="text-2xl" />
             </Link>
         </div> */}
-        {/* <h2 className="text-night font-semibold mt-2"> Latest News </h2> */}
-        <ul>
-            {news.map(article => (
-            <NewsDisplay
-                key={article.updated_at}
-                id={article.id}
-                contentLink={article.content_link}
-                createdAt={article.created_at}
-                title={article.title}
-            />
-            ))}
-        </ul>
+      {/* <h2 className="text-night font-semibold mt-2"> Latest News </h2> */}
+      <ul>
+        {news.map(article => (
+          <NewsDisplay
+            key={article.updated_at}
+            id={article.id}
+            contentLink={article.content_link}
+            createdAt={article.created_at}
+            title={article.title}
+          />
+        ))}
+      </ul>
     </div>
   );
 }
