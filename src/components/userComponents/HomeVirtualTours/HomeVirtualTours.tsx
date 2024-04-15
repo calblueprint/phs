@@ -52,13 +52,13 @@ function HomeVirtualTours(): React.JSX.Element {
       <div className="w-full md:w-280 h-5 justify-between items-center inline-flex">
         <h2 className="text-night font-medium">Virtual Tours</h2>
         {windowWidth < 768 && (
-        <Link
-          className="b1 text-asparagus inline-flex items-center mr-4"
-          href="/featuredToursPage"
+          <Link
+            className="b1 text-asparagus inline-flex items-center mr-4"
+            href="/featuredToursPage"
           >
-          See All
-          <HiChevronRight className="text-2xl" />
-        </Link>
+            See All
+            <HiChevronRight className="text-2xl" />
+          </Link>
         )}
         {/* <Link
           className="b1 text-asparagus inline-flex items-center mr-4"
@@ -95,16 +95,19 @@ function HomeVirtualTours(): React.JSX.Element {
           </Link>
         ))}
       </div>
-      <div className=" h-5 w-full md:px-51 text-center
-       justify-center inline-flex ">
+      <div
+        className=" h-5 w-full md:px-51 text-center
+       justify-center inline-flex "
+      >
         {windowWidth >= 768 && (
-        <Link
-          className="b1 mt-8 text-asparagus inline-flex text-center justify-center"
-          href="/featuredToursPage"
-        >
-          See all virtual tours
-          <HiChevronRight className="text-2xl" />
-        </Link>)}
+          <Link
+            className="b1 mt-8 text-asparagus inline-flex text-center justify-center"
+            href="/featuredToursPage"
+          >
+            See all virtual tours
+            <HiChevronRight className="text-2xl" />
+          </Link>
+        )}
       </div>
     </div>
   );

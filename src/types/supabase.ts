@@ -93,14 +93,17 @@ export type Database = {
       emails: {
         Row: {
           emails: string | null;
+          first_name: string | null;
           id: number;
         };
         Insert: {
           emails?: string | null;
+          first_name?: string | null;
           id?: number;
         };
         Update: {
           emails?: string | null;
+          first_name?: string | null;
           id?: number;
         };
         Relationships: [];
