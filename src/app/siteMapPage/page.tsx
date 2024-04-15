@@ -5,10 +5,7 @@ import dynamic from 'next/dynamic';
 import NavBar from '../../components/userComponents/navBar/navBar';
 import FilterButton from '../../components/userComponents/FilterButton/FilterButton';
 
-const filterButtonContent: string[] = [
-  'Virtual Tour Map',
-  'Exhibits Map',
-];
+const filterButtonContent: string[] = ['Virtual Tour Map', 'Exhibits Map'];
 
 const SiteMap = dynamic(
   () => import('../../components/userComponents/SiteMap/SiteMap'),
@@ -25,17 +22,16 @@ type ModeState = 'tours' | 'exhibits';
  * @returns Page for the interactive map
  */
 function MapPage() {
-
   const [selectedMap, setSelectedMap] = useState(filterButtonContent[0]); // "Virtual Tour Map" by default
   const [mode, setMode] = useState<ModeState>('tours');
 
   // move tour logic here: need to share state between filter 
   const handleFilter = (mapName: string) => {
     setSelectedMap(mapName);
-    if (mapName === "Virtual Tour Map") {
-      setMode("tours");
-    } else if (mapName === "Exhibits Map") {
-      setMode("exhibits");
+    if (mapName === 'Virtual Tour Map') {
+      setMode('tours');
+    } else if (mapName === 'Exhibits Map') {
+      setMode('exhibits');
     }
   };
 
@@ -49,13 +45,12 @@ function MapPage() {
 
         {filterButtonContent &&
           filterButtonContent.map(text => (
-           
-            <FilterButton 
-            key={text} 
-            content={text} 
-            onClick={() => handleFilter(text)} // Fixed here
-            isSelected={selectedMap === text}/>
-          
+            <FilterButton
+              key={text}
+              content={text}
+              onClick={() => handleFilter(text)} // Fixed here
+              isSelected={selectedMap === text}
+            />
           ))}
  
       </div>
@@ -68,7 +63,7 @@ function MapPage() {
       <div className="pt-0 pl-2 pr-2 bg-ivory">
         {renderFilterContainer()}
         <div className=" w-full pr-2 pl-2 flex h-2/3 mb-8">
-        <SiteMap mode={mode} />
+          <SiteMap mode={mode} />
         </div>
       </div>
     </div>
