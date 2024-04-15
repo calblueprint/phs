@@ -1,46 +1,38 @@
 'use client';
 
-import Link from 'next/link';
-import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 import { fetchAllTours } from '../../supabase/tours/queries';
 import { fetchMedia } from '../../supabase/media/queries';
 import { fetchAllTourMedia } from '../../supabase/tour_media/queries';
-import NavBar from '../../components/userComponents/navBar/navBar';
 import { TourRow, MediaRow, TourMediaRow } from '../../types/types';
-import NextButton from '../../components/userComponents/NextButton/NextButton';
+
 import { BackArrow } from '../../../public/Icons';
+import NavBar from '../../components/userComponents/navBar/navBar';
+import NextButton from '../../components/userComponents/NextButton/NextButton';
+
 /**
  * @returns The featured tours page.
  */
 export default function FeaturedToursPage() {
   const [tours, setTours] = useState<TourRow[]>([]);
-  const [media, setMedia] = useState<MediaRow[]>([]);
   const [allTourMedia, setAllTourMedia] = useState<TourMediaRow[]>([]);
+  const [media, setMedia] = useState<MediaRow[]>([]);
 
   useEffect(() => {
-    // Get tours
-    const getTours = async () => {
+    // Fetch tour and tour media data
+    const fetchData = async () => {
       const fetchedTours = await fetchAllTours();
       setTours(fetchedTours);
-    };
-
-    // Get all tour media
-    const getAllTourMedia = async () => {
       const fetchedAllTourMedia = await fetchAllTourMedia();
       setAllTourMedia(fetchedAllTourMedia);
-    };
-
-    // Get media
-    const getMedia = async () => {
       const fetchedMedia = await fetchMedia();
       setMedia(fetchedMedia);
     };
 
-    getTours();
-    getAllTourMedia();
-    getMedia();
+    fetchData();
   }, []);
 
   return (

@@ -1,17 +1,18 @@
 'use client';
 
-import Link from 'next/link';
-import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
-import { DisplayRow, TourDisplaysRow, TourRow, MediaRow, TourMediaRow } from '../../../types/types';
-import NavBar from '../../../components/userComponents/navBar/navBar';
-import { fetchTour } from '../../../supabase/tours/queries';
-import { fetchTourDisplays } from '../../../supabase/tour_displays/queries';
 import { fetchAllDisplays } from '../../../supabase/displays/queries';
 import { fetchMedia } from '../../../supabase/media/queries';
+import { fetchTour } from '../../../supabase/tours/queries';
+import { fetchTourDisplays } from '../../../supabase/tour_displays/queries';
 import { fetchTourMedia } from '../../../supabase/tour_media/queries';
+import { DisplayRow, MediaRow, TourDisplaysRow, TourMediaRow, TourRow } from '../../../types/types';
+
 import BackButton from '../../../components/userComponents/BackButton/BackButton';
+import NavBar from '../../../components/userComponents/navBar/navBar';
 
 /**
  * @param params -
@@ -24,48 +25,28 @@ export default function TourStartPage({
 }: {
   params: { tourId: string };
 }) {
-  const [media, setMedia] = useState<MediaRow[]>([]);
-  const [tourMedia, setTourMedia] = useState<TourMediaRow[]>([]);
-  const [displays, setDisplays] = useState<DisplayRow[]>([]);
   const [tour, setTour] = useState<TourRow>();
   const [tourDisplays, setTourDisplays] = useState<TourDisplaysRow[]>([]);
+  const [displays, setDisplays] = useState<DisplayRow[]>([]);
+  const [tourMedia, setTourMedia] = useState<TourMediaRow[]>([]);
+  const [media, setMedia] = useState<MediaRow[]>([]);
 
   useEffect(() => {
-    // Get tour
-    const getTour = async () => {
+    // Fetch tour, tour displays, and tour media data
+    const fetchData = async () => {
       const fetchedTour = await fetchTour(params.tourId);
       setTour(fetchedTour);
-    };
-
-    // Get tour displays
-    const getTourDisplays = async () => {
       const fetchedTourDisplays = await fetchTourDisplays(params.tourId);
       setTourDisplays(fetchedTourDisplays);
-    };
-
-    // Get displays
-    const getDisplays = async () => {
       const fetchedDisplays = await fetchAllDisplays();
       setDisplays(fetchedDisplays);
-    };
-
-    // Get tour media
-    const getTourMedia = async () => {
       const fetchedTourMedia = await fetchTourMedia(params.tourId);
       setTourMedia(fetchedTourMedia);
-    };
-
-    // Get media
-    const getMedia = async () => {
       const fetchedMedia = await fetchMedia();
       setMedia(fetchedMedia);
     };
 
-    getTour();
-    getTourDisplays();
-    getDisplays();
-    getTourMedia();
-    getMedia();
+    fetchData();
   }, [params.tourId]);
 
   return (
