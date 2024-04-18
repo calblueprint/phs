@@ -228,14 +228,16 @@ function EmailInput({
             </div>
           </div>
           <div className="w-full pt-6 gap-4 bg-scary-forest">
-            <div className="w-[200px] m-auto px-4 py-1.5 bg-hunterGreen rounded-lg">
-              <div className="text-center text-silver text-xs font-normal font-['Lato']">
-                Learn more about PHS/SPCA
+            <Link href="/">
+              <div className="w-[200px] m-auto px-4 py-1.5 bg-hunterGreen rounded-lg">
+                <div className="text-center text-silver text-xs font-normal font-['Lato']">
+                  Learn more about PHS/SPCA
+                </div>
               </div>
-            </div>
-            <div className="mt-4 text-zinc-500 text-center text-xs font-normal font-['Lato']">
-              Copyright © 2024 Peninsula Humane Society & SPCA{' '}
-            </div>
+              <div className="mt-4 text-zinc-500 text-center text-xs font-normal font-['Lato']">
+                Copyright © 2024 Peninsula Humane Society & SPCA{' '}
+              </div>
+            </Link>
             <Link
               href="https://phs-spca.org/privacy-policy/"
               className="mt-1 pb-10 text-center flex justify-center text-zinc-500 text-xs font-normal font-['Lato'] underline"
