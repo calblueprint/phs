@@ -5,50 +5,49 @@ import { Dialog, Transition } from '@headlessui/react';
 import { PiPaperPlaneTiltBold, PiSealCheck } from 'react-icons/pi';
 import { VscClose } from 'react-icons/vsc';
 import { BiErrorCircle } from 'react-icons/bi';
+import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import Link from 'next/link';
 import supabase from '../../../supabase/client';
 
 /**
  *
- * @param root0 success
- * @param root0.backLink what to route to when you succeed in subscribing?
- * @returns successful subscribe
  */
-function EmailSuccess({ backLink }: { backLink: string }) {
-  return (
-    <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-      <div>
-        <PiSealCheck className="text-[#3F6A38] text-5xl mb-2.5" />
-      </div>
-      <div>
-        <h2 className="pl-[32px] pr-[32px] text-center font-Lato font-bold text-[19px] text-[#3B3B3B]">
-          THANKS FOR SUBSCRIBING!
-        </h2>
-      </div>
-      <div>
-        <p className="text-center text-sm font-Lato text-[#3B3B3B] pt-[10px] pl-[30px] pr-[30px] text-[16px]">
-          Your sign-up request was successful! Please check your email inbox to
-          confirm.
-        </p>
-      </div>
+function openMailApp() {
+  const { userAgent } = navigator;
 
-      <Link href={backLink}>
-        <div className="flex items-center justify-center pt-[24px]">
-          <button
-            type="button"
-            className="bg-[#7CA24E] w-[283px] h-[43px] text-white rounded-2xl p-[21px] mt-[8px] flex items-center justify-center"
-          >
-            Back to Home
-          </button>
-        </div>
-      </Link>
-    </div>
+  // Check if the user agent indicates iOS
+  if (/iPad|iPhone|iPod/.test(userAgent)) {
+    window.location.href = 'message:';
+  }
+  // Check if the user agent indicates Android
+  else if (/android/i.test(userAgent)) {
+    window.location.href = 'mailto:';
+  }
+  // For other platforms, provide general instructions
+  else {
+    alert('Please open your mail app manually.');
+  }
+}
+
+/**
+ * @returns subscribe button
+ */
+function subscribeButton() {
+  return (
+    <button
+      type="button"
+      className="active:bg-[#bcc0bb] bg-asparagus w-[322px] h-[43px] text-ivory font-[Lato] rounded-lg mb-8 mt-8 flex items-center justify-center"
+      onClick={openMailApp}
+    >
+      Open Email App
+    </button>
   );
 }
 
 type EmailInputProps = {
   inputValueName: string;
   inputValueEmail: string;
+  subscribed: boolean;
   handleNameChange: (e: any) => void;
   handleEmailChange: (e: any) => void;
   handleSubmit: (e: any) => void;
@@ -66,11 +65,13 @@ type EmailInputProps = {
  * @param root0.errorMsg error message
  * @param root0.handleNameChange when change name input
  * @param root0.handleEmailChange when change email input
+ * @param root0.subscribed if you successfully subscribed
  * @returns email input component
  */
 function EmailInput({
   inputValueName,
   inputValueEmail,
+  subscribed,
   handleNameChange,
   handleEmailChange,
   handleSubmit,
@@ -79,58 +80,74 @@ function EmailInput({
 }: EmailInputProps) {
   return (
     <div>
-      <div className="bg-hunterGreen mt-2">
-        <div>
-          <h3 className="pt-12 text-center font-Lato font-bold text-ivory">
-            SUBSCRIBE TO OUR NEWSLETTER!
-          </h3>
-        </div>
-        <div>
-          <p className="text-center font-Lato font-normal text-ivory pt-2 pl-8 pr-8">
-            Sign up for our monthly news, events, and stories sent to your
-            inbox.
-          </p>
-        </div>
-        {showError && (
-          <div className="error-modal flex items-center rounded-lg  w-[322px] bg-[#E94444] m-auto justify-center mt-2">
-            {/* Display your error message or handle the error case */}
-            <div className="icon-container">
-              <BiErrorCircle className="text-ivory text-[12px]" />
-            </div>
-            <p className="pl-[2px] font-Lato text-[12px] text-ivory">
-              {errorMsg}
+      <div className="bg-hunterGreen mt-2 pb-16">
+        {subscribed && (
+          <div className="flex flex-col items-center pt-20">
+            <IoIosCheckmarkCircleOutline className="text-ivory text-5xl" />
+            <h3 className="text-center font-['Lato'] pt-6">
+              THANK YOU FOR SUBSCRIBING
+            </h3>
+            <p className="w-[311px] text-center font-normal font-['Lato'] mt-2">
+              Please click the confirmation link sent to your inbox to complete
+              the subscription process. Thank you for joining us!
             </p>
           </div>
         )}
-        <div className="flex flex-col items-center justify-center gap-3.5 pt-4">
-          <input
-            type="text"
-            placeholder="First Name"
-            value={inputValueName}
-            onChange={handleNameChange}
-            className={`font-Lato text-sm bg-hunterGreen border border-silver rounded-md pl-3 w-[322px] h-[43px] items-center ${
-              inputValueName ? 'text-silver' : 'text-silver'
-            }`}
-          />
-          <input
-            type="text"
-            placeholder="Email Address"
-            value={inputValueEmail}
-            onChange={handleEmailChange}
-            className={`font-Lato text-sm bg-hunterGreen border border-silver rounded-md pl-3 w-[322px] h-[43px] items-center ${
-              inputValueEmail ? 'text-silver' : 'text-silver'
-            }`}
-          />
-          <button
-            type="button"
-            className="active:bg-[#bcc0bb] bg-white-smoke mb-16 w-[322px] h-[43px] text-shadow font-[Lato] rounded-lg p-5 mt-2 flex items-center justify-center"
-            onClick={handleSubmit}
-          >
-            Subscribe
-          </button>
-        </div>
+        {!subscribed && (
+          <div>
+            <div>
+              <h3 className="pt-12 text-center font-Lato font-bold text-ivory">
+                SUBSCRIBE TO OUR NEWSLETTER!
+              </h3>
+            </div>
+            <div>
+              <p className="text-center font-Lato font-normal text-ivory pt-2 pl-8 pr-8">
+                Sign up for our monthly news, events, and stories sent to your
+                inbox.
+              </p>
+            </div>
+            <div className="flex flex-col items-center justify-center gap-3.5 pt-4">
+              <input
+                type="text"
+                placeholder="First Name"
+                value={inputValueName}
+                onChange={handleNameChange}
+                className={`font-Lato text-sm bg-hunterGreen border border-silver rounded-md pl-3 w-[322px] h-[43px] items-center ${
+                  inputValueName ? 'text-silver' : 'text-silver'
+                }`}
+              />
+              <input
+                type="text"
+                placeholder="Email Address"
+                value={inputValueEmail}
+                onChange={handleEmailChange}
+                className={`font-Lato text-sm bg-hunterGreen border border-silver rounded-md pl-3 w-[322px] h-[43px] items-center ${
+                  inputValueEmail ? 'text-silver' : 'text-silver'
+                }`}
+              />
+              <button
+                type="button"
+                className="active:bg-[#bcc0bb] bg-white-smoke w-[322px] h-[43px] text-shadow font-[Lato] rounded-lg p-5 mt-2 flex items-center justify-center"
+                onClick={handleSubmit}
+              >
+                Subscribe
+              </button>
+              {showError && (
+                <div className="error-modal flex items-center rounded-lg w-[322px] bg-[#E94444] m-auto justify-center mt-2">
+                  {/* Display your error message or handle the error case */}
+                  <div className="icon-container">
+                    <BiErrorCircle className="text-ivory text-[12px]" />
+                  </div>
+                  <p className="pl-[2px] font-Lato text-[12px] text-ivory">
+                    {errorMsg}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
-      <div className="bg-scary-forest w-full">
+      <div className="bg-scary-forest w-full pt-16">
         <div className="w-full flex-col justify-start items-center gap-5 inline-flex">
           <div className="flex-col justify-start items-center gap-2.5 flex">
             <div className="flex-col justify-start items-center gap-4 flex">
@@ -336,8 +353,6 @@ export default function Footer({ backLink }: { backLink: string }) {
           .from('emails')
           .insert({ emails: inputValueEmail, first_name: inputValueName });
         console.log('successfully inserted?');
-        setEmailValue('');
-        setNameValue('');
       } catch (error) {
         console.error(error);
         return error;
@@ -361,6 +376,7 @@ export default function Footer({ backLink }: { backLink: string }) {
       <EmailInput
         inputValueName={inputValueName}
         inputValueEmail={inputValueEmail}
+        subscribed={subscribed}
         handleNameChange={handleNameChange}
         handleEmailChange={handleEmailChange}
         handleSubmit={handleSubmit}
