@@ -9,6 +9,7 @@ import { fetchMedia } from '../../supabase/media/queries';
 import { fetchAllTourMedia } from '../../supabase/tour_media/queries';
 import NavBar from '../../components/userComponents/navBar/navBar';
 import { TourRow, MediaRow, TourMediaRow } from '../../types/types';
+import Footer from '../../components/userComponents/Footer/Footer';
 import { BackArrow } from '../../../public/icons';
 
 /**
@@ -121,6 +122,7 @@ function App() {
           ))}
         </ul>
       </div>
+      <Footer backLink="/spotlightPage" />
     </div>
   );
 }

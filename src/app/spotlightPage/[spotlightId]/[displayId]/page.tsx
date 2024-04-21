@@ -7,6 +7,7 @@ import { DisplayRow, MediaRow, TourMediaRow } from '../../../../types/types';
 import NavBar from '../../../../components/userComponents/navBar/navBar';
 import { fetchDisplayFromId } from '../../../../supabase/displays/queries';
 import { fetchDisplayfromSpotlight } from '../../../../supabase/tour_displays/queries';
+import Footer from '../../../../components/userComponents/Footer/Footer';
 import BackButton from '../../../../components/userComponents/BackButton/BackButton';
 import Carousel from '../../../../components/userComponents/ImageScroller/ImageScroller';
 import { fetchImagesForDisplay } from '../../../../supabase/media/queries';
@@ -115,6 +116,9 @@ export default function Page({
               </Link>
             ))}
           </div>
+          <Footer
+            backLink={`/spotlightPage/${params.spotlightId}/${params.displayId}`}
+          />
         </div>
       )}
 

@@ -5,6 +5,7 @@ import HomeWildlifeSpotlights from '../components/userComponents/HomePageCompone
 import NavBar from '../components/userComponents/navBar/navBar';
 import VisitorResources from '../components/userComponents/HomePageComponents/VisitorResources/VisitorResources';
 import WelcomeGraphic from '../components/userComponents/HomePageComponents/WelcomeGraphic/WelcomeGraphic';
+import Footer from '../components/userComponents/Footer/Footer';
 import HomeVirtualTours from '../components/userComponents/HomePageComponents/HomeVirtualTours/HomeVirtualTours';
 import HomeNewsFeed from '../components/userComponents/HomePageComponents/HomeNewsFeed/HomeNewsFeed';
 import { useWebScreenDetection } from '../context/WindowWidthContext/WindowWidthContext';
@@ -53,6 +54,7 @@ function Home() {
       <HomeVirtualTours />
       <HomeNewsFeed />
       {/* Add Footer Here */}
+      <Footer backLink="/" />
     </div>
   );
 }

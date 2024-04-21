@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import NavBar from '../../components/userComponents/navBar/navBar';
 import FilterButton from '../../components/userComponents/FilterButton/FilterButton';
+import Footer from '../../components/userComponents/Footer/Footer';
 
 const filterButtonContent: string[] = ['Virtual Tour Map', 'Exhibits Map'];
 
@@ -63,6 +64,7 @@ function MapPage() {
           <SiteMap mode={mode} />
         </div>
       </div>
+      <Footer backLink="/siteMapPage" />
     </div>
   );
 }

@@ -14,6 +14,7 @@ import { fetchMedia } from '../../../../supabase/media/queries';
 import { fetchTour } from '../../../../supabase/tours/queries';
 import { fetchTourDisplays } from '../../../../supabase/tour_displays/queries';
 import { fetchTourMedia } from '../../../../supabase/tour_media/queries';
+import Footer from '../../../../../components/userComponents/Footer/Footer';
 import {
   BackArrow,
   Congratulations,
@@ -137,6 +138,7 @@ export default function TourEndPage({
           <div className="bg-[#BDBDBD] h-[0.03125rem]" />
         </div>
       </div>
+      <Footer backLink={`/tourEndPage/${params.tourId}`} />
     </div>
   );
 }

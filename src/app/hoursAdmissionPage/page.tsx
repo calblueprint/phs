@@ -4,6 +4,7 @@ import React from 'react';
 import { FiCalendar, FiCompass } from 'react-icons/fi';
 import Link from 'next/link';
 import NavBar from '../../components/userComponents/navBar/navBar';
+import Footer from '../../components/userComponents/Footer/Footer';
 import { BackArrow } from '../../../public/icons';
 
 /**
@@ -69,6 +70,7 @@ export default function HoursAdmissionPage() {
           or contact us for guidance.
         </p>
       </div>
+      <Footer backLink="/hoursAdmissionPage" />
     </div>
   );
 }

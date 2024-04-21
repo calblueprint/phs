@@ -18,6 +18,7 @@ import LastStopButton from '../../../../components/userComponents/LastStopButton
 import NextStopButton from '../../../../components/userComponents/NextStopButton/NextStopButton';
 import { fetchImagesForDisplay } from '../../../../supabase/media/queries';
 import Carousel from '../../../../components/userComponents/ImageScroller/ImageScroller';
+import Footer from '../../../../components/userComponents/Footer/Footer';
 
 /**
  * Displays a stop page for the current tour
@@ -165,6 +166,9 @@ export default function TourStopPage({
           <Link href="/featuredToursPage">Exit this tour</Link>
         </h4>
       </div>
+      <Footer
+        backLink={`/featuredToursPage/${params.tourId}/${params.displayId}`}
+      />
     </div>
   );
 }

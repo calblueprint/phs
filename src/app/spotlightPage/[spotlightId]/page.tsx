@@ -21,6 +21,7 @@ import {
   fetchDisplayfromSpotlight,
   fetchRelatedSpotlightsfromSpotlightId,
 } from '../../../supabase/tour_displays/queries';
+import Footer from '../../../components/userComponents/Footer/Footer';
 import BackButton from '../../../components/userComponents/BackButton/BackButton';
 
 /**
@@ -195,6 +196,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
                 </li>
               ))}
             </ul>
+            <Footer backLink={`/spotlightPage/${params.spotlightId}`} />
           </div>
         </div>
       )}

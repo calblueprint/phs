@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import BackButton from '../../components/userComponents/BackButton/page';
+import BackButton from '../../components/userComponents/BackButton/BackButton';
 import NavBar from '../../components/userComponents/navBar/navBar';
 import { NewsRow } from '../../types/types';
 import { fetchAllNewsByDate } from '../../supabase/news/queries';
 import NewsDisplay from '../../components/userComponents/NewsDisplay/NewsDisplay';
-import EmailPopup from '../../components/userComponents/emailPopup/page';
+import Footer from '../../components/userComponents/Footer/Footer';
 
 /**
  * @returns news feed page
@@ -40,7 +40,7 @@ export default function App() {
           ))}
         </ul>
       </div>
-      <EmailPopup backLink="https://google.com" />
+      <Footer backLink="/newsFeedPage" />
     </div>
   );
 }

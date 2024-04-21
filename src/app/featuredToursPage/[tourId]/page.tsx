@@ -132,6 +132,7 @@ export default function TourStartPage({
           </div>
         </div>
       </div>
-    )
+      <Footer backLink={`/featuredToursPage/${params.tourId}`} />
+    </div>
   );
 }

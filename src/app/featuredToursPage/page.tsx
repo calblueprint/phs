@@ -12,6 +12,7 @@ import { TourRow, MediaRow, TourMediaRow } from '../../types/types';
 import { BackArrow } from '../../../public/icons';
 import NavBar from '../../components/userComponents/navBar/navBar';
 import NextButton from '../../components/userComponents/NextButton/NextButton';
+import Footer from '../../components/userComponents/Footer/Footer';
 
 /**
  * @returns The featured tours page.
@@ -117,6 +118,7 @@ export default function FeaturedToursPage() {
           )}
         </ul>
       </div>
+      <Footer backLink="/featuredToursPage" />
     </div>
   );
 }
