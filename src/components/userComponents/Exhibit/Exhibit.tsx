@@ -26,12 +26,12 @@ export default function Exhibit({
       <div className="w-full px-4 py-8 bg-mint-cream rounded-lg flex-col justify-start items-start gap-2.5 inline-flex mt-6">
         <div className="flex-col justify-start items-start gap-5 flex">
           <div className="justify-start items-center gap-2 inline-flex">
-            <h2 className="text-night font-semibold font-['Lato']">
+            <h2 className="text-night font-semibold leading-tight font-['Lato']">
               {' '}
               {title}
             </h2>
           </div>
-          <p className="text-night leading-normal font-normal font-['Lato']">
+          <p className="text-night leading-tight font-normal font-['Lato']">
             {description}
           </p>
           <Image src={image} alt="Exhibit" width={354} height={150} />
