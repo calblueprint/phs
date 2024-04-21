@@ -41,22 +41,28 @@ function MapPage() {
 
   const renderFilterContainer = () => (
     <div className="mb-6  pl-0 pr-0 ">
-      <div className='pt-9 pr-2 pl-2 pb-7'>
+      <div className='pt-9 pr-2 pl-2 pb-3'>
       <p className="text-night font-lato text-2xl font-semibold">Wildlife Care Center Maps</p>
       </div>
-      <div className="flex flex-row items-center gap-x-0 pr-1 pl-1 w-full rounded-lg bg-mint-cream  border-mint-cream border-[5px]">
+      <div className="flex flex-row items-center pr-0 pl-0 rounded-lg bg-mint-cream  border-mint-cream border-[8px]"
+      style={{ width: '95%', marginLeft: 'auto', marginRight: 'auto' }}>  
+      
        
-
+     
         {filterButtonContent &&
           filterButtonContent.map(text => (
-           
             <FilterButton 
             key={text} 
             content={text} 
             onClick={() => handleFilter(text)} // Fixed here
-            isSelected={selectedMap === text}/>
+            isSelected={selectedMap === text}
+            
+            
+            
+            />
           
           ))}
+    
  
       </div>
     </div>
