@@ -24,9 +24,9 @@ function App() {
     // Detect the hash in URL and scroll to the element with the corresponding ID
   }, [exhibits]);
 
-  // activates whenever the page opens. 
-  // checks if there's a "hash" which is an id of one of the exhibits to scroll to. 
-  // scrolls down to corresponding exhibit with slight offset 
+  // activates whenever the page opens.
+  // checks if there's a "hash" which is an id of one of the exhibits to scroll to.
+  // scrolls down to corresponding exhibit with slight offset
   useEffect(() => {
     const { hash } = window.location;
     if (hash) {
@@ -52,10 +52,13 @@ function App() {
             Our Exhibits{' '}
           </h1>
           <p className="text-night leading-5 font-normal font-['Lato']">
-            Saratoga is home to an abundance of plant and animal life. As you
-            explore these exhibits you will learn about species that are
-            endangered and being carefully monitored by scientists with
-            protective efforts in place.
+            The Bay Area is home to a wide variety of plant and animal life. As
+            you explore the exhibits, you will learn about threatened and
+            endangered species that are under careful monitoring by biologists.
+            Protective conservation efforts are in place for these vulnerable
+            plants and animals. We welcome you to learn more about these
+            important species throughout the exhibits. Scan the QR codes on
+            display for more information.
           </p>
         </div>
         <Link href="/siteMapPage">
