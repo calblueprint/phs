@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { MediaRow } from '../../../types/types';
-import { RightChevron } from '../../../../public/icons';
 
 interface CarouselProps {
   media: MediaRow[];
@@ -20,45 +19,77 @@ export default function Carousel({ media }: CarouselProps) {
     setCurrentIndex(prevIndex =>
       prevIndex === 0 ? media.length - 1 : prevIndex - 1,
     );
-  };
+  }
 
   // Goes to next image
   const goToNext = () => {
     setCurrentIndex(prevIndex =>
       prevIndex === media.length - 1 ? 0 : prevIndex + 1,
     );
-  };
+  }
 
   return (
-    <div className="w-full flex overflow-x-auto justify-center align-center">
-      <div className="carousel w-full">
-        {media.map(item => (
-          <div
-            key={item.id}
-            className="w-full carousel-item"
-            style={{ scrollSnapAlign: 'start' }}
+    <div className="relative w-full flex items-center justify-center">
+      {media.length > 1 && (
+        <button
+          type="button"
+          onClick={goToPrevious}
+          className="absolute left-[1.25rem] z-10 rounded-full"
+          aria-label="Previous image"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1rem"
+            height="1.9rem"
+            viewBox="0 0 21 34"
+            fill="none"
           >
+            <path
+              d="M19 2L3 17.2L19 32.4"
+              stroke="#FFFDF7"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
+          </svg>
+        </button>
+      )}
+      <div className="w-full flex overflow-x-auto justify-center align-center">
+        <div className="w-full h-[15.3125rem] carousel-item">
+          {media.length > 0 && (
             <Image
-              className="w-full"
-              key={item.id}
-              src={item.url}
-              alt={item.text ?? ''}
+              key={media[currentIndex].id}
+              src={media[currentIndex].url}
+              alt={media[currentIndex].text ?? 'Carousel image'}
+              layout="responsive"
               width={390}
               height={245}
               objectFit="cover"
               priority
             />
-          </div>
-        ))}
+          )}
+        </div>
       </div>
       {media.length > 1 && (
         <button
           type="button"
           onClick={goToNext}
-          className="absolute right-[1.56rem] z-10 rounded-full"
+          className="absolute right-[1.25rem] z-10 rounded-full"
           aria-label="Next image"
         >
-          <RightChevron />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1rem"
+            height="1.9rem"
+            viewBox="0 0 21 34"
+            fill="none"
+          >
+            <path
+              d="M2 2L18 17.2L2 32.4"
+              stroke="#FFFDF7"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
+          </svg>
         </button>
       )}
     </div>

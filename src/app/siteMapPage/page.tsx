@@ -57,6 +57,7 @@ function MapPage() {
 
   const renderFilterContainer = () => (
     <div className="mb-6  pl-0 pr-0 ">
+
       {/* <div className='pt-9 pr-2 pl-2 pb-3'>
       <p className="text-night font-lato text-2xl font-semibold">Wildlife Care Center Maps</p>
       </div> */}
@@ -83,6 +84,12 @@ function MapPage() {
       <div className="flex flex-row items-center rounded-lg bg-mint-cream  border-mint-cream border-[8px]"
       style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto' }}>  
            
+
+      <div className='pt-9 pr-2 pl-2 pb-7'>
+      <p className="text-night font-lato text-2xl font-semibold">Wildlife Care Center Maps</p>
+      </div>
+      <div className="flex flex-row items-center gap-x-0 pr-1 pl-1 w-full rounded-lg bg-mint-cream  border-mint-cream border-[5px]">
+       
         {filterButtonContent &&
           filterButtonContent.map(text => (
             <FilterButton 
@@ -93,15 +100,20 @@ function MapPage() {
             />
           
           ))}
+ 
       </div>
     </div>
   );
+
 
   return isWide ? (
 
     <>
    
     
+  return (
+    <div className="bg-ivory">
+
       <NavBar />
       <div className='justify-center mx-auto w-[70%]'>
         <div className="pt-0 pl-2 pr-2 bg-ivory">
@@ -140,7 +152,9 @@ function MapPage() {
         </div>
       </div>
     </div>
+
     </>
+
   );
 }
 

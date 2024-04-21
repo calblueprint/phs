@@ -30,10 +30,12 @@ interface FilterButtonProps {
  * @param root0.isSelected
  */
 function FilterButton({ content, onClick, isSelected }: FilterButtonProps) {
+
   const selectedStyle = 'bg-hunterGreen text-white font-lato text-base font-normal rounded-lg w-auto';
   
 
   const buttonClass = `py-2.5 px-6 whitespace-nowrap text-scary-forest flex-grow font-lato text-base font-normal  ${
+
     isSelected ? selectedStyle : ''
   }`;
 

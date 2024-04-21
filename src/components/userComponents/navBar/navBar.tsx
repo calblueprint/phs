@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { MenuIcon } from '../../../../public/icons';
+import { HamburgerMenu, CloseMenu } from '../../../../public/icons';
 
 /**
  * @returns The navigation bar for the web app
  */
-function NavBar() {
+export default function NavBar() {
   const [showMenu, setShowMenu] = useState(false);
+
+  useEffect(() => {
+    if (showMenu) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [showMenu]);
 
   /**
    * Toggles the side menu
@@ -15,83 +23,78 @@ function NavBar() {
     setShowMenu(!showMenu);
   }
 
-  /**
-   * @param event - Close the side menu when the escape key is pressed
-   */
-  function handleKeyDown(event: React.KeyboardEvent<HTMLButtonElement>) {
-    if (event.key === 'Escape') {
-      setShowMenu(false);
-    }
-  }
-
   return (
-    <nav
-      className="bg-[#4b711d] p-4 flex items-center justify-between z-[9999]"
-      style={{ padding: '1rem', position: 'sticky', top: 0 }}
-    >
-      <Link href="/">
-        <img
-          src="https://phs-spca.org/wp-content/uploads/2017/03/PHSLogo.jpg"
-          alt="Logo"
-          className="object-contain"
-          style={{ maxHeight: '100%', maxWidth: '50%' }}
-        />
-      </Link>
-      <div className="flex-grow" />
-      <button
-        type="button"
-        className="w-10 h-10"
-        onClick={handleClick}
-        onKeyDown={handleKeyDown}
-        tabIndex={0}
-        aria-label="Menu"
-      >
-        <MenuIcon />
-      </button>
+    <nav className="bg-scary-forest w-full h-[4.25rem] flex flex-col relative z-[9999]">
+      <div className="flex flex-row justify-between relative top-2">
+        <Link href="/">
+          <img
+            src="https://qkkuacqtcsfjbnzmxmhk.supabase.co/storage/v1/object/public/images/PHSLogo.jpg"
+            alt="PHSLogo"
+            className="object-contain w-[6.5rem] h-[2.25rem] relative left-[1.13rem]"
+          />
+        </Link>
+        <button
+          type="button"
+          className="w-10 h-10 relative right-[0.81rem]"
+          onClick={handleClick}
+          aria-label="Toggle Menu"
+        >
+          <div className="flex justify-center items-center w-full h-full">
+            {showMenu ? <CloseMenu /> : <HamburgerMenu />}
+          </div>
+        </button>
+      </div>
+      <div className="bg-hunterGreen w-full h-[0.375rem] absolute bottom-0" />
 
       {showMenu && (
-        <div className="fixed top-20 right-0 h-full w-3/5 bg-[#ebf0e4] shadow-lg">
-          <h1 className="text-xl text-black font-bold p-4">WELCOME</h1>
-          <ul className="p-4">
-            <Link href="/" className="block mb-2 text-black">
+        <div className="bg-[#000000B2] w-full h-full flex justify-end fixed top-[4.25rem]">
+          <div className="bg-ivory w-[14.9375rem] h-full relative p-[1.31rem]">
+            <h1 className="text-scary-forest font-lato text-sm font-normal uppercase mt-[1.5rem]">WELCOME</h1>
+            <Link
+              href="/"
+              className="text-night font-lato text-lg font-bold block relative left-4 mt-[1.25rem]"
+            >
               Home
             </Link>
-          </ul>
 
-          <h1 className="text-xl text-black font-bold p-4">VISIT</h1>
-          <ul className="p-4">
-            <Link href="/hoursAdmissionPage" className="block mb-2 text-black">
-              Hours & Admission
+            <h1 className="text-scary-forest font-lato text-sm font-normal uppercase mt-[2.12rem]">VISIT</h1>
+            <Link
+              href="/hoursAdmissionPage"
+              className="text-night font-lato text-lg font-bold block relative left-4 mt-[1.25rem]"
+            >
+              Hours & Location
             </Link>
-            <Link href="/featuredToursPage" className="block mb-2 text-black">
-              Featured Tours
+            <Link
+              href="/siteMapPage"
+              className="text-night font-lato text-lg font-bold block relative left-4 mt-[1.25rem]"
+            >
+              Site Maps
             </Link>
-            <Link href="/spotlightPage" className="block mb-2 text-black">
-              Spotlight Tours
+
+            <h1 className="text-scary-forest font-lato text-sm font-normal uppercase mt-[2.13rem]">
+              LEARN & EXPLORE
+            </h1>
+            <Link
+              href="/featuredToursPage"
+              className="text-night font-lato text-lg font-bold block relative left-4 mt-[1.25rem]"
+            >
+              Virtual Tours
             </Link>
-            <Link href="/siteMapPage" className="block mb-2 text-black">
-              Site Map
+            <Link
+              href="/spotlightPage"
+              className="text-night font-lato text-lg font-bold block relative left-4 mt-[1.25rem]"
+            >
+              Wildlife Spotlights
             </Link>
-            <Link href="/qrCodeTourPage" className="block text-black">
-              QR Code Tour
-            </Link>
-            <Link href="/qrCodeScanner" className="block text-black">
-              QR Scanner
-            </Link>
-          </ul>
-          <h1 className="text-xl text-black font-bold p-4">LEARN & EXPLORE</h1>
-          <ul className="p-4">
-            <Link href="/collectionsPage" className="block mb-2 text-black">
-              Collections
-            </Link>
-            <Link href="/newsFeedPage" className="block mb-2 text-black">
+            <Link
+              href="/newsFeedPage"
+              className="text-night font-lato text-lg font-bold block relative left-4 mt-[1.25rem]"
+            >
               News Feed
             </Link>
-          </ul>
+          </div>
         </div>
       )}
     </nav>
   );
 }
-
-export default NavBar;

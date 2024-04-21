@@ -11,7 +11,7 @@ const config: Config = {
       /** Color palette for the app, based on the design system in the figma file */
       colors: {
         asparagus: '#7CA24E',
-        hunterGreen: '#3F6A38',
+        'hunter-green': '#3F6A38',
         'scary-forest': '#386131',
         'mint-cream': '#EBF0E8',
         'white-smoke': '#F5F6F5',
@@ -30,7 +30,16 @@ const config: Config = {
       },
       /** Default font is Lato */
       fontFamily: {
+        sans: ['Lato'],
         lato: ['Lato'],
+      },
+      theme: {
+        fontSize: {
+          sm: ['14px', '20px'],
+          base: ['16px', '19px'],
+          lg: ['20px', '28px'],
+          xl: ['24px', '32px'],
+        },
       },
     },
   },

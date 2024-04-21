@@ -1,5 +1,5 @@
 import React from 'react';
-import { BackIcon } from '../../../../public/icons';
+import { BackArrow } from '../../../../public/icons';
 
 /**
  * @param evt on click of button
@@ -18,7 +18,7 @@ export default function BackButton() {
   return (
     <button type="button" onClick={goBack} className="text-scary-forest">
       {' '}
-      <BackIcon />
+      <BackArrow />
     </button>
   );
 }

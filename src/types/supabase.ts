@@ -14,25 +14,31 @@ export type Database = {
           category: string | null
           color_hex: string
           created_at: string
+
           description: string
           id: number
           image: string
+
         }
         Insert: {
           category?: string | null
           color_hex: string
           created_at?: string
+
           description: string
           id?: number
           image: string
+
         }
         Update: {
           category?: string | null
           color_hex?: string
           created_at?: string
+
           description?: string
           id?: number
           image?: string
+
         }
         Relationships: []
       }
@@ -71,6 +77,7 @@ export type Database = {
       }
       displays: {
         Row: {
+
           coordinates: Json | null
           created_at: string
           description: string
@@ -139,6 +146,7 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+
       }
       media: {
         Row: {
@@ -373,6 +381,7 @@ export type Database = {
         }
         Returns: string
       }
+
       get_exhibit_details: {
         Args: Record<PropertyKey, never>
         Returns: {
@@ -383,6 +392,7 @@ export type Database = {
           image: string
         }[]
       }
+
       get_non_spotlight_tours: {
         Args: Record<PropertyKey, never>
         Returns: {

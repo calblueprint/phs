@@ -10,7 +10,7 @@ import NewsDisplay from '../../components/userComponents/NewsDisplay/NewsDisplay
 /**
  * @returns news feed page
  */
-function App() {
+export default function App() {
   const [news, setNews] = useState<NewsRow[]>([]);
   useEffect(() => {
     // Get news
@@ -44,5 +44,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
