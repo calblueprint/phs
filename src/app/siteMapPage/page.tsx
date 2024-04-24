@@ -64,8 +64,8 @@ function MapPage() {
           <SiteMap mode={mode} />
         </div>
       </div>
-      <Footer backLink="/siteMapPage" />
-    </div>
+      <Footer />
+    </>
   );
 }
 

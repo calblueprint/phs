@@ -122,7 +122,7 @@ function App() {
           ))}
         </ul>
       </div>
-      <Footer backLink="/spotlightPage" />
+      <Footer />
     </div>
   );
 }

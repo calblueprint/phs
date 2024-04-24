@@ -70,7 +70,7 @@ export default function HoursAdmissionPage() {
           or contact us for guidance.
         </p>
       </div>
-      <Footer backLink="/hoursAdmissionPage" />
+      <Footer />
     </div>
   );
 }

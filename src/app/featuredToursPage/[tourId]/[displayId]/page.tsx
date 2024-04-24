@@ -166,9 +166,7 @@ export default function TourStopPage({
           <Link href="/featuredToursPage">Exit this tour</Link>
         </h4>
       </div>
-      <Footer
-        backLink={`/featuredToursPage/${params.tourId}/${params.displayId}`}
-      />
+      <Footer />
     </div>
   );
 }

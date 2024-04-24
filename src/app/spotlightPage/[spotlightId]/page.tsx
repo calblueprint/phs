@@ -196,7 +196,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
                 </li>
               ))}
             </ul>
-            <Footer backLink={`/spotlightPage/${params.spotlightId}`} />
+            <Footer />
           </div>
         </div>
       )}

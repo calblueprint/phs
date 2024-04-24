@@ -118,7 +118,7 @@ export default function FeaturedToursPage() {
           )}
         </ul>
       </div>
-      <Footer backLink="/featuredToursPage" />
+      <Footer />
     </div>
   );
 }

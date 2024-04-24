@@ -138,7 +138,7 @@ export default function TourEndPage({
           <div className="bg-[#BDBDBD] h-[0.03125rem]" />
         </div>
       </div>
-      <Footer backLink={`/tourEndPage/${params.tourId}`} />
+      <Footer />
     </div>
   );
 }

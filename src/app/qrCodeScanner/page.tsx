@@ -25,7 +25,7 @@ function App() {
         </p>
       </div>
       <QrScanner />
-      <Footer backLink="/qrCodeScanner" />
+      <Footer />
     </div>
   );
 }

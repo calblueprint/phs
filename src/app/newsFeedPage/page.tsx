@@ -40,7 +40,7 @@ export default function App() {
           ))}
         </ul>
       </div>
-      <Footer backLink="/newsFeedPage" />
+      <Footer />
     </div>
   );
 }

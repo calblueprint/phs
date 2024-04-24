@@ -54,7 +54,7 @@ function Home() {
       <HomeVirtualTours />
       <HomeNewsFeed />
       {/* Add Footer Here */}
-      <Footer backLink="/" />
+      <Footer />
     </div>
   );
 }
