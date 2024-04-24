@@ -112,7 +112,7 @@ function MobileInput({
                 placeholder="First Name"
                 value={inputValueName}
                 onChange={handleNameChange}
-                className={`font-Lato text-sm bg-hunterGreen border border-silver rounded-md pl-3 w-[322px] h-[43px] items-center ${
+                className={`font-Lato text-sm bg-hunterGreen border border-silver rounded-md pl-3 w-[322px] h-[50px] items-center ${
                   inputValueName ? 'text-silver' : 'text-silver'
                 }`}
               />
@@ -121,7 +121,7 @@ function MobileInput({
                 placeholder="Email Address"
                 value={inputValueEmail}
                 onChange={handleEmailChange}
-                className={`font-Lato text-sm bg-hunterGreen border border-silver rounded-md pl-3 w-[322px] h-[43px] items-center ${
+                className={`font-Lato text-sm bg-hunterGreen border border-silver rounded-md pl-3 w-[322px] h-[50px] items-center ${
                   inputValueEmail ? 'text-silver' : 'text-silver'
                 }`}
               />
@@ -133,7 +133,7 @@ function MobileInput({
                 Subscribe
               </button>
               {showError && (
-                <div className="error-modal flex items-center rounded-lg w-[322px] bg-[#E94444] m-auto justify-center mt-2">
+                <div className="error-modal flex items-center rounded-lg w-[322px] bg-[#E94444] m-auto justify-center mt-[10px]">
                   {/* Display your error message or handle the error case */}
                   <div className="icon-container">
                     <BiErrorCircle className="text-ivory text-[12px]" />
@@ -483,8 +483,7 @@ export default function Footer() {
   const [showError, setShowError] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [subscribed, setSubscribed] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
+  const [windowWidth, setWindowWidth] = useState(1024);
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
@@ -548,7 +547,7 @@ export default function Footer() {
 
   return (
     <div>
-      {windowWidth < 1024 && (
+      {windowWidth <= 1024 && (
         <MobileInput
           inputValueName={inputValueName}
           inputValueEmail={inputValueEmail}
