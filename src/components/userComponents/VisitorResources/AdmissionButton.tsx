@@ -11,7 +11,7 @@ function AdmissionButton() {
     <Link
       className="AdmissionButton bg-ivory w-full py-5 rounded-md shadow 
         justify-center items-center inline-flex z-10
-        px-5 md:px-8 md:py-6"
+        px-5 web:px-8 web:py-6"
       href="/hoursAdmissionPage"
     >
       <div
@@ -24,7 +24,9 @@ function AdmissionButton() {
         className="flex-col justify-start
         items-start gap-0.5 inline-flex"
       >
-        <p className="b1 text-night whitespace-normal md:text-nowrap">Hours & Location</p>
+        <p className="b1 text-night whitespace-normal web:text-nowrap">
+          Hours & Location
+        </p>
       </div>
     </Link>
   );
