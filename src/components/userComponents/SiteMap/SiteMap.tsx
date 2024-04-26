@@ -58,6 +58,9 @@ function SiteMap({ mode }: SiteMapProps) {
   const [selectedTour, setSelectedTour] = useState<
     TourRow | ExhibitWithCategoryRow | null
   >(null);
+  const [selectedTour, setSelectedTour] = useState<
+    TourRow | ExhibitWithCategoryRow | null
+  >(null);
   const [mapCenter, setMapCenter] = useState<LatLngExpression>(center);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -92,15 +95,13 @@ function SiteMap({ mode }: SiteMapProps) {
             cacheRef.current.exhibits = data;
           }
         }
-
-        if (data) {
+        if (data && mode === 'tours') {
           const colors = await Promise.all(
             data.map(async item => ({
               id: item.id,
               color: await getCategoryColor1(item.id),
             })),
           );
-
           const newColorsMap = colors.reduce(
             (acc, curr) => ({
               ...acc,
@@ -108,9 +109,28 @@ function SiteMap({ mode }: SiteMapProps) {
             }),
             {},
           );
-
           setColorsMap(newColorsMap);
-          setSpotlightTours(data ?? []);
+        } else if (data && mode === 'exhibits') {
+          console.log(data);
+
+          const colors = await Promise.all(
+            data.map(async item => ({
+              id: item.id,
+              color: await getCategoryColor1(item.id),
+            })),
+          );
+          console.log(colors);
+          const newColorsMap = colors.reduce(
+            (acc, curr) => ({
+              ...acc,
+              [curr.id]: curr.color,
+            }),
+            {},
+          );
+          console.log('COLOR MAP!!');
+          setColorsMap(newColorsMap);
+
+          console.log(newColorsMap);
         }
       } catch (error) {
         // eslint-disable-next-line no-console
@@ -194,7 +214,7 @@ function SiteMap({ mode }: SiteMapProps) {
               />
             ) : (
               <ExhibitPreviewCard
-                tour={selectedTour as ExhibitWithCategoryRow}
+                tour={selectedTour as ExhibitWithCategoryRow} // Assuming you have proper type checks or type casting
                 handleClose={handlePreviewClose}
               />
             )}
