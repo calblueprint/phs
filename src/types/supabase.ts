@@ -11,25 +11,25 @@ export type Database = {
     Tables: {
       categories: {
         Row: {
-          category: string | null
-          color_hex: string
-          created_at: string
-          id: number
-        }
+          category: string | null;
+          color_hex: string;
+          created_at: string;
+          id: number;
+        };
         Insert: {
-          category?: string | null
-          color_hex: string
-          created_at?: string
-          id?: number
-        }
+          category?: string | null;
+          color_hex: string;
+          created_at?: string;
+          id?: number;
+        };
         Update: {
-          category?: string | null
-          color_hex?: string
-          created_at?: string
-          id?: number
-        }
-        Relationships: []
-      }
+          category?: string | null;
+          color_hex?: string;
+          created_at?: string;
+          id?: number;
+        };
+        Relationships: [];
+      };
       display_media: {
         Row: {
           display_id: string;
@@ -110,28 +110,28 @@ export type Database = {
       };
       exhibits: {
         Row: {
-          coordinates: Json | null
-          description: string
-          id: string
-          image: string | null
-          title: string
-        }
+          coordinates: Json | null;
+          description: string;
+          id: string;
+          image: string | null;
+          title: string;
+        };
         Insert: {
-          coordinates?: Json | null
-          description: string
-          id?: string
-          image?: string | null
-          title: string
-        }
+          coordinates?: Json | null;
+          description: string;
+          id?: string;
+          image?: string | null;
+          title: string;
+        };
         Update: {
-          coordinates?: Json | null
-          description?: string
-          id?: string
-          image?: string | null
-          title?: string
-        }
-        Relationships: []
-      }
+          coordinates?: Json | null;
+          description?: string;
+          id?: string;
+          image?: string | null;
+          title?: string;
+        };
+        Relationships: [];
+      };
       media: {
         Row: {
           created_at: string;
@@ -361,55 +361,55 @@ export type Database = {
       };
       get_category_color: {
         Args: {
-          category_in: string
-        }
-        Returns: string
-      }
+          category_in: string;
+        };
+        Returns: string;
+      };
       get_non_spotlight_tours: {
-        Args: Record<PropertyKey, never>
+        Args: Record<PropertyKey, never>;
         Returns: {
-          id: string
-          name: string
-          description: string
-          created_at: string
-          stop_count: number
-          spotlight: boolean
-          preview_text: string
-          coordinates: Json
-          category: Database["public"]["Enums"]["tour_category"]
-        }[]
-      }
+          id: string;
+          name: string;
+          description: string;
+          created_at: string;
+          stop_count: number;
+          spotlight: boolean;
+          preview_text: string;
+          coordinates: Json;
+          category: Database['public']['Enums']['tour_category'];
+        }[];
+      };
       join_all_spotlights_with_media: {
         Args: Record<PropertyKey, never>;
         Returns: {
-          id: string
-          name: string
-          description: string
-          created_at: string
-          stop_count: number
-          spotlight: boolean
-          preview_text: string
-          coordinates: Json
-          category: Database["public"]["Enums"]["tour_category"]
-          media_url: string
-        }[]
-      }
+          id: string;
+          name: string;
+          description: string;
+          created_at: string;
+          stop_count: number;
+          spotlight: boolean;
+          preview_text: string;
+          coordinates: Json;
+          category: Database['public']['Enums']['tour_category'];
+          media_url: string;
+        }[];
+      };
       join_all_tours_with_media: {
-        Args: Record<PropertyKey, never>
+        Args: Record<PropertyKey, never>;
         Returns: {
-          id: string
-          name: string
-          description: string
-          created_at: string
-          stop_count: number
-          spotlight: boolean
-          preview_text: string
-          coordinates: Json
-          category: Database["public"]["Enums"]["tour_category"]
-          media_url: string
-        }[]
-      }
-    }
+          id: string;
+          name: string;
+          description: string;
+          created_at: string;
+          stop_count: number;
+          spotlight: boolean;
+          preview_text: string;
+          coordinates: Json;
+          category: Database['public']['Enums']['tour_category'];
+          media_url: string;
+        }[];
+      };
+    };
     Enums: {
       media_type: 'image' | 'video' | 'link';
       tour_category:

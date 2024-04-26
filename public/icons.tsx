@@ -51,7 +51,7 @@ export function CloseMenu() {
  * @param root0.strokeColor - The color of the arrow
  * @returns the BackArrow icon
  */
-export function BackArrow({strokeColor = "#386131"}) {
+export function BackArrow({ strokeColor = '#386131' }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -355,13 +355,7 @@ export function SelectedMarkerIcon({ color }: { color: string }) {
     >
       <g filter="url(#filter0_d_5531_6851)">
         <circle cx="20.5" cy="20" r="18" fill={color} />
-        <circle
-          cx="20.5"
-          cy="20"
-          r="16.3"
-          stroke={color}
-          strokeWidth="3.4"
-        />
+        <circle cx="20.5" cy="20" r="16.3" stroke={color} strokeWidth="3.4" />
       </g>
       <circle cx="20.5" cy="20" r="6" fill="#FFFDF7" />
       <defs>

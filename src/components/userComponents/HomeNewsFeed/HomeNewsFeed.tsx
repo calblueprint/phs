@@ -3,9 +3,11 @@
 import React, { useEffect, useState } from 'react';
 import { HiChevronRight } from 'react-icons/hi';
 import Link from 'next/link';
+import Image from 'next/image';
 import { NewsRow } from '../../../types/types';
 import NewsDisplay from '../NewsDisplay/NewsDisplay';
 import { fetchAllNewsByDate } from '../../../supabase/news/queries';
+
 
 /**
  * @returns news feed page limited to 3 most recend entries, for home page.
@@ -22,42 +24,48 @@ function HomeNewsFeed() {
     getNews();
   }, [news]);
 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
-    <div className="bg-ivory h-full px-3 py-20">
-      <div className="w-full h-5 justify-between items-center inline-flex">
-        <h2 className="text-night font-medium">Latest News</h2>
-        <Link
-          className="b1 text-asparagus inline-flex items-center"
-          href="/newsFeedPage"
-        >
-          See All
-          <HiChevronRight className="text-2xl" />
-        </Link>
+    <div className="flex flex-row px-2.5 py-20 md:px-56 md:py-28 gap-40
+     justify-center items-center justify-start">
+      {windowWidth > 768 && (
+        <img
+        className="object-cover object-center md:w-96 md:h-80 rounded-l"
+        src="https://qkkuacqtcsfjbnzmxmhk.supabase.co/storage/v1/object/public/images/HomePage_Raccoons.png"
+        alt="background for spotlight"
+        />)}
+      <div className="w-full">
+        <div className="w-full md:w-96 h-5 justify-between items-center flex">
+          <h2 className="text-night font-medium">Latest News</h2>
+          <Link
+            className="b1 text-asparagus inline-flex items-center"
+            href="/newsFeedPage"
+          >
+            See All
+            <HiChevronRight className="text-2xl" />
+          </Link>
+        </div>
+        <ul>
+          {news.map(article => (
+            <NewsDisplay
+              key={article.updated_at}
+              id={article.id}
+              contentLink={article.content_link}
+              createdAt={article.created_at}
+              title={article.title}
+            />
+          ))}
+        </ul>
       </div>
-      {/* <div className="w-full h-7 justify-start items-center gap-12 inline-flex bg-red-500">
-            <h2 className="w-full text-neutral-700 text-2xl font-semibold font-['Lato']">
-                Latest News
-            </h2>
-            <Link
-            className="b1 text-asparagus inline-flex items-center mr-4"
-            href="/featuredToursPage"
-            >
-                See All
-                <HiChevronRight className="text-2xl" />
-            </Link>
-        </div> */}
-      {/* <h2 className="text-night font-semibold mt-2"> Latest News </h2> */}
-      <ul>
-        {news.map(article => (
-          <NewsDisplay
-            key={article.updated_at}
-            id={article.id}
-            contentLink={article.content_link}
-            createdAt={article.created_at}
-            title={article.title}
-          />
-        ))}
-      </ul>
     </div>
   );
 }

@@ -1,8 +1,6 @@
 'use client';
 
-import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import { HiChevronRight } from 'react-icons/hi';
 import HomeWildlifeSpotlights from '../components/userComponents/HomeWildlifeSpotlights/HomeWildlifeSpotlights';
 import NavBar from '../components/userComponents/navBar/navBar';
 import VisitorResources from '../components/userComponents/VisitorResources/VisitorResources';

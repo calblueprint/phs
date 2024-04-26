@@ -25,7 +25,11 @@ function ProgressBar({ tourName, currentStop, totalStops }: ProgressBarProps) {
             <div className="bg-[#F5F6F5] w-[18.75rem] h-[0.625rem] rounded-full">
               <div
                 className="h-[0.625rem] rounded-full"
-                style={{ width: `${width}%`, background: "linear-gradient(180deg, #7CA24E 0%, #386131 100%)" }}
+                style={{
+                  width: `${width}%`,
+                  background:
+                    'linear-gradient(180deg, #7CA24E 0%, #386131 100%)',
+                }}
               />
             </div>
             <h4 className="text-night font-lato font-medium text-center">

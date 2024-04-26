@@ -16,7 +16,7 @@ function WelcomeGraphic() {
 
   return (
     <div
-      className="w-full h-screen bg-neutral-900 bg-opacity-60 flex justify-center items-center relative"
+      className="w-full h-96 bg-neutral-900 bg-opacity-60 flex justify-center items-center relative"
       style={{
         backgroundImage: `url('https://qkkuacqtcsfjbnzmxmhk.supabase.co/storage/v1/object/public/images/EllisonCover.png?t=2023-11-05T03%3A22%3A44.379Z')`,
         backgroundSize: 'cover',
@@ -31,9 +31,8 @@ function WelcomeGraphic() {
         <h1 className="text-center w-80">Wildlife Care Center</h1>
         {windowWidth >= 768 && (
           <p className="b3 font-light mt-7 w-96 text-center">
-            The Peninsula Humane Society & SPCA (PHS & SPCA) is a local,
-            private, non-profit charitable organization dedicated to animal
-            welfare.
+            Peninsula Humane Society & SPCA (PHS & SPCA) is a local, private,
+            non-profit charitable organization dedicated to animal welfare.
           </p>
         )}
         {/* </div> */}
