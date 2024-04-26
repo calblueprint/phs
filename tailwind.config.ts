@@ -34,7 +34,7 @@ const config: Config = {
         lato: ['Lato'],
       },
       screens: {
-        'web': '1024px'
+        web: '1024px',
       },
       theme: {
         fontSize: {
