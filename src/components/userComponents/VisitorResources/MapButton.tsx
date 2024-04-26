@@ -11,7 +11,7 @@ function MapButton() {
     <Link
       className="MapButton bg-ivory w-full h-full rounded-md shadow 
       justify-center items-center inline-flex z-10 p-4
-      md:pl-9 md:pr-24 md:pt-7 md:pb-[1.625rem]"
+      web:pl-9 web:pr-24 web:pt-7 web:pb-[1.625rem]"
       href="/siteMapPage"
     >
       <div className="GreenCircle w-10 h-10 relative bg-mint-cream rounded-full flex justify-center items-center">
