@@ -12,7 +12,7 @@ import { fetchAllNewsByDate } from '../../../supabase/news/queries';
  */
 function HomeNewsFeed() {
   const [news, setNews] = useState<NewsRow[]>([]);
-  
+
   useEffect(() => {
     // Get news
     const getNews = async () => {
