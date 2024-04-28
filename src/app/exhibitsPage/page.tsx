@@ -25,7 +25,7 @@ function App() {
   }, [exhibits]);
 
   // for web rendering
-  const [windowWidth, setWindowWidth] = useState(1024);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
@@ -54,7 +54,7 @@ function App() {
   }, []);
   return (
     <div>
-      {windowWidth < 1024 && (
+      {windowWidth <= 1024 && (
         <div className="bg-ivory">
           <NavBar />
           <div className="p-4 m-auto">
@@ -88,13 +88,14 @@ function App() {
                   image={exhibit.image || ''}
                   key={exhibit.id}
                   id={exhibit.id}
+                  web={false}
                 />
               ))}
             </ul>
           </div>
         </div>
       )}
-      {windowWidth >= 1024 && (
+      {windowWidth > 1024 && (
         <div className="bg-ivory">
           <NavBar />
           <div className="pl-64 pr-64 pt-24 m-auto">
@@ -121,13 +122,13 @@ function App() {
               </p>
             </div>
             <Link href="/siteMapPage">
-              <div className="px-4 py-2 mb-2 mt-6 rounded-md border active:border-hunterGreen border-asparagus justify-start items-start inline-flex">
+              <div className="px-4 py-2 mt-6 rounded-md border active:border-hunterGreen border-asparagus justify-start items-start inline-flex">
                 <p className="active:text-hunterGreen text-center text-asparagus font-bold font-['Lato'] leading-tight">
                   Go to Map
                 </p>
               </div>
             </Link>
-            <ul>
+            <div className="mt-8 grid grid-cols-2 gap-16 pb-[6rem]">
               {exhibits.map(exhibit => (
                 <Exhibit
                   title={exhibit.category || ''}
@@ -135,9 +136,10 @@ function App() {
                   image={exhibit.image || ''}
                   key={exhibit.id}
                   id={exhibit.id}
+                  web
                 />
               ))}
-            </ul>
+            </div>
           </div>
         </div>
       )}
