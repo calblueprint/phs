@@ -111,8 +111,10 @@ function MobileInput({
                 type="text"
                 placeholder="First Name"
                 value={inputValueName}
+                required
+                id="nameInput"
                 onChange={handleNameChange}
-                className={`font-Lato text-sm bg-hunterGreen border border-silver rounded-md pl-3 w-[322px] h-[50px] items-center ${
+                className={`focus:border-ivory valid:border-asparagus font-Lato text-sm bg-hunterGreen border border-silver rounded-md pl-3 w-[322px] h-[50px] items-center ${
                   inputValueName ? 'text-silver' : 'text-silver'
                 }`}
               />
@@ -120,8 +122,10 @@ function MobileInput({
                 type="text"
                 placeholder="Email Address"
                 value={inputValueEmail}
+                id="emailInput"
+                required
                 onChange={handleEmailChange}
-                className={`font-Lato text-sm bg-hunterGreen border border-silver rounded-md pl-3 w-[322px] h-[50px] items-center ${
+                className={`focus:border-ivory valid:border-asparagus font-Lato text-sm bg-hunterGreen border border-silver rounded-md pl-3 w-[322px] h-[50px] items-center ${
                   inputValueEmail ? 'text-silver' : 'text-silver'
                 }`}
               />
@@ -514,10 +518,12 @@ export default function Footer() {
     // check name
     if (!inputValueName.trim()) {
       setShowError(true);
+      document.getElementById('nameInput').style.borderColor = 'red';
       setErrorMsg('Please enter a name');
     } else if (!inputValueEmail.trim()) {
       // Handle the case for an empty email
       setShowError(true);
+      document.getElementById('emailInput').style.borderColor = 'red';
       setErrorMsg('Please enter an email address');
     } else if (isValidEmail(inputValueEmail)) {
       // Handle the submission for a valid email
@@ -541,6 +547,7 @@ export default function Footer() {
     } else {
       // Handle the case for an invalid email
       setShowError(true);
+      document.getElementById('emailInput').style.borderColor = 'red';
       setErrorMsg('Enter a valid email format (ex. example@mail.com)');
     }
   };
