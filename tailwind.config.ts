@@ -19,6 +19,7 @@ const config: Config = {
         shadow: '#808080',
         silver: '#BDBDBD',
         ivory: '#FFFDF7',
+        timberwolf: '#E2E2E2',
       },
       textColor: {
         default: '#FFFDF7',

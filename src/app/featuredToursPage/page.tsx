@@ -50,33 +50,35 @@ export default function FeaturedToursPage() {
       <NavBar />
 
       {isWide ? (
-        <div className="py-[5rem] flex justify-center">
-          <div className="flex flex-col max-w-[62.125rem]">
-            <div className="text-night font-normal font-lato text-sm mb-6">
-              <span className="text-scary-forest">Home</span> / Virtual Tours
+        <div className="px-[16.19rem] py-[5rem] flex justify-center">
+          <div className="flex flex-col">
+            <div className="w-[62.125rem] mb-[3.12rem]">
+              <p className="s3 text-night mb-6">
+                <span className="text-scary-forest">Home</span> / Virtual Tours
+              </p>
+              <h1 className="text-night mb-4">
+                Virtual Tours
+              </h1>
+              <p className="b3 text-night mb-[3.12rem]">
+                Take a virtual sneak peek behind the scenes at our Wildlife Care
+                Center. Here you will find outside enclosures where sick, injured,
+                and orphaned wildlife recuperate and acclimate before being released
+                back into their natural habitat. Choose your favorite animal to
+                start the tour.
+              </p>
+              <div className="bg-silver h-[0.03125rem]" />
             </div>
-            <h1 className="text-night font-lato text-3xl font-bold mb-2">
-              Virtual Tours
-            </h1>
-            <p className="text-night font-lato font-normal mb-8">
-              Take a virtual sneak peek behind the scenes at our Wildlife Care
-              Center. Here you will find outside enclosures where sick, injured,
-              and orphaned wildlife recuperate and acclimate before being released
-              back into their natural habitat. Choose your favorite animal to
-              start the tour.
-            </p>
-            <div className="bg-silver h-[0.03125rem] mb-8" />
 
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <ul className="w-[62.125rem] grid grid-cols-2 gap-[3.75rem]">
               {tours.map(
                 tour =>
                   tour.spotlight === false && (
                     <li key={tour.id}>
                       <Link
                         href={`/featuredToursPage/${tour.id}`}
-                        className="w-full rounded-lg block"
+                        className="rounded-lg"
                       >
-                        <div className="bg-scary-forest relative max-w-[29.1875rem] h-[22.8125rem] rounded-lg overflow-hidden">
+                        <div className="bg-scary-forest relative w-[29.1875rem] h-[22.8125rem] rounded-lg overflow-hidden">
                           {media.length > 0 && (
                             <Image
                               className="rounded-lg"
@@ -110,11 +112,11 @@ export default function FeaturedToursPage() {
                                 'linear-gradient(180deg, rgba(51, 51, 51, 0.0) 0%, rgba(51, 51, 51, 0.4) 50%, rgba(0, 0, 0, 0.8) 100%)',
                             }}
                           >
-                            <h4 className="text-ivory font-lato text-xs font-normal mt-0.5 relative bottom-[0.44rem]">
+                            <p className="s3 mt-0.5 relative bottom-[0.44rem]">
                               {tour.stop_count} stops
-                            </h4>
+                            </p>
                             <div className="flex items-center justify-between">
-                              <h2 className="text-ivory font-lato text-2xl font-normal truncate relative bottom-[0.31rem]">
+                              <h2 className="truncate relative bottom-[0.31rem]">
                                 {tour.name}
                               </h2>
                             </div>
@@ -136,10 +138,10 @@ export default function FeaturedToursPage() {
               </Link>
             </div>
 
-            <h1 className="text-night font-lato text-3xl font-bold mb-2">
+            <h1 className="text-night mb-2">
               Virtual Tours
             </h1>
-            <p className="text-night font-lato font-normal mb-6">
+            <p className="b3 text-night mb-6">
               Take a virtual sneak peek behind the scenes at our Wildlife Care
               Center. Here you will find outside enclosures where sick, injured,
               and orphaned wildlife recuperate and acclimate before being released
@@ -190,11 +192,11 @@ export default function FeaturedToursPage() {
                                 'linear-gradient(180deg, rgba(51, 51, 51, 0.0) 0%, rgba(51, 51, 51, 0.4) 50%, rgba(0, 0, 0, 0.8) 100%)',
                             }}
                           >
-                            <h4 className="text-ivory font-lato text-xs font-normal mt-0.5 relative bottom-[0.44rem]">
+                            <p className="s3 mt-0.5 relative bottom-[0.44rem]">
                               {tour.stop_count} stops
-                            </h4>
+                            </p>
                             <div className="flex items-center justify-between">
-                              <h2 className="text-ivory font-lato text-2xl font-normal truncate relative bottom-[0.31rem]">
+                              <h2 className="truncate relative bottom-[0.31rem]">
                                 {tour.name}
                               </h2>
                               <div className="relative bottom-[0.35rem]">

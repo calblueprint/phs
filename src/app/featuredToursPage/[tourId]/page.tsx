@@ -36,6 +36,7 @@ export default function TourStartPage({
   const [displays, setDisplays] = useState<DisplayRow[]>([]);
   const [tourMedia, setTourMedia] = useState<TourMediaRow[]>([]);
   const [media, setMedia] = useState<MediaRow[]>([]);
+  const [isWide, setIsWide] = useState(window.innerWidth >= 1024);
 
   useEffect(() => {
     // Fetch tour, tour displays, and tour media data
@@ -55,83 +56,154 @@ export default function TourStartPage({
     fetchData();
   }, [params.tourId]);
 
-  return (
-    tour && (
-      <div className="bg-ivory w-[24.375rem] min-h-screen">
-        <NavBar />
-        <Link
-          href="/featuredToursPage"
-          className="absolute top-[5.25rem] left-[1.12rem] z-10"
-        >
-          <BackButton />
-        </Link>
-        <div className="bg-scary-forest relative w-[24.375rem] h-[15.3125rem]">
-          {media.length > 0 && (
-            <Image
-              key={media.find(m => m.id === tourMedia[0]?.media_id)?.id}
-              src={media.find(m => m.id === tourMedia[0]?.media_id)?.url ?? ''}
-              alt={media.find(m => m.id === tourMedia[0]?.media_id)?.text ?? ''}
-              layout="fill"
-              objectFit="cover"
-              priority
-            />
-          )}
-        </div>
+  useEffect(() => {
+    // Update isWide state on window resize
+    const handleResize = () => setIsWide(window.innerWidth >= 1024);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
-        <div className="w-[24.375rem] flex flex-col px-[1.125rem] absolute top-[17.81rem] gap-6 mb-[2.5rem]">
-          <div className="bg-mint-green w-[22.125rem] rounded-md px-[2.1875rem] py-[2.25rem] flex-col items-center gap-3 inline-flex">
-            <div className="flex flex-col w-[22.125rem] rounded-md px-[2.1875rem] text-center gap-1">
-              <h2 className="text-night text-sm font-lato font-normal">
-                WELCOME TO
-              </h2>
-              <h1 className="text-night font-lato text-[2rem] truncate font-bold">
-                {tour.name}
-              </h1>
+  return isWide
+    ? tour && (
+        <div className="bg-ivory w-full min-h-screen">
+          <NavBar />
+          <div className="flex flex-row my-[6.25rem] h-[38.9375rem]">
+            <div className="bg-scary-forest relative w-[42.25rem] h-[38.9375rem]">
+              {media.length > 0 && (
+                <Image
+                  key={media.find(m => m.id === tourMedia[0]?.media_id)?.id}
+                  src={
+                    media.find(m => m.id === tourMedia[0]?.media_id)?.url ?? ''
+                  }
+                  alt={
+                    media.find(m => m.id === tourMedia[0]?.media_id)?.text ?? ''
+                  }
+                  layout="fill"
+                  objectFit="cover"
+                  priority
+                />
+              )}
             </div>
-            <div className="w-[12.625rem] px-4 py-[0.62rem] bg-asparagus rounded-lg justify-center items-center gap-2.5">
-              <Link
-                href={`/featuredToursPage/${params.tourId}/${tourDisplays[0]?.display_id}`}
-              >
-                <h2 className="text-ivory text-center text-base font-lato font-bold">
-                  Start Tour
-                </h2>
-              </Link>
-            </div>
-          </div>
-
-          <p className="text-night font-lato font-normal">{tour.description}</p>
-
-          <div className="flex flex-col relative gap-4 mb-10">
-            <div className="flex justify-between items-center">
-              <h3 className="text-night font-lato text-lg font-bold">
-                In this tour
-              </h3>
-              <div className="bg-[#F5EDCF80] w-[4.375rem] h-[1.5rem] rounded-[0.5625rem] px-3 py-1">
-                <p className="text-night font-lato font-normal text-xs text-center">
-                  {tour.stop_count} stops
-                </p>
+            <div className="bg-mint-cream py-[8.75rem] px-[5.62rem] flex flex-col flex-auto gap-8">
+              <div className="flex flex-col gap-5 pb-[2.62rem]">
+                <div className="flex flex-col gap-2">
+                  <p className="s1 text-night">WELCOME TO</p>
+                  <h1 className="text-night truncate">{tour.name}</h1>
+                </div>
+                <Link
+                  href={`/featuredToursPage/${params.tourId}/${tourDisplays[0]?.display_id}`}
+                >
+                  <div className="w-[12.625rem] px-4 py-[0.62rem] bg-asparagus rounded-lg flex justify-center items-center gap-2.5">
+                    <p className="b1 text-ivory">Start Tour</p>
+                  </div>
+                </Link>
+              </div>
+              <div className="flex flex-col relative gap-4 mb-10">
+                <div className="flex justify-between items-center">
+                  <h4 className="text-night">In this tour</h4>
+                  <div className="bg-[#F5EDCF80] w-[4.375rem] h-[1.5rem] rounded-[0.5625rem] px-3 py-1 flex items-center justify-center">
+                    <p className="s3 text-night">{tour.stop_count} stops</p>
+                  </div>
+                </div>
+                <ol>
+                  {tourDisplays.map(tourDisplay => (
+                    <li
+                      key={tourDisplay.display_id}
+                      className="mb-[0.44rem] ml-4"
+                    >
+                      <p className="b3 text-night">
+                        {tourDisplay.display_order != null
+                          ? tourDisplay.display_order + 1
+                          : ''}
+                        .{' '}
+                        {
+                          displays.find(
+                            display => display.id === tourDisplay.display_id,
+                          )?.title
+                        }
+                      </p>
+                    </li>
+                  ))}
+                </ol>
               </div>
             </div>
-            <ol>
-              {tourDisplays.map(tourDisplay => (
-                <li key={tourDisplay.display_id} className="mb-[0.44rem] ml-4">
-                  <h4 className="font-normal font-lato">
-                    {tourDisplay.display_order != null
-                      ? tourDisplay.display_order + 1
-                      : ''}
-                    .{' '}
-                    {
-                      displays.find(
-                        display => display.id === tourDisplay.display_id,
-                      )?.title
-                    }
-                  </h4>
-                </li>
-              ))}
-            </ol>
           </div>
         </div>
-      </div>
-    )
-  );
+      )
+    : tour && (
+        <div className="bg-ivory w-full min-h-screen">
+          <NavBar />
+          <div className="flex flex-col items-center">
+            <Link
+              href="/featuredToursPage"
+              className="absolute top-[5.25rem] left-[1.12rem] z-10"
+            >
+              <BackButton />
+            </Link>
+            <div className="bg-scary-forest relative w-full h-[15.3125rem]">
+              {media.length > 0 && (
+                <Image
+                  key={media.find(m => m.id === tourMedia[0]?.media_id)?.id}
+                  src={
+                    media.find(m => m.id === tourMedia[0]?.media_id)?.url ?? ''
+                  }
+                  alt={
+                    media.find(m => m.id === tourMedia[0]?.media_id)?.text ?? ''
+                  }
+                  layout="fill"
+                  objectFit="cover"
+                  priority
+                />
+              )}
+            </div>
+
+            <div className="w-[24.375rem] flex flex-col px-[1.125rem] absolute top-[17.81rem] gap-6 mb-[2.5rem]">
+              <div className="bg-mint-cream w-[22.125rem] rounded-md px-[2.1875rem] py-[2.25rem] flex-col items-center gap-3 inline-flex">
+                <div className="flex flex-col w-[22.125rem] rounded-md px-[2.1875rem] text-center gap-1">
+                  <p className="s1 text-night">WELCOME TO</p>
+                  <h1 className="text-night truncate">{tour.name}</h1>
+                </div>
+                <Link
+                  href={`/featuredToursPage/${params.tourId}/${tourDisplays[0]?.display_id}`}
+                >
+                  <div className="w-[12.625rem] px-4 py-[0.62rem] bg-asparagus rounded-lg flex justify-center items-center gap-2.5">
+                    <p className="b1 text-ivory">Start Tour</p>
+                  </div>
+                </Link>
+              </div>
+
+              <div className="flex flex-col relative gap-4 mb-10">
+                <div className="flex justify-between items-center">
+                  <h4 className="text-night">In this tour</h4>
+                  <div className="bg-[#F5EDCF80] w-[4.375rem] h-[1.5rem] rounded-[0.5625rem] px-3 py-1 flex justify-center items-center">
+                    <p className="s3 text-night">{tour.stop_count} stops</p>
+                  </div>
+                </div>
+                <ol>
+                  {tourDisplays.map(tourDisplay => (
+                    <li
+                      key={tourDisplay.display_id}
+                      className="mb-[0.44rem] ml-4"
+                    >
+                      <p className="b3 text-night">
+                        {tourDisplay.display_order != null
+                          ? tourDisplay.display_order + 1
+                          : ''}
+                        .{' '}
+                        {
+                          displays.find(
+                            display => display.id === tourDisplay.display_id,
+                          )?.title
+                        }
+                      </p>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
 }
