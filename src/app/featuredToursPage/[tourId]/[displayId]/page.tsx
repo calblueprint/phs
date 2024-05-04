@@ -44,6 +44,7 @@ export default function TourStopPage({
     `/featuredToursPage/${params.tourId}/tourEndPage`,
   );
   const [nextText, setNextText] = useState<string>('End Tour');
+  const [isWide, setIsWide] = useState(window.innerWidth >= 1024);
 
   useEffect(() => {
     // Get display
@@ -133,37 +134,91 @@ export default function TourStopPage({
     fetchDisplayMedia();
   }, [params.displayId, params.tourId]);
 
-  return (
-    <div className="bg-ivory w-[24.375rem] min-h-screen">
+  useEffect(() => {
+    // Update isWide state on window resize
+    const handleResize = () => setIsWide(window.innerWidth >= 1024);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return isWide ? (
+    <div className="bg-ivory w-full min-h-screen">
       <NavBar />
-      {(currentStop && tour?.stop_count) > 0 && (
-        <ProgressBar
-          tourName={tour?.name || ''}
-          currentStop={currentStop || 0}
-          totalStops={tour?.stop_count || 0}
-        />
-      )}
-      <div className="mb-6">
-        {media.length > 0 ? (
-          <Carousel media={media} />
-        ) : (
-          <div className="bg-scary-forest relative w-full h-[15.3125rem]" />
-        )}
-      </div>
-      <h1 className="text-night font-lato text-3xl font-bold px-[1.31rem] gap-4 mt-6 mb-4">
-        {display && display.title}
-      </h1>
-      <div className="px-[1.31rem] pb-[2.5rem]">
-        <p className="text-night font-lato font-normal">
-          {display && display.description}
-        </p>
-        <div className="flex flex-row justify-between mt-8">
-          <LastStopButton text={prevText} link={prev} />
-          <NextStopButton text={nextText} link={next} />
+      <div className="flex justify-center">
+        <div className="flex flex-row gap-[8.5rem] py-[6.25rem]">
+          <div className="flex flex-col gap-10">
+            <h1 className="text-night">
+              {display && display.title}
+            </h1>
+            {media.length > 0 ? (
+              <Carousel media={media} />
+            ) : (
+              <div className="bg-scary-forest relative w-[29.25rem] h-[18.375rem]" />
+            )}
+          </div>
+          <div className="flex flex-col gap-8 w-[24.375rem]">
+            {(currentStop && tour?.stop_count) > 0 && (
+              <ProgressBar
+                tourName={tour?.name || ''}
+                currentStop={currentStop || 0}
+                totalStops={tour?.stop_count || 0}
+              />
+            )}
+            <div className="">
+              <p className="b3 text-night mb-[3.12rem]">
+                {display && display.description}
+              </p>
+              <div className="flex flex-row gap-2 mb-4">
+                <LastStopButton text={prevText} link={prev} />
+                <NextStopButton text={nextText} link={next} />
+              </div>
+              <p className="b1 text-scary-forest">
+                <Link href="/featuredToursPage">Exit this tour</Link>
+              </p>
+            </div>
+          </div>
         </div>
-        <h4 className="text-scary-forest font-lato font-bold mt-4">
-          <Link href="/featuredToursPage">Exit this tour</Link>
-        </h4>
+      </div>
+    </div>
+  ) : (
+    <div className="bg-ivory w-full min-h-screen">
+      <NavBar />
+      <div className="flex flex-col items-center">
+        <div className="max-w-[24.375rem]">
+          {(currentStop && tour?.stop_count) > 0 && (
+            <ProgressBar
+              tourName={tour?.name || ''}
+              currentStop={currentStop || 0}
+              totalStops={tour?.stop_count || 0}
+            />
+          )}
+          <div className="mb-6">
+            {media.length > 0 ? (
+              <Carousel media={media} />
+            ) : (
+              <div className="bg-scary-forest relative w-full h-[15.3125rem]" />
+            )}
+          </div>
+          <div className="flex flex-col gap-5 px-[1.31rem]">
+            <h1 className="text-night">
+              {display && display.title}
+            </h1>
+            <div className="pb-[2.5rem]">
+              <p className="b3 text-night">
+                {display && display.description}
+              </p>
+              <div className="flex flex-row gap-4 mt-8">
+                <LastStopButton text={prevText} link={prev} />
+                <NextStopButton text={nextText} link={next} />
+              </div>
+              <p className="b1 text-scary-forest mt-4">
+                <Link href="/featuredToursPage">Exit this tour</Link>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

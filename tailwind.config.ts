@@ -19,6 +19,7 @@ const config: Config = {
         shadow: '#808080',
         silver: '#BDBDBD',
         ivory: '#FFFDF7',
+        timberwolf: '#E2E2E2',
       },
       textColor: {
         default: '#FFFDF7',
@@ -40,6 +41,9 @@ const config: Config = {
           lg: ['20px', '28px'],
           xl: ['24px', '32px'],
         },
+      },
+      screens: {
+        web: '1024px',
       },
     },
   },

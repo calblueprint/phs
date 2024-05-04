@@ -20,9 +20,9 @@ export default function NextStopButton({ text, link }: NextStopButtonProps) {
       className="bg-asparagus w-[10.375rem] h-[4.375rem] rounded-lg flex items-center relative p-[1.56rem]"
     >
       <div className="flex items-center justify-end w-full gap-[1.31rem]">
-        <h4 className="text-ivory font-lato font-bold text-center">
+        <p className="b1 text-ivory">
           {text}
-        </h4>
+        </p>
         <CaretRight />
       </div>
     </Link>
