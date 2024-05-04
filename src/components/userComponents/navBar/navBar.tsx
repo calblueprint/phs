@@ -44,7 +44,7 @@ export default function NavBar() {
             className="object-contain w-[6.5rem] h-[2.25rem] relative left-[3.88rem]"
           />
         </Link>
-        <p className="b1 text-timberwolf flex flex-row gap-[3.19rem] pr-[4.75rem]">
+        <p className="b1 text-ivory flex flex-row gap-[3.19rem] pr-[4.75rem]">
           <Link href="/hoursAdmissionPage">Hours & Location</Link>
           <Link href="/siteMapPage">Site Maps</Link>
           <Link href="/featuredToursPage">Virtual Tours</Link>
