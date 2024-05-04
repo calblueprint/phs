@@ -94,127 +94,129 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
     <div className="bg-ivory w-full min-h-screen">
       <NavBar />
 
-      <div className="px-[16.19rem] py-[6.25rem]">
-        <div className="flex flex-col gap-7 mb-4">
-          <p className="s3 text-night">
-            <span className="text-scary-forest">
-              Home / Wildlife Spotlights
-            </span>{' '}
-            / {spotlight.name}
-          </p>
+      <div className="py-[6.25rem] flex justify-center">
+        <div className="w-[62.125rem]">
+          <div className="flex flex-col gap-7 mb-4">
+            <p className="s3 text-night">
+              <span className="text-scary-forest">
+                Home / Wildlife Spotlights
+              </span>{' '}
+              / {spotlight.name}
+            </p>
 
-          <h1 className="text-night">{spotlight.name}</h1>
-        </div>
+            <h1 className="text-night">{spotlight.name}</h1>
+          </div>
 
-        <div className="bg-silver w-full h-[0.03125rem] mb-[3.75rem]" />
+          <div className="bg-silver w-full h-[0.03125rem] mb-[3.75rem]" />
 
-        <div className="flex flex-row gap-[6.44rem]">
-          <div className="flex flex-col">
-            <div className="bg-scary-forest w-full min-h-[21.9375rem] mb-8 relative">
-              {media.length > 0 && (
-                <Image
-                  key={media.find(m => m.id === tourMedia[0]?.media_id)?.id}
-                  src={
-                    media.find(m => m.id === tourMedia[0]?.media_id)?.url ?? ''
-                  }
-                  alt={
-                    media.find(m => m.id === tourMedia[0]?.media_id)?.text ?? ''
-                  }
-                  layout="fill"
-                  objectFit="cover"
-                  priority
-                />
+          <div className="flex flex-row gap-[6.44rem]">
+            <div className="flex flex-col">
+              <div className="bg-scary-forest w-[34.75rem] h-[21.9375rem] mb-8 relative">
+                {media.length > 0 && (
+                  <Image
+                    key={media.find(m => m.id === tourMedia[0]?.media_id)?.id}
+                    src={
+                      media.find(m => m.id === tourMedia[0]?.media_id)?.url ?? ''
+                    }
+                    alt={
+                      media.find(m => m.id === tourMedia[0]?.media_id)?.text ?? ''
+                    }
+                    layout="fill"
+                    objectFit="cover"
+                    priority
+                  />
+                )}
+              </div>
+
+              <p className="b3 text-night mb-[3.75rem]">
+                {spotlight.description}
+              </p>
+
+              {relatedSpotlights.length > 0 && (
+                <div className="flex flex-col gap-4">
+                  <h4 className="text-night">
+                    Related Spotlights
+                  </h4>
+
+                  <ul className="list-none flex overflow-x-auto whitespace-nowrap gap-3">
+                    {relatedSpotlights.map(otherSpotlight => (
+                      <li className="max-w-[10.625rem]" key={otherSpotlight.id}>
+                        <Link href={`/spotlightPage/${otherSpotlight.id}`}>
+                          <div className="relative w-full h-[10.5625rem] rounded-2xl flex flex-col mb-[0.81rem]">
+                            {media.length > 0 && (
+                              <Image
+                                className="rounded-lg"
+                                key={
+                                  media.find(
+                                    m =>
+                                      m.id ===
+                                      allTourMedia.find(
+                                        tm => tm.tour_id === otherSpotlight.id,
+                                      )?.media_id,
+                                  )?.id
+                                }
+                                src={
+                                  media.find(
+                                    m =>
+                                      m.id ===
+                                      allTourMedia.find(
+                                        tm => tm.tour_id === otherSpotlight.id,
+                                      )?.media_id,
+                                  )?.url ?? ''
+                                }
+                                alt={
+                                  media.find(
+                                    m =>
+                                      m.id ===
+                                      allTourMedia.find(
+                                        tm => tm.tour_id === otherSpotlight.id,
+                                      )?.media_id,
+                                  )?.text ?? ''
+                                }
+                                layout="fill"
+                                objectFit="cover"
+                                priority
+                              />
+                            )}
+                          </div>
+                          <p className="b1 text-night truncate mb-[0.06rem]">
+                            {otherSpotlight.name}
+                          </p>
+                          <p className="s1 text-shadow truncate">
+                            {otherSpotlight.preview_text}
+                          </p>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               )}
             </div>
 
-            <p className="b3 text-night mb-[3.75rem]">
-              {spotlight.description}
-            </p>
+            {displays.length > 0 && (
+              <div className="flex flex-col gap-5">
+                <h4 className="text-night">In this spotlight...</h4>
 
-            {relatedSpotlights.length > 0 && (
-              <div className="flex flex-col gap-4">
-                <h4 className="text-night">
-                  Related Spotlights
-                </h4>
-
-                <ul className="list-none flex overflow-x-auto whitespace-nowrap gap-3">
-                  {relatedSpotlights.map(otherSpotlight => (
-                    <li className="max-w-[10.625rem]" key={otherSpotlight.id}>
-                      <Link href={`/spotlightPage/${otherSpotlight.id}`}>
-                        <div className="relative w-full h-[10.5625rem] rounded-2xl flex flex-col mb-[0.81rem]">
-                          {media.length > 0 && (
-                            <Image
-                              className="rounded-lg"
-                              key={
-                                media.find(
-                                  m =>
-                                    m.id ===
-                                    allTourMedia.find(
-                                      tm => tm.tour_id === otherSpotlight.id,
-                                    )?.media_id,
-                                )?.id
-                              }
-                              src={
-                                media.find(
-                                  m =>
-                                    m.id ===
-                                    allTourMedia.find(
-                                      tm => tm.tour_id === otherSpotlight.id,
-                                    )?.media_id,
-                                )?.url ?? ''
-                              }
-                              alt={
-                                media.find(
-                                  m =>
-                                    m.id ===
-                                    allTourMedia.find(
-                                      tm => tm.tour_id === otherSpotlight.id,
-                                    )?.media_id,
-                                )?.text ?? ''
-                              }
-                              layout="fill"
-                              objectFit="cover"
-                              priority
-                            />
-                          )}
-                        </div>
-                        <p className="b1 text-night truncate mb-[0.06rem]">
-                          {otherSpotlight.name}
+                <div className="flex flex-col gap-[0.875rem] items-center">
+                  {displays.map(display => (
+                    <Link
+                      key={display.id}
+                      href={`/spotlightPage/${spotlight.id}/${display.id}?spotlightId=${spotlight.id}`}
+                    >
+                      <button
+                        type="button"
+                        className="bg-mint-cream border-l-[0.3125rem] border-l-asparagus w-[20.875rem] h-[4.625rem] rounded-2xl px-[1.9375rem]"
+                      >
+                        <p className="b1 text-scary-forest truncate">
+                          {display.title}
                         </p>
-                        <p className="s1 text-shadow truncate">
-                          {otherSpotlight.preview_text}
-                        </p>
-                      </Link>
-                    </li>
+                      </button>
+                    </Link>
                   ))}
-                </ul>
+                </div>
               </div>
             )}
           </div>
-
-          {displays.length > 0 && (
-            <div className="flex flex-col gap-5">
-              <h4 className="text-night">In this spotlight...</h4>
-
-              <div className="flex flex-col gap-[0.875rem] items-center">
-                {displays.map(display => (
-                  <Link
-                    key={display.id}
-                    href={`/spotlightPage/${spotlight.id}/${display.id}?spotlightId=${spotlight.id}`}
-                  >
-                    <button
-                      type="button"
-                      className="bg-mint-cream border-l-[0.3125rem] border-l-asparagus w-[22.125rem] h-[3.75rem] rounded-2xl px-[1.9375rem]"
-                    >
-                      <p className="b1 text-scary-forest truncate">
-                        {display.title}
-                      </p>
-                    </button>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </div>

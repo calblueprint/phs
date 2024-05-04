@@ -87,9 +87,9 @@ export default function Page({
             <h1 className="text-night">{display.title}</h1>
           </div>
           <div className="flex flex-row gap-[6.44rem]">
-            <div className="flex flex-col gap-8 w-[34.75rem]">
+            <div className="flex flex-col gap-8">
               {media.length > 0 ? (
-                <div className="relative w-full h-[21.9375rem]">
+                <div className="relative w-[34.75rem] h-[21.9375rem]">
                   <Carousel media={media} />
                 </div>
               ) : (

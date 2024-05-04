@@ -69,24 +69,25 @@ function App() {
             <span className="text-scary-forest">Home</span> / Wildlife
             Spotlights
           </div>
-          <div className="flex flex-col gap-4 mb-8">
+          <div className="flex flex-col gap-4 mb-[3.12rem]">
             <h1 className="text-night">Wildlife Spotlights</h1>
             <p className="b3 text-night">
-              Wildlife Spotlights offer insights into common questions we
-              receive. Browse a Spotlight to learn more about important wildlife
-              topics.
+              Wildlife Spotlights provide answers to many frequently asked
+              questions. You'll find information on topics ranging from what to
+              do if you encounter a baby bird lost from its nest to how to deal
+              with nuisance animals in your yard.
             </p>
           </div>
-          <div className="bg-silver h-[0.03125rem] mb-8" />
+          <div className="bg-silver h-[0.03125rem] mb-[3.12rem]" />
 
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-[3.25rem] gap-y-[3.75rem]">
             {spotlights.map(spotlight => (
               <li key={spotlight.id}>
                 <Link
                   href={`/spotlightPage/${spotlight.id}`}
-                  className="w-[28.125rem] rounded-lg"
+                  className="rounded-lg"
                 >
-                  <div className="bg-scary-forest relative h-[17.09rem] rounded-lg flex flex-col">
+                  <div className="bg-scary-forest relative w-[28.125rem] h-[17.09rem] rounded-lg flex flex-col">
                     {media.length > 0 && (
                       <Image
                         className="rounded-lg"
@@ -143,9 +144,10 @@ function App() {
             <div className="flex flex-col gap-4 mb-8">
               <h1 className="text-night">Wildlife Spotlights</h1>
               <p className="b3 text-night">
-                Wildlife Spotlights offer insights into common questions we
-                receive. Browse a Spotlight to learn more about important
-                wildlife topics.
+                Wildlife Spotlights provide answers to many frequently asked
+                questions. You'll find information on topics ranging from what
+                to do if you encounter a baby bird lost from its nest to how to
+                deal with nuisance animals in your yard.
               </p>
             </div>
 
@@ -196,9 +198,7 @@ function App() {
                     <h2 className="text-night truncate mb-1">
                       {spotlight.name}
                     </h2>
-                    <p className="s1 text-shadow">
-                      {spotlight.preview_text}
-                    </p>
+                    <p className="s1 text-shadow">{spotlight.preview_text}</p>
                   </Link>
                 </li>
               ))}
