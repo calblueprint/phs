@@ -210,6 +210,28 @@ export function Congratulations() {
 }
 
 /**
+ * @returns Left chevron for Carousel.
+ */
+export function LeftChevron() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1rem"
+      height="1.9rem"
+      viewBox="0 0 21 34"
+      fill="none"
+    >
+      <path
+        d="M19 2L3 17.2L19 32.4"
+        stroke="#FFFDF7"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+/**
  * @returns Right chevron for Carousel.
  */
 export function RightChevron() {
