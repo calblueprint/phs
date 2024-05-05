@@ -9,7 +9,8 @@ import { fetchAllNewsByDate } from '../../supabase/news/queries';
 import NewsDisplay from '../../components/userComponents/NewsDisplay/NewsDisplay';
 
 /**
- * @returns news feed page
+ * @description queries from the news table in supabase and fetches all the news rows to display
+ * @returns news feed page by querying from the news table in supabase
  */
 export default function App() {
   const [news, setNews] = useState<NewsRow[]>([]);
@@ -32,13 +33,13 @@ export default function App() {
   }, []);
 
   return (
-    <div className="bg-ivory">
+    <div className="bg-ivory h-full">
       <NavBar />
       {windowWidth < 1024 && (
         <div>
           <div className="p-4">
             <BackButton />
-            <h1 className="text-night text-3xl font-bold mt-2 -ml-[1.8px]">
+            <h1 className="text-night text-3xl font-bold mt-2 -ml-[.113rem]">
               News
             </h1>
             <ul>
@@ -57,18 +58,20 @@ export default function App() {
       )}
       {windowWidth >= 1024 && (
         <div>
-          <div className="ml-[400px] mt-[120px]">
-            <p className="text-night">
-              {' '}
-              <Link href="/" className="text-scary-forest hover:underline">
-                {' '}
-                Home{' '}
-              </Link>{' '}
-              / News{' '}
-            </p>
-            <h1 className="text-night text-4xl font-bold mt-6">News</h1>
+          <div className="flex justify-around px-[12rem] pt-[7.5rem]">
             <div>
-              <ul className="ml-[21.875rem] ">
+              <p className="text-night">
+                {' '}
+                <Link href="/" className="text-scary-forest hover:underline">
+                  {' '}
+                  Home{' '}
+                </Link>{' '}
+                / News{' '}
+              </p>
+              <h1 className="text-night text-4xl font-bold pt-6">News</h1>
+            </div>
+            <div>
+              <ul className="pt-[4rem]">
                 {news.map(article => (
                   <NewsDisplay
                     key={article.updated_at}
