@@ -35,16 +35,16 @@ export default function NavBar() {
   }
 
   return isWide ? (
-    <nav className="bg-scary-forest w-full h-[4.625rem] flex flex-col relative z-[9999]">
-      <div className="flex flex-row justify-between items-center relative top-5">
+    <nav className="bg-scary-forest w-full h-[4.625rem] flex flex-col justify-between sticky top-0 left-0 z-[9999]">
+      <div className="flex flex-row pl-[3.88rem] pr-[4.75rem] pt-5 justify-between items-center">
         <Link href="/">
           <img
             src="https://qkkuacqtcsfjbnzmxmhk.supabase.co/storage/v1/object/public/images/PHSLogo.jpg"
             alt="PHSLogo"
-            className="object-contain w-[6.5rem] h-[2.25rem] relative left-[3.88rem]"
+            className="w-[6.5rem] h-[2.25rem]"
           />
         </Link>
-        <p className="b1 text-ivory flex flex-row gap-[3.19rem] pr-[4.75rem]">
+        <p className="b1 text-ivory flex flex-row gap-[3.19rem]">
           <Link href="/hoursAdmissionPage">Hours & Location</Link>
           <Link href="/siteMapPage">Site Maps</Link>
           <Link href="/featuredToursPage">Virtual Tours</Link>
@@ -52,12 +52,12 @@ export default function NavBar() {
           <Link href="/newsFeedPage">News</Link>
         </p>
       </div>
-      <div className="bg-hunter-green w-full h-[0.375rem] absolute bottom-0 left-0" />
+      <div className="bg-hunter-green w-full h-[0.375rem]" />
     </nav>
   ) : (
-    <nav className="w-full z-[9999]">
-      <div className="bg-scary-forest h-[4.25rem] pl-[1.12rem] pr-[0.88rem] py-2 relative">
-        <div className="flex flex-row justify-between">
+    <nav className="w-full sticky top-0 left-0 z-[9999]">
+      <div className="bg-scary-forest h-[4.25rem] flex flex-col justify-between relative">
+        <div className="flex flex-row pl-[1.12rem] pr-[0.88rem] pt-2 justify-between">
           <Link href="/">
             <img
               src="https://qkkuacqtcsfjbnzmxmhk.supabase.co/storage/v1/object/public/images/PHSLogo.jpg"
@@ -71,12 +71,12 @@ export default function NavBar() {
             onClick={handleClick}
             aria-label="Toggle Menu"
           >
-            <div className="flex justify-center items-center w-full h-full">
+            <div className="flex justify-center">
               {showMenu ? <CloseMenu /> : <HamburgerMenu />}
             </div>
           </button>
         </div>
-        <div className="bg-hunter-green w-full h-[0.375rem] absolute bottom-0 left-0" />
+        <div className="bg-hunter-green w-full h-[0.375rem]" />
       </div>
 
       {showMenu && (
@@ -109,7 +109,7 @@ export default function NavBar() {
                 <h4 className="text-night flex flex-col gap-[1.38rem] pl-5">
                   <Link href="/featuredToursPage">Virtual Tours</Link>
                   <Link href="/spotlightPage">Wildlife Spotlights</Link>
-                  <Link href="/newsFeedPage">News Feed</Link>
+                  <Link href="/newsFeedPage">News</Link>
                 </h4>
               </div>
             </div>
