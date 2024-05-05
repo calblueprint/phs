@@ -63,7 +63,7 @@ function HomeVirtualTours(): React.JSX.Element {
       </p>
       <div className="carousel carousel-center web:w-280 space-x-4 mt-6 rounded-lg w-full">
         {tourWithMedia.map((tour: TourWithMediaRow) => (
-          <Link href="/homePage" key={tour.id}>
+          <Link href={`/virtual-tours/${tour.id}`} key={tour.id}>
             <div className="relative carousel-item w-60 web:w-80 h-48 web:h-60 rounded-lg overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black" />
               <img

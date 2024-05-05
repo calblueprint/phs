@@ -9,7 +9,7 @@ import {
   TourDisplaysRow,
   MediaRow,
 } from '../../../../types/types';
-import NavBar from '../../../../components/userComponents/navBar/navBar';
+import NavBar from '../../../../components/userComponents/NavBar/NavBar';
 import { fetchTour } from '../../../../supabase/tours/queries';
 import { fetchDisplay } from '../../../../supabase/displays/queries';
 import { fetchTourDisplays } from '../../../../supabase/tour_displays/queries';
@@ -36,15 +36,13 @@ export default function TourStopPage({
   const [tour, setTour] = useState<TourRow>();
   const [currentStop, setCurrentStop] = useState<number>();
   const [media, setMedia] = useState<MediaRow[]>([]);
-  const [prev, setPrev] = useState<string>(
-    `/virtual-tours/${params.tourId}`,
-  );
+  const [prev, setPrev] = useState<string>(`/virtual-tours/${params.tourId}`);
   const [prevText, setPrevText] = useState<string>('Back');
   const [next, setNext] = useState<string>(
     `/virtual-tours/${params.tourId}/tour-end`,
   );
   const [nextText, setNextText] = useState<string>('End Tour');
-  const [isWide, setIsWide] = useState(window.innerWidth >= 1024);
+  const [isWide, setIsWide] = useState(false);
 
   useEffect(() => {
     // Get display
@@ -135,6 +133,9 @@ export default function TourStopPage({
   }, [params.displayId, params.tourId]);
 
   useEffect(() => {
+    if (window) {
+      setIsWide(window.innerWidth >= 1024);
+    }
     // Update isWide state on window resize
     const handleResize = () => setIsWide(window.innerWidth >= 1024);
     window.addEventListener('resize', handleResize);
@@ -149,14 +150,10 @@ export default function TourStopPage({
       <div className="flex justify-center">
         <div className="flex flex-row gap-[8.5rem] py-[6.25rem]">
           <div className="flex flex-col gap-10">
-            <h1 className="text-night">
-              {display && display.title}
-            </h1>
-            {media.length > 0 ? (
-              <Carousel media={media} />
-            ) : (
-              <div className="bg-scary-forest relative w-[29.25rem] h-[18.375rem]" />
-            )}
+            <h1 className="text-night">{display && display.title}</h1>
+            <div className="w-[29.25rem] h-[18.375rem]">
+              {media.length > 0 && <Carousel media={media} />}
+            </div>
           </div>
           <div className="flex flex-col gap-8 w-[24.375rem]">
             {(currentStop && tour?.stop_count) > 0 && (
@@ -170,7 +167,7 @@ export default function TourStopPage({
               <p className="b3 text-night mb-[3.12rem]">
                 {display && display.description}
               </p>
-              <div className="flex flex-row gap-2 mb-4">
+              <div className="flex flex-row gap-4 mb-4">
                 <LastStopButton text={prevText} link={prev} />
                 <NextStopButton text={nextText} link={next} />
               </div>
@@ -195,20 +192,14 @@ export default function TourStopPage({
             />
           )}
           <div className="mb-6">
-            {media.length > 0 ? (
-              <Carousel media={media} />
-            ) : (
-              <div className="bg-scary-forest relative w-full h-[15.3125rem]" />
-            )}
+            <div className="w-[24.375rem] h-[15.3125rem]">
+              {media.length > 0 && <Carousel media={media} />}
+            </div>
           </div>
           <div className="flex flex-col gap-5 px-[1.31rem]">
-            <h1 className="text-night">
-              {display && display.title}
-            </h1>
+            <h1 className="text-night">{display && display.title}</h1>
             <div className="pb-[2.5rem]">
-              <p className="b3 text-night">
-                {display && display.description}
-              </p>
+              <p className="b3 text-night">{display && display.description}</p>
               <div className="flex flex-row gap-4 mt-8">
                 <LastStopButton text={prevText} link={prev} />
                 <NextStopButton text={nextText} link={next} />

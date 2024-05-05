@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
 import {
@@ -16,7 +15,7 @@ import {
   fetchAllTourMedia,
   fetchTourMedia,
 } from '../../../supabase/tour_media/queries';
-import NavBar from '../../../components/userComponents/navBar/navBar';
+import NavBar from '../../../components/userComponents/NavBar/NavBar';
 import {
   fetchDisplayfromSpotlight,
   fetchRelatedSpotlightsfromSpotlightId,
@@ -36,7 +35,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
   const [tourMedia, setTourMedia] = useState<TourMediaRow[]>([]);
   const [allTourMedia, setAllTourMedia] = useState<TourMediaRow[]>([]);
   const [relatedSpotlights, setRelatedSpotlights] = useState<TourRow[]>([]);
-  const [isWide, setIsWide] = useState(window.innerWidth >= 1024);
+  const [isWide, setIsWide] = useState(false);
 
   useEffect(() => {
     /**
@@ -82,6 +81,9 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
   }, []);
 
   useEffect(() => {
+    if (window) {
+      setIsWide(window.innerWidth >= 1024);
+    }
     // Update isWide state on window resize
     const handleResize = () => setIsWide(window.innerWidth >= 1024);
     window.addEventListener('resize', handleResize);
@@ -111,19 +113,19 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
 
           <div className="flex flex-row gap-[6.44rem]">
             <div className="flex flex-col">
-              <div className="bg-scary-forest w-[34.75rem] h-[21.9375rem] mb-8 relative">
+              <div className="w-[34.75rem] h-[21.9375rem] mb-8 relative">
                 {media.length > 0 && (
-                  <Image
+                  <img
                     key={media.find(m => m.id === tourMedia[0]?.media_id)?.id}
                     src={
-                      media.find(m => m.id === tourMedia[0]?.media_id)?.url ?? ''
+                      media.find(m => m.id === tourMedia[0]?.media_id)?.url ??
+                      ''
                     }
                     alt={
-                      media.find(m => m.id === tourMedia[0]?.media_id)?.text ?? ''
+                      media.find(m => m.id === tourMedia[0]?.media_id)?.text ??
+                      ''
                     }
-                    layout="fill"
-                    objectFit="cover"
-                    priority
+                    className="w-full h-full object-cover"
                   />
                 )}
               </div>
@@ -134,18 +136,17 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
 
               {relatedSpotlights.length > 0 && (
                 <div className="flex flex-col gap-4">
-                  <h4 className="text-night">
-                    Related Spotlights
-                  </h4>
+                  <h4 className="text-night">Related Spotlights</h4>
 
-                  <ul className="list-none flex overflow-x-auto whitespace-nowrap gap-3">
+                  <ul className="list-none flex overflow-x-auto whitespace-nowrap gap-3 no-scrollbar">
                     {relatedSpotlights.map(otherSpotlight => (
                       <li className="max-w-[10.625rem]" key={otherSpotlight.id}>
-                        <Link href={`/wildlife-spotlights/${otherSpotlight.id}`}>
-                          <div className="relative w-full h-[10.5625rem] rounded-2xl flex flex-col mb-[0.81rem]">
+                        <Link
+                          href={`/wildlife-spotlights/${otherSpotlight.id}`}
+                        >
+                          <div className="relative w-[10.625rem] h-[10.5625rem] mb-[0.81rem]">
                             {media.length > 0 && (
-                              <Image
-                                className="rounded-lg"
+                              <img
                                 key={
                                   media.find(
                                     m =>
@@ -173,9 +174,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
                                       )?.media_id,
                                   )?.text ?? ''
                                 }
-                                layout="fill"
-                                objectFit="cover"
-                                priority
+                                className="w-full h-full rounded-lg object-cover"
                               />
                             )}
                           </div>
@@ -205,7 +204,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
                     >
                       <button
                         type="button"
-                        className="bg-mint-cream border-l-[0.3125rem] border-l-asparagus w-[20.875rem] h-[4.625rem] rounded-2xl px-[1.9375rem]"
+                        className="bg-mint-cream border-l-[0.3125rem] border-l-asparagus w-[20.875rem] h-[4.625rem] rounded-lg px-[1.9375rem]"
                       >
                         <p className="b1 text-scary-forest truncate">
                           {display.title}
@@ -229,20 +228,17 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
       >
         <BackButton />
       </Link>
-      <div className="bg-scary-forest relative h-[15.3125rem]">
+      <div className="relative w-full h-[15.3125rem]">
         {media.length > 0 && (
-          <Image
-            className=" h-[15.3125rem] relative"
+          <img
             key={media.find(m => m.id === tourMedia[0]?.media_id)?.id}
             src={media.find(m => m.id === tourMedia[0]?.media_id)?.url ?? ''}
             alt={media.find(m => m.id === tourMedia[0]?.media_id)?.text ?? ''}
-            layout="fill"
-            objectFit="cover"
-            priority
+            className="w-full h-full object-cover relative"
           />
         )}
       </div>
-      <div className="flex flex-col px-[1.125rem] pt-8 pb-6 gap-2">
+      <div className="flex flex-col px-[1.125rem] pt-8 pb-10 gap-5">
         <h1 className="text-night">{spotlight.name}</h1>
         <p className="b3 text-night">{spotlight.description}</p>
       </div>
@@ -259,7 +255,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
               >
                 <button
                   type="button"
-                  className="bg-mint-cream border-l-[0.3125rem] border-l-asparagus w-[22.125rem] h-[3.75rem] rounded-2xl px-[1.9375rem]"
+                  className="bg-mint-cream border-l-[0.3125rem] border-l-asparagus w-[22.125rem] h-[3.75rem] rounded-lg px-[1.9375rem]"
                 >
                   <p className="b1 text-scary-forest truncate">
                     {display.title}
@@ -276,18 +272,15 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
           <div className="bg-[#BDBDBD] h-[0.03125rem] mb-10" />
 
           <div className="flex flex-col gap-4 pb-10">
-            <h4 className="text-night px-[1.125rem]">
-              Related Spotlights
-            </h4>
+            <h4 className="text-night px-[1.125rem]">Related Spotlights</h4>
 
-            <ul className="list-none flex overflow-x-auto whitespace-nowrap px-[1.125rem] gap-[0.75rem]">
+            <ul className="list-none flex overflow-x-auto whitespace-nowrap px-[1.125rem] gap-[0.75rem] no-scrollbar">
               {relatedSpotlights.map(otherSpotlight => (
                 <li className="w-[10.125rem]" key={otherSpotlight.id}>
                   <Link href={`/wildlife-spotlights/${otherSpotlight.id}`}>
-                    <div className="relative w-full h-[10.5625rem] rounded-2xl flex flex-col">
+                    <div className="w-[10.125rem] h-[10.5625rem] relative">
                       {media.length > 0 && (
-                        <Image
-                          className="rounded-lg"
+                        <img
                           key={
                             media.find(
                               m =>
@@ -315,16 +308,14 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
                                 )?.media_id,
                             )?.text ?? ''
                           }
-                          layout="fill"
-                          objectFit="cover"
-                          priority
+                          className="w-full h-full object-cover rounded-lg"
                         />
                       )}
                     </div>
                     <p className="b1 text-night truncate mt-2">
                       {otherSpotlight.name}
                     </p>
-                    <p className="s1 text-shadow truncate mb-3">
+                    <p className="s1 text-shadow truncate">
                       {otherSpotlight.preview_text}
                     </p>
                   </Link>

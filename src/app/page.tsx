@@ -2,7 +2,7 @@
 
 import React from 'react';
 import HomeWildlifeSpotlights from '../components/userComponents/HomePageComponents/HomeWildlifeSpotlights/HomeWildlifeSpotlights';
-import NavBar from '../components/userComponents/navBar/navBar';
+import NavBar from '../components/userComponents/NavBar/NavBar';
 import VisitorResources from '../components/userComponents/HomePageComponents/VisitorResources/VisitorResources';
 import WelcomeGraphic from '../components/userComponents/HomePageComponents/WelcomeGraphic/WelcomeGraphic';
 import HomeVirtualTours from '../components/userComponents/HomePageComponents/HomeVirtualTours/HomeVirtualTours';

@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { fetchAllDisplays } from '../../../supabase/displays/queries';
@@ -18,7 +17,7 @@ import {
 } from '../../../types/types';
 
 import BackButton from '../../../components/userComponents/BackButton/BackButton';
-import NavBar from '../../../components/userComponents/navBar/navBar';
+import NavBar from '../../../components/userComponents/NavBar/NavBar';
 
 /**
  * @param params -
@@ -36,7 +35,7 @@ export default function TourStartPage({
   const [displays, setDisplays] = useState<DisplayRow[]>([]);
   const [tourMedia, setTourMedia] = useState<TourMediaRow[]>([]);
   const [media, setMedia] = useState<MediaRow[]>([]);
-  const [isWide, setIsWide] = useState(window.innerWidth >= 1024);
+  const [isWide, setIsWide] = useState(false);
 
   useEffect(() => {
     // Fetch tour, tour displays, and tour media data
@@ -57,6 +56,9 @@ export default function TourStartPage({
   }, [params.tourId]);
 
   useEffect(() => {
+    if (window) {
+      setIsWide(window.innerWidth >= 1024);
+    }
     // Update isWide state on window resize
     const handleResize = () => setIsWide(window.innerWidth >= 1024);
     window.addEventListener('resize', handleResize);
@@ -71,19 +73,19 @@ export default function TourStartPage({
           <NavBar />
           <div className="py-[6.25rem]">
             <div className="flex flex-row h-[38.9375rem]">
-              <div className="bg-scary-forest relative w-[42.25rem] h-[38.9375rem]">
+              <div className="w-[42.25rem] h-[38.9375rem]">
                 {media.length > 0 && (
-                  <Image
+                  <img
                     key={media.find(m => m.id === tourMedia[0]?.media_id)?.id}
                     src={
-                      media.find(m => m.id === tourMedia[0]?.media_id)?.url ?? ''
+                      media.find(m => m.id === tourMedia[0]?.media_id)?.url ??
+                      ''
                     }
                     alt={
-                      media.find(m => m.id === tourMedia[0]?.media_id)?.text ?? ''
+                      media.find(m => m.id === tourMedia[0]?.media_id)?.text ??
+                      ''
                     }
-                    layout="fill"
-                    objectFit="cover"
-                    priority
+                    className="object-cover w-full h-full"
                   />
                 )}
               </div>
@@ -101,7 +103,7 @@ export default function TourStartPage({
                         <p className="b1 text-ivory">Start Tour</p>
                       </div>
                     </Link>
-                    <div className="bg-silver h-[0.03125rem]" />
+                    <div className="bg-silver max-w-[36rem] h-[0.03125rem]" />
                   </div>
                 </div>
 
@@ -114,9 +116,7 @@ export default function TourStartPage({
                   </div>
                   <ol className="pl-2 flex flex-col gap-[0.88rem]">
                     {tourDisplays.map(tourDisplay => (
-                      <li
-                        key={tourDisplay.display_id}
-                      >
+                      <li key={tourDisplay.display_id}>
                         <p className="b3 text-night">
                           {tourDisplay.display_order != null
                             ? tourDisplay.display_order + 1
@@ -147,9 +147,9 @@ export default function TourStartPage({
             >
               <BackButton />
             </Link>
-            <div className="bg-scary-forest relative w-full h-[15.3125rem]">
+            <div className="w-full h-[15.3125rem]">
               {media.length > 0 && (
-                <Image
+                <img
                   key={media.find(m => m.id === tourMedia[0]?.media_id)?.id}
                   src={
                     media.find(m => m.id === tourMedia[0]?.media_id)?.url ?? ''
@@ -157,9 +157,7 @@ export default function TourStartPage({
                   alt={
                     media.find(m => m.id === tourMedia[0]?.media_id)?.text ?? ''
                   }
-                  layout="fill"
-                  objectFit="cover"
-                  priority
+                  className="object-cover w-full h-full"
                 />
               )}
             </div>

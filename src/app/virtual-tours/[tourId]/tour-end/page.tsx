@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-import NavBar from '../../../../components/userComponents/navBar/navBar';
+import NavBar from '../../../../components/userComponents/NavBar/NavBar';
 import {
   MediaRow,
   TourRow,
@@ -37,7 +37,7 @@ export default function TourEndPage({
   const [backLink, setBackLink] = useState<string>(
     `/virtual-tours/${params.tourId}`,
   );
-  const [isWide, setIsWide] = useState(window.innerWidth >= 1024);
+  const [isWide, setIsWide] = useState(false);
 
   useEffect(() => {
     // Fetch tour, tour media, media, and back link data
@@ -62,6 +62,9 @@ export default function TourEndPage({
   }, [params.tourId]);
 
   useEffect(() => {
+    if (window) {
+      setIsWide(window.innerWidth >= 1024);
+    }
     // Update isWide state on window resize
     const handleResize = () => setIsWide(window.innerWidth >= 1024);
     window.addEventListener('resize', handleResize);
@@ -80,7 +83,7 @@ export default function TourEndPage({
               <div className="flex flex-col items-center gap-5 mx-[2.34rem]">
                 <Congratulations />
                 <h2 className="text-night">
-                  {`You've reached the end of this tour!`}
+                  You’ve reached the end of this tour!
                 </h2>
               </div>
               <p className="b3 text-night">Thanks for visiting {tour?.name}.</p>
@@ -141,7 +144,7 @@ export default function TourEndPage({
             <div className="flex flex-col items-center gap-5 mx-[2.34rem]">
               <Congratulations />
               <h2 className="text-night">
-                {`You've reached the end of this tour!`}
+                You’ve reached the end of this tour!
               </h2>
             </div>
             <p className="b3 text-night">Thanks for visiting {tour?.name}.</p>

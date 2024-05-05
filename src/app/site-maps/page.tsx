@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
-import NavBar from '../../components/userComponents/navBar/navBar';
+import NavBar from '../../components/userComponents/NavBar/NavBar';
 import FilterButton from '../../components/userComponents/FilterButton/FilterButton';
 import { useWebDeviceDetection } from '../../context/WindowWidthContext/WindowWidthContext';
 

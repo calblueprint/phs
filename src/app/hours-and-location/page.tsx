@@ -4,16 +4,19 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { FiCalendar, FiCompass } from 'react-icons/fi';
 import Link from 'next/link';
-import NavBar from '../../components/userComponents/navBar/navBar';
+import NavBar from '../../components/userComponents/NavBar/NavBar';
 import { BackArrow } from '../../../public/icons';
 
 /**
  * @returns The hours and location page.
  */
 export default function HoursLocationPage() {
-  const [isWide, setIsWide] = useState(window.innerWidth >= 1024);
+  const [isWide, setIsWide] = useState(false);
 
   useEffect(() => {
+    if (window) {
+      setIsWide(window.innerWidth >= 1024);
+    }
     // Update isWide state on window resize
     const handleResize = () => setIsWide(window.innerWidth >= 1024);
     window.addEventListener('resize', handleResize);
@@ -78,7 +81,7 @@ export default function HoursLocationPage() {
                   </div>
                 </div>
                 <p className="b3 text-night w-[24.75rem]">
-                  If you've found a wild animal that appears to be sick,
+                  If you’ve found a wild animal that appears to be sick,
                   injured, or orphaned, safely contain it and either bring it to
                   our nearest shelter or contact us for guidance.
                 </p>
@@ -131,7 +134,7 @@ export default function HoursLocationPage() {
           </div>
         </div>
         <p className="b3 text-night pl-[1.31rem]">
-          If you've found a wild animal that appears to be sick, injured, or
+          If you’ve found a wild animal that appears to be sick, injured, or
           orphaned, safely contain it and either bring it to our nearest shelter
           or contact us for guidance.
         </p>

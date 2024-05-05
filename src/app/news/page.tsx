@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import BackButton from '../../components/userComponents/BackButton/page';
-import NavBar from '../../components/userComponents/navBar/navBar';
+import NavBar from '../../components/userComponents/NavBar/NavBar';
 import { NewsRow } from '../../types/types';
 import { fetchAllNewsByDate } from '../../supabase/news/queries';
 import NewsDisplay from '../../components/userComponents/NewsDisplay/NewsDisplay';
