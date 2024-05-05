@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 import { DisplayRow, MediaRow, TourRow } from '../../../../types/types';
-import NavBar from '../../../../components/userComponents/navBar/navBar';
+import NavBar from '../../../../components/userComponents/NavBar/NavBar';
 import { fetchDisplayFromId } from '../../../../supabase/displays/queries';
 import { fetchTour } from '../../../../supabase/tours/queries';
 import { fetchDisplayfromSpotlight } from '../../../../supabase/tour_displays/queries';
@@ -28,34 +28,30 @@ export default function Page({
   const [otherDisplays, setOtherDisplays] = useState<DisplayRow[]>([]);
   const [media, setMedia] = useState<MediaRow[]>([]);
   const [spotlight, setSpotlight] = useState<TourRow>([]);
-  const [isWide, setIsWide] = useState(window.innerWidth >= 768);
+  const [isWide, setIsWide] = useState(false);
 
   useEffect(() => {
     /**
      * @returns a display
      */
     async function fetchData() {
-      try {
-        const currentDisplayData: DisplayRow = await fetchDisplayFromId(
-          params.displayId,
-        );
-        setDisplay(currentDisplayData);
+      const currentDisplayData: DisplayRow = await fetchDisplayFromId(
+        params.displayId,
+      );
+      setDisplay(currentDisplayData);
 
-        const displaysFromSpotlight: DisplayRow[] =
-          await fetchDisplayfromSpotlight(params.spotlightId);
-        const currentDisplayId = params.displayId;
-        const responseDataOtherDisplays = displaysFromSpotlight.filter(
-          aDisplay => aDisplay.id !== currentDisplayId,
-        );
+      const displaysFromSpotlight: DisplayRow[] =
+        await fetchDisplayfromSpotlight(params.spotlightId);
+      const currentDisplayId = params.displayId;
+      const responseDataOtherDisplays = displaysFromSpotlight.filter(
+        aDisplay => aDisplay.id !== currentDisplayId,
+      );
 
-        setOtherDisplays(responseDataOtherDisplays);
-        const responseDataForSpotlight: TourRow = await fetchTour(
-          params.spotlightId,
-        );
-        setSpotlight(responseDataForSpotlight);
-      } catch (error) {
-        console.error(error);
-      }
+      setOtherDisplays(responseDataOtherDisplays);
+      const responseDataForSpotlight: TourRow = await fetchTour(
+        params.spotlightId,
+      );
+      setSpotlight(responseDataForSpotlight);
     }
 
     // Fetch the display media
@@ -69,8 +65,11 @@ export default function Page({
   }, []);
 
   useEffect(() => {
+    if (window) {
+      setIsWide(window.innerWidth >= 1024);
+    }
     // Update isWide state on window resize
-    const handleResize = () => setIsWide(window.innerWidth >= 768);
+    const handleResize = () => setIsWide(window.innerWidth >= 1024);
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -87,19 +86,15 @@ export default function Page({
             <h1 className="text-night">{display.title}</h1>
           </div>
           <div className="flex flex-row gap-[6.44rem]">
-            <div className="flex flex-col gap-8">
-              {media.length > 0 ? (
-                <div className="relative w-[34.75rem] h-[21.9375rem]">
-                  <Carousel media={media} />
-                </div>
-              ) : (
-                <div className="bg-scary-forest relative w-full h-[15.3125rem]" />
-              )}
+            <div className="w-[34.75rem] flex flex-col gap-8">
+              <div className="w-[34.75rem] h-[21.9375rem]">
+                {media.length > 0 && <Carousel media={media} />}
+              </div>
               <p className="b3 text-night">{display.description}</p>
             </div>
             {otherDisplays.length > 0 && (
               <div className="flex flex-col gap-5 w-[20.875rem]">
-                <h4 className="text-night">In this spotlight...</h4>
+                <h4 className="text-night">More in this spotlight...</h4>
                 <div className="flex flex-col gap-[0.88rem]">
                   {otherDisplays.map(otherDisplay => (
                     <Link
@@ -135,11 +130,9 @@ export default function Page({
       >
         <BackButton />
       </Link>
-      {media.length > 0 ? (
-        <Carousel media={media} />
-      ) : (
-        <div className="bg-scary-forest relative w-full h-[15.3125rem]" />
-      )}
+      <div className="w-full h-[15.3125rem]">
+        {media.length > 0 && <Carousel media={media} />}
+      </div>
       <div className="px-[1.12rem] pt-8 pb-10">
         <div className="flex flex-col gap-5 mb-6">
           <div className="flex flex-col gap-2">
@@ -151,7 +144,7 @@ export default function Page({
 
         {otherDisplays.length > 0 && (
           <div className="flex flex-col gap-4 mb-4">
-            <h4 className="text-night">In this spotlight...</h4>
+            <h4 className="text-night">More in this spotlight...</h4>
 
             <div className="flex flex-col gap-[0.875rem] items-center">
               {otherDisplays.map(otherDisplay => (

@@ -8,7 +8,7 @@ import { HamburgerMenu, CloseMenu } from '../../../../public/icons';
  */
 export default function NavBar() {
   const [showMenu, setShowMenu] = useState(false);
-  const [isWide, setIsWide] = useState(window.innerWidth >= 1024);
+  const [isWide, setIsWide] = useState(false);
 
   useEffect(() => {
     if (showMenu) {
@@ -19,6 +19,9 @@ export default function NavBar() {
   }, [showMenu]);
 
   useEffect(() => {
+    if (window) {
+      setIsWide(window.innerWidth >= 1024);
+    }
     // Update isWide state on window resize
     const handleResize = () => setIsWide(window.innerWidth >= 1024);
     window.addEventListener('resize', handleResize);

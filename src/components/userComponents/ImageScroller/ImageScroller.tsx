@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Image from 'next/image';
 import { MediaRow } from '../../../types/types';
 import { LeftChevron, RightChevron } from '../../../../public/icons';
 
@@ -36,18 +35,20 @@ export default function Carousel({ media }: CarouselProps) {
         alt={media[currentIndex].text ?? 'Carousel image'}
         className="object-cover w-full h-full"
       />
-      <div className="absolute inset-0 px-[1.25rem] flex items-center justify-between">
-        <button
-          type="button"
-          onClick={goToPrevious}
-          aria-label="Previous image"
-        >
-          <LeftChevron />
-        </button>
-        <button type="button" onClick={goToNext} aria-label="Next image">
-          <RightChevron />
-        </button>
-      </div>
+      {media.length > 1 && (
+        <div className="absolute inset-0 px-[1.25rem] flex items-center justify-between">
+          <button
+            type="button"
+            onClick={goToPrevious}
+            aria-label="Previous image"
+          >
+            <LeftChevron />
+          </button>
+          <button type="button" onClick={goToNext} aria-label="Next image">
+            <RightChevron />
+          </button>
+        </div>
+      )}
     </div>
   );
 }
