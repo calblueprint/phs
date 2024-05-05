@@ -92,7 +92,7 @@ function TourPreviewCard({ tour, handleClick, handleClose }: TourCardProps): JSX
                 <path d="M10.0523 11.0274L3.35083 4.32596M10.0524 4.32596L3.35083 11.0275" stroke="silver" strokeWidth="1.11692" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
-            <Link href={`/spotlightPage/${id}`}>
+            <Link href={`/wildlife-spotlights/${id}`}>
               <h3 className="relative pr-[0.31rem] pl-[0.75rem] pt-[0.3rem] pb-[0rem]">
                 <p className='truncate font-medium font-lato text-night  text-base leading-normal'>{name1}</p>
               </h3>

@@ -12,9 +12,9 @@ import { TourRow, MediaRow, TourMediaRow } from '../../types/types';
 import { BackArrow } from '../../../public/icons';
 
 /**
- * @returns spotlights from tours table
+ * @returns The spotlights page.
  */
-function App() {
+export default function WildlifeSpotlightsPage() {
   const [spotlights, setSpotlights] = useState<TourRow[]>([]);
   const [media, setMedia] = useState<MediaRow[]>([]);
   const [allTourMedia, setAllTourMedia] = useState<TourMediaRow[]>([]);
@@ -84,7 +84,7 @@ function App() {
             {spotlights.map(spotlight => (
               <li key={spotlight.id}>
                 <Link
-                  href={`/spotlightPage/${spotlight.id}`}
+                  href={`/wildlife-spotlights/${spotlight.id}`}
                   className="rounded-lg"
                 >
                   <div className="bg-scary-forest relative w-[28.125rem] h-[17.09rem] rounded-lg flex flex-col">
@@ -155,7 +155,7 @@ function App() {
               {spotlights.map(spotlight => (
                 <li key={spotlight.id}>
                   <Link
-                    href={`/spotlightPage/${spotlight.id}`}
+                    href={`/wildlife-spotlights/${spotlight.id}`}
                     className="w-full rounded-lg"
                   >
                     <div className="bg-scary-forest flex flex-col relative max-w-[24.375rem] h-[13.375rem] rounded-lg mb-[0.875rem]">
@@ -209,5 +209,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

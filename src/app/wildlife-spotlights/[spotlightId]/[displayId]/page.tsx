@@ -104,7 +104,7 @@ export default function Page({
                   {otherDisplays.map(otherDisplay => (
                     <Link
                       key={otherDisplay.id}
-                      href={`/spotlightPage/${params.spotlightId}/${otherDisplay.id}?spotlightId=${params.spotlightId}`}
+                      href={`/wildlife-spotlights/${params.spotlightId}/${otherDisplay.id}?spotlightId=${params.spotlightId}`}
                     >
                       <button
                         type="button"
@@ -118,7 +118,7 @@ export default function Page({
                   ))}
                 </div>
                 <p className="b1 text-scary-forest">
-                  <Link href="/spotlightPage">See all spotlights</Link>
+                  <Link href="/wildlife-spotlights">See all spotlights</Link>
                 </p>
               </div>
             )}
@@ -130,7 +130,7 @@ export default function Page({
     <div className="bg-ivory w-full min-h-screen">
       <NavBar />
       <Link
-        href={`/spotlightPage/${params.spotlightId}`}
+        href={`/wildlife-spotlights/${params.spotlightId}`}
         className="absolute top-[5.25rem] left-[1.12rem] z-10"
       >
         <BackButton />
@@ -157,7 +157,7 @@ export default function Page({
               {otherDisplays.map(otherDisplay => (
                 <Link
                   key={otherDisplay.id}
-                  href={`/spotlightPage/${params.spotlightId}/${otherDisplay.id}?spotlightId=${params.spotlightId}`}
+                  href={`/wildlife-spotlights/${params.spotlightId}/${otherDisplay.id}?spotlightId=${params.spotlightId}`}
                 >
                   <button
                     type="button"
@@ -173,7 +173,7 @@ export default function Page({
           </div>
         )}
         <p className="b1 text-scary-forest">
-          <Link href="/spotlightPage">See all spotlights</Link>
+          <Link href="/wildlife-spotlights">See all spotlights</Link>
         </p>
       </div>
     </div>

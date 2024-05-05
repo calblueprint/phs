@@ -14,9 +14,9 @@ import NavBar from '../../components/userComponents/navBar/navBar';
 import NextButton from '../../components/userComponents/NextButton/NextButton';
 
 /**
- * @returns The featured tours page.
+ * @returns The virtual tours page.
  */
-export default function FeaturedToursPage() {
+export default function VirtualToursPage() {
   const [tours, setTours] = useState<TourRow[]>([]);
   const [allTourMedia, setAllTourMedia] = useState<TourMediaRow[]>([]);
   const [media, setMedia] = useState<MediaRow[]>([]);
@@ -75,7 +75,7 @@ export default function FeaturedToursPage() {
                   tour.spotlight === false && (
                     <li key={tour.id}>
                       <Link
-                        href={`/featuredToursPage/${tour.id}`}
+                        href={`/virtual-tours/${tour.id}`}
                         className="rounded-lg"
                       >
                         <div className="bg-scary-forest relative w-[29.1875rem] h-[22.8125rem] rounded-lg overflow-hidden">
@@ -155,7 +155,7 @@ export default function FeaturedToursPage() {
                   tour.spotlight === false && (
                     <li key={tour.id}>
                       <Link
-                        href={`/featuredToursPage/${tour.id}`}
+                        href={`/virtual-tours/${tour.id}`}
                         className="w-full rounded-lg block"
                       >
                         <div className="bg-scary-forest relative max-w-[22.125rem] h-[12.3125rem] rounded-lg overflow-hidden">

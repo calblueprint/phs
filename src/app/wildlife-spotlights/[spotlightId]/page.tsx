@@ -141,7 +141,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
                   <ul className="list-none flex overflow-x-auto whitespace-nowrap gap-3">
                     {relatedSpotlights.map(otherSpotlight => (
                       <li className="max-w-[10.625rem]" key={otherSpotlight.id}>
-                        <Link href={`/spotlightPage/${otherSpotlight.id}`}>
+                        <Link href={`/wildlife-spotlights/${otherSpotlight.id}`}>
                           <div className="relative w-full h-[10.5625rem] rounded-2xl flex flex-col mb-[0.81rem]">
                             {media.length > 0 && (
                               <Image
@@ -201,7 +201,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
                   {displays.map(display => (
                     <Link
                       key={display.id}
-                      href={`/spotlightPage/${spotlight.id}/${display.id}?spotlightId=${spotlight.id}`}
+                      href={`/wildlife-spotlights/${spotlight.id}/${display.id}?spotlightId=${spotlight.id}`}
                     >
                       <button
                         type="button"
@@ -224,7 +224,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
     <div className="bg-ivory w-full min-h-screen">
       <NavBar />
       <Link
-        href="/spotlightPage"
+        href="/wildlife-spotlights"
         className="absolute top-[5.25rem] left-[1.12rem] z-10"
       >
         <BackButton />
@@ -255,7 +255,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
             {displays.map(display => (
               <Link
                 key={display.id}
-                href={`/spotlightPage/${spotlight.id}/${display.id}?spotlightId=${spotlight.id}`}
+                href={`/wildlife-spotlights/${spotlight.id}/${display.id}?spotlightId=${spotlight.id}`}
               >
                 <button
                   type="button"
@@ -283,7 +283,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
             <ul className="list-none flex overflow-x-auto whitespace-nowrap px-[1.125rem] gap-[0.75rem]">
               {relatedSpotlights.map(otherSpotlight => (
                 <li className="w-[10.125rem]" key={otherSpotlight.id}>
-                  <Link href={`/spotlightPage/${otherSpotlight.id}`}>
+                  <Link href={`/wildlife-spotlights/${otherSpotlight.id}`}>
                     <div className="relative w-full h-[10.5625rem] rounded-2xl flex flex-col">
                       {media.length > 0 && (
                         <Image

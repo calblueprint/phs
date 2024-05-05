@@ -48,7 +48,7 @@ function HomeVirtualTours(): React.JSX.Element {
           <Link
             className="b1 inline-flex items-center mr-4
             text-asparagus hover:text-hunter-green focus:text-hunter-green"
-            href="/featuredToursPage"
+            href="/virtual-tours"
           >
             See All
             <HiChevronRight className="text-2xl" />
@@ -89,7 +89,7 @@ function HomeVirtualTours(): React.JSX.Element {
           <Link
             className="b1 mt-8 inline-flex text-center justify-center
             text-asparagus hover:text-hunter-green focus:text-hunter-green"
-            href="/featuredToursPage"
+            href="/virtual-tours"
           >
             See all virtual tours
             <HiChevronRight className="text-2xl" />
