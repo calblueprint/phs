@@ -35,7 +35,7 @@ export default function TourEndPage({
   const [tour, setTour] = useState<TourRow>();
   const [tourMedia, setTourMedia] = useState<TourMediaRow[]>([]);
   const [backLink, setBackLink] = useState<string>(
-    `/featuredToursPage/${params.tourId}`,
+    `/virtual-tours/${params.tourId}`,
   );
   const [isWide, setIsWide] = useState(window.innerWidth >= 1024);
 
@@ -52,7 +52,7 @@ export default function TourEndPage({
         params.tourId,
       );
       setBackLink(
-        `/featuredToursPage/${params.tourId}/${
+        `/virtual-tours/${params.tourId}/${
           tourDisplays[tourDisplays.length - 1].display_id
         }`,
       );
@@ -86,7 +86,7 @@ export default function TourEndPage({
               <p className="b3 text-night">Thanks for visiting {tour?.name}.</p>
             </div>
             <div className="bg-asparagus w-[13.75rem] text-center rounded-lg">
-              <Link href="/featuredToursPage">
+              <Link href="/virtual-tours">
                 <p className="b1 px-4 py-[0.62rem]">Back to Virtual Tours</p>
               </Link>
             </div>
@@ -147,7 +147,7 @@ export default function TourEndPage({
             <p className="b3 text-night">Thanks for visiting {tour?.name}.</p>
           </div>
           <div className="bg-asparagus w-[13.75rem] text-center rounded-lg">
-            <Link href="/featuredToursPage">
+            <Link href="/virtual-tours">
               <p className="b1 px-4 py-[0.62rem]">Back to Virtual Tours</p>
             </Link>
           </div>

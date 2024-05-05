@@ -54,7 +54,7 @@ function HomeVirtualTours(): React.JSX.Element {
         {windowWidth < 768 && (
           <Link
             className="b1 text-asparagus inline-flex items-center mr-4"
-            href="/featuredToursPage"
+            href="/virtual-tours"
           >
             See All
             <HiChevronRight className="text-2xl" />
@@ -62,7 +62,7 @@ function HomeVirtualTours(): React.JSX.Element {
         )}
         {/* <Link
           className="b1 text-asparagus inline-flex items-center mr-4"
-          href="/featuredToursPage"
+          href="/virtual-tours"
         >
           See All
           <HiChevronRight className="text-2xl" />
@@ -102,7 +102,7 @@ function HomeVirtualTours(): React.JSX.Element {
         {windowWidth >= 768 && (
           <Link
             className="b1 mt-8 text-asparagus inline-flex text-center justify-center"
-            href="/featuredToursPage"
+            href="/virtual-tours"
           >
             See all virtual tours
             <HiChevronRight className="text-2xl" />

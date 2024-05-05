@@ -37,11 +37,11 @@ export default function TourStopPage({
   const [currentStop, setCurrentStop] = useState<number>();
   const [media, setMedia] = useState<MediaRow[]>([]);
   const [prev, setPrev] = useState<string>(
-    `/featuredToursPage/${params.tourId}`,
+    `/virtual-tours/${params.tourId}`,
   );
   const [prevText, setPrevText] = useState<string>('Back');
   const [next, setNext] = useState<string>(
-    `/featuredToursPage/${params.tourId}/tourEndPage`,
+    `/virtual-tours/${params.tourId}/tour-end`,
   );
   const [nextText, setNextText] = useState<string>('End Tour');
   const [isWide, setIsWide] = useState(window.innerWidth >= 1024);
@@ -76,27 +76,27 @@ export default function TourStopPage({
         throw new Error('Display not found in tour displays');
       } else if (index === 0) {
         setNext(
-          `/featuredToursPage/${params.tourId}/${
+          `/virtual-tours/${params.tourId}/${
             tourDisplays[index + 1].display_id
           }`,
         );
         setNextText('Next Stop');
       } else if (index === tourDisplays.length - 1) {
         setPrev(
-          `/featuredToursPage/${params.tourId}/${
+          `/virtual-tours/${params.tourId}/${
             tourDisplays[index - 1].display_id
           }`,
         );
         setPrevText('Last Stop');
       } else {
         setPrev(
-          `/featuredToursPage/${params.tourId}/${
+          `/virtual-tours/${params.tourId}/${
             tourDisplays[index - 1].display_id
           }`,
         );
         setPrevText('Last Stop');
         setNext(
-          `/featuredToursPage/${params.tourId}/${
+          `/virtual-tours/${params.tourId}/${
             tourDisplays[index + 1].display_id
           }`,
         );
@@ -175,7 +175,7 @@ export default function TourStopPage({
                 <NextStopButton text={nextText} link={next} />
               </div>
               <p className="b1 text-scary-forest">
-                <Link href="/featuredToursPage">Exit this tour</Link>
+                <Link href="/virtual-tours">Exit this tour</Link>
               </p>
             </div>
           </div>
@@ -214,7 +214,7 @@ export default function TourStopPage({
                 <NextStopButton text={nextText} link={next} />
               </div>
               <p className="b1 text-scary-forest mt-4">
-                <Link href="/featuredToursPage">Exit this tour</Link>
+                <Link href="/virtual-tours">Exit this tour</Link>
               </p>
             </div>
           </div>

@@ -95,7 +95,7 @@ export default function TourStartPage({
                   </div>
                   <div className="flex flex-col gap-[2.62rem]">
                     <Link
-                      href={`/featuredToursPage/${params.tourId}/${tourDisplays[0]?.display_id}`}
+                      href={`/virtual-tours/${params.tourId}/${tourDisplays[0]?.display_id}`}
                     >
                       <div className="w-[12.625rem] px-4 py-[0.62rem] bg-asparagus rounded-lg flex justify-center">
                         <p className="b1 text-ivory">Start Tour</p>
@@ -142,7 +142,7 @@ export default function TourStartPage({
           <NavBar />
           <div className="flex flex-col items-center">
             <Link
-              href="/featuredToursPage"
+              href="/virtual-tours"
               className="absolute top-[5.25rem] left-[1.12rem] z-10"
             >
               <BackButton />
@@ -171,7 +171,7 @@ export default function TourStartPage({
                   <h1 className="text-night truncate">{tour.name}</h1>
                 </div>
                 <Link
-                  href={`/featuredToursPage/${params.tourId}/${tourDisplays[0]?.display_id}`}
+                  href={`/virtual-tours/${params.tourId}/${tourDisplays[0]?.display_id}`}
                 >
                   <div className="w-[12.625rem] px-4 py-[0.62rem] bg-asparagus rounded-lg flex justify-center items-center gap-2.5">
                     <p className="b1 text-ivory">Start Tour</p>

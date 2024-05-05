@@ -124,7 +124,7 @@ function DisplayPreviewCard({
             >
               <CloseIcon />
             </div>
-            <Link href={`/spotlightPage/${id}`}>
+            <Link href={`/wildlife-spotlights/${id}`}>
               <h3 className="relative truncate text-asparagus pr-[0.31rem] pl-[0.75rem] pt-[0rem] uppercase font-light text-xs leading-normal">
                 {category}
               </h3>

@@ -28,7 +28,7 @@ function HomeNewsFeed() {
         <h2 className="text-night font-medium">Latest News</h2>
         <Link
           className="b1 text-asparagus inline-flex items-center"
-          href="/newsFeedPage"
+          href="/news"
         >
           See All
           <HiChevronRight className="text-2xl" />
@@ -40,7 +40,7 @@ function HomeNewsFeed() {
             </h2>
             <Link
             className="b1 text-asparagus inline-flex items-center mr-4"
-            href="/featuredToursPage"
+            href="/virtual-tours"
             >
                 See All
                 <HiChevronRight className="text-2xl" />

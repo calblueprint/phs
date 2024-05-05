@@ -123,7 +123,7 @@ function TourPreviewCard({ tour, handleClick, handleClose }: TourCardProps) {
                 />
               </svg>
             </div>
-            <Link href={`/spotlightPage/${id}`}>
+            <Link href={`/wildlife-spotlights/${id}`}>
               <div className=" pl-[0.75rem] pr-[9.87] pt-[0rem] font-lato text-xs text-shadow bg-[#F173731A]  rounded-lg w-[8rem]">
                 {category}
               </div>

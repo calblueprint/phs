@@ -61,7 +61,7 @@ function VisitorResources() {
               <Link
                 className="MapButton bg-ivory w-44 h-22 py-5 rounded-md shadow 
               justify-center items-center gap-3 inline-flex z-10 gap-3"
-                href="/siteMapPage"
+                href="/site-maps"
               >
                 <div className="GreenCircle w-10 h-10 relative bg-mint-cream rounded-full flex justify-center items-center">
                   <FiCompass className="w-6 h-6 text-scary-forest" />
@@ -75,7 +75,7 @@ function VisitorResources() {
               <Link
                 className="AdmissionButton bg-ivory w-44 h-22 py-5 rounded-md shadow 
                 justify-center items-center gap-3 inline-flex z-10 gap-3"
-                href="/hoursAdmissionPage"
+                href="/hours-and-location"
               >
                 <div
                   className="GreenCircle w-10 h-10 relative bg-mint-cream 
@@ -115,7 +115,7 @@ function VisitorResources() {
           <Link
             className="MapButton bg-ivory w-44 h-22 py-5 rounded-md shadow 
               justify-center items-center gap-3 inline-flex z-10 gap-3"
-            href="/siteMapPage"
+            href="/site-maps"
           >
             <div className="GreenCircle w-10 h-10 relative bg-mint-cream rounded-full flex justify-center items-center">
               <FiCompass className="w-6 h-6 text-scary-forest" />
@@ -129,7 +129,7 @@ function VisitorResources() {
           <Link
             className="AdmissionButton bg-ivory w-44 h-22 py-5 rounded-md shadow 
                 justify-center items-center gap-3 inline-flex z-10 gap-3"
-            href="/hoursAdmissionPage"
+            href="/hours-and-location"
           >
             <div
               className="GreenCircle w-10 h-10 relative bg-mint-cream 

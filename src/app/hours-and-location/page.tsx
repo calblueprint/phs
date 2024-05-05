@@ -7,9 +7,9 @@ import NavBar from '../../components/userComponents/navBar/navBar';
 import { BackArrow } from '../../../public/icons';
 
 /**
- * @returns The hours and admission page.
+ * @returns The hours and location page.
  */
-export default function HoursAdmissionPage() {
+export default function HoursLocationPage() {
   return (
     <div className="bg-ivory min-h-screen">
       <NavBar />
