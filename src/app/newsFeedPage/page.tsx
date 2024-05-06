@@ -58,20 +58,30 @@ export default function App() {
       )}
       {windowWidth >= 1024 && (
         <div>
-          <div className="flex justify-around px-[12rem] pt-[7.5rem]">
-            <div>
-              <p className="text-night">
-                {' '}
-                <Link href="/" className="text-scary-forest hover:underline">
+          <div className="flex">
+            <div className="w-[50%] text-night px-[10rem] pt-[7.5rem] bg-gradient-to-b from-mint-cream to-scary-forest flex flex-col items-center">
+              <div>
+                <p className="text-night">
                   {' '}
-                  Home{' '}
-                </Link>{' '}
-                / News{' '}
-              </p>
-              <h1 className="text-night text-4xl font-bold pt-6">News</h1>
+                  <Link href="/" className="text-scary-forest hover:underline">
+                    {' '}
+                    Home{' '}
+                  </Link>{' '}
+                  / News{' '}
+                </p>
+                <h1 className="text-night text-4xl font-bold pt-6">News</h1>
+                <p className="pt-[2rem] text-night w-[311px]">
+                  {' '}
+                  PLACEHOLDER: Take a virtual sneak peek behind the scenes at
+                  our Wildlife Care Center. Here you will find outside
+                  enclosures where sick, injured, and orphaned wildlife
+                  recuperate and acclimate before being released back into their
+                  natural habitat.{' '}
+                </p>
+              </div>
             </div>
-            <div>
-              <ul className="pt-[4rem]">
+            <div className="w-[50%]  px-[10rem] pt-[7.5rem] flex justify-center">
+              <ul className="pt-[4rem] m-auto">
                 {news.map(article => (
                   <NewsDisplay
                     key={article.updated_at}
