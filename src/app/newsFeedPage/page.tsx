@@ -59,7 +59,7 @@ export default function App() {
       {windowWidth >= 1024 && (
         <div>
           <div className="flex">
-            <div className="w-[50%] text-night px-[10rem] pt-[7.5rem] bg-gradient-to-b from-mint-cream to-scary-forest flex flex-col items-center">
+            <div className="w-[50%] text-night px-[10rem] pt-[7.5rem] bg-mint-cream flex flex-col items-center">
               <div>
                 <p className="text-night">
                   {' '}
