@@ -13,8 +13,9 @@ function ExhibitButton() {
   return (
     <Link
       href="/exhibitPage"
-      className="ExhibitButton rounded-lg w-full justify-start items-center gap-4 inline-flex
+      className="ExhibitButton rounded-lg justify-start items-center gap-4 inline-flex
       bg-ivory group hover:bg-mint-cream focus:bg-mint-cream 
+      w-full h-full web:h-48
       py-6 web:px-8 web:py-16 
       shadow-darkest focus:shadow-vignette"
     >
