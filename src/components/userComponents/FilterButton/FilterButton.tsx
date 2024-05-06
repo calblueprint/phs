@@ -24,13 +24,11 @@ interface FilterButtonProps {
  * @returns JSX.Element
  */
 function FilterButton({ content, onClick, isSelected }: FilterButtonProps) {
-  const baseStyle =
-    'py-2.5 px-3 whitespace-nowrap font-lato text-base font-normal rounded-lg flex-grow text-center';
-  const selectedStyle = 'bg-hunter-green text-white';
-  const unselectedStyle = 'bg-mint-cream text-scary-forest';
+  const selectedStyle =
+    'bg-hunter-green text-white font-lato text-base font-medium rounded-lg';
 
-  const buttonClass = `${baseStyle} ${
-    isSelected ? selectedStyle : unselectedStyle
+  const buttonClass = `py-2 px-6 whitespace-nowrap border-solid text-scary-forest flex-grow font-lato text-base font-medium  ${
+    isSelected ? selectedStyle : ''
   }`;
 
   return (
