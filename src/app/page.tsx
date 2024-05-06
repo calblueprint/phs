@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import HomeWildlifeSpotlights from '../components/userComponents/HomeWildlifeSpotlights/HomeWildlifeSpotlights';
+import HomeWildlifeSpotlights from '../components/userComponents/HomePageComponents/HomeWildlifeSpotlights/HomeWildlifeSpotlights';
 import NavBar from '../components/userComponents/navBar/navBar';
-import VisitorResources from '../components/userComponents/VisitorResources/VisitorResources';
-import WelcomeGraphic from '../components/userComponents/WelcomeGraphic/WelcomeGraphic';
-import HomeVirtualTours from '../components/userComponents/HomeVirtualTours/HomeVirtualTours';
-import HomeNewsFeed from '../components/userComponents/HomeNewsFeed/HomeNewsFeed';
+import VisitorResources from '../components/userComponents/HomePageComponents/VisitorResources/VisitorResources';
+import WelcomeGraphic from '../components/userComponents/HomePageComponents/WelcomeGraphic/WelcomeGraphic';
+import HomeVirtualTours from '../components/userComponents/HomePageComponents/HomeVirtualTours/HomeVirtualTours';
+import HomeNewsFeed from '../components/userComponents/HomePageComponents/HomeNewsFeed/HomeNewsFeed';
 
 /**
  * @returns - Home page for PHS/SPCA.  Buttons are available for the major flows of the application from this page.

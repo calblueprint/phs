@@ -3,9 +3,9 @@
 import React, { useEffect, useState } from 'react';
 import { HiChevronRight } from 'react-icons/hi';
 import Link from 'next/link';
-import { NewsRow } from '../../../types/types';
-import NewsDisplay from '../NewsDisplay/NewsDisplay';
-import { fetchAllNewsByDate } from '../../../supabase/news/queries';
+import { NewsRow } from '../../../../types/types';
+import NewsDisplay from '../../NewsDisplay/NewsDisplay';
+import { fetchAllNewsByDate } from '../../../../supabase/news/queries';
 
 /**
  * @returns news feed page limited to 3 most recend entries, for home page.
@@ -49,7 +49,8 @@ function HomeNewsFeed() {
         <div className="w-full web:w-96 h-5 justify-between items-center flex">
           <h2 className="text-night font-medium">Latest News</h2>
           <Link
-            className="b1 text-asparagus inline-flex items-center"
+            className="b1 inline-flex items-center
+            text-asparagus hover:text-hunter-green focus:text-hunter-green"
             href="/newsFeedPage"
           >
             See All
