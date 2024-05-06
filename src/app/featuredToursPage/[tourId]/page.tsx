@@ -79,7 +79,7 @@ export default function TourStartPage({
         </div>
 
         <div className="w-[24.375rem] flex flex-col px-[1.125rem] absolute top-[17.81rem] gap-6 mb-[2.5rem]">
-          <div className="bg-mint-cream w-[22.125rem] rounded-md px-[2.1875rem] py-[2.25rem] flex-col items-center gap-3 inline-flex">
+          <div className="bg-mint-green w-[22.125rem] rounded-md px-[2.1875rem] py-[2.25rem] flex-col items-center gap-3 inline-flex">
             <div className="flex flex-col w-[22.125rem] rounded-md px-[2.1875rem] text-center gap-1">
               <h2 className="text-night text-sm font-lato font-normal">
                 WELCOME TO
