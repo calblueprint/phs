@@ -96,17 +96,17 @@ function MobileInput({
         {!subscribed && (
           <div>
             <div>
-              <h3 className="pt-12 text-center font-Lato font-bold text-ivory">
-                SUBSCRIBE TO OUR NEWSLETTER!
+              <h3 className="pt-12 text-center font-['Lato']">
+                SUBSCRIBE TO OUR NEWSLETTER
               </h3>
             </div>
             <div>
-              <p className="text-center font-Lato font-normal text-ivory pt-2 pl-8 pr-8">
+              <p className="text-center m-auto w-[25rem] font-Lato font-normal text-white-smoke pt-2 pl-8 pr-8">
                 Sign up for our monthly news, events, and stories sent to your
                 inbox.
               </p>
             </div>
-            <div className="flex flex-col items-center justify-center gap-3.5 pt-4">
+            <div className="flex flex-col items-center justify-center gap-[.875rem] pt-4">
               <input
                 type="text"
                 placeholder="First Name"
@@ -114,7 +114,7 @@ function MobileInput({
                 required
                 id="nameInput"
                 onChange={handleNameChange}
-                className={`focus:border-ivory valid:border-asparagus font-Lato text-sm bg-hunterGreen border border-silver rounded-md pl-3 w-[322px] h-[50px] items-center ${
+                className={`focus:border-ivory valid:border-asparagus font-Lato text-sm bg-hunterGreen border border-silver rounded-md pl-3 w-[20.125rem] h-[3.125rem] items-center ${
                   inputValueName ? 'text-silver' : 'text-silver'
                 }`}
               />
@@ -125,19 +125,19 @@ function MobileInput({
                 id="emailInput"
                 required
                 onChange={handleEmailChange}
-                className={`focus:border-ivory valid:border-asparagus font-Lato text-sm bg-hunterGreen border border-silver rounded-md pl-3 w-[322px] h-[50px] items-center ${
+                className={`focus:border-ivory valid:border-asparagus font-Lato text-sm bg-hunterGreen border border-silver rounded-md pl-3 w-[20.125rem] h-[3.125rem] items-center ${
                   inputValueEmail ? 'text-silver' : 'text-silver'
                 }`}
               />
               <button
                 type="button"
-                className="active:bg-[#bcc0bb] bg-white-smoke w-[322px] h-[43px] text-shadow font-[Lato] rounded-lg p-5 mt-2 flex items-center justify-center"
+                className="active:bg-[#bcc0bb] bg-white-smoke w-[20.125rem] h-[3.125rem] text-shadow font-[Lato] rounded-lg flex items-center justify-center"
                 onClick={handleSubmit}
               >
                 Subscribe
               </button>
               {showError && (
-                <div className="error-modal flex items-center rounded-lg w-[322px] bg-[#E94444] m-auto justify-center mt-[10px]">
+                <div className="error-modal flex items-center rounded-lg w-[20.125rem] bg-[#E94444] m-auto justify-center pt-[.625rem]">
                   {/* Display your error message or handle the error case */}
                   <div className="icon-container">
                     <BiErrorCircle className="text-ivory text-[12px]" />
@@ -156,7 +156,7 @@ function MobileInput({
           <div className="flex-col justify-start items-center gap-2.5 flex">
             <div className="flex-col justify-start items-center gap-4 flex">
               <div className="flex-col justify-start items-center gap-1.5 flex">
-                <p className="mt-8 text-center font-normal font-['Lato']">
+                <p className="text-center font-normal font-['Lato']">
                   CONNECT WITH US
                 </p>
               </div>
@@ -249,14 +249,32 @@ function MobileInput({
         <hr className="border-silver w-[322px] m-auto h-[.5px] mt-5 mb-8" />
         <div className="bg-scary-forest flex justify-around text-center text-ivory font-[Lato] gap-4 active:text-[#bcc0bb]">
           <div className="flex flex-col gap-4">
-            <Link href="/hoursAdmissionPage"> Hours & Locations </Link>
-            <Link href="/siteMapPage"> Site Maps </Link>
-            <Link href="/featuredToursPage"> Featured Tours </Link>
+            <Link href="/hoursAdmissionPage">
+              {' '}
+              <p> Hours & Locations </p>{' '}
+            </Link>
+            <Link href="/siteMapPage">
+              {' '}
+              <p> Site Maps </p>{' '}
+            </Link>
+            <Link href="/featuredToursPage">
+              {' '}
+              <p> Featured Tours </p>{' '}
+            </Link>
           </div>
           <div className="flex flex-col gap-4">
-            <Link href="/exhibitsPage"> Exhibits </Link>
-            <Link href="/newsFeedPage"> News </Link>
-            <Link href="/spotlightPage"> Wildlife Spotlights </Link>
+            <Link href="/exhibitsPage">
+              {' '}
+              <p> Exhibits </p>{' '}
+            </Link>
+            <Link href="/newsFeedPage">
+              {' '}
+              <p> News </p>{' '}
+            </Link>
+            <Link href="/spotlightPage">
+              {' '}
+              <p> Wildlife Spotlights </p>{' '}
+            </Link>
           </div>
         </div>
         <div className="w-full pt-6 gap-4 bg-scary-forest">
