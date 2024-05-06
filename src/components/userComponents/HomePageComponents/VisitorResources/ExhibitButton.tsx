@@ -16,12 +16,12 @@ function ExhibitButton() {
       className="ExhibitButton rounded-lg justify-start items-center gap-4 inline-flex
       bg-ivory group hover:bg-mint-cream focus:bg-mint-cream 
       w-full h-full web:h-48
-      py-6 web:px-8 web:py-16 
+      p-6 web:px-8 web:py-16 
       shadow-darkest focus:shadow-vignette"
     >
       <div
         className="GreenCircle relative rounded-full flex justify-center items-center 
-        w-14 h-14 web:h-13
+        w-14 h-14
        bg-mint-cream group-hover:bg-ivory group-focus:bg-ivory"
       >
         <FiMap className="w-6 h-6 text-scary-forest" />

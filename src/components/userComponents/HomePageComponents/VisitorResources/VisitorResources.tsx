@@ -35,7 +35,7 @@ function VisitorResources() {
         <p
           className="VisitorResources z-10 text-ivory text-2xl font-medium 
           px-6
-          max-w-96 web:w-full
+          w-96 max-w-full web:w-full
           web:text-center"
         >
           Visitor Resources
@@ -51,10 +51,10 @@ function VisitorResources() {
         >
           <ExhibitButton />
           <div className="flex w-full justify-center gap-4 web:space-x-0 z-10 web:flex-col web:gap-3">
-            <div className="w-1/2 web:w-full">
+            <div className="w-1/2 web:w-full web:h-1/2">
               <MapButton />
             </div>
-            <div className="w-1/2 web:w-full">
+            <div className="w-1/2 web:w-full web:h-1/2">
               <AdmissionButton />
             </div>
           </div>

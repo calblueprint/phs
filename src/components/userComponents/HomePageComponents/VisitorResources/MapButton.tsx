@@ -12,9 +12,10 @@ import { FiCompass } from 'react-icons/fi';
 function MapButton() {
   return (
     <Link
-      className="MapButton w-full h-full rounded-md
+      className="MapButton w-full h-full rounded-md gap-3
       justify-center items-center inline-flex z-10
-      p-4 web:pl-9 web:pr-24 web:pt-7 web:pb-[1.625rem]
+      p-4 web:px-8 web:py-6
+      // p-4 web:pl-9 web:pr-24 web:pt-7 web:pb-[1.625rem]
       bg-ivory group hover:bg-mint-cream focus:bg-mint-cream
       shadow-darkest focus:shadow-vignette"
       href="/siteMapPage"
@@ -23,13 +24,11 @@ function MapButton() {
         className="GreenCircle w-10 h-10 relative rounded-full flex justify-center items-center
         bg-mint-cream group-hover:bg-ivory group-focus:bg-mint-cream"
       >
-        <FiCompass className="w-6 h-6 text-scary-forest" />
+        <FiCompass className="w-7 h-7 text-scary-forest" />
       </div>
-      <div className=" justify-center items-start gap-1.5 flex">
-        <div className=" text-neutral-700 text-base font-bold font-lato leading-tight">
-          View Map
-        </div>
-      </div>
+      <p className="b1 w-20 text-night text-base font-bold leading-tight">
+        View Map
+      </p>
     </Link>
   );
 }
