@@ -6,8 +6,8 @@ import AdmissionButton from './AdmissionButton';
 /**
  * @returns - Visitor resources section of the home page.  Users can reach the Site Map and QR flow from here.
  * These resources are mainly for in-person experiences
- * @Note VisitorResources tag below uses padding to ensure relative consistency of text lining up with buttons.  
- * It will look slightly off on some screens.  Motivation: it's better to be slightly wrong on many screens 
+ * @Note VisitorResources tag below uses padding to ensure relative consistency of text lining up with buttons.
+ * It will look slightly off on some screens.  Motivation: it's better to be slightly wrong on many screens
  * than VERY wrong on a few.  If solution found, @andreiTan
  */
 function VisitorResources() {
@@ -32,10 +32,12 @@ function VisitorResources() {
             Visitor Resources
           </p>
         </div> */}
-        <p className="VisitorResources z-10 text-ivory text-2xl font-medium 
+        <p
+          className="VisitorResources z-10 text-ivory text-2xl font-medium 
           px-6
-          w-96 web:w-full
-          web:text-center">
+          max-w-96 web:w-full
+          web:text-center"
+        >
           Visitor Resources
         </p>
         {/* <p className="ForCentering w-full z-10 text-ivory text-2xl font-medium
@@ -45,10 +47,10 @@ function VisitorResources() {
         <div
           className="z-10 flex-col items-start justify-start items-center web:items-start
         gap-4 web:gap-3 inline-flex bg-opacity-80 
-         web:flex-row web:flex-grow-0 bg-red-500 h-full"
+         web:flex-row web:flex-grow-0 h-full"
         >
           <ExhibitButton />
-          <div className="flex w-full bg-red-500 justify-center gap-4 web:space-x-0 z-10 web:flex-col web:gap-3">
+          <div className="flex w-full justify-center gap-4 web:space-x-0 z-10 web:flex-col web:gap-3">
             <div className="w-1/2 web:w-full">
               <MapButton />
             </div>
