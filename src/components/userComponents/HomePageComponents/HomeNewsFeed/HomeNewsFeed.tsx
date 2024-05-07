@@ -6,11 +6,13 @@ import Link from 'next/link';
 import { NewsRow } from '../../../../types/types';
 import NewsDisplay from '../../NewsDisplay/NewsDisplay';
 import { fetchAllNewsByDate } from '../../../../supabase/news/queries';
+import { useWebDeviceDetection } from '../../../../context/WindowWidthContext/WindowWidthContext';
 
 /**
  * @returns news feed page limited to 3 most recend entries, for home page.
  */
 function HomeNewsFeed() {
+  const isWebDevice = useWebDeviceDetection();
   const [news, setNews] = useState<NewsRow[]>([]);
 
   useEffect(() => {
@@ -23,22 +25,12 @@ function HomeNewsFeed() {
     getNews();
   }, [news]);
 
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
   return (
     <div
       className="w-full flex flex-row px-2.5 py-20 web:px-56 web:py-28 gap-40
      justify-center items-center justify-start"
     >
-      {windowWidth >= 1024 && (
+      {isWebDevice && (
         <img
           className="object-cover object-center w-96 h-80 rounded-l"
           src="https://qkkuacqtcsfjbnzmxmhk.supabase.co/storage/v1/object/public/images/HomePage_Raccoons.png"

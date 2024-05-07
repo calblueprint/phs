@@ -5,6 +5,7 @@ import { HiChevronRight } from 'react-icons/hi';
 import Link from 'next/link';
 import { joinAllSpotlightsWithMedia } from '../../../../supabase/tours/queries';
 import { SpotlightWithMediaRow } from '../../../../types/types';
+import { useWebDeviceDetection } from '../../../../context/WindowWidthContext/WindowWidthContext';
 
 /**
  // eslint-disable-next-line
@@ -17,20 +18,10 @@ import { SpotlightWithMediaRow } from '../../../../types/types';
  * Spotlight scroller will showcase and link to chosen spotlights
  */
 function HomeWildlifeSpotlights(): React.JSX.Element {
-  // {spotlightsWithMedia} : {spotlightsWithMedia : SpotlightWithMediaRow[]}
+  const isWebDevice = useWebDeviceDetection();
   const [spotlightsWithMedia, setSpotlightsWithMedia] = useState<
     SpotlightWithMediaRow[]
   >([]);
-
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   useEffect(() => {
     /**
@@ -53,7 +44,7 @@ function HomeWildlifeSpotlights(): React.JSX.Element {
     <div className="pl-4 web:px-48 py-20 web:py-25 bg-ivory ">
       <div className=" h-5 w-full web:px-51 justify-between items-center inline-flex ">
         <h3 className="text-night">Our Wildlife Spotlights</h3>
-        {windowWidth < 1024 && (
+        {!isWebDevice && (
           <Link
             className="b1 inline-flex items-center
             text-asparagus hover:text-hunter-green focus:text-hunter-green"
@@ -95,7 +86,7 @@ function HomeWildlifeSpotlights(): React.JSX.Element {
         className=" h-5 w-full web:px-51 text-center
        justify-center inline-flex "
       >
-        {windowWidth >= 1024 && (
+        {isWebDevice && (
           <Link
             className="b1 mt-8 inline-flex text-center justify-center
             text-asparagus hover:text-hunter-green focus:text-hunter-green"

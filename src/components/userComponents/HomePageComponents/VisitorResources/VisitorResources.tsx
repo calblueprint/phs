@@ -6,6 +6,7 @@ import AdmissionButton from './AdmissionButton';
 /**
  * @returns - Visitor resources section of the home page.  Users can reach the Site Map and QR flow from here.
  * These resources are mainly for in-person experiences
+ // eslint-disable-next-line jsdoc/check-tag-names
  * @Note VisitorResources tag below uses padding to ensure relative consistency of text lining up with buttons.
  * It will look slightly off on some screens.  Motivation: it's better to be slightly wrong on many screens
  * than VERY wrong on a few.  If solution found, @andreiTan
@@ -27,11 +28,6 @@ function VisitorResources() {
           backgroundPosition: 'center',
         }}
       >
-        {/* <div className="ForCentering z-10 w-full bg-red-500">
-          <p className="text-ivory text-2xl font-medium web:text-center">
-            Visitor Resources
-          </p>
-        </div> */}
         <p
           className="VisitorResources z-10 text-ivory text-2xl font-medium 
           px-6
@@ -40,10 +36,6 @@ function VisitorResources() {
         >
           Visitor Resources
         </p>
-        {/* <p className="ForCentering w-full z-10 text-ivory text-2xl font-medium
-        web:text-center">
-          Visitor Resources
-        </p> */}
         <div
           className="z-10 flex-col items-start justify-start items-center web:items-start
         gap-4 web:gap-3 inline-flex bg-opacity-80 

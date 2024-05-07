@@ -1,19 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useWebDeviceDetection } from '../../../../context/WindowWidthContext/WindowWidthContext';
 
 /**
  * @returns - Welcome graphic on the home page.  Button available for "start tour" leads to the featured tours page and flow
  */
 function WelcomeGraphic() {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
+  const isWebDevice = useWebDeviceDetection();
   return (
     <div
       className="h-96 bg-neutral-900 bg-opacity-60 flex justify-center items-center relative"
@@ -29,13 +21,12 @@ function WelcomeGraphic() {
         <h1 className="text-center w-80">The Peninsula Humane</h1>
         <h1 className="text-center w-80">Society & SPCA</h1>
         <h1 className="text-center w-80">Wildlife Care Center</h1>
-        {windowWidth >= 1024 && (
+        {isWebDevice && (
           <p className="b3 font-light mt-7 w-96 text-center">
             Peninsula Humane Society & SPCA (PHS & SPCA) is a local, private,
             non-profit charitable organization dedicated to animal welfare.
           </p>
         )}
-        {/* </div> */}
       </div>
     </div>
   );

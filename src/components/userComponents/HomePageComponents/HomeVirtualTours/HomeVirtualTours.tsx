@@ -5,6 +5,7 @@ import { HiChevronRight } from 'react-icons/hi';
 import Link from 'next/link';
 import { joinAllToursWithMedia } from '../../../../supabase/tours/queries';
 import { TourWithMediaRow } from '../../../../types/types';
+import { useWebDeviceDetection } from '../../../../context/WindowWidthContext/WindowWidthContext';
 
 /**
  // eslint-disable-next-line
@@ -17,15 +18,7 @@ import { TourWithMediaRow } from '../../../../types/types';
  * Spotlight scroller will showcase and link to chosen spotlights
  */
 function HomeVirtualTours(): React.JSX.Element {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  const isWebDevice = useWebDeviceDetection();
 
   const [tourWithMedia, setToursWithMedia] = useState<TourWithMediaRow[]>([]);
   useEffect(() => {
@@ -51,7 +44,7 @@ function HomeVirtualTours(): React.JSX.Element {
     >
       <div className="w-full web:w-280 h-5 justify-between items-center inline-flex">
         <h2 className="text-night font-medium">Virtual Tours</h2>
-        {windowWidth < 1024 && (
+        {!isWebDevice && (
           <Link
             className="b1 inline-flex items-center mr-4
             text-asparagus hover:text-hunter-green focus:text-hunter-green"
@@ -92,7 +85,7 @@ function HomeVirtualTours(): React.JSX.Element {
         className=" h-5 w-full web:px-51 text-center
        justify-center inline-flex "
       >
-        {windowWidth >= 1024 && (
+        {isWebDevice && (
           <Link
             className="b1 mt-8 inline-flex text-center justify-center
             text-asparagus hover:text-hunter-green focus:text-hunter-green"
