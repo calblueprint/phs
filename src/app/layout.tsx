@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter, Lato } from 'next/font/google';
 import React from 'react';
 import { WindowWidthProvider } from '../context/WindowWidthContext/WindowWidthContext';
+import NavBar from '../components/userComponents/navBar/navBar';
 
 const inter = Inter({ subsets: ['latin'] });
 
