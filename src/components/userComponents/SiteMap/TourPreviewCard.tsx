@@ -64,9 +64,9 @@ function TourPreviewCard({ tour, handleClick, handleClose }: TourCardProps) {
   /** route this to spotlights */
 
   return (
-    <div className="flex flex-col items-center justify-center w-[25rem] h-[7.25rem] max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto p-4 pb-[2.87rem] pr-[1.19rem] pl-[1.19rem] rounded-md">
+    <div className="flex flex-col items-center justify-center w-[27.5rem] h-[8.5rem] max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto p-4 pb-[2.87rem] pr-[1.19rem] pl-[1.19rem] rounded-md">
       <div
-        className="flex flex-row items-center rounded-md overflow-hidden bg-ivory cursor-pointer w-full sm:w-4/4 md:w-5/5 lg:w-2/2 xl:w-5/5 flex-shrink-0 shadow-xl"
+        className="flex flex-row items-center rounded-md overflow-hidden bg-ivory cursor-pointer  sm:w-4/4 md:w-5/5 lg:w-2/2 xl:w-5/5 flex-shrink-0 shadow-xl"
         aria-hidden="true"
       >
         {!loading && (
@@ -107,6 +107,11 @@ function TourPreviewCard({ tour, handleClick, handleClose }: TourCardProps) {
                 }
               }}
             >
+                 <div className=" pr-[10rem] pl-[0] pt-[0.25rem] pb-[0rem] font-lato text-xs rounded-lg ">
+                <span className='text-shadow bg-[#F173731A]'>
+                {category}
+                </span>
+              </div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="14"
@@ -116,20 +121,15 @@ function TourPreviewCard({ tour, handleClick, handleClose }: TourCardProps) {
               >
                 <path
                   d="M10.0523 11.0274L3.35083 4.32596M10.0524 4.32596L3.35083 11.0275"
-                  stroke="#272929"
+                  stroke="silver"
                   strokeWidth="1.11692"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
               </svg>
+           
             </div>
             <Link href={`/spotlightPage/${id}`}>
-              <div className=" pl-[0.75rem] pr-[9.87] pt-[0rem] font-lato text-xs rounded-lg ">
-                <span className='text-shadow bg-[#F173731A]'>
-                {category}
-                </span>
-              </div>
-
               <h3 className="relative truncate font-medium font-lato text-night pr-[0.31rem] pl-[0.75rem] pt-[0.3rem] pb-[0rem] text-base leading-normal">
                 {name1}
               </h3>

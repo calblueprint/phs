@@ -75,7 +75,7 @@ function ExhibitPreviewCard({
   /** route this to spotlights */
 
   return (
-      <div className="flex flex-col items-center justify-center w-[25rem] h-[8.25rem] max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto p-4 pb-[2.87rem] pr-[1.19rem] pl-[1.19rem] rounded-md">
+      <div className="flex flex-col items-center justify-center w-[27.5rem] h-[8.5rem] max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto p-4 pb-[2.87rem] pr-[1.19rem] pl-[1.19rem] rounded-md">
         <div
           className="flex flex-row items-center rounded-md overflow-hidden bg-ivory cursor-pointer w-full sm:w-4/4 md:w-5/5 lg:w-2/2 xl:w-5/5 flex-shrink-0 shadow-xl" 
           aria-hidden="true"
@@ -109,7 +109,7 @@ function ExhibitPreviewCard({
                   handleClose(); 
                 }}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
-                    <path d="M10.0523 11.0274L3.35083 4.32596M10.0524 4.32596L3.35083 11.0275" stroke="#272929" strokeWidth="1.11692" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M10.0523 11.0274L3.35083 4.32596M10.0524 4.32596L3.35083 11.0275" stroke="silver" strokeWidth="1.11692" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </div>
               <Link href={`/spotlightPage/${id}`}>
@@ -129,9 +129,7 @@ function ExhibitPreviewCard({
               
           
             </div>
-            {/* <div>
-                <h6>Go to exhibit > </h6>
-            </div> */}
+   
           </div>
         </div>
       </div>

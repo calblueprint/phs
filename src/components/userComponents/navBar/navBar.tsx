@@ -26,7 +26,7 @@ function NavBar() {
 
   return (
     <nav
-      className="bg-[#4b711d] p-4 flex items-center justify-between z-[9999]"
+      className="bg-hunterGreen p-4 flex items-center justify-between z-[9999]"
       style={{ padding: '1rem', position: 'sticky', top: 0 }}
     >
       <Link href="/">
