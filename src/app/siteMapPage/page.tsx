@@ -47,6 +47,8 @@ function MapPage() {
 
   // move tour logic here: need to share state between filter 
   const handleFilter = (mapName: string) => {
+  // move tour logic here: need to share state between filter 
+  const handleFilter = (mapName: string) => {
     setSelectedMap(mapName);
     if (mapName === "Virtual Tour Map") {
       setMode("tours");
@@ -93,6 +95,7 @@ function MapPage() {
             />
           
           ))}
+ 
       </div>
     </div>
   );

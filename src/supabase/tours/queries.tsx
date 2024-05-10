@@ -131,8 +131,8 @@ export async function upsertTour(tourData: TourRow): Promise<TourRow | null> {
 /**
  * @returns A promise that resolves to an array of TourRow objects,
  */
-export async function joinToursWithMedia() {
-  const { data, error } = await supabase.rpc('join_tours_with_media');
+export async function joinAllToursWithMedia() {
+  const { data, error } = await supabase.rpc('join_all_tours_with_media');
   if (error) {
     throw new Error(
       `An error occurred while trying to load spotlights: ${error.message}`,

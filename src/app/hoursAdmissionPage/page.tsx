@@ -1,154 +1,74 @@
 'use client';
 
 import React from 'react';
+import { FiCalendar, FiCompass } from 'react-icons/fi';
 import Link from 'next/link';
 import NavBar from '../../components/userComponents/navBar/navBar';
+import { BackArrow } from '../../../public/icons';
 
 /**
- * @returns The hours and admission page
+ * @returns The hours and admission page.
  */
-function App() {
+export default function HoursAdmissionPage() {
   return (
-    <div style={{ backgroundColor: '#ebf0e4', height: '100vh' }}>
+    <div className="bg-ivory min-h-screen">
       <NavBar />
-      <div style={{ padding: '16px' }}>
-        <h1 style={{ color: '#333333', fontSize: '2rem', fontWeight: 700 }}>
-          Visit
+      <div className="px-[1.12rem] pt-4 pb-[2.5rem]">
+        <div className="mb-4">
+          <Link href="/">
+            <BackArrow />
+          </Link>
+        </div>
+        <h1 className="text-night font-lato text-3xl font-bold mb-4">
+          Hours & Location
         </h1>
-        <p style={{ color: '#333333', fontSize: '1rem', fontWeight: 400 }}>
-          Short summary or description of exhibit here. Short summary or
-          description of exhibit here.
+        <h3 className="text-night font-lato text-lg font-bold mb-4">
+          Site Information
+        </h3>
+
+        <div className="bg-[#EBF0E8] rounded-lg py-8 pl-[1.13rem] pr-[1.56rem] mb-[2.38rem]">
+          <div className="flex gap-[0.56rem] mb-[1.81rem]">
+            <FiCompass className="text-scary-forest w-[1.375rem] h-[1.375rem] flex-shrink-0" />
+            <p className="text-night font-normal font-lato">
+              24103 Congress Springs Road, Saratoga, CA 95070
+            </p>
+          </div>
+          <div className="flex gap-[0.56rem] mb-[0.69rem]">
+            <FiCalendar className="text-scary-forest w-[1.375rem] h-[1.375rem] flex-shrink-0" />
+            <p className="text-night font-normal font-lato">
+              Monday-Sunday | 9 AM to 6 PM
+            </p>
+          </div>
+          <p className="text-night font-light font-lato italic pl-[1.93rem]">
+            Closed on holidays*
+          </p>
+        </div>
+
+        <h3 className="text-night font-lato text-xl font-bold mb-[1.56rem]">
+          Contact Us
+        </h3>
+        <div className="flex flex-col gap-6 pl-[1.31rem] pb-[1.81rem]">
+          <div className="flex flex-row gap-[0.62rem]">
+            <p className="text-night font-normal font-lato">
+              Wildlife Care Center
+            </p>
+            <p className="text-shadow font-normal font-lato">650-340-7022</p>
+          </div>
+          <div className="flex flex-row gap-[0.62rem]">
+            <p className="text-night font-normal font-lato">Peninsula Intake</p>
+            <p className="text-shadow font-normal font-lato">650-340-7022</p>
+          </div>
+          <div className="flex flex-row gap-[0.62rem]">
+            <p className="text-night font-normal font-lato">South Bay Intake</p>
+            <p className="text-shadow font-normal font-lato">408-929-9453</p>
+          </div>
+        </div>
+        <p className="text-night font-normal font-lato pl-[1.31rem]">
+          If you've found a wild animal that appears to be sick, injured, or
+          orphaned, safely contain it and either bring it to our nearest shelter
+          or contact us for guidance.
         </p>
-        <div
-          style={{
-            backgroundColor: '#d7e0cc',
-            borderRadius: '16px',
-            padding: '16px',
-            marginTop: '16px',
-          }}
-        >
-          <h2
-            style={{
-              color: '#333333',
-              fontSize: '1.5rem',
-              fontWeight: 600,
-              marginTop: '16px',
-              marginBottom: '8px',
-            }}
-          >
-            Hours & Admission
-          </h2>
-          <p
-            style={{
-              color: '#333333',
-              fontSize: '1rem',
-              fontWeight: 400,
-              marginBottom: '8px',
-            }}
-          >
-            12 Airport Blvd, San Mateo, CA 94401
-          </p>
-          <p
-            style={{
-              color: '#333333',
-              fontSize: '1rem',
-              fontWeight: 400,
-              marginBottom: '8px',
-            }}
-          >
-            Monday-Friday | 11 a.m. - 5 p.m.
-            <br />
-            Saturday-Sunday | 10 a.m. - 8 p.m.
-          </p>
-          <p
-            style={{
-              color: '#333333',
-              fontSize: '1rem',
-              fontWeight: 400,
-              marginBottom: '8px',
-            }}
-          >
-            *Closed on holidays
-          </p>
-          <p
-            style={{
-              color: '#333333',
-              fontSize: '1rem',
-              fontWeight: 400,
-              fontStyle: 'italic',
-              marginBottom: '16px',
-            }}
-          >
-            Additional Information here
-          </p>
-        </div>
-        <h1
-          style={{
-            color: '#333333',
-            fontSize: '1.5rem',
-            fontWeight: 600,
-            padding: '16px',
-          }}
-        >
-          Touring
-        </h1>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}
-        >
-          <button
-            type="button"
-            style={{
-              backgroundColor: '#d7e0cc',
-              borderRadius: '16px',
-              padding: '16px',
-              width: '48%',
-              height: '150px',
-            }}
-          >
-            <Link href="/siteMapPage">
-              <h1
-                style={{
-                  color: '#333333',
-                  fontSize: '1rem',
-                  fontWeight: 400,
-                  padding: '16px',
-                }}
-              >
-                Site Map
-              </h1>
-            </Link>
-          </button>
-          <button
-            type="button"
-            style={{
-              backgroundColor: '#d7e0cc',
-              borderRadius: '16px',
-              padding: '16px',
-              width: '48%',
-              height: '150px',
-            }}
-          >
-            <Link href="/qrCodeTourPage">
-              <h1
-                style={{
-                  color: '#333333',
-                  fontSize: '1rem',
-                  fontWeight: 400,
-                  padding: '16px',
-                }}
-              >
-                QR Code Tour
-              </h1>
-            </Link>
-          </button>
-        </div>
       </div>
     </div>
   );
 }
-
-export default App;

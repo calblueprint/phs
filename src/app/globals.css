@@ -19,37 +19,46 @@
 /* Based on the design system in the figma file, the base HTML components are automatically given a certain amount of text-styling
 These styles are applied automatically to certain div tags, but you can also call these component styles manually if they are relevant (check figma inspect) */
 @layer components {
+  /* Mobile Text Styles */
   .h1 {
     /* Header 1 */
-    @apply text-3xl font-semibold text-ivory;
+    @apply text-3xl leading-9 font-medium text-ivory font-lato;
   }
   .h2 {
     /* Header 2 */
-    @apply text-xl font-extrabold text-ivory;
+    @apply text-2xl leading-7 font-bold text-ivory font-lato;
   }
   .h3 {
     /* Header 3 */
-    @apply text-lg font-bold text-ivory;
+    @apply text-xl leading-6 font-bold text-ivory font-lato;
+  }
+  .h4 {
+    /* Header 4 */
+    @apply text-lg leading-5 text-base font-bold text-ivory font-lato;
   }
   .b1 {
     /* Button */
-    @apply text-base font-bold text-ivory;
+    @apply text-base leading-5 font-semibold text-ivory font-lato;
   }
   .b2 {
     /* Bolded Body */
-    @apply text-base font-medium text-ivory;
+    @apply text-base leading-5 font-medium text-ivory font-lato;
   }
   .b3 {
     /* Body Text */
-    @apply text-base font-light text-ivory;
+    @apply text-base leading-5 font-normal text-ivory font-lato;
   }
   .s1 {
     /* Subtitle Text */
-    @apply text-sm font-normal text-ivory;
+    @apply text-sm leading-4 font-light text-ivory font-lato;
   }
   .s2 {
     /* Category Label Text */
-    @apply text-xs font-normal text-ivory;
+    @apply text-xs font-normal text-ivory font-lato;
+  }
+  .s3 {
+    /* Caption Text */
+    @apply text-xs font-light text-ivory font-lato;
   }
 }
 /* Base layer:  To match figma design system, certain styles are auto-applied to these HTML tags.  You can overwrite them if needed.*/
@@ -62,6 +71,9 @@ These styles are applied automatically to certain div tags, but you can also cal
   }
   h3 {
     @apply h3;
+  }
+  h4 {
+    @apply h4;
   }
   button {
     @apply b1;

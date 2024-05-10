@@ -1,27 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { MenuIcon } from '../../../../public/icons';
+import { HamburgerMenu, CloseMenu } from '../../../../public/icons';
 
 /**
  * @returns The navigation bar for the web app
  */
-function NavBar() {
+export default function NavBar() {
   const [showMenu, setShowMenu] = useState(false);
+
+  useEffect(() => {
+    if (showMenu) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [showMenu]);
 
   /**
    * Toggles the side menu
    */
   function handleClick() {
     setShowMenu(!showMenu);
-  }
-
-  /**
-   * @param event - Close the side menu when the escape key is pressed
-   */
-  function handleKeyDown(event: React.KeyboardEvent<HTMLButtonElement>) {
-    if (event.key === 'Escape') {
-      setShowMenu(false);
-    }
   }
 
   return (
@@ -50,48 +49,54 @@ function NavBar() {
       </button>
 
       {showMenu && (
-        <div className="fixed top-20 right-0 h-full w-3/5 bg-[#ebf0e4] shadow-lg">
-          <h1 className="text-xl text-black font-bold p-4">WELCOME</h1>
-          <ul className="p-4">
-            <Link href="/" className="block mb-2 text-black">
+        <div className="bg-[#000000B2] w-full h-full flex justify-end fixed top-[4.25rem]">
+          <div className="bg-ivory w-[14.9375rem] h-full relative p-[1.31rem]">
+            <h1 className="text-scary-forest font-lato text-sm font-normal uppercase mt-[1.5rem]">WELCOME</h1>
+            <Link
+              href="/"
+              className="text-night font-lato text-lg font-bold block relative left-4 mt-[1.25rem]"
+            >
               Home
             </Link>
-          </ul>
 
-          <h1 className="text-xl text-black font-bold p-4">VISIT</h1>
-          <ul className="p-4">
-            <Link href="/hoursAdmissionPage" className="block mb-2 text-black">
-              Hours & Admission
+            <h1 className="text-scary-forest font-lato text-sm font-normal uppercase mt-[2.12rem]">VISIT</h1>
+            <Link
+              href="/hoursAdmissionPage"
+              className="text-night font-lato text-lg font-bold block relative left-4 mt-[1.25rem]"
+            >
+              Hours & Location
             </Link>
-            <Link href="/featuredToursPage" className="block mb-2 text-black">
-              Featured Tours
+            <Link
+              href="/siteMapPage"
+              className="text-night font-lato text-lg font-bold block relative left-4 mt-[1.25rem]"
+            >
+              Site Maps
             </Link>
-            <Link href="/spotlightPage" className="block mb-2 text-black">
-              Spotlight Tours
+
+            <h1 className="text-scary-forest font-lato text-sm font-normal uppercase mt-[2.13rem]">
+              LEARN & EXPLORE
+            </h1>
+            <Link
+              href="/featuredToursPage"
+              className="text-night font-lato text-lg font-bold block relative left-4 mt-[1.25rem]"
+            >
+              Virtual Tours
             </Link>
-            <Link href="/siteMapPage" className="block mb-2 text-black">
-              Site Map
+            <Link
+              href="/spotlightPage"
+              className="text-night font-lato text-lg font-bold block relative left-4 mt-[1.25rem]"
+            >
+              Wildlife Spotlights
             </Link>
-            <Link href="/qrCodeTourPage" className="block text-black">
-              QR Code Tour
-            </Link>
-            <Link href="/qrCodeScanner" className="block text-black">
-              QR Scanner
-            </Link>
-          </ul>
-          <h1 className="text-xl text-black font-bold p-4">LEARN & EXPLORE</h1>
-          <ul className="p-4">
-            <Link href="/collectionsPage" className="block mb-2 text-black">
-              Collections
-            </Link>
-            <Link href="/newsFeedPage" className="block mb-2 text-black">
+            <Link
+              href="/newsFeedPage"
+              className="text-night font-lato text-lg font-bold block relative left-4 mt-[1.25rem]"
+            >
               News Feed
             </Link>
-          </ul>
+          </div>
         </div>
       )}
     </nav>
   );
 }
-
-export default NavBar;
