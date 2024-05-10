@@ -56,12 +56,12 @@ function MapPage() {
   };
 
   const renderFilterContainer = () => (
-    <div className="mb-6  pl-0 pr-0 ">
+    <div className="mb-6  w-[22.125rem]">
       {/* <div className='pt-9 pr-2 pl-2 pb-3'>
       <p className="text-night font-lato text-2xl font-semibold">Wildlife Care Center Maps</p>
       </div> */}
       <div className="flex flex-row items-center pr-0 pl-0 rounded-lg bg-mint-cream  border-mint-cream border-[8px]"
-      style={{ width: '95%', marginLeft: 'auto', marginRight: 'auto' }}>  
+      style={{ width: '93%', marginLeft: 'auto', marginRight: 'auto' }}>  
       
        
      
@@ -133,6 +133,7 @@ function MapPage() {
       <div className="p-4">
         <p className="text-night font-lato text-2xl font-normal">Wildlife Care Center Maps</p>
       </div>
+
       {renderFilterContainer()}
       <div className="pt-0 pl-2 pr-2 bg-ivory">
         <div className="w-full pr-2 pl-2 flex h-2/3 mb-8">
