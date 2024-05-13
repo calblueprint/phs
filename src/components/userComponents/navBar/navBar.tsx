@@ -24,27 +24,29 @@ export default function NavBar() {
   }
 
   return (
-    <nav className="bg-scary-forest w-full h-[4.25rem] flex flex-col relative z-[9999]">
-      <div className="flex flex-row justify-between relative top-2">
-        <Link href="/">
-          <img
-            src="https://qkkuacqtcsfjbnzmxmhk.supabase.co/storage/v1/object/public/images/PHSLogo.jpg"
-            alt="PHSLogo"
-            className="object-contain w-[6.5rem] h-[2.25rem] relative left-[1.13rem]"
-          />
-        </Link>
-        <button
-          type="button"
-          className="w-10 h-10 relative right-[0.81rem]"
-          onClick={handleClick}
-          aria-label="Toggle Menu"
-        >
-          <div className="flex justify-center items-center w-full h-full">
-            {showMenu ? <CloseMenu /> : <HamburgerMenu />}
-          </div>
-        </button>
-      </div>
-      <div className="bg-hunterGreen w-full h-[0.375rem] absolute bottom-0" />
+    <nav
+      className="bg-hunterGreen p-4 flex items-center justify-between z-[9999]"
+      style={{ padding: '1rem', position: 'sticky', top: 0 }}
+    >
+      <Link href="/">
+        <img
+          src="https://phs-spca.org/wp-content/uploads/2017/03/PHSLogo.jpg"
+          alt="Logo"
+          className="object-contain"
+          style={{ maxHeight: '100%', maxWidth: '50%' }}
+        />
+      </Link>
+      <div className="flex-grow" />
+      <button
+        type="button"
+        className="w-10 h-10"
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
+        tabIndex={0}
+        aria-label="Menu"
+      >
+        <MenuIcon />
+      </button>
 
       {showMenu && (
         <div className="bg-[#000000B2] w-full h-full flex justify-end fixed top-[4.25rem]">
