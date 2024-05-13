@@ -82,7 +82,7 @@ function TourPreviewCard({
               alt="Tour preview"
               layout="fill"
               objectFit="cover"
-            />
+            /> 
           </div>
         )}
         <div
