@@ -76,7 +76,7 @@ export default function VirtualToursPage() {
                     <li key={tour.id}>
                       <Link
                         href={`/virtual-tours/${tour.id}`}
-                        className="rounded-lg"
+                        className="rounded-xl"
                       >
                         <div className="relative w-[29.1875rem] h-[22.8125rem] rounded-xl overflow-hidden">
                           {media.length > 0 && (
@@ -103,7 +103,7 @@ export default function VirtualToursPage() {
                             />
                           )}
                           <div
-                            className="absolute bottom-0 w-full h-48 rounded-lg p-[1.31rem] flex flex-col justify-end"
+                            className="absolute bottom-0 w-full h-48 rounded-xl p-[1.31rem] flex flex-col justify-end"
                             style={{
                               background:
                                 'linear-gradient(180deg, rgba(51, 51, 51, 0.0) 0%, rgba(51, 51, 51, 0.4) 50%, rgba(0, 0, 0, 0.8) 100%)',
@@ -153,7 +153,7 @@ export default function VirtualToursPage() {
                         href={`/virtual-tours/${tour.id}`}
                         className="w-full rounded-lg block"
                       >
-                        <div className="relative w-[22.125rem] h-[12.3125rem] rounded-xl overflow-hidden">
+                        <div className="relative w-[22.125rem] h-[12.3125rem] rounded-lg overflow-hidden">
                           {media.length > 0 && (
                             <img
                               src={
