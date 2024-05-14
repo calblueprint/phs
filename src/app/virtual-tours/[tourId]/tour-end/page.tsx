@@ -78,7 +78,7 @@ export default function TourEndPage({
       <NavBar />
       <div className="flex flex-col flex-grow justify-center">
         <div className="flex flex-col gap-[3.12rem] py-[10rem] items-center">
-          <div className="flex flex-col items-center gap-8 mx-[3.47rem]">
+          <div className="flex flex-col items-center gap-[2.62rem] mx-[3.47rem]">
             <div className="flex flex-col gap-3 text-center">
               <div className="flex flex-col items-center gap-5 mx-[2.34rem]">
                 <Congratulations />
@@ -138,8 +138,8 @@ export default function TourEndPage({
         <Link href={backLink} className="pl-[1.12rem] mb-[1.81rem]">
           <BackArrow />
         </Link>
-        <div className="flex flex-col flex-grow justify-center gap-10">
-          <div className="flex flex-col items-center gap-8 mx-[3.47rem]">
+        <div className="flex flex-col flex-grow justify-center gap-[3.25rem]">
+          <div className="flex flex-col items-center gap-6 mx-[3.47rem]">
             <div className="flex flex-col gap-3 text-center">
               <div className="flex flex-col items-center gap-5 mx-[2.34rem]">
                 <Congratulations />
