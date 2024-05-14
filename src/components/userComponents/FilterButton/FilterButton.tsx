@@ -1,9 +1,5 @@
 import React from 'react';
 
-// interface FilterButtonProps {
-//   content: string;
-//   onClick?: () => void;
-// }
 interface FilterButtonProps {
   content: string;
   onClick: () => void;
@@ -12,30 +8,13 @@ interface FilterButtonProps {
 
 /**
  *
- * @param onClick.content
- * @param onClick function to handle the functionality we want to tie to our filter buttons
- * @param content is the content to be rendered in the button
- * @param root0.onClick
- * @param onClick.onClick
- */
-
-
-
-
-/**
- *
- * @param root0
- * @param root0.content
- * @param root0.onClick
- * @param root0.isSelected
  */
 function FilterButton({ content, onClick, isSelected }: FilterButtonProps) {
-  const selectedStyle = 'bg-hunter-green text-white font-lato text-base font-normal rounded-lg w-auto';
-  
+  const baseStyle = 'py-2.5 px-3 whitespace-nowrap font-lato text-base font-normal rounded-lg flex-grow text-center';
+  const selectedStyle = 'bg-hunter-green text-white';
+  const unselectedStyle = 'bg-mint-cream text-scary-forest';
 
-  const buttonClass = `py-2.5 px-6 whitespace-nowrap text-scary-forest flex-grow font-lato text-base font-normal  ${
-    isSelected ? selectedStyle : ''
-  }`;
+  const buttonClass = `${baseStyle} ${isSelected ? selectedStyle : unselectedStyle}`;
 
   return (
     <button

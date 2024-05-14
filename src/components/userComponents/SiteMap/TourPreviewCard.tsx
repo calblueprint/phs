@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { TourRow } from '../../../types/types';
 import { fetchImagesForTour } from '../../../supabase/media/queries';
+import { useWebDeviceDetection } from '../../../context/WindowWidthContext/WindowWidthContext';
 
 interface TourCardProps {
   tour: TourRow;
@@ -19,13 +20,15 @@ function TourPreviewCard({ tour, handleClick, handleClose }: TourCardProps) {
 
   const { id, description, category } = tour;
 
+
   // Responsive dimension states
   const [width, setWidth] = useState('20.06rem');
   const [height, setHeight] = useState('7.687rem');
+  const isWebDevice = useWebDeviceDetection();
 
   useEffect(() => {
     function handleResize() {
-      if (window.innerWidth >= 768) {
+      if (isWebDevice) {
         setWidth('27.06rem');
         setHeight('8.5rem');
       } else {

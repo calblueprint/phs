@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import NavBar from '../../components/userComponents/navBar/navBar';
 import FilterButton from '../../components/userComponents/FilterButton/FilterButton';
+// import { useWebDeviceDetection} from '../context/WindowWidthContext/WindowWidthContext';
+import { useWebDeviceDetection } from '../../context/WindowWidthContext/WindowWidthContext';
 
 const filterButtonContent: string[] = [
   'Virtual Tour Map',
@@ -26,22 +28,10 @@ function MapPage() {
 
   const [selectedMap, setSelectedMap] = useState(filterButtonContent[0]); // "Virtual Tour Map" by default
   const [mode, setMode] = useState<ModeState>('tours');
-  // const [isWide, setIsWide] = useState(window.innerWidth >= 768);
-  const [isWide, setIsWide] = useState(false);
 
-  useEffect(() => {
-    /**
-     *
-     */
-    function handleResize() {
-      setIsWide(window.innerWidth >= 768);
-    }
+  const isWebDevice = useWebDeviceDetection();
 
-    handleResize(); // Set initial size on client-side mount
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
 
   // move tour logic here: need to share state between filter
@@ -55,24 +45,16 @@ function MapPage() {
   };
 
   const renderFilterContainer = () => (
-    <div className="mb-6  w-[22.125rem]">
-      {/* <div className='pt-9 pr-2 pl-2 pb-3'>
-      <p className="text-night font-lato text-2xl font-semibold">Wildlife Care Center Maps</p>
-      </div> */}
-      <div className="flex flex-row items-center pr-0 pl-0 rounded-lg bg-mint-cream  border-mint-cream border-[8px]"
-      style={{ width: '93%', marginLeft: 'auto', marginRight: 'auto' }}>  
-      
-       
-     
+    <div className="mb-6 w-full px-4">
+      <div className="flex flex-row items-center justify-between bg-mint-cream border-mint-cream border-[8px] rounded-lg w-full">
         {filterButtonContent &&
           filterButtonContent.map(text => (
-            <FilterButton 
-            key={text} 
-            content={text} 
-            onClick={() => handleFilter(text)} // Fixed here
-            isSelected={selectedMap === text}
+            <FilterButton
+              key={text}
+              content={text}
+              onClick={() => handleFilter(text)}
+              isSelected={selectedMap === text}
             />
-          
           ))}
       </div>
     </div>
@@ -96,7 +78,7 @@ function MapPage() {
     </div>
   );
 
-  return isWide ? (
+  return isWebDevice ? (
 
     <>
    
