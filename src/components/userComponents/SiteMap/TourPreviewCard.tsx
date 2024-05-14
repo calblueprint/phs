@@ -124,8 +124,12 @@ function TourPreviewCard({ tour, handleClick, handleClose }: TourCardProps) {
               </svg>
             </div>
             <Link href={`/spotlightPage/${id}`}>
-              <div className=" pl-[0.75rem] pr-[9.87] pt-[0rem] font-lato text-xs text-shadow bg-[#F173731A]  rounded-lg w-[8rem]">
+
+              <div className=" pl-[0.75rem] pr-[9.87] pt-[0rem] font-lato text-xs rounded-lg ">
+                <span className='text-shadow bg-[#F173731A]'>
                 {category}
+                </span>
+
               </div>
 
               <h3 className="relative truncate font-medium font-lato text-night pr-[0.31rem] pl-[0.75rem] pt-[0.3rem] pb-[0rem] text-base leading-normal">
@@ -135,8 +139,10 @@ function TourPreviewCard({ tour, handleClick, handleClose }: TourCardProps) {
               <h4 className="relative font-lato h-[2rem] pr-[0.31rem] pt-[0rem] pl-[0.75rem] pb-[2.4rem] text-shadow line-clamp-2 text-sm">
                 {description}
               </h4>
-              <h6 className="relative pt-[0.2rem] pr-[1rem] pb-[0.4rem] text-silver font-lato text-xs text-right">
-                Go to virtual tour `&gt;`
+
+              <h6 className="relative pt-[0.7rem] pr-[1rem] pb-[0.4rem] text-silver font-lato text-xs text-right">
+                Go to virtual tour &gt;
+
               </h6>
             </Link>
           </div>

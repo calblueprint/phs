@@ -4,6 +4,7 @@ import { useMapEvents } from 'react-leaflet';
 import Link from 'next/link';
 import Image from 'next/image';
 
+
 import { ExhibitWithCategoryRow } from '../../../types/types';
 
 
@@ -12,6 +13,7 @@ import { fetchExhibitImage } from '../../../supabase/exhibits/queries';
 interface ExhibitCardProps {
 
   tour: ExhibitWithCategoryRow;
+
 
   handleClose: () => void;
   handleClick?: () => void;
@@ -128,8 +130,10 @@ function ExhibitPreviewCard({
               <h4 className="relative font-lato h-[2rem] pr-[0.31rem] pt-[0rem] pl-[0.75rem] pb-[2.4rem] text-shadow line-clamp-2 text-sm">
                 {description}
               </h4>
-              <h6 className='relative pt-[0.2rem] pr-[1rem] text-silver font-lato text-xs text-right'>
-                Go to exhibit `&gt;` 
+
+              <h6 className='relative pt-[0.7rem] pr-[1rem] pb-[0.4rem] text-silver font-lato text-xs text-right'>
+                Go to exhibit &gt;
+
                 </h6>
               </Link>
               

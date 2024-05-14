@@ -1,5 +1,6 @@
 import supabase from '../client';
 
+
 import { CategoryRow } from '../../types/types';
 
 // Assume this function is in `supabase/category/queries.js`
@@ -28,7 +29,9 @@ export async function getCategoryColor1(id: string|number) {
         // Check if data array is not empty
         if (data && data.length > 0 && data[0].color_hex) {
 
+
             // console.log(`Color for ${category}:`, data[0].color_hex);
+
 
             return data[0].color_hex;
         } 
@@ -52,5 +55,4 @@ export async function fetchAllCategories(): Promise<CategoryRow[]> {
       throw new Error(error.message);
     }
     return data;
-  }
 
