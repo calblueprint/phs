@@ -78,19 +78,19 @@ function TourPreviewCard({ tour, handleClick, handleClose }: TourCardProps) {
                   handleClose(); 
                 }}>
               <div className='pl-[0.75rem] w-full'>
-                <span className='text-shadow bg-[#F173731A] pr-2 pl-2 rounded-md'>{category}</span>
+                <text className='text-shadow bg-[#F173731A] pr-2 pl-2 rounded-md'>{category}</text>
               </div>
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
                 <path d="M10.0523 11.0274L3.35083 4.32596M10.0524 4.32596L3.35083 11.0275" stroke="silver" strokeWidth="1.11692" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
             <Link href={`/spotlightPage/${id}`}>
-              <h3 className="relative truncate font-medium font-lato text-night pr-[0.31rem] pl-[0.75rem] pt-[0.3rem] pb-[0rem] text-base leading-normal">
-                {name1}
+              <h3 className="relative pr-[0.31rem] pl-[0.75rem] pt-[0.3rem] pb-[0rem]">
+                <p className='truncate font-medium font-lato text-night  text-base leading-normal'>{name1}</p>
               </h3>
-              <h4 className="relative font-lato h-[2rem] pr-[0.31rem] pt-[0rem] pl-[0.75rem] pb-[2.4rem] text-shadow line-clamp-2 font-normal line-height-normal">
-                {description}
-              </h4>
+              <h4 className="relative h-[2rem] pr-[0.31rem] pt-[0rem] pl-[0.75rem] pb-[2.4rem]">
+              <p className='line-clamp-2 text-shadow text-xs font-normal font-lato'>{description} </p>
+            </h4>
               <h6 className='relative pt-[0rem] pr-[1rem] pb-[0.4rem] text-silver font-lato text-xs text-right'>
                 Go to virtual tour &gt;
               </h6>

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import NavBar from '../../components/userComponents/navBar/navBar';
 import FilterButton from '../../components/userComponents/FilterButton/FilterButton';
@@ -27,10 +27,8 @@ function MapPage() {
 
   const [selectedMap, setSelectedMap] = useState(filterButtonContent[0]); // "Virtual Tour Map" by default
   const [mode, setMode] = useState<ModeState>('tours');
-
   const isWebDevice = useWebDeviceDetection();
-
-
+  
   const handleFilter = (mapName: string) => {
     setSelectedMap(mapName);
     if (mapName === "Virtual Tour Map") {

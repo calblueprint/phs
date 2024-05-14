@@ -40,7 +40,10 @@ function ExhibitPreviewCard({
 
   useEffect(() => {
     /**
-     *
+     * This function adjusts the width and height of the component
+     * based on whether the device is detected as a web device.
+     * Had to specify the dimensions because dynamic width and height 
+     * did not work.
      */
     function handleResize() {
       if (isWebDevice) {
@@ -124,14 +127,14 @@ function ExhibitPreviewCard({
             </svg>
           </div>
           <Link href={`/spotlightPage/${id}`}>
-            <h3 className="relative truncate font-medium font-lato text-night pr-[0.31rem] pl-[0.75rem] pt-[0rem] pb-[0rem] text-base leading-normal">
-              {name1}
-            </h3>
-            <h4 className="relative font-lato h-[2rem] pr-[0.31rem] pt-[0rem] pl-[0.75rem] pb-[2.4rem] text-shadow line-clamp-2 text-sm">
-              {description}
+          <h3 className="relative pr-[0.31rem] pl-[0.75rem] pt-[0.3rem] pb-[0rem]">
+                <p className='truncate font-medium font-lato text-night  text-base leading-normal'>{name1}</p>
+              </h3>
+            <h4 className="relative h-[2rem] pr-[0.31rem] pt-[0rem] pl-[0.75rem] pb-[2.4rem]">
+              <p className='line-clamp-2 text-shadow text-xs font-normal font-lato'>{description} </p>
             </h4>
-            <h6 className='relative pt-[0.7rem] pr-[1rem] pb-[0.4rem] text-silver font-lato text-xs text-right'>
-              Go to virtual tour &gt;
+            <h6 className='relative pt-[0rem] pr-[1rem] pb-[0.4rem] text-silver font-lato text-xs text-right'>
+              Go to exhibit &gt;
             </h6>
           </Link>
         </div>
