@@ -88,9 +88,9 @@ export default function TourEndPage({
               </div>
               <p className="b3 text-night">Thanks for visiting {tour?.name}.</p>
             </div>
-            <div className="bg-asparagus w-[13.75rem] text-center rounded-lg">
+            <div className="bg-asparagus w-[13.75rem] h-[2.5625rem] text-center rounded-lg flex justify-center items-center">
               <Link href="/virtual-tours">
-                <p className="b1 px-4 py-[0.62rem]">Back to Virtual Tours</p>
+                <p className="b1 px-4 py-[0.6rem]">Back to Virtual Tours</p>
               </Link>
             </div>
           </div>
@@ -149,9 +149,9 @@ export default function TourEndPage({
               </div>
               <p className="b3 text-night">Thanks for visiting {tour?.name}.</p>
             </div>
-            <div className="bg-asparagus w-[13.75rem] text-center rounded-lg">
+            <div className="bg-asparagus w-[13.75rem] h-10 text-center rounded-lg flex justify-center items-center">
               <Link href="/virtual-tours">
-                <p className="b1 px-4 py-[0.62rem]">Back to Virtual Tours</p>
+                <p className="b1 px-4 py-[0.6rem]">Back to Virtual Tours</p>
               </Link>
             </div>
           </div>
