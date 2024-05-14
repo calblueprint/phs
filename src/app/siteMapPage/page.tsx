@@ -16,8 +16,6 @@ const SiteMap = dynamic(
 );
 type ModeState = 'tours' | 'exhibits';
 
-
-
 /**
  * @returns Page for the interactive map
  */
@@ -25,7 +23,7 @@ function MapPage() {
   const [selectedMap, setSelectedMap] = useState(filterButtonContent[0]); // "Virtual Tour Map" by default
   const [mode, setMode] = useState<ModeState>('tours');
 
-  // move tour logic here: need to share state between filter 
+  // move tour logic here: need to share state between filter
   const handleFilter = (mapName: string) => {
     setSelectedMap(mapName);
     if (mapName === 'Virtual Tour Map') {
@@ -37,12 +35,12 @@ function MapPage() {
 
   const renderFilterContainer = () => (
     <div className="mb-6  pl-0 pr-0 ">
-      <div className='pt-9 pr-2 pl-2 pb-7'>
-      <p className="text-night font-lato text-2xl font-semibold">Wildlife Care Center Maps</p>
+      <div className="pt-9 pr-2 pl-2 pb-7">
+        <p className="text-night font-lato text-2xl font-semibold">
+          Wildlife Care Center Maps
+        </p>
       </div>
       <div className="flex flex-row items-center gap-x-0 pr-1 pl-1 w-full rounded-lg bg-mint-cream  border-mint-cream border-[5px]">
-       
-
         {filterButtonContent &&
           filterButtonContent.map(text => (
             <FilterButton
@@ -52,7 +50,6 @@ function MapPage() {
               isSelected={selectedMap === text}
             />
           ))}
- 
       </div>
     </div>
   );

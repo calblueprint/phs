@@ -58,9 +58,9 @@ function SiteMap({ mode }: SiteMapProps) {
     TourRow[] | ExhibitWithCategoryRow[] | null
   >(null);
   const [colorsMap, setColorsMap] = useState<{ [key: string]: string }>({});
-  const [selectedTour, setSelectedTour] = useState<TourRow | ExhibitWithCategoryRow | null>(
-    null,
-  );
+  const [selectedTour, setSelectedTour] = useState<
+    TourRow | ExhibitWithCategoryRow | null
+  >(null);
   const [mapCenter, setMapCenter] = useState<LatLngExpression>(center);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
 
@@ -78,7 +78,6 @@ function SiteMap({ mode }: SiteMapProps) {
           data = await fetchAllExhibits();
         }
         if (data && mode === 'tours') {
-
           const colors = await Promise.all(
             data.map(async item => ({
               id: item.id,
@@ -91,7 +90,7 @@ function SiteMap({ mode }: SiteMapProps) {
               [curr.id]: curr.color,
             }),
             {},
-          );   
+          );
           setColorsMap(newColorsMap);
         } else if (data && mode === 'exhibits') {
           console.log(data);
@@ -110,11 +109,10 @@ function SiteMap({ mode }: SiteMapProps) {
             }),
             {},
           );
-          console.log("COLOR MAP!!");
+          console.log('COLOR MAP!!');
           setColorsMap(newColorsMap);
 
           console.log(newColorsMap);
-
         }
         setSpotlightTours(data ?? []);
       } catch (error) {
@@ -195,9 +193,7 @@ function SiteMap({ mode }: SiteMapProps) {
               />
             ) : (
               <ExhibitPreviewCard
-
                 tour={selectedTour as ExhibitWithCategoryRow} // Assuming you have proper type checks or type casting
-
                 handleClose={handlePreviewClose}
               />
             )}

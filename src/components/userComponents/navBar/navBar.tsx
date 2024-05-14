@@ -49,7 +49,9 @@ export default function NavBar() {
       {showMenu && (
         <div className="bg-[#000000B2] w-full h-full flex justify-end fixed top-[4.25rem]">
           <div className="bg-ivory w-[14.9375rem] h-full relative p-[1.31rem]">
-            <h1 className="text-scary-forest font-lato text-sm font-normal uppercase mt-[1.5rem]">WELCOME</h1>
+            <h1 className="text-scary-forest font-lato text-sm font-normal uppercase mt-[1.5rem]">
+              WELCOME
+            </h1>
             <Link
               href="/"
               className="text-night font-lato text-lg font-bold block relative left-4 mt-[1.25rem]"
@@ -57,7 +59,9 @@ export default function NavBar() {
               Home
             </Link>
 
-            <h1 className="text-scary-forest font-lato text-sm font-normal uppercase mt-[2.12rem]">VISIT</h1>
+            <h1 className="text-scary-forest font-lato text-sm font-normal uppercase mt-[2.12rem]">
+              VISIT
+            </h1>
             <Link
               href="/hoursAdmissionPage"
               className="text-night font-lato text-lg font-bold block relative left-4 mt-[1.25rem]"

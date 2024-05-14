@@ -1,22 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useWebDeviceDetection } from '../../../../context/WindowWidthContext/WindowWidthContext';
 
 /**
  * @returns - Welcome graphic on the home page.  Button available for "start tour" leads to the featured tours page and flow
  */
 function WelcomeGraphic() {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
+  const isWebDevice = useWebDeviceDetection();
   return (
     <div
-      className="w-full h-screen bg-neutral-900 bg-opacity-60 flex justify-center items-center relative"
+      className="h-96 bg-neutral-900 bg-opacity-60 flex justify-center items-center relative"
       style={{
         backgroundImage: `url('https://qkkuacqtcsfjbnzmxmhk.supabase.co/storage/v1/object/public/images/EllisonCover.png?t=2023-11-05T03%3A22%3A44.379Z')`,
         backgroundSize: 'cover',
@@ -29,14 +21,12 @@ function WelcomeGraphic() {
         <h1 className="text-center w-80">The Peninsula Humane</h1>
         <h1 className="text-center w-80">Society & SPCA</h1>
         <h1 className="text-center w-80">Wildlife Care Center</h1>
-        {windowWidth >= 768 && (
+        {isWebDevice && (
           <p className="b3 font-light mt-7 w-96 text-center">
-            The Peninsula Humane Society & SPCA (PHS & SPCA) is a local,
-            private, non-profit charitable organization dedicated to animal
-            welfare.
+            Peninsula Humane Society & SPCA (PHS & SPCA) is a local, private,
+            non-profit charitable organization dedicated to animal welfare.
           </p>
         )}
-        {/* </div> */}
       </div>
     </div>
   );
