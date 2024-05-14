@@ -2,10 +2,12 @@
 
 import L, { LatLngExpression } from 'leaflet';
 import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker } from 'react-leaflet';
+import { LayersControl, MapContainer, TileLayer, Marker } from 'react-leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
+
 import { fetchAllSpotlights } from '../../../supabase/tours/queries';
 import { ExhibitWithCategoryRow, TourRow } from '../../../types/types';
+
 import Control from './Control';
 import { fetchAllExhibits } from '../../../supabase/exhibits/queries';
 import { getCategoryColor1 } from '../../../supabase/category/queries';
@@ -71,11 +73,12 @@ function SiteMap({ mode }: SiteMapProps) {
       try {
         let data;
         if (mode === 'tours') {
-          data = await fetchAllSpotlights();
+          data = await fetchSpotlightTours();
         } else if (mode === 'exhibits') {
           data = await fetchAllExhibits();
         }
         if (data && mode === 'tours') {
+
           const colors = await Promise.all(
             data.map(async item => ({
               id: item.id,
@@ -92,6 +95,7 @@ function SiteMap({ mode }: SiteMapProps) {
           setColorsMap(newColorsMap);
         } else if (data && mode === 'exhibits') {
           console.log(data);
+
           const colors = await Promise.all(
             data.map(async item => ({
               id: item.id,
@@ -108,7 +112,9 @@ function SiteMap({ mode }: SiteMapProps) {
           );
           console.log("COLOR MAP!!");
           setColorsMap(newColorsMap);
+
           console.log(newColorsMap);
+
         }
         setSpotlightTours(data ?? []);
       } catch (error) {
@@ -149,52 +155,55 @@ function SiteMap({ mode }: SiteMapProps) {
       zoomControl={false}
       scrollWheelZoom
       style={{
-        height: '40vh',
+        height: '75vh',
         width: '100%',
-        minHeight: '532px',
+        minHeight: '544px',
         zIndex: '10',
         marginBottom: '25px',
       }}
       key={new Date().getTime()}
     >
       <TileLayer {...tileLayer} />
-      {spotlightTours &&
-        spotlightTours.map((tour, i) => {
-          // Fetch the color for this tour/exhibit; fallback to a default color if not found
-          console.log(tour);
-          const color = colorsMap[tour.id] || '#F17373'; // Fallback color
-          return (
-            <Marker
-              key={tour.id}
-              position={{
-                lat: (tour.coordinates as { lat: number })?.lat ?? 0,
-                lng: (tour.coordinates as { lng: number })?.lng ?? 0,
-              }}
-              eventHandlers={{ click: () => handleMarkerSelect(tour, i) }}
-              icon={
-                selectedMarker === i
-                  ? createSelectedMarkerIcon(color)
-                  : createDefaultMarkerIcon(color)
-              }
-            />
-          );
-        })}
-      {selectedTour && (
-        <Control position="bottomright">
-          {mode === 'tours' ? (
-            <TourPreviewCard
-              tour={selectedTour as TourRow} // Assuming you have proper type checks or type casting
-              handleClose={handlePreviewClose}
-            />
-          ) : (
-            <ExhibitPreviewCard
-              tour={selectedTour as ExhibitWithCategoryRow} // Assuming you have proper type checks or type casting
-              handleClose={handlePreviewClose}
-            />
-          )}
-        </Control>
-      )}
- 
+      <LayersControl position="topright">
+        {spotlightTours &&
+          spotlightTours.map((tour, i) => {
+            // Fetch the color for this tour/exhibit; fallback to a default color if not found
+            console.log(tour);
+            const color = colorsMap[tour.id] || '#F17373'; // Fallback color
+            return (
+              <Marker
+                key={tour.id}
+                position={{
+                  lat: (tour.coordinates as { lat: number })?.lat ?? 0,
+                  lng: (tour.coordinates as { lng: number })?.lng ?? 0,
+                }}
+                eventHandlers={{ click: () => handleMarkerSelect(tour, i) }}
+                icon={
+                  selectedMarker === i
+                    ? createSelectedMarkerIcon(color)
+                    : createDefaultMarkerIcon(color)
+                }
+              />
+            );
+          })}
+        {selectedTour && (
+          <Control position="bottomright">
+            {mode === 'tours' ? (
+              <TourPreviewCard
+                tour={selectedTour as TourRow} // Assuming you have proper type checks or type casting
+                handleClose={handlePreviewClose}
+              />
+            ) : (
+              <ExhibitPreviewCard
+
+                tour={selectedTour as ExhibitWithCategoryRow} // Assuming you have proper type checks or type casting
+
+                handleClose={handlePreviewClose}
+              />
+            )}
+          </Control>
+        )}
+      </LayersControl>
       {selectedTour == null && <RecenterMap center={center} />}
     </MapContainer>
   );
