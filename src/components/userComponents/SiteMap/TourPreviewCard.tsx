@@ -55,7 +55,7 @@ function TourPreviewCard({ tour, handleClick, handleClose }: TourCardProps) {
   }, [tour]);
 
   return (
-    <div className="flex flex-col items-center justify-center mx-auto rounded-md pl-[0.8rem] pr-[0rem]" style={{ width, height }}>
+    <div className="flex flex-col items-center justify-center mx-auto rounded-md px-[0.56rem]" style={{ width, height }}>
       <div className="flex flex-row items-center rounded-md overflow-hidden bg-ivory cursor-pointer flex-shrink-0 shadow-xl" aria-hidden="true">
         {!loading && (
           <div className="relative w-[5.875rem] z-10 h-full shrink-0 rounded-tl-md rounded-tr-none rounded-br-none rounded-bl-md">

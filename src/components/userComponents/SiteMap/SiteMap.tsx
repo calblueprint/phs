@@ -14,6 +14,7 @@ import {
 } from '../../../../public/icons';
 import ExhibitPreviewCard from './ExhibitPreviewCard';
 import TourPreviewCard from './TourPreviewCard';
+import { useWebDeviceDetection } from '../../../context/WindowWidthContext/WindowWidthContext';
 
 const center: LatLngExpression = {
   lat: 37.58748,
@@ -59,6 +60,7 @@ function SiteMap({ mode }: SiteMapProps) {
   >(null);
   const [mapCenter, setMapCenter] = useState<LatLngExpression>(center);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
+  const isWebDevice = useWebDeviceDetection();
 
   // fetch tours where spotlight == True
   useEffect(() => {
@@ -178,19 +180,35 @@ function SiteMap({ mode }: SiteMapProps) {
           );
         })}
       {selectedTour && (
-        <Control position="bottomright">
-          {mode === 'tours' ? (
-            <TourPreviewCard
-              tour={selectedTour as TourRow} // Assuming you have proper type checks or type casting
-              handleClose={handlePreviewClose}
-            />
-          ) : (
-            <ExhibitPreviewCard
-              tour={selectedTour as ExhibitWithCategoryRow} // Assuming you have proper type checks or type casting
-              handleClose={handlePreviewClose}
-            />
-          )}
-        </Control>
+        isWebDevice ? (
+          <Control position="bottomright">
+            {mode === 'tours' ? (
+              <TourPreviewCard
+                tour={selectedTour as TourRow} // Assuming you have proper type checks or type casting
+                handleClose={handlePreviewClose}
+              />
+            ) : (
+              <ExhibitPreviewCard
+                tour={selectedTour as ExhibitWithCategoryRow} // Assuming you have proper type checks or type casting
+                handleClose={handlePreviewClose}
+              />
+            )}
+          </Control>
+        ) : (
+          <div className="bottom-center">
+            {mode === 'tours' ? (
+              <TourPreviewCard
+                tour={selectedTour as TourRow} // Assuming you have proper type checks or type casting
+                handleClose={handlePreviewClose}
+              />
+            ) : (
+              <ExhibitPreviewCard
+                tour={selectedTour as ExhibitWithCategoryRow} // Assuming you have proper type checks or type casting
+                handleClose={handlePreviewClose}
+              />
+            )}
+          </div>
+        )
       )}
  
       {selectedTour == null && <RecenterMap center={center} />}

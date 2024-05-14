@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { ExhibitWithCategoryRow } from '../../../types/types';
 
 import { fetchExhibitImage } from '../../../supabase/exhibits/queries';
+import { useWebDeviceDetection } from '../../../context/WindowWidthContext/WindowWidthContext';
 
 interface ExhibitCardProps {
   tour: ExhibitWithCategoryRow;
@@ -35,13 +36,14 @@ function ExhibitPreviewCard({
   const { id, description, coordinates, category } = tour;
   const [width, setWidth] = useState('20.06rem');
   const [height, setHeight] = useState('7.687rem');
+  const isWebDevice = useWebDeviceDetection();
 
   useEffect(() => {
     /**
      *
      */
     function handleResize() {
-      if (window.innerWidth >= 768) {
+      if (isWebDevice) {
         setWidth('27.06rem');
         setHeight('8.5rem');
       } else {
@@ -94,7 +96,7 @@ function ExhibitPreviewCard({
   /** route this to spotlights */
 
   return (
-    <div className="flex flex-col items-center justify-center mx-auto rounded-md pl-[0.8rem] pr-[0rem]" style={{ width, height }}>
+    <div className="flex flex-col items-center justify-center mx-auto rounded-md px-[0.56rem]" style={{ width, height }}>
     <div className="flex flex-row items-center rounded-md overflow-hidden bg-ivory cursor-pointer flex-shrink-0 shadow-xl" aria-hidden="true">
       {!loading && (
         <div className="relative w-[5.875rem] z-10 h-full shrink-0 rounded-tl-md rounded-tr-none rounded-br-none rounded-bl-md">
