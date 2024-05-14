@@ -7,11 +7,13 @@ import { CategoryRow } from '../../types/types';
 import { fetchAllCategories } from '../../supabase/category/queries';
 import Exhibit from '../../components/userComponents/Exhibit/Exhibit';
 import BackButton from '../../components/userComponents/BackButton/page';
+import { useWebDeviceDetection } from '../../context/WindowWidthContext/WindowWidthContext';
 
 /**
  * @returns exhibit page
  */
 function App() {
+  const isWebDevice = useWebDeviceDetection();
   const [exhibits, setExhibits] = useState<CategoryRow[]>([]);
   // fetches all the exhibits to display on the page
   useEffect(() => {
@@ -23,16 +25,6 @@ function App() {
     getExhibits();
     // Detect the hash in URL and scroll to the element with the corresponding ID
   }, [exhibits]);
-
-  // for web rendering
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   // activates whenever the page opens.
   // checks if there's a "hash" which is an id of one of the exhibits to scroll to.
@@ -54,7 +46,7 @@ function App() {
   }, []);
   return (
     <div>
-      {windowWidth <= 1024 && (
+      {!isWebDevice && (
         <div className="bg-ivory">
           <NavBar />
           <div className="p-4 m-auto">
@@ -95,7 +87,7 @@ function App() {
           </div>
         </div>
       )}
-      {windowWidth > 1024 && (
+      {isWebDevice && (
         <div className="bg-ivory">
           <NavBar />
           <div className="pl-64 pr-64 pt-24 m-auto">
