@@ -1,9 +1,6 @@
 'use client';
 
-import React, { Fragment, useState, useEffect } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
-import { PiPaperPlaneTiltBold, PiSealCheck } from 'react-icons/pi';
-import { VscClose } from 'react-icons/vsc';
+import React, { useState } from 'react';
 import { BiErrorCircle } from 'react-icons/bi';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import Link from 'next/link';
