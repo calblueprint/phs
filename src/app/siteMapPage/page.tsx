@@ -45,8 +45,7 @@ function MapPage() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // move tour logic here: need to share state between filter 
-  const handleFilter = (mapName: string) => {
+
   // move tour logic here: need to share state between filter 
   const handleFilter = (mapName: string) => {
     setSelectedMap(mapName);
