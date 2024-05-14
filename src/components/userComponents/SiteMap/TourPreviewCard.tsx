@@ -21,7 +21,7 @@ function TourPreviewCard({ tour, handleClick, handleClose }: TourCardProps) {
   const { id, description, category } = tour;
 
 
-  // Responsive dimension states
+  // Responsive dimension states - for different popup resizing
   const [width, setWidth] = useState('20.06rem');
   const [height, setHeight] = useState('7.687rem');
   const isWebDevice = useWebDeviceDetection();

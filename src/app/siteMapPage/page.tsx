@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import NavBar from '../../components/userComponents/navBar/navBar';
 import FilterButton from '../../components/userComponents/FilterButton/FilterButton';
-// import { useWebDeviceDetection} from '../context/WindowWidthContext/WindowWidthContext';
 import { useWebDeviceDetection } from '../../context/WindowWidthContext/WindowWidthContext';
 
 const filterButtonContent: string[] = [
@@ -32,9 +31,6 @@ function MapPage() {
   const isWebDevice = useWebDeviceDetection();
 
 
-
-
-  // move tour logic here: need to share state between filter
   const handleFilter = (mapName: string) => {
     setSelectedMap(mapName);
     if (mapName === "Virtual Tour Map") {
@@ -61,15 +57,14 @@ function MapPage() {
   );
   const renderFilterContainerWide = () => (
     <div className="flex justify-end w-[23.875rem] h-[3.25rem]">
-      <div className="flex flex-row items-center rounded-lg bg-mint-cream  border-mint-cream border-[8px]"
-      style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto' }}>  
+      <div className="flex flex-row items-center rounded-lg bg-mint-cream  border-mint-cream border-[8px] mx-auto w-full">  
            
         {filterButtonContent &&
           filterButtonContent.map(text => (
             <FilterButton 
             key={text} 
             content={text} 
-            onClick={() => handleFilter(text)} // Fixed here
+            onClick={() => handleFilter(text)} 
             isSelected={selectedMap === text}
             />
           
@@ -88,9 +83,9 @@ function MapPage() {
         <div className="pt-0 pl-2 pr-2 bg-ivory">
 
       <div className="pt-20 pb-6 pl-2 ">
-        <span className="text-scary-forest font-lato text-sm font-normal">
-          Home  <span className='text-night'> / Wildlife Care Center Maps </span>
-        </span> 
+        <text className="text-scary-forest font-lato text-sm font-normal">
+          Home  <text className='text-night'> / Wildlife Care Center Maps </text>
+        </text> 
       </div>
       <div className="flex items-center  pb-4">
         <div className='flex-initial pr-2 pl-2'>
