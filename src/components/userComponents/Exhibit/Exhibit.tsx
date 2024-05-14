@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { useWebDeviceDetection } from '../../../context/WindowWidthContext/WindowWidthContext';
 
 /**
  *
@@ -24,9 +25,10 @@ export default function Exhibit({
   id: number;
   web: boolean;
 }) {
+  const isWebDevice = useWebDeviceDetection();
   return (
     <div>
-      {!web && (
+      {!isWebDevice && (
         <li key={id} id={`a${id}`}>
           <div className="w-full px-4 py-8 bg-mint-cream rounded-lg flex-col justify-start items-start gap-2.5 inline-flex mt-6">
             <div className="flex-col justify-start items-start gap-5 flex">
@@ -44,7 +46,7 @@ export default function Exhibit({
           </div>
         </li>
       )}
-      {web && (
+      {isWebDevice && (
         <div className="flex flex-col w-full px-8 py-16 bg-mint-cream rounded-lg flex-col justify-start items-start gap-2.5 mt-6">
           <div className="justify-start items-start gap-5">
             <div className="justify-start items-center gap-2">
