@@ -8,41 +8,7 @@ import { BiErrorCircle } from 'react-icons/bi';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import Link from 'next/link';
 import supabase from '../../../supabase/client';
-
-/**
- *
- */
-function openMailApp() {
-  const { userAgent } = navigator;
-
-  // Check if the user agent indicates iOS
-  if (/iPad|iPhone|iPod/.test(userAgent)) {
-    window.location.href = 'message:';
-  }
-  // Check if the user agent indicates Android
-  else if (/android/i.test(userAgent)) {
-    window.location.href = 'mailto:';
-  }
-  // For other platforms, provide general instructions
-  else {
-    alert('Please open your mail app manually.');
-  }
-}
-
-/**
- * @returns subscribe button
- */
-function subscribeButton() {
-  return (
-    <button
-      type="button"
-      className="active:bg-[#bcc0bb] bg-asparagus w-[322px] h-[43px] text-ivory font-[Lato] rounded-lg mb-8 mt-8 flex items-center justify-center"
-      onClick={openMailApp}
-    >
-      Open Email App
-    </button>
-  );
-}
+import { useWebDeviceDetection } from '../../../../context/WindowWidthContext/WindowWidthContext';
 
 type EmailInputProps = {
   inputValueName: string;
@@ -500,19 +466,12 @@ function WebInput({
  * otherwise, if a valid email is submitted and properly subscribed, another pop up will appear that will tell the user they are subscribed and direct them to another page.
  */
 export default function Footer() {
+  const isWebDevice = useWebDeviceDetection();
   const [inputValueName, setNameValue] = useState('');
   const [inputValueEmail, setEmailValue] = useState('');
   const [showError, setShowError] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [subscribed, setSubscribed] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   const handleNameChange = e => {
     setNameValue(e.target.value);
@@ -572,7 +531,7 @@ export default function Footer() {
 
   return (
     <div>
-      {windowWidth <= 1024 && (
+      {isWebDevice && (
         <MobileInput
           inputValueName={inputValueName}
           inputValueEmail={inputValueEmail}
@@ -584,7 +543,7 @@ export default function Footer() {
           errorMsg={errorMsg}
         />
       )}
-      {windowWidth > 1024 && (
+      {isWebDevice && (
         <WebInput
           inputValueName={inputValueName}
           inputValueEmail={inputValueEmail}
