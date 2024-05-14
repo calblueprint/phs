@@ -74,9 +74,9 @@ export default function TourEndPage({
   }, []);
 
   return isWide ? (
-    <div className="bg-ivory w-full min-h-screen">
+    <div className="bg-ivory w-full min-h-screen flex flex-col">
       <NavBar />
-      <div className="flex justify-center">
+      <div className="flex flex-col flex-grow justify-center">
         <div className="flex flex-col gap-[3.12rem] py-[10rem] items-center">
           <div className="flex flex-col items-center gap-8 mx-[3.47rem]">
             <div className="flex flex-col gap-3 text-center">
@@ -132,61 +132,64 @@ export default function TourEndPage({
       </div>
     </div>
   ) : (
-    <div className="bg-ivory w-full min-h-screen">
+    <div className="bg-ivory w-full min-h-screen flex flex-col">
       <NavBar />
-      <Link href={backLink} className="relative top-4 left-[1.12rem]">
-        <BackArrow />
-      </Link>
-
-      <div className="flex flex-col gap-10 mt-8 mb-10">
-        <div className="flex flex-col items-center gap-8 mx-[3.47rem]">
-          <div className="flex flex-col gap-3 text-center">
-            <div className="flex flex-col items-center gap-5 mx-[2.34rem]">
-              <Congratulations />
-              <h2 className="text-night">
-                You’ve reached the end of this tour!
-              </h2>
+      <div className="flex flex-col flex-grow py-4">
+        <Link href={backLink} className="pl-[1.12rem] mb-[1.81rem]">
+          <BackArrow />
+        </Link>
+        <div className="flex flex-col flex-grow justify-center gap-10">
+          <div className="flex flex-col items-center gap-8 mx-[3.47rem]">
+            <div className="flex flex-col gap-3 text-center">
+              <div className="flex flex-col items-center gap-5 mx-[2.34rem]">
+                <Congratulations />
+                <h2 className="text-night">
+                  You’ve reached the end of this tour!
+                </h2>
+              </div>
+              <p className="b3 text-night">Thanks for visiting {tour?.name}.</p>
             </div>
-            <p className="b3 text-night">Thanks for visiting {tour?.name}.</p>
+            <div className="bg-asparagus w-[13.75rem] text-center rounded-lg">
+              <Link href="/virtual-tours">
+                <p className="b1 px-4 py-[0.62rem]">Back to Virtual Tours</p>
+              </Link>
+            </div>
           </div>
-          <div className="bg-asparagus w-[13.75rem] text-center rounded-lg">
-            <Link href="/virtual-tours">
-              <p className="b1 px-4 py-[0.62rem]">Back to Virtual Tours</p>
-            </Link>
-          </div>
-        </div>
-        {tourMedia.length > 0 && (
-          <div className="bg-[#F5F6F5] mb-10">
-            <div className="bg-[#BDBDBD] h-[0.03125rem]" />
-            <div className="flex flex-col px-[1.12rem] py-8 gap-6">
-              <h4 className="text-night">Related Links</h4>
-              <ol className="px-[0.88rem]">
-                {tourMedia.map((tm, index) => (
-                  <li key={tm.media_id} className="flex flex-col gap-4">
-                    <Link
-                      href={media.find(m => m.id === tm.media_id)?.url ?? '-1'}
-                      className="flex flex-col gap-1"
-                    >
-                      <div className="flex flex-row items-center gap-2">
-                        <p className="s1 text-shadow uppercase">
-                          {media.find(m => m.id === tm.media_id)?.type}
+          {tourMedia.length > 0 && (
+            <div className="bg-[#F5F6F5] mb-10">
+              <div className="bg-[#BDBDBD] h-[0.03125rem]" />
+              <div className="flex flex-col px-[1.12rem] py-8 gap-6">
+                <h4 className="text-night">Related Links</h4>
+                <ol className="px-[0.88rem]">
+                  {tourMedia.map((tm, index) => (
+                    <li key={tm.media_id} className="flex flex-col gap-4">
+                      <Link
+                        href={
+                          media.find(m => m.id === tm.media_id)?.url ?? '-1'
+                        }
+                        className="flex flex-col gap-1"
+                      >
+                        <div className="flex flex-row items-center gap-2">
+                          <p className="s1 text-shadow uppercase">
+                            {media.find(m => m.id === tm.media_id)?.type}
+                          </p>
+                          <ExternalLinkIcon />
+                        </div>
+                        <p className="b2 text-night">
+                          {media.find(m => m.id === tm.media_id)?.title}
                         </p>
-                        <ExternalLinkIcon />
-                      </div>
-                      <p className="b2 text-night">
-                        {media.find(m => m.id === tm.media_id)?.title}
-                      </p>
-                    </Link>
-                    {index !== tourMedia.length - 1 && (
-                      <div className="bg-[#BDBDBD] h-[0.03125rem] mb-6" />
-                    )}
-                  </li>
-                ))}
-              </ol>
+                      </Link>
+                      {index !== tourMedia.length - 1 && (
+                        <div className="bg-[#BDBDBD] h-[0.03125rem] mb-6" />
+                      )}
+                    </li>
+                  ))}
+                </ol>
+              </div>
+              <div className="bg-[#BDBDBD] h-[0.03125rem]" />
             </div>
-            <div className="bg-[#BDBDBD] h-[0.03125rem]" />
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
