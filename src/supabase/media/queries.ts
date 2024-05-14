@@ -38,7 +38,7 @@ export async function fetchImagesForDisplay(displayId: string | undefined) {
 
 /**
  *
- * @param tourId id of the tour to fetch images for
+ * @param tourId id of the tour to fetch images for 
  * @returns an array of image objects corresponding to the display
  */
 export async function fetchImagesForTour(
@@ -55,7 +55,7 @@ export async function fetchImagesForTour(
     throw new Error(error.message);
   }
 
-  return data;
+  return data; 
 }
 /**
  *
