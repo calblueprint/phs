@@ -528,7 +528,7 @@ export default function Footer() {
 
   return (
     <div>
-      {isWebDevice && (
+      {!isWebDevice && (
         <MobileInput
           inputValueName={inputValueName}
           inputValueEmail={inputValueEmail}
