@@ -14,7 +14,11 @@ import { fetchMedia } from '../../../../supabase/media/queries';
 import { fetchTour } from '../../../../supabase/tours/queries';
 import { fetchTourDisplays } from '../../../../supabase/tour_displays/queries';
 import { fetchTourMedia } from '../../../../supabase/tour_media/queries';
-import { BackArrow, Congratulations, ExternalLinkIcon } from '../../../../../public/icons';
+import {
+  BackArrow,
+  Congratulations,
+  ExternalLinkIcon,
+} from '../../../../../public/icons';
 
 /**
  * @param params -
@@ -57,7 +61,9 @@ export default function TourEndPage({
      * @returns The link to the previous page.
      */
     async function getBackLink() {
-      const tourDisplays: TourDisplaysRow[] = await fetchTourDisplays(params.tourId);
+      const tourDisplays: TourDisplaysRow[] = await fetchTourDisplays(
+        params.tourId,
+      );
       setBackLink(
         `/featuredToursPage/${params.tourId}/${
           tourDisplays[tourDisplays.length - 1].display_id

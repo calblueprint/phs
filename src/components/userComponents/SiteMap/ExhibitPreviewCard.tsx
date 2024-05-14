@@ -87,10 +87,9 @@ function ExhibitPreviewCard({
       setname1(displayName);
       setLoading(false);
     };
-  
+
     fetchDetails();
-  }, [tour]); 
-  
+  }, [tour]);
 
   /** route this to spotlights */
 

@@ -3,8 +3,9 @@
 import React, { useEffect, useState } from 'react';
 import { HiChevronRight } from 'react-icons/hi';
 import Link from 'next/link';
-import { joinAllToursWithMedia } from '../../../supabase/tours/queries';
-import { TourWithMediaRow } from '../../../types/types';
+import { joinAllToursWithMedia } from '../../../../supabase/tours/queries';
+import { TourWithMediaRow } from '../../../../types/types';
+import { useWebDeviceDetection } from '../../../../context/WindowWidthContext/WindowWidthContext';
 
 /**
  // eslint-disable-next-line
@@ -17,15 +18,7 @@ import { TourWithMediaRow } from '../../../types/types';
  * Spotlight scroller will showcase and link to chosen spotlights
  */
 function HomeVirtualTours(): React.JSX.Element {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  const isWebDevice = useWebDeviceDetection();
 
   const [tourWithMedia, setToursWithMedia] = useState<TourWithMediaRow[]>([]);
   useEffect(() => {
@@ -46,27 +39,21 @@ function HomeVirtualTours(): React.JSX.Element {
 
   return (
     <div
-      className="pl-4 py-20 md:px-56 md:py-24 w-full bg-mint-cream flex-col justify-start 
+      className="pl-4 py-20 web:px-56 web:py-24 w-full bg-mint-cream flex-col justify-start 
     items-start gap-6 inline-flex"
     >
-      <div className="w-full md:w-280 h-5 justify-between items-center inline-flex">
+      <div className="w-full web:w-280 h-5 justify-between items-center inline-flex">
         <h2 className="text-night font-medium">Virtual Tours</h2>
-        {windowWidth < 768 && (
+        {!isWebDevice && (
           <Link
-            className="b1 text-asparagus inline-flex items-center mr-4"
+            className="b1 inline-flex items-center mr-4
+            text-asparagus hover:text-hunter-green focus:text-hunter-green"
             href="/featuredToursPage"
           >
             See All
             <HiChevronRight className="text-2xl" />
           </Link>
         )}
-        {/* <Link
-          className="b1 text-asparagus inline-flex items-center mr-4"
-          href="/featuredToursPage"
-        >
-          See All
-          <HiChevronRight className="text-2xl" />
-        </Link> */}
       </div>
       <p className="b3 text-night">
         In order to prioritize the well-being of our animals and provide them
@@ -74,11 +61,10 @@ function HomeVirtualTours(): React.JSX.Element {
         the public. However, you`re invited to explore them virtually and learn
         about our fascinating inhabitants through our online featured tours!
       </p>
-      <div className="carousel carousel-center md:w-280 space-x-4 mt-6 rounded-lg w-full">
-        {/* NOTE: Uncomment this once WE HAVE ENOUGH DUMMY DATA */}
+      <div className="carousel carousel-center web:w-280 space-x-4 mt-6 rounded-lg w-full">
         {tourWithMedia.map((tour: TourWithMediaRow) => (
           <Link href="/homePage" key={tour.id}>
-            <div className="relative carousel-item w-60 md:w-80 h-48 md:h-60 rounded-lg overflow-hidden">
+            <div className="relative carousel-item w-60 web:w-80 h-48 web:h-60 rounded-lg overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black" />
               <img
                 className="object-cover rounded-lg"
@@ -96,12 +82,13 @@ function HomeVirtualTours(): React.JSX.Element {
         ))}
       </div>
       <div
-        className=" h-5 w-full md:px-51 text-center
+        className=" h-5 w-full web:px-51 text-center
        justify-center inline-flex "
       >
-        {windowWidth >= 768 && (
+        {isWebDevice && (
           <Link
-            className="b1 mt-8 text-asparagus inline-flex text-center justify-center"
+            className="b1 mt-8 inline-flex text-center justify-center
+            text-asparagus hover:text-hunter-green focus:text-hunter-green"
             href="/featuredToursPage"
           >
             See all virtual tours

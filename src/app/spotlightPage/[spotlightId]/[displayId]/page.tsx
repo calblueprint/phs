@@ -123,7 +123,9 @@ export default function Page({
           <div className="bg-[#F5F6F5] mb-4">
             <div className="bg-[#BDBDBD] h-[0.03125rem]" />
             <div className="flex flex-col px-[1.12rem] py-8 gap-6">
-              <h3 className="text-night font-lato font-normal">Related Links</h3>
+              <h3 className="text-night font-lato font-normal">
+                Related Links
+              </h3>
               <ol className="px-[0.88rem]">
                 {tourMedia.map((tm, index) => (
                   <li key={tm.media_id} className="flex flex-col gap-4">

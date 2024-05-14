@@ -15,10 +15,10 @@ export async function getCategoryColor1(id: string|number) {
             .select('color_hex')
             .eq('id', id); 
 
-        if (error) {
-            console.error("Error fetching from Supabase:", error.message);
-            return null; // Return null on query error
-        }
+    if (error) {
+      console.error('Error fetching from Supabase:', error.message);
+      return null; // Return null on query error
+    }
 
         // Check if data array is not empty
         if (data && data.length > 0 && data[0].color_hex) {

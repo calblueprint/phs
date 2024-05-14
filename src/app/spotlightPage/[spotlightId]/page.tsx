@@ -135,7 +135,6 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
         </div>
       )}
 
-
       {relatedSpotlights.length > 0 && (
         <div>
           <div className="bg-[#BDBDBD] h-[0.03125rem] mb-[40px]" />

@@ -19,8 +19,6 @@ const SiteMap = dynamic(
 );
 type ModeState = 'tours' | 'exhibits';
 
-
-
 /**
  * @returns Page for the interactive map
  */
@@ -46,7 +44,7 @@ function MapPage() {
   }, []);
 
 
-  // move tour logic here: need to share state between filter 
+  // move tour logic here: need to share state between filter
   const handleFilter = (mapName: string) => {
     setSelectedMap(mapName);
     if (mapName === "Virtual Tour Map") {
@@ -94,7 +92,6 @@ function MapPage() {
             />
           
           ))}
- 
       </div>
     </div>
   );
