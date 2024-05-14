@@ -8,7 +8,7 @@ import { BiErrorCircle } from 'react-icons/bi';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import Link from 'next/link';
 import supabase from '../../../supabase/client';
-import { useWebDeviceDetection } from '../../../../context/WindowWidthContext/WindowWidthContext';
+import { useWebDeviceDetection } from '../../../context/WindowWidthContext/WindowWidthContext';
 
 type EmailInputProps = {
   inputValueName: string;
