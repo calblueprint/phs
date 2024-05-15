@@ -124,10 +124,10 @@ export default function WildlifeSpotlightsPage() {
                         />
                       )}
                     </div>
-                    <h2 className="text-night truncate pt-[14px]">
+                    <h2 className="text-night truncate pt-[1.09rem]">
                       {spotlight.name}
                     </h2>
-                    <p className="s1 text-shadow pt-[4px]">
+                    <p className="s1 text-shadow pt-[0.37rem]">
                       {spotlight.preview_text}
                     </p>
                   </Link>
