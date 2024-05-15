@@ -21,6 +21,7 @@ import {
   fetchRelatedSpotlightsfromSpotlightId,
 } from '../../../supabase/tour_displays/queries';
 import BackButton from '../../../components/userComponents/BackButton/BackButton';
+import SpotlightDisplayButton from '../../../components/userComponents/SpotlightDisplayButton/SpotlightDisplayButton';
 
 /**
  * @param params -
@@ -202,14 +203,9 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
                       key={display.id}
                       href={`/wildlife-spotlights/${spotlight.id}/${display.id}?spotlightId=${spotlight.id}`}
                     >
-                      <button
-                        type="button"
-                        className="bg-mint-cream border-l-[0.3125rem] border-l-asparagus w-[20.875rem] h-[4.625rem] rounded-lg px-[1.9375rem]"
-                      >
-                        <p className="b1 text-scary-forest truncate">
-                          {display.title}
-                        </p>
-                      </button>
+                      <div className="w-[20.875rem] h-[4.625rem]">
+                        <SpotlightDisplayButton text={display.title} />
+                      </div>
                     </Link>
                   ))}
                 </div>
@@ -253,14 +249,9 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
                 key={display.id}
                 href={`/wildlife-spotlights/${spotlight.id}/${display.id}?spotlightId=${spotlight.id}`}
               >
-                <button
-                  type="button"
-                  className="bg-mint-cream border-l-[0.3125rem] border-l-asparagus w-[22.125rem] h-[3.75rem] rounded-lg px-[1.9375rem]"
-                >
-                  <p className="b1 text-scary-forest truncate">
-                    {display.title}
-                  </p>
-                </button>
+                <div className="w-[22.125rem] h-[3.75rem]">
+                  <SpotlightDisplayButton text={display.title} />
+                </div>
               </Link>
             ))}
           </div>

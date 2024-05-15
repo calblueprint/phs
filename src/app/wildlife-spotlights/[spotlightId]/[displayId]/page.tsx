@@ -11,6 +11,7 @@ import { fetchDisplayfromSpotlight } from '../../../../supabase/tour_displays/qu
 import BackButton from '../../../../components/userComponents/BackButton/BackButton';
 import Carousel from '../../../../components/userComponents/ImageScroller/ImageScroller';
 import { fetchImagesForDisplay } from '../../../../supabase/media/queries';
+import SpotlightDisplayButton from '@/components/userComponents/SpotlightDisplayButton/SpotlightDisplayButton';
 
 /**
  * @param root0 -
@@ -101,14 +102,9 @@ export default function Page({
                       key={otherDisplay.id}
                       href={`/wildlife-spotlights/${params.spotlightId}/${otherDisplay.id}?spotlightId=${params.spotlightId}`}
                     >
-                      <button
-                        type="button"
-                        className="bg-mint-cream border-l-[0.3125rem] border-l-asparagus w-[20.875rem] h-[4.625rem] rounded-lg px-[1.94rem]"
-                      >
-                        <p className="b1 text-scary-forest truncate">
-                          {otherDisplay.title}
-                        </p>
-                      </button>
+                      <div className="w-[20.875rem] h-[4.625rem]">
+                        <SpotlightDisplayButton text={otherDisplay.title} />
+                      </div>
                     </Link>
                   ))}
                 </div>
@@ -152,14 +148,9 @@ export default function Page({
                   key={otherDisplay.id}
                   href={`/wildlife-spotlights/${params.spotlightId}/${otherDisplay.id}?spotlightId=${params.spotlightId}`}
                 >
-                  <button
-                    type="button"
-                    className="bg-mint-cream border-l-[0.3125rem] border-l-asparagus w-[22.125rem] h-[3.75rem] rounded-lg px-[1.9375rem]"
-                  >
-                    <p className="b1 text-scary-forest truncate">
-                      {otherDisplay.title}
-                    </p>
-                  </button>
+                  <div className="w-[22.125rem] h-[3.75rem]">
+                    <SpotlightDisplayButton text={otherDisplay.title} />
+                  </div>
                 </Link>
               ))}
             </div>
