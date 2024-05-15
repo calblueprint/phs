@@ -18,6 +18,7 @@ import LastStopButton from '../../../../components/userComponents/LastStopButton
 import NextStopButton from '../../../../components/userComponents/NextStopButton/NextStopButton';
 import { fetchImagesForDisplay } from '../../../../supabase/media/queries';
 import Carousel from '../../../../components/userComponents/ImageScroller/ImageScroller';
+import TextButton from '../../../../components/userComponents/TextButton/TextButton';
 
 /**
  * Displays a stop page for the current tour
@@ -171,9 +172,9 @@ export default function TourStopPage({
                 <LastStopButton text={prevText} link={prev} />
                 <NextStopButton text={nextText} link={next} />
               </div>
-              <p className="b1 text-scary-forest">
-                <Link href="/virtual-tours">Exit this tour</Link>
-              </p>
+              <Link href="/virtual-tours">
+                <TextButton text="Exit this tour" />
+              </Link>
             </div>
           </div>
         </div>
@@ -200,13 +201,13 @@ export default function TourStopPage({
             <h1 className="text-night">{display && display.title}</h1>
             <div className="pb-[2.5rem]">
               <p className="b3 text-night">{display && display.description}</p>
-              <div className="flex flex-row gap-4 mt-8">
+              <div className="flex flex-row gap-4 mt-8 mb-4">
                 <LastStopButton text={prevText} link={prev} />
                 <NextStopButton text={nextText} link={next} />
               </div>
-              <p className="b1 text-scary-forest mt-4">
-                <Link href="/virtual-tours">Exit this tour</Link>
-              </p>
+              <Link href="/virtual-tours">
+                <TextButton text="Exit this tour" />
+              </Link>
             </div>
           </div>
         </div>
