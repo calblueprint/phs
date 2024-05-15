@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { CaretLeft } from '../../../../public/icons';
 
@@ -14,16 +14,21 @@ interface LastStopButtonProps {
  * @returns the Last Stop button
  */
 export default function LastStopButton({ text, link }: LastStopButtonProps) {
+  const [isClicked, setIsClicked] = useState(false);
+  const handleClick = () => {
+    setIsClicked(true);
+  };
   return (
     <Link
       href={link}
-      className="w-[10.375rem] h-[4.375rem] rounded-lg outline outline-scary-forest outline-1 flex items-center relative p-[1.56rem]"
+      className={`w-[10.375rem] h-[4.375rem] rounded-lg outline outline-scary-forest outline-1 flex items-center relative p-[1.56rem] ${
+        isClicked ? 'bg-[#3861312B] brightness-[.8]' : ''
+      }`}
+      onClick={handleClick}
     >
       <div className="flex items-center justify-start w-full gap-[1.31rem]">
         <CaretLeft />
-        <p className="b1 text-scary-forest">
-          {text}
-        </p>
+        <p className="b1 text-scary-forest">{text}</p>
       </div>
     </Link>
   );
