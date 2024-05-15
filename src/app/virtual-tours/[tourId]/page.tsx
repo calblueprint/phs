@@ -18,6 +18,7 @@ import {
 
 import BackButton from '../../../components/userComponents/BackButton/BackButton';
 import NavBar from '../../../components/userComponents/NavBar/NavBar';
+import ButtonWithText from '@/components/userComponents/ButtonWithText/ButtonWithText';
 
 /**
  * @param params -
@@ -99,8 +100,8 @@ export default function TourStartPage({
                     <Link
                       href={`/virtual-tours/${params.tourId}/${tourDisplays[0]?.display_id}`}
                     >
-                      <div className="w-[12.625rem] px-4 py-[0.62rem] bg-asparagus rounded-lg flex justify-center">
-                        <p className="b1 text-ivory">Start Tour</p>
+                      <div className="w-[12.25rem] h-[2.5625rem]">
+                        <ButtonWithText text="Start Tour" />
                       </div>
                     </Link>
                     <div className="bg-silver max-w-[36rem] h-[0.03125rem]" />
@@ -171,8 +172,8 @@ export default function TourStartPage({
                 <Link
                   href={`/virtual-tours/${params.tourId}/${tourDisplays[0]?.display_id}`}
                 >
-                  <div className="w-[12.625rem] px-4 py-[0.62rem] bg-asparagus rounded-lg flex justify-center items-center gap-2.5">
-                    <p className="b1 text-ivory">Start Tour</p>
+                  <div className="w-[12.25rem] h-10">
+                    <ButtonWithText text="Start Tour" />
                   </div>
                 </Link>
               </div>
