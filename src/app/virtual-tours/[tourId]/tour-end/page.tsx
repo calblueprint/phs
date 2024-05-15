@@ -19,6 +19,7 @@ import {
   Congratulations,
   ExternalLinkIcon,
 } from '../../../../../public/icons';
+import ButtonWithText from '../../../../components/userComponents/ButtonWithText/ButtonWithText';
 
 /**
  * @param params -
@@ -88,11 +89,11 @@ export default function TourEndPage({
               </div>
               <p className="b3 text-night">Thanks for visiting {tour?.name}.</p>
             </div>
-            <div className="bg-asparagus w-[13.75rem] h-[2.5625rem] text-center rounded-lg flex justify-center items-center">
-              <Link href="/virtual-tours">
-                <p className="b1 px-4 py-[0.6rem]">Back to Virtual Tours</p>
-              </Link>
-            </div>
+            <Link href="/virtual-tours">
+              <div className="w-[13.75rem] h-[2.5625rem]">
+                <ButtonWithText text="Back to Virtual Tours" />
+              </div>
+            </Link>
           </div>
           {tourMedia.length > 0 && (
             <div className="bg-[#F5F6F5] mb-10 w-[24.375rem]">
@@ -149,11 +150,11 @@ export default function TourEndPage({
               </div>
               <p className="b3 text-night">Thanks for visiting {tour?.name}.</p>
             </div>
-            <div className="bg-asparagus w-[13.75rem] h-10 text-center rounded-lg flex justify-center items-center">
-              <Link href="/virtual-tours">
-                <p className="b1 px-4 py-[0.6rem]">Back to Virtual Tours</p>
-              </Link>
-            </div>
+            <Link href="/virtual-tours">
+              <div className="w-[13.75rem] h-10">
+                <ButtonWithText text="Back to Virtual Tours" />
+              </div>
+            </Link>
           </div>
           {tourMedia.length > 0 && (
             <div className="bg-[#F5F6F5] mb-10">
