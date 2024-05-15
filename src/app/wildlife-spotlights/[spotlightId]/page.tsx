@@ -244,7 +244,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
       </div>
 
       {displays.length > 0 && (
-        <div className="flex flex-col px-[1.12rem] gap-5 mb-10">
+        <div className="flex flex-col px-[1.12rem] gap-5 pb-10">
           <h4 className="text-night">In this spotlight...</h4>
 
           <div className="flex flex-col gap-[0.875rem] items-center">
@@ -274,7 +274,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
           <div className="flex flex-col gap-4 pb-10">
             <h4 className="text-night px-[1.125rem]">Related Spotlights</h4>
 
-            <ul className="list-none flex overflow-x-auto whitespace-nowrap px-[1.125rem] gap-[0.75rem] no-scrollbar">
+            <ul className="list-none flex overflow-x-auto whitespace-nowrap gap-3 no-scrollbar px-[1.125rem]">
               {relatedSpotlights.map(otherSpotlight => (
                 <li className="w-[10.125rem]" key={otherSpotlight.id}>
                   <Link href={`/wildlife-spotlights/${otherSpotlight.id}`}>
