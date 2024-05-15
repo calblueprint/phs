@@ -103,7 +103,7 @@ export default function Page({
                     >
                       <button
                         type="button"
-                        className="bg-mint-cream border-l-[0.3125rem] border-l-asparagus w-[20.875rem] h-[4.625rem] rounded-2xl px-[1.94rem]"
+                        className="bg-mint-cream border-l-[0.3125rem] border-l-asparagus w-[20.875rem] h-[4.625rem] rounded-lg px-[1.94rem]"
                       >
                         <p className="b1 text-scary-forest truncate">
                           {otherDisplay.title}
@@ -154,7 +154,7 @@ export default function Page({
                 >
                   <button
                     type="button"
-                    className="bg-mint-cream border-l-[0.3125rem] border-l-asparagus w-[22.125rem] h-[3.75rem] rounded-2xl px-[1.9375rem]"
+                    className="bg-mint-cream border-l-[0.3125rem] border-l-asparagus w-[22.125rem] h-[3.75rem] rounded-lg px-[1.9375rem]"
                   >
                     <p className="b1 text-scary-forest truncate">
                       {otherDisplay.title}
