@@ -11,7 +11,8 @@ import { fetchDisplayfromSpotlight } from '../../../../supabase/tour_displays/qu
 import BackButton from '../../../../components/userComponents/BackButton/BackButton';
 import Carousel from '../../../../components/userComponents/ImageScroller/ImageScroller';
 import { fetchImagesForDisplay } from '../../../../supabase/media/queries';
-import SpotlightDisplayButton from '@/components/userComponents/SpotlightDisplayButton/SpotlightDisplayButton';
+import SpotlightDisplayButton from '../../../../components/userComponents/SpotlightDisplayButton/SpotlightDisplayButton';
+import TextButton from '../../../../components/userComponents/TextButton/TextButton';
 
 /**
  * @param root0 -
@@ -108,9 +109,9 @@ export default function Page({
                     </Link>
                   ))}
                 </div>
-                <p className="b1 text-scary-forest">
-                  <Link href="/wildlife-spotlights">See all spotlights</Link>
-                </p>
+                <Link href="/wildlife-spotlights">
+                  <TextButton text="See all spotlights" />
+                </Link>
               </div>
             )}
           </div>
@@ -156,9 +157,9 @@ export default function Page({
             </div>
           </div>
         )}
-        <p className="b1 text-scary-forest">
-          <Link href="/wildlife-spotlights">See all spotlights</Link>
-        </p>
+        <Link href="/wildlife-spotlights">
+          <TextButton text="See all spotlights" />
+        </Link>
       </div>
     </div>
   );
