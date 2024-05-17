@@ -139,7 +139,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
                 <div className="flex flex-col gap-4">
                   <h4 className="text-night">Related Spotlights</h4>
 
-                  <ul className="list-none flex overflow-x-auto whitespace-nowrap gap-3 no-scrollbar">
+                  <ul className="list-none flex overflow-x-auto gap-3 no-scrollbar">
                     {relatedSpotlights.map(otherSpotlight => (
                       <li className="max-w-[10.625rem]" key={otherSpotlight.id}>
                         <Link
@@ -182,7 +182,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
                           <p className="b1 text-night truncate mb-[0.06rem]">
                             {otherSpotlight.name}
                           </p>
-                          <p className="s1 text-shadow truncate">
+                          <p className="s1 text-shadow line-clamp-2">
                             {otherSpotlight.preview_text}
                           </p>
                         </Link>
@@ -262,10 +262,10 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
         <div>
           <div className="bg-[#BDBDBD] h-[0.03125rem] mb-10" />
 
-          <div className="flex flex-col gap-4 pb-10">
-            <h4 className="text-night px-[1.125rem]">Related Spotlights</h4>
+          <div className="flex flex-col px-[1.125rem] gap-4 pb-10">
+            <h4 className="text-night">Related Spotlights</h4>
 
-            <ul className="list-none flex overflow-x-auto whitespace-nowrap gap-3 no-scrollbar px-[1.125rem]">
+            <ul className="list-none flex overflow-x-auto no-scrollbar gap-3">
               {relatedSpotlights.map(otherSpotlight => (
                 <li className="w-[10.125rem]" key={otherSpotlight.id}>
                   <Link href={`/wildlife-spotlights/${otherSpotlight.id}`}>
@@ -306,7 +306,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
                     <p className="b1 text-night truncate mt-2">
                       {otherSpotlight.name}
                     </p>
-                    <p className="s1 text-shadow truncate">
+                    <p className="s1 text-shadow line-clamp-2">
                       {otherSpotlight.preview_text}
                     </p>
                   </Link>
