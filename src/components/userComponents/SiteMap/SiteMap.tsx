@@ -1,5 +1,5 @@
 import L, { LatLngExpression } from 'leaflet';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { fetchAllSpotlights } from '../../../supabase/tours/queries';
@@ -60,7 +60,10 @@ function SiteMap({ mode }: SiteMapProps) {
   >(null);
   const [mapCenter, setMapCenter] = useState<LatLngExpression>(center);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const isWebDevice = useWebDeviceDetection();
+  const cacheRef = useRef<{ tours?: TourRow[], exhibits?: ExhibitWithCategoryRow[] }>({});
+
 
   // fetch tours where spotlight == True
   useEffect(() => {
@@ -68,20 +71,33 @@ function SiteMap({ mode }: SiteMapProps) {
      *
      */
     async function fetchData() {
+      setLoading(true);
       try {
         let data;
         if (mode === 'tours') {
-          data = await fetchAllSpotlights();
+          if (cacheRef.current.tours) {
+            data = cacheRef.current.tours;
+          } else {
+            data = await fetchAllSpotlights();
+            cacheRef.current.tours = data;
+          }
         } else if (mode === 'exhibits') {
-          data = await fetchAllExhibits();
+          if (cacheRef.current.exhibits) {
+            data = cacheRef.current.exhibits;
+          } else {
+            data = await fetchAllExhibits();
+            cacheRef.current.exhibits = data;
+          }
         }
-        if (data && mode === 'tours') {
+
+        if (data) {
           const colors = await Promise.all(
             data.map(async item => ({
               id: item.id,
               color: await getCategoryColor1(item.id),
             })),
           );
+
           const newColorsMap = colors.reduce(
             (acc, curr) => ({
               ...acc,
@@ -89,34 +105,22 @@ function SiteMap({ mode }: SiteMapProps) {
             }),
             {},
           );
+
           setColorsMap(newColorsMap);
-        } else if (data && mode === 'exhibits') {
-          console.log(data);
-          const colors = await Promise.all(
-            data.map(async item => ({
-              id: item.id,
-              color: await getCategoryColor1(item.id),
-            })),
-          );
-          console.log(colors);
-          const newColorsMap = colors.reduce(
-            (acc, curr) => ({
-              ...acc,
-              [curr.id]: curr.color,
-            }),
-            {},
-          );
-          console.log('COLOR MAP!!');
-          setColorsMap(newColorsMap);
-          console.log(newColorsMap);
+          setSpotlightTours(data ?? []);
         }
-        setSpotlightTours(data ?? []);
       } catch (error) {
         console.error(`Encountered an error fetching data: ${error}`);
+      } finally {
+        setLoading(false);
       }
     }
+
     fetchData();
   }, [mode]);
+
+
+
   useEffect(() => {
     // Reset selectedTour and selectedMarker when mode changes to ensure popups start closed
     setSelectedTour(null);
@@ -158,10 +162,11 @@ function SiteMap({ mode }: SiteMapProps) {
       key={new Date().getTime()}
     >
       <TileLayer {...tileLayer} />
-      {spotlightTours &&
+      {loading ? (
+        <div className="loading-spinner">Loading...</div>
+      ) : (
+        spotlightTours &&
         spotlightTours.map((tour, i) => {
-          // Fetch the color for this tour/exhibit; fallback to a default color if not found
-          console.log(tour);
           const color = colorsMap[tour.id] || '#F17373'; // Fallback color
           return (
             <Marker
@@ -178,7 +183,8 @@ function SiteMap({ mode }: SiteMapProps) {
               }
             />
           );
-        })}
+        })
+      )}
       {selectedTour && (
         isWebDevice ? (
           <Control position="bottomright">

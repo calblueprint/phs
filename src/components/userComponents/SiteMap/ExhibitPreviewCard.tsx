@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { LatLngExpression } from 'leaflet';
 import { useMapEvents } from 'react-leaflet';
 import Link from 'next/link';
@@ -30,35 +30,30 @@ function ExhibitPreviewCard({
   handleClose,
 }: ExhibitCardProps) {
   const [loading, setLoading] = useState<boolean>(false);
-  const [previewImage, setPreviewImage] = useState<string>('');
-  const [name1, setname1] = useState<string>('');
+  const [previewImage, setPreviewImage] = useState<string>(tour.image || '');
+  const [name1, setname1] = useState<string>(tour.category || '');
 
   const { id, description, coordinates, category } = tour;
   const [width, setWidth] = useState('20.06rem');
   const [height, setHeight] = useState('7.687rem');
   const isWebDevice = useWebDeviceDetection();
 
-  useEffect(() => {
-    /**
-     * This function adjusts the width and height of the component
-     * based on whether the device is detected as a web device.
-     * Had to specify the dimensions because dynamic width and height 
-     * did not work.
-     */
-    function handleResize() {
-      if (isWebDevice) {
-        setWidth('27.06rem');
-        setHeight('8.5rem');
-      } else {
-        setWidth('20.06rem');
-        setHeight('7.687rem');
-      }
+  const handleResize = useCallback(() => {
+    if (isWebDevice) {
+      setWidth('27.06rem');
+      setHeight('8.5rem');
+    } else {
+      setWidth('20.06rem');
+      setHeight('7.687rem');
     }
+  }, [isWebDevice]);
 
+
+  useEffect(() => {
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [handleResize]);
 
   // Map Context
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -73,24 +68,20 @@ function ExhibitPreviewCard({
   // fetch image to use for preview
   useEffect(() => {
     const fetchDetails = async () => {
+      if (!tour.image) {
       setLoading(true);
   
       let imageUrl = ''; 
       let displayName = ''; 
-  
+   
+      imageUrl = tour.image; 
+      displayName = tour.category;
 
-    // const imageObj = await fetchExhibitImage(tour.id); 
-    // if (imageObj) {
-        imageUrl = tour.image; 
-    // }
-    displayName = tour.category;
-
-      
-  
       // Set state variables
       setPreviewImage(imageUrl);
       setname1(displayName);
       setLoading(false);
+      }
     };
 
     fetchDetails();
