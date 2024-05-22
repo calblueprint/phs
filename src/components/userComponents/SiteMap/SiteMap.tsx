@@ -117,15 +117,19 @@ function SiteMap({ mode }: SiteMapProps) {
     }
 
     fetchData();
-  }, [mode]);
-
-
-
-  useEffect(() => {
-    // Reset selectedTour and selectedMarker when mode changes to ensure popups start closed
-    setSelectedTour(null);
+    setMapCenter(center);
     setSelectedMarker(null);
+    setSelectedTour(null);
   }, [mode]);
+
+
+
+  // useEffect(() => {
+  //   // Reset selectedTour and selectedMarker when mode changes to ensure popups start closed
+  //   setSelectedMarker(null);
+  //   setSelectedTour(null);
+    
+  // }, [mode]);
 
   useEffect(() => {
     if (!selectedTour) {
