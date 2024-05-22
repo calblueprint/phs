@@ -72,10 +72,7 @@ function MapPage() {
   );
 
   return isWebDevice ? (
-
     <>
-   
-    
       <NavBar />
       <div className='justify-center mx-auto w-[70%]'>
         <div className="pt-0 pl-2 pr-2 bg-ivory">

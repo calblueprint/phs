@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { LatLngExpression } from 'leaflet';
-import { useMapEvents } from 'react-leaflet';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 import { TourRow } from '../../../types/types';
 import { fetchImagesForTour } from '../../../supabase/media/queries';
 import { useWebDeviceDetection } from '../../../context/WindowWidthContext/WindowWidthContext';
@@ -13,20 +11,29 @@ interface TourCardProps {
   handleClick?: () => void;
 }
 
-function TourPreviewCard({ tour, handleClick, handleClose }: TourCardProps) {
+/**
+ * Represents a preview card for a tour.
+ * 
+ * @param {TourRow} tour - The tour data.
+ * @param {Function} handleClick - The function to call when the card is clicked.
+ * @param {Function} handleClose - The function to call to close the card.
+ * @returns {JSX.Element} The component UI.
+ */
+function TourPreviewCard({ tour, handleClick, handleClose }: TourCardProps): JSX.Element {
   const [loading, setLoading] = useState<boolean>(false);
   const [previewImage, setPreviewImage] = useState<string>('');
   const [name1, setname1] = useState<string>('');
 
   const { id, description, category } = tour;
 
-
-  // Responsive dimension states - for different popup resizing
   const [width, setWidth] = useState('20.06rem');
   const [height, setHeight] = useState('7.687rem');
   const isWebDevice = useWebDeviceDetection();
 
   useEffect(() => {
+    /**
+     * This useEffect will take care of resizing for different device dimensions
+     */
     function handleResize() {
       if (isWebDevice) {
         setWidth('27.06rem');
@@ -37,10 +44,10 @@ function TourPreviewCard({ tour, handleClick, handleClose }: TourCardProps) {
       }
     }
 
-    handleResize();
     window.addEventListener('resize', handleResize);
+    handleResize();
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [isWebDevice]);
 
   useEffect(() => {
     const fetchDetails = async () => {
@@ -56,27 +63,28 @@ function TourPreviewCard({ tour, handleClick, handleClose }: TourCardProps) {
 
   return (
     <div className="flex flex-col items-center justify-center mx-auto rounded-md px-[0.56rem]" style={{ width, height }}>
-      <div className="flex flex-row items-center rounded-md overflow-hidden bg-ivory cursor-pointer flex-shrink-0 shadow-xl" aria-hidden="true">
+      <div className="flex flex-row items-center rounded-md overflow-hidden bg-ivory cursor-pointer flex-shrink-0 shadow-xl" aria-hidden="true" onClick={handleClick}>
         {!loading && (
           <div className="relative w-[5.875rem] z-10 h-full shrink-0 rounded-tl-md rounded-tr-none rounded-br-none rounded-bl-md">
             <Image
               src={previewImage}
-              alt='placeholder'
+              alt='Tour preview'
               layout="fill"
               objectFit="cover"
             /> 
           </div>
         )}
-        <div className="justify-items-center align-middle z-20 overflow-hidden w-full h-full" onClick={handleClick} onKeyDown={e => {
-          if (handleClick && e.key === 'Enter') {
+        <div className="justify-items-center align-middle z-20 overflow-hidden w-full h-full" onKeyDown={e => {
+          if (e.key === 'Enter' && handleClick) {
             handleClick();
           }
         }} role="button" tabIndex={0}>
-          <div className=""> 
-            <div className="flex justify-end items-center pt-2 pr-2" onClick={e => {
-                  e.stopPropagation();
-                  handleClose(); 
-                }}>
+          <div className="">
+            <div className="flex justify-end items-center pt-2 pr-2" 
+              onClick={e => {
+                e.stopPropagation();
+                handleClose(); 
+              }}>
               <div className='pl-[0.75rem] w-full'>
                 <text className='text-shadow bg-[#F173731A] pr-2 pl-2 rounded-md'>{category}</text>
               </div>
@@ -89,8 +97,8 @@ function TourPreviewCard({ tour, handleClick, handleClose }: TourCardProps) {
                 <p className='truncate font-medium font-lato text-night  text-base leading-normal'>{name1}</p>
               </h3>
               <h4 className="relative h-[2rem] pr-[0.31rem] pt-[0rem] pl-[0.75rem] pb-[2.4rem]">
-              <p className='line-clamp-2 text-shadow text-xs font-normal font-lato'>{description} </p>
-            </h4>
+                <p className='line-clamp-2 text-shadow text-xs font-normal font-lato'>{description}</p>
+              </h4>
               <h6 className='relative pt-[0rem] pr-[1rem] pb-[0.4rem] text-silver font-lato text-xs text-right'>
                 Go to virtual tour &gt;
               </h6>

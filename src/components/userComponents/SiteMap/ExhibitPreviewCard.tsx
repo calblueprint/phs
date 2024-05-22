@@ -4,8 +4,6 @@ import { useMapEvents } from 'react-leaflet';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ExhibitWithCategoryRow } from '../../../types/types';
-
-import { fetchExhibitImage } from '../../../supabase/exhibits/queries';
 import { useWebDeviceDetection } from '../../../context/WindowWidthContext/WindowWidthContext';
 
 interface ExhibitCardProps {
@@ -15,14 +13,19 @@ interface ExhibitCardProps {
 }
 
 /**
- * @param ExhibitCardProps.display display to preview
- * @param ExhibitCardProps.handleClick function to handle actions when clicked
- * @param ExhibitCardProps.handleClose function to handle closing of preview card
- * @param ExhibitCardProps.display.display
- * @param ExhibitCardProps.display.handleClick
- * @param ExhibitCardProps.display.handleClose
- * @param ExhibitCardProps.display.tour
- * @returns preview card component to display within leaflet map container
+ * Props for ExhibitPreviewCard
+ * @typedef {Object} ExhibitCardProps
+ * @property {ExhibitWithCategoryRow} tour - The exhibit data.
+ * @property {Function} handleClose - Function to close the preview card.
+ * @property {Function} [handleClick] - Optional click handler for additional actions.
+ */
+
+/**
+ * A component that renders a preview card for an exhibit within a Leaflet map container.
+ * Includes image and details, with clickable areas for further interaction.
+ *
+ * @param {ExhibitCardProps} props - The props for the component.
+ * @returns {JSX.Element} The rendered JSX for the exhibit preview card.
  */
 function ExhibitPreviewCard({
   tour,

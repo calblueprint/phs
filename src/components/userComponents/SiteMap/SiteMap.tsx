@@ -65,10 +65,13 @@ function SiteMap({ mode }: SiteMapProps) {
   const cacheRef = useRef<{ tours?: TourRow[], exhibits?: ExhibitWithCategoryRow[] }>({});
 
 
-  // fetch tours where spotlight == True
+  
   useEffect(() => {
     /**
-     *
+     * This useEffect will manage fetching Data depending on if the chosen map is tours or exhibits.
+     * It will also manage the initial state of the map when no marker is chosen
+     * 
+     * It will fetch tours when spotlights == True
      */
     async function fetchData() {
       setLoading(true);
@@ -122,14 +125,6 @@ function SiteMap({ mode }: SiteMapProps) {
     setSelectedTour(null);
   }, [mode]);
 
-
-
-  // useEffect(() => {
-  //   // Reset selectedTour and selectedMarker when mode changes to ensure popups start closed
-  //   setSelectedMarker(null);
-  //   setSelectedTour(null);
-    
-  // }, [mode]);
 
   useEffect(() => {
     if (!selectedTour) {
@@ -194,12 +189,12 @@ function SiteMap({ mode }: SiteMapProps) {
           <Control position="bottomright">
             {mode === 'tours' ? (
               <TourPreviewCard
-                tour={selectedTour as TourRow} // Assuming you have proper type checks or type casting
+                tour={selectedTour as TourRow} 
                 handleClose={handlePreviewClose}
               />
             ) : (
               <ExhibitPreviewCard
-                tour={selectedTour as ExhibitWithCategoryRow} // Assuming you have proper type checks or type casting
+                tour={selectedTour as ExhibitWithCategoryRow} 
                 handleClose={handlePreviewClose}
               />
             )}
@@ -208,12 +203,12 @@ function SiteMap({ mode }: SiteMapProps) {
           <div className="bottom-center">
             {mode === 'tours' ? (
               <TourPreviewCard
-                tour={selectedTour as TourRow} // Assuming you have proper type checks or type casting
+                tour={selectedTour as TourRow} 
                 handleClose={handlePreviewClose}
               />
             ) : (
               <ExhibitPreviewCard
-                tour={selectedTour as ExhibitWithCategoryRow} // Assuming you have proper type checks or type casting
+                tour={selectedTour as ExhibitWithCategoryRow} 
                 handleClose={handlePreviewClose}
               />
             )}
