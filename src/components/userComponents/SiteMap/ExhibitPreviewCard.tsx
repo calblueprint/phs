@@ -16,13 +16,10 @@ interface ExhibitCardProps {
 }
 
 /**
- * @param ExhibitCardProps.display display to preview
+ * @param ExhibitCardProps - The props for the exhibit card component
  * @param ExhibitCardProps.handleClick function to handle actions when clicked
  * @param ExhibitCardProps.handleClose function to handle closing of preview card
- * @param ExhibitCardProps.display.display
- * @param ExhibitCardProps.display.handleClick
- * @param ExhibitCardProps.display.handleClose
- * @param ExhibitCardProps.display.tour
+ * @param ExhibitCardProps.tour the tour or exhibit to preview
  * @returns preview card component to display within leaflet map container
  */
 function ExhibitPreviewCard({
@@ -100,6 +97,7 @@ function ExhibitPreviewCard({
           tabIndex={0}
         >
           <div className="">
+            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
             <div
               className="flex justify-end items-center pt-2 pr-2"
               onClick={e => {

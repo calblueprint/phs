@@ -21,10 +21,11 @@ interface FilterButtonProps {
 
 /**
  *
- * @param root0
- * @param root0.content
- * @param root0.onClick
- * @param root0.isSelected
+ * @param props - props for the FilterButton component
+ * @param props.content - content of the button
+ * @param props.onClick - function to handle the functionality we want to tie to our filter buttons
+ * @param props.isSelected - boolean to determine if the button is selected
+ * @returns JSX.Element
  */
 function FilterButton({ content, onClick, isSelected }: FilterButtonProps) {
   const selectedStyle =

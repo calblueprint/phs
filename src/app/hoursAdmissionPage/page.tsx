@@ -64,7 +64,7 @@ export default function HoursAdmissionPage() {
           </div>
         </div>
         <p className="text-night font-normal font-lato pl-[1.31rem]">
-          If you've found a wild animal that appears to be sick, injured, or
+          If you&apos;ve found a wild animal that appears to be sick, injured, or
           orphaned, safely contain it and either bring it to our nearest shelter
           or contact us for guidance.
         </p>

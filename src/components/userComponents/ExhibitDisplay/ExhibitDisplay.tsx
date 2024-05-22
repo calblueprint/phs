@@ -3,17 +3,18 @@ import Image from 'next/image';
 import styles from './ExhibitDisplay.module.css';
 
 /**
- *
- * @param root0
- * @param root0.name
- * @param root0.location
- * @param root0.information
- * @param root0.description
- * @param root0.relatednews
- * @param root0.topimage
- * @param root0.media
- * @param root0.bottomimage
- * @param root0.moretext
+ * ExhibitDisplay component
+ * @param  props - props for the ExhibitDisplay component
+ * @param  props.name - name of the exhibit
+ * @param  props.location - location of the exhibit
+ * @param  props.information - information about the exhibit
+ * @param  props.description - description of the exhibit
+ * @param  props.relatednews - related news of the exhibit
+ * @param  props.topimage - top image of the exhibit
+ * @param  props.media - media of the exhibit
+ * @param  props.bottomimage - bottom image of the exhibit
+ * @param  props.moretext - more text of the exhibit
+ * @returns JSX.Element
  */
 export default function ExhibitDisplay({
   name,
