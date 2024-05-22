@@ -62,13 +62,6 @@ export default function App() {
                   / News{' '}
                 </p>
                 <h1 className="text-night text-4xl font-bold pt-6">News</h1>
-                <p className="pt-[2rem] text-night w-[311px]">
-                  PLACEHOLDER: Take a virtual sneak peek behind the scenes at
-                  our Wildlife Care Center. Here you will find outside
-                  enclosures where sick, injured, and orphaned wildlife
-                  recuperate and acclimate before being released back into their
-                  natural habitat.
-                </p>
               </div>
             </div>
             <div className="w-[50%]  px-[10rem] pt-[7.5rem] flex justify-center">
