@@ -28,6 +28,9 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      screens: {
+        web: '1024px',
+      },
       /** Default font is Lato */
       fontFamily: {
         sans: ['Lato'],

@@ -1,6 +1,6 @@
 'use client';
 
-import { DisplayRow } from '../../types/types';
+import { CategoryRow } from '../../types/types';
 import supabase from '../client';
 
 // eslint-disable-next-line jsdoc/require-returns
@@ -47,4 +47,16 @@ export async function getCategoryColor1(category: string) {
     // Return null or a default color to handle errors gracefully
     return null;
   }
+}
+
+/**
+ * Fetches all categories from the database.
+ * @returns A promise that resolves to an array of ExhibitRow objects.
+ */
+export async function fetchAllCategories(): Promise<CategoryRow[]> {
+  const { data, error } = await supabase.from('categories').select('*');
+  if (error) {
+    throw new Error(error.message);
+  }
+  return data;
 }
