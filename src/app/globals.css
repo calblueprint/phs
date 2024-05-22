@@ -112,3 +112,10 @@ body {
 html {
   height: 100%;
 }
+.bottom-center {
+  position: absolute;
+  bottom: 10px; /* Adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000; /* Ensure it is above other elements */
+}

@@ -377,7 +377,7 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: {
           coordinates: Json
-          category_id: number
+          id: number
           category: string
           description: string
           image: string
@@ -414,7 +414,34 @@ export type Database = {
       }
       join_all_tours_with_media: {
         Args: Record<PropertyKey, never>
+          id: string
+          name: string
+          description: string
+          created_at: string
+          stop_count: number
+          spotlight: boolean
+          preview_text: string
+          coordinates: Json
+          category: Database["public"]["Enums"]["tour_category"]
+          media_url: string
+        }[]
+      }
+      join_all_tours_with_media: {
+        Args: Record<PropertyKey, never>
         Returns: {
+          id: string
+          name: string
+          description: string
+          created_at: string
+          stop_count: number
+          spotlight: boolean
+          preview_text: string
+          coordinates: Json
+          category: Database["public"]["Enums"]["tour_category"]
+          media_url: string
+        }[]
+      }
+    }
           id: string
           name: string
           description: string
