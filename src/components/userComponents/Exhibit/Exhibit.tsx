@@ -17,13 +17,11 @@ export default function Exhibit({
   description,
   image,
   id,
-  web,
 }: {
   title: string;
   description: string;
   image: string;
   id: number;
-  web: boolean;
 }) {
   const isWebDevice = useWebDeviceDetection();
   return (
@@ -34,7 +32,6 @@ export default function Exhibit({
             <div className="flex-col justify-start items-start gap-5 flex">
               <div className="justify-start items-center gap-2 inline-flex">
                 <h2 className="text-night font-semibold leading-tight font-['Lato']">
-                  {' '}
                   {title}
                 </h2>
               </div>
@@ -50,7 +47,7 @@ export default function Exhibit({
         <div className="flex flex-col w-full px-8 py-16 bg-mint-cream rounded-lg flex-col justify-start items-start gap-2.5 mt-6">
           <div className="justify-start items-start gap-5">
             <div className="justify-start items-center gap-2">
-              <h1 className="text-hunterGreen font-semibold leading-tight font-['Lato']">
+              <h1 className="text-hunter-green font-semibold leading-tight font-['Lato']">
                 {' '}
                 {title}
               </h1>

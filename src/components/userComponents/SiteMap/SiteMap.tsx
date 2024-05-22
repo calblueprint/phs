@@ -7,8 +7,8 @@ import { renderToStaticMarkup } from 'react-dom/server';
 
 import { fetchAllSpotlights } from '../../../supabase/tours/queries';
 import { ExhibitWithCategoryRow, TourRow } from '../../../types/types';
+
 import Control from './Control';
-import DisplayPreviewCard from './DisplayPreviewCard';
 import { fetchAllExhibits } from '../../../supabase/exhibits/queries';
 import { getCategoryColor1 } from '../../../supabase/category/queries';
 import RecenterMap from './MapInteractionHandler';

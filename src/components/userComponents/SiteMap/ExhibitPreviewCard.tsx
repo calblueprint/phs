@@ -123,7 +123,7 @@ function ExhibitPreviewCard({
                 />
               </svg>
             </div>
-            <Link href={`/spotlightPage/${id}`}>
+            <Link href={`/exhibitsPage/#a${id}`}>
               <h3 className="relative truncate font-medium font-lato text-night pr-[0.31rem] pl-[0.75rem] pt-[0rem] pb-[0rem] text-base leading-normal">
                 {name1}
               </h3>
