@@ -74,6 +74,12 @@ export default function NavBar() {
             >
               Site Maps
             </Link>
+            <Link
+              href="/exhibitsPage"
+              className="text-night font-lato text-lg font-bold block relative left-4 mt-[1.25rem]"
+            >
+              Exhibits
+            </Link>
 
             <h1 className="text-scary-forest font-lato text-sm font-normal uppercase mt-[2.13rem]">
               LEARN & EXPLORE
