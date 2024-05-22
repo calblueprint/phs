@@ -6,8 +6,7 @@ import AdmissionButton from './AdmissionButton';
 /**
  * @returns - Visitor resources section of the home page.  Users can reach the Site Map and QR flow from here.
  * These resources are mainly for in-person experiences
- // eslint-disable-next-line jsdoc/check-tag-names
- * @Note VisitorResources tag below uses padding to ensure relative consistency of text lining up with buttons.
+ * NOTE: VisitorResources tag below uses padding to ensure relative consistency of text lining up with buttons.
  * It will look slightly off on some screens.  Motivation: it's better to be slightly wrong on many screens
  * than VERY wrong on a few.  If solution found, @andreiTan
  */
