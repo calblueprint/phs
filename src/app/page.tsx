@@ -7,7 +7,6 @@ import VisitorResources from '../components/userComponents/HomePageComponents/Vi
 import WelcomeGraphic from '../components/userComponents/HomePageComponents/WelcomeGraphic/WelcomeGraphic';
 import HomeVirtualTours from '../components/userComponents/HomePageComponents/HomeVirtualTours/HomeVirtualTours';
 import HomeNewsFeed from '../components/userComponents/HomePageComponents/HomeNewsFeed/HomeNewsFeed';
-// import { useWebDeviceDetection } from '../../context/WindowWidthContext/WindowWidthContext';\
 import { useWebDeviceDetection } from '../context/WindowWidthContext/WindowWidthContext';
 
 /**

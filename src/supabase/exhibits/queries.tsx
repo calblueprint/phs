@@ -40,7 +40,7 @@ export async function fetchExhibitImage(
   exhibitId: string,
 ): Promise<{ image: string }> {
   const { data, error } = await supabase
-    .from('exhibits')
+    .from('categories')
     .select('image')
     .eq('id', exhibitId)
     .single();

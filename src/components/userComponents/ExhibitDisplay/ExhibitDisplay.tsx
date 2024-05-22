@@ -1,7 +1,22 @@
 import React from 'react';
 import Image from 'next/image';
+// eslint-disable-next-line import/no-unresolved
 import styles from './ExhibitDisplay.module.css';
 
+/**
+ * ExhibitDisplay component
+ * @param  props - props for the ExhibitDisplay component
+ * @param  props.name - name of the exhibit
+ * @param  props.location - location of the exhibit
+ * @param  props.information - information about the exhibit
+ * @param  props.description - description of the exhibit
+ * @param  props.relatednews - related news of the exhibit
+ * @param  props.topimage - top image of the exhibit
+ * @param  props.media - media of the exhibit
+ * @param  props.bottomimage - bottom image of the exhibit
+ * @param  props.moretext - more text of the exhibit
+ * @returns JSX.Element
+ */
 export default function ExhibitDisplay({
   name,
   location,
