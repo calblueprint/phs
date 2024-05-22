@@ -100,7 +100,7 @@ export default function NavBar() {
               href="/newsFeedPage"
               className="text-night font-lato text-lg font-bold block relative left-4 mt-[1.25rem]"
             >
-              News Feed
+              News
             </Link>
           </div>
         </div>
