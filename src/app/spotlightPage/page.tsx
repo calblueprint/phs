@@ -82,25 +82,25 @@ function App() {
                       className="w-[24.375rem] h-[13.375rem] rounded-lg"
                       key={
                         media.find(
-                          m =>
-                            m.id ===
-                            allTourMedia.find(m => m.tour_id === spotlight.id)
+                          mediaElement =>
+                            mediaElement.id ===
+                            allTourMedia.find(allTourMediaElement => allTourMediaElement.tour_id === spotlight.id)
                               ?.media_id,
                         )?.id
                       }
                       src={
                         media.find(
-                          m =>
-                            m.id ===
-                            allTourMedia.find(m => m.tour_id === spotlight.id)
+                          mediaElement =>
+                            mediaElement.id ===
+                            allTourMedia.find(allTourMediaElement => allTourMediaElement.tour_id === spotlight.id)
                               ?.media_id,
                         )?.url ?? ''
                       }
                       alt={
                         media.find(
-                          m =>
-                            m.id ===
-                            allTourMedia.find(m => m.tour_id === spotlight.id)
+                          mediaElement =>
+                            mediaElement.id ===
+                            allTourMedia.find(allTourMediaElement => allTourMediaElement.tour_id === spotlight.id)
                               ?.media_id,
                         )?.text ?? ''
                       }

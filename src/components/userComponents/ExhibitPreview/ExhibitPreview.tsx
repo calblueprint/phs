@@ -6,6 +6,19 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './ExhibitPreview.module.css';
 
+
+/**
+ *
+ * @param props - props for the ExhibitPreview component
+ * @param props.name - name of the exhibit
+ * @param props.location - location of the exhibit
+ * @param props.description - description of the exhibit
+ * @param props.about - about the exhibit
+ * @param props.topimage - top image of the exhibit
+ * @param props.bottomimage - bottom image of the exhibit
+ * @param props.href - href of the exhibit
+ * @returns JSX.Element
+ */
 export default function ExhibitPreview({
   name,
   location,
