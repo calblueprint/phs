@@ -5,9 +5,7 @@ import { CategoryRow } from '../../types/types';
 // Assume this function is in `supabase/category/queries.js`
 /**
  *
- * @param category category to retreive color
-
- * @param id
+ * @param id category id to retreive color for
  * @returns color for category, else null
  */
 // eslint-disable-next-line import/prefer-default-export

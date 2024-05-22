@@ -57,6 +57,7 @@ const config: Config = {
       },
     },
   },
+  // eslint-disable-next-line import/no-extraneous-dependencies, global-require
   plugins: [require('daisyui')],
 };
 export default config;
