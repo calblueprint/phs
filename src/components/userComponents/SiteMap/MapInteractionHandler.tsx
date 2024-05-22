@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
 import { useMap } from 'react-leaflet';
-import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 
 /**
- * A React component that recenters the map to a given coordinate without rendering any JSX.
- * @param {object} props - Component props.
- * @param {L.LatLng} props.center - The center to which the map should fly.
+ * A React component that recenters the map to a given coordinate. This component does not render any visual content.
+ * @param {Object} props - Component props.
+ * @param {L.LatLng} props.center - The center to which the map should fly. Must include 'lat' and 'lng' properties.
+ * @returns {null} Nothing is rendered by this component.
  */
 function RecenterMap({ center }) {
   const map = useMap();
@@ -16,12 +16,5 @@ function RecenterMap({ center }) {
 
   return null;
 }
-
-RecenterMap.propTypes = {
-  center: PropTypes.shape({
-    lat: PropTypes.number.isRequired,
-    lng: PropTypes.number.isRequired,
-  }).isRequired,
-};
 
 export default RecenterMap;
