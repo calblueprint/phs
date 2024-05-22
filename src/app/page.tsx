@@ -7,7 +7,7 @@ import VisitorResources from '../components/userComponents/HomePageComponents/Vi
 import WelcomeGraphic from '../components/userComponents/HomePageComponents/WelcomeGraphic/WelcomeGraphic';
 import HomeVirtualTours from '../components/userComponents/HomePageComponents/HomeVirtualTours/HomeVirtualTours';
 import HomeNewsFeed from '../components/userComponents/HomePageComponents/HomeNewsFeed/HomeNewsFeed';
-import { useWebScreenDetection } from '../context/WindowWidthContext/WindowWidthContext';
+import { useWebDeviceDetection } from '../context/WindowWidthContext/WindowWidthContext';
 
 /**
  * @returns - Home page for PHS/SPCA.  Buttons are available for the major flows of the application from this page.
@@ -22,7 +22,7 @@ function Home() {
   //     window.removeEventListener('resize', handleResize);
   //   };
   // }, []);
-  const isWebDevice = useWebScreenDetection();
+  const isWebDevice = useWebDeviceDetection();
 
   return (
     <div className="HomePage w-full h-full m-0 flex-col justify-center font-normal">
