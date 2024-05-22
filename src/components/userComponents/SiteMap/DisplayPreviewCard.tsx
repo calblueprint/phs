@@ -5,8 +5,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ExhibitWithCategoryRow, TourRow } from '../../../types/types';
 import { fetchImagesForTour } from '../../../supabase/media/queries';
-import { fetchExhibitImage } from '../../../supabase/exhibits/queries';
-import { CloseIcon } from '../../../../public/icons';
 
 interface DisplayCardProps {
   tour: TourRow | ExhibitWithCategoryRow;
@@ -64,7 +62,6 @@ function DisplayPreviewCard({
         // const imageObj = await fetchExhibitImage(tour.id);
         // if (imageObj) {
         imageUrl = tour.image;
-        console.log(tour);
         // }
         displayName = tour.category;
       }
