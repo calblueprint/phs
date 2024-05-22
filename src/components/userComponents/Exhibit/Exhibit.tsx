@@ -9,7 +9,6 @@ import { useWebDeviceDetection } from '../../../context/WindowWidthContext/Windo
  * @param root0.description description of exhibit
  * @param root0.image image
  * @param root0.id id of exhibit
- * @param root0.web
  * @returns exhibit component
  */
 export default function Exhibit({
