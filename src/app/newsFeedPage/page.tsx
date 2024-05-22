@@ -7,12 +7,14 @@ import NavBar from '../../components/userComponents/navBar/navBar';
 import { NewsRow } from '../../types/types';
 import { fetchAllNewsByDate } from '../../supabase/news/queries';
 import NewsDisplay from '../../components/userComponents/NewsDisplay/NewsDisplay';
+import { useWebDeviceDetection } from '../../context/WindowWidthContext/WindowWidthContext';
 
 /**
  * @description queries from the news table in supabase and fetches all the news rows to display
  * @returns news feed page by querying from the news table in supabase
  */
 export default function App() {
+  const isWebDevice = useWebDeviceDetection();
   const [news, setNews] = useState<NewsRow[]>([]);
   useEffect(() => {
     // Get news
@@ -22,20 +24,10 @@ export default function App() {
     };
     getNews();
   }, [news]);
-
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
   return (
     <div className="bg-ivory h-full">
       <NavBar />
-      {windowWidth < 1024 && (
+      {!isWebDevice && (
         <div>
           <div className="p-4">
             <BackButton />
@@ -56,7 +48,7 @@ export default function App() {
           </div>
         </div>
       )}
-      {windowWidth >= 1024 && (
+      {isWebDevice && (
         <div>
           <div className="flex">
             <div className="w-[50%] text-night px-[10rem] pt-[7.5rem] bg-mint-cream flex flex-col items-center">
@@ -71,12 +63,11 @@ export default function App() {
                 </p>
                 <h1 className="text-night text-4xl font-bold pt-6">News</h1>
                 <p className="pt-[2rem] text-night w-[311px]">
-                  {' '}
                   PLACEHOLDER: Take a virtual sneak peek behind the scenes at
                   our Wildlife Care Center. Here you will find outside
                   enclosures where sick, injured, and orphaned wildlife
                   recuperate and acclimate before being released back into their
-                  natural habitat.{' '}
+                  natural habitat.
                 </p>
               </div>
             </div>
