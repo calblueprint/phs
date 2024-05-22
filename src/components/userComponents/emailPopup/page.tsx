@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Fragment, useState } from 'react';
+import React, { ChangeEventHandler, Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { PiPaperPlaneTiltBold, PiSealCheck } from 'react-icons/pi';
 import { VscClose } from 'react-icons/vsc';
@@ -10,8 +10,9 @@ import supabase from '../../../supabase/client';
 
 /**
  *
- * @param root0
- * @param root0.backLink
+ * @param props - props
+ * @param props.backLink - the link to the page the user will be directed to after they subscribe
+ * @returns an email pop up.
  */
 function EmailSuccess({ backLink }: { backLink: string }) {
   return (
@@ -47,7 +48,9 @@ function EmailSuccess({ backLink }: { backLink: string }) {
 
 type EmailInputProps = {
   inputValue: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   handleChange: (e: any) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   handleSubmit: (e: any) => void;
   showError: boolean;
   errorMsg: string;
@@ -55,12 +58,13 @@ type EmailInputProps = {
 
 /**
  *
- * @param root0
- * @param root0.inputValue
- * @param root0.handleChange
- * @param root0.handleSubmit
- * @param root0.showError
- * @param root0.errorMsg
+ * @param props - props
+ * @param props.inputValue - the value of the email input
+ * @param props.handleChange - the function that handles the change of the email input
+ * @param props.handleSubmit - the function that handles the submission of the email input
+ * @param props.showError - a boolean that determines if the error message should be shown
+ * @param props.errorMsg - the error message that will be shown if showError is true
+ * @returns an email pop up.
  */
 function EmailInput({
   inputValue,
@@ -125,10 +129,8 @@ function EmailInput({
 }
 
 /**
- * @param root0
- * @param root0.backLink
- * @param root0
- * @param root0.backLink
+ * @param props - props
+ * @param props.backLink - the link to the page the user will be directed to after they subscribe
  * @returns an email pop up.
  * if no email is entered and the user clicks the submit button, an error message will pop up.
  * if an invalid email is entered and the user clicks the submit button, another error message will pop up.
@@ -145,19 +147,21 @@ export default function EmailPopup({ backLink }: { backLink: string }) {
     setIsOpen(false);
   };
 
-  const handleChange = e => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleChange = (e : any) => {
     setInputValue(e.target.value);
     setShowError(false);
   };
 
   // const { error } = await supabase.from('emails').insert({ id: 1, name: 'Denmark' })
 
-  const isValidEmail = email => {
+  const isValidEmail = (email : string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.(com|ca)$/;
     return emailRegex.test(email);
   };
 
-  const handleSubmit = async e => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, consistent-return
+  const handleSubmit = async (e : any) => {
     e.preventDefault();
 
     if (!inputValue.trim()) {

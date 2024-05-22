@@ -22,6 +22,8 @@ import supabase from '../client';
 // Assume this function is in `supabase/category/queries.js`
 /**
  *
+ * @param category - The category for which you want to fetch the color
+ * @returns The color for the category
  */
 // eslint-disable-next-line import/prefer-default-export
 export async function getCategoryColor1(category: string) {

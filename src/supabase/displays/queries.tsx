@@ -4,7 +4,7 @@ import { DisplayRow } from '../../types/types';
 import supabase from '../client';
 
 /**
- *
+ * @returns all displays from the database
  */
 export async function fetchAllDisplays() {
   const { data, error } = await supabase.from('displays').select('*');
@@ -16,7 +16,8 @@ export async function fetchAllDisplays() {
 
 /**
  *
- * @param id
+ * @param id - display id
+ * @returns a display from the database
  */
 export async function fetchDisplay(id: string) {
   const { data, error } = await supabase
@@ -32,7 +33,7 @@ export async function fetchDisplay(id: string) {
 
 /**
  *
- * @param id
+ * @param id - display id
  */
 export async function deleteDisplay(id: string) {
   const { error } = await supabase.from('displays').delete().eq('id', id);
@@ -46,7 +47,8 @@ export async function deleteDisplay(id: string) {
 
 /**
  *
- * @param displayData
+ * @param displayData - the display row to create
+ * @returns the new display row
  */
 export async function createDisplay(displayData: DisplayRow) {
   const { data, error } = await supabase.from('displays').upsert([displayData]);
