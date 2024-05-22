@@ -44,6 +44,14 @@ const config: Config = {
           xl: ['24px', '32px'],
         },
       },
+      boxShadow: {
+        vignette: '0px 4px 24px 0px rgba(20, 20, 20, 0.2) inset',
+        light: `0px 4px 24px 0px rgba(20, 20, 20, 0.16)`,
+        dark: '0px 0px 14px 0px rgba(0, 0, 0, 0.25);',
+        darkest: '0px 4px 24px 0px rgba(0, 0, 0, 0.40)',
+        'strong-inner':
+          'inset 0 2px 4px 0 rgba(0, 0, 0, 0.2), inset 0 2px 10px 0 rgba(0, 0, 0, 0.2)',
+      },
     },
   },
   plugins: [require('daisyui')],

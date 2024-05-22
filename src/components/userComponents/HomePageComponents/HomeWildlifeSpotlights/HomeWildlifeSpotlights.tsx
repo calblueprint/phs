@@ -3,8 +3,9 @@
 import React, { useEffect, useState } from 'react';
 import { HiChevronRight } from 'react-icons/hi';
 import Link from 'next/link';
-import { joinAllSpotlightsWithMedia } from '../../../supabase/tours/queries';
-import { SpotlightWithMediaRow } from '../../../types/types';
+import { joinAllSpotlightsWithMedia } from '../../../../supabase/tours/queries';
+import { SpotlightWithMediaRow } from '../../../../types/types';
+import { useWebDeviceDetection } from '../../../../context/WindowWidthContext/WindowWidthContext';
 
 /**
  // eslint-disable-next-line
@@ -17,20 +18,10 @@ import { SpotlightWithMediaRow } from '../../../types/types';
  * Spotlight scroller will showcase and link to chosen spotlights
  */
 function HomeWildlifeSpotlights(): React.JSX.Element {
-  // {spotlightsWithMedia} : {spotlightsWithMedia : SpotlightWithMediaRow[]}
+  const isWebDevice = useWebDeviceDetection();
   const [spotlightsWithMedia, setSpotlightsWithMedia] = useState<
     SpotlightWithMediaRow[]
   >([]);
-
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   useEffect(() => {
     /**
@@ -50,12 +41,13 @@ function HomeWildlifeSpotlights(): React.JSX.Element {
   }, []);
 
   return (
-    <div className="pl-4 md:px-48 py-20 md:py-25 bg-ivory ">
-      <div className=" h-5 w-full md:px-51 justify-between items-center inline-flex ">
+    <div className="pl-4 web:px-48 py-20 web:py-25 bg-ivory ">
+      <div className=" h-5 w-full web:px-51 justify-between items-center inline-flex ">
         <h3 className="text-night">Our Wildlife Spotlights</h3>
-        {windowWidth < 768 && (
+        {!isWebDevice && (
           <Link
-            className="b1 text-asparagus inline-flex items-center "
+            className="b1 inline-flex items-center
+            text-asparagus hover:text-hunter-green focus:text-hunter-green"
             href="/spotlightPage"
           >
             See All
@@ -63,12 +55,12 @@ function HomeWildlifeSpotlights(): React.JSX.Element {
           </Link>
         )}
       </div>
-      <div className="carousel carousel-center space-x-4  md:px-51 md:w-280 mt-6 rounded-lg w-full">
+      <div className="carousel carousel-center space-x-4  web:px-51 web:w-280 mt-6 rounded-lg w-full">
         {spotlightsWithMedia.map((spotlight: SpotlightWithMediaRow) => (
           <Link href={`/spotlightPage/${spotlight.id}`} key={spotlight.id}>
             <div
               className="relative 
-            carousel-item w-60 h-72 md:w-96 rounded-lg 
+            carousel-item w-60 h-72 web:w-96 rounded-lg 
             overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black" />
@@ -79,7 +71,7 @@ function HomeWildlifeSpotlights(): React.JSX.Element {
               />
               <div
                 className="absolute bottom-0.5 
-              p-4 md:pl-7 md:pr-24 md:pt-40 md:pb-8 space-y-2 flex-col"
+              p-4 web:pl-7 web:pr-24 web:pt-40 web:pb-8 space-y-2 flex-col"
               >
                 <h4 className="w-45">{spotlight.name}</h4>
                 <p className="s1 font-light line-clamp-2">
@@ -91,12 +83,13 @@ function HomeWildlifeSpotlights(): React.JSX.Element {
         ))}
       </div>
       <div
-        className=" h-5 w-full md:px-51 text-center
+        className=" h-5 w-full web:px-51 text-center
        justify-center inline-flex "
       >
-        {windowWidth >= 768 && (
+        {isWebDevice && (
           <Link
-            className="b1 mt-8 text-asparagus inline-flex text-center justify-center"
+            className="b1 mt-8 inline-flex text-center justify-center
+            text-asparagus hover:text-hunter-green focus:text-hunter-green"
             href="/spotlightPage"
           >
             See all wildlife spotlights
