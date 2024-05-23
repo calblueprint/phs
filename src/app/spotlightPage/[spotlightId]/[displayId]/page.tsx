@@ -116,9 +116,7 @@ export default function Page({
               </Link>
             ))}
           </div>
-          <Footer
-            backLink={`/spotlightPage/${params.spotlightId}/${params.displayId}`}
-          />
+          <Footer />
         </div>
       )}
 

@@ -14,9 +14,9 @@ type EmailInputProps = {
   inputValueName: string;
   inputValueEmail: string;
   subscribed: boolean;
-  handleNameChange: (e: any) => void;
-  handleEmailChange: (e: any) => void;
-  handleSubmit: (e: any) => void;
+  handleNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleEmailChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: (e: React.FormEvent) => void;
   showError: boolean;
   errorMsg: string;
 };
@@ -305,10 +305,7 @@ function Input({
 }
 
 /**
- * @param root0
- * @param root0.backLink
- * @param root0
- * @param root0.backLink
+ * @param root0 footer element thats at the bottom of every page. renders differentally based on whether its mobile or web.
  * @returns an email pop up.
  * if no email is entered and the user clicks the submit button, an error message will pop up.
  * if an invalid email is entered and the user clicks the submit button, another error message will pop up.
@@ -321,41 +318,47 @@ export default function Footer() {
   const [errorMsg, setErrorMsg] = useState('');
 
   const subbed = () =>
-    Boolean(JSON.parse(window.sessionStorage.getItem('subscribed')));
+    Boolean(JSON.parse(window.sessionStorage.getItem('subscribed') || 'false'));
   const [subscribed, setSubscribed] = useState(subbed);
 
   useEffect(() => {
     window.sessionStorage.setItem('subscribed', subscribed.toString());
   }, [subscribed]);
 
-  const handleNameChange = e => {
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNameValue(e.target.value);
     setShowError(false);
   };
 
-  const handleEmailChange = e => {
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmailValue(e.target.value);
     setShowError(false);
   };
 
   // const { error } = await supabase.from('emails').insert({ id: 1, name: 'Denmark' })
 
-  const isValidEmail = email => {
+  const isValidEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.(com|ca)$/;
     return emailRegex.test(email);
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // check name
     if (!inputValueName.trim()) {
       setShowError(true);
-      document.getElementById('nameInput').style.borderColor = 'red';
+      const nameElem = document.getElementById('nameInput');
+      if (nameElem) {
+        nameElem.style.borderColor = 'red';
+      }
       setErrorMsg('Please enter a name');
     } else if (!inputValueEmail.trim()) {
       // Handle the case for an empty email
       setShowError(true);
-      document.getElementById('emailInput').style.borderColor = 'red';
+      const emailElem = document.getElementById('emailInput');
+      if (emailElem) {
+        emailElem.style.borderColor = 'red';
+      }
       setErrorMsg('Please enter an email address');
     } else if (isValidEmail(inputValueEmail)) {
       // Handle the submission for a valid email
@@ -364,9 +367,9 @@ export default function Footer() {
         const { error } = await supabase
           .from('emails')
           .insert({ emails: inputValueEmail, first_name: inputValueName });
-        console.log('successfully inserted?');
+        // console.log('successfully inserted?');
       } catch (error) {
-        console.error(error);
+        // console.error(error);
         return error;
       }
 
@@ -374,14 +377,18 @@ export default function Footer() {
 
       //
       setSubscribed(true);
-      console.log('Valid email:', inputValueEmail);
+      // console.log('Valid email:', inputValueEmail);
       // Additional logic for handling a valid email
     } else {
       // Handle the case for an invalid email
       setShowError(true);
-      document.getElementById('emailInput').style.borderColor = 'red';
+      const emailElem = document.getElementById('emailInput');
+      if (emailElem) {
+        emailElem.style.borderColor = 'red';
+      }
       setErrorMsg('Enter a valid email format (ex. example@mail.com)');
     }
+    return null;
   };
   return (
     <div>

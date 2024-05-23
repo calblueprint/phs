@@ -5,10 +5,10 @@ import HomeWildlifeSpotlights from '../components/userComponents/HomePageCompone
 import NavBar from '../components/userComponents/navBar/navBar';
 import VisitorResources from '../components/userComponents/HomePageComponents/VisitorResources/VisitorResources';
 import WelcomeGraphic from '../components/userComponents/HomePageComponents/WelcomeGraphic/WelcomeGraphic';
-import Footer from '../components/userComponents/Footer/Footer';
 import HomeVirtualTours from '../components/userComponents/HomePageComponents/HomeVirtualTours/HomeVirtualTours';
 import HomeNewsFeed from '../components/userComponents/HomePageComponents/HomeNewsFeed/HomeNewsFeed';
-import { useWebScreenDetection } from '../context/WindowWidthContext/WindowWidthContext';
+import { useWebDeviceDetection } from '../context/WindowWidthContext/WindowWidthContext';
+import Footer from '../components/userComponents/Footer/Footer';
 
 /**
  * @returns - Home page for PHS/SPCA.  Buttons are available for the major flows of the application from this page.
@@ -23,7 +23,7 @@ function Home() {
   //     window.removeEventListener('resize', handleResize);
   //   };
   // }, []);
-  const isWebDevice = useWebScreenDetection();
+  const isWebDevice = useWebDeviceDetection();
 
   return (
     <div className="HomePage w-full h-full m-0 flex-col justify-center font-normal">
@@ -53,7 +53,6 @@ function Home() {
       <VisitorResources />
       <HomeVirtualTours />
       <HomeNewsFeed />
-      {/* Add Footer Here */}
       <Footer />
     </div>
   );

@@ -19,6 +19,7 @@ import {
 
 import BackButton from '../../../components/userComponents/BackButton/BackButton';
 import NavBar from '../../../components/userComponents/navBar/navBar';
+import Footer from '../../../components/userComponents/Footer/Footer';
 
 /**
  * @param params -
@@ -131,8 +132,8 @@ export default function TourStartPage({
             </ol>
           </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    )
   );
 }
