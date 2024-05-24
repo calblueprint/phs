@@ -14,25 +14,25 @@ export type Database = {
           category: string | null
           color_hex: string
           created_at: string
-          description: string
+          description: string | null
           id: number
-          image: string
+          image: string | null
         }
         Insert: {
           category?: string | null
           color_hex: string
           created_at?: string
-          description: string
+          description?: string | null
           id?: number
-          image: string
+          image?: string | null
         }
         Update: {
           category?: string | null
           color_hex?: string
           created_at?: string
-          description?: string
+          description?: string | null
           id?: number
-          image?: string
+          image?: string | null
         }
         Relationships: []
       }
@@ -99,14 +99,17 @@ export type Database = {
       emails: {
         Row: {
           emails: string | null
+          first_name: string | null
           id: number
         }
         Insert: {
           emails?: string | null
+          first_name?: string | null
           id?: number
         }
         Update: {
           emails?: string | null
+          first_name?: string | null
           id?: number
         }
         Relationships: []
@@ -139,6 +142,30 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      links: {
+        Row: {
+          created_at: string
+          id: string
+          title: string | null
+          type: string | null
+          url: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          title?: string | null
+          type?: string | null
+          url?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          title?: string | null
+          type?: string | null
+          url?: string | null
+        }
+        Relationships: []
       }
       media: {
         Row: {
@@ -381,6 +408,16 @@ export type Database = {
           category: string
           description: string
           image: string
+        }[]
+      }
+      get_links: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          id: string
+          created_at: string
+          type: string
+          title: string
+          url: string
         }[]
       }
       get_non_spotlight_tours: {
