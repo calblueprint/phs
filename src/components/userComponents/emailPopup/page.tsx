@@ -148,20 +148,20 @@ export default function EmailPopup({ backLink }: { backLink: string }) {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleChange = (e : any) => {
+  const handleChange = (e: any) => {
     setInputValue(e.target.value);
     setShowError(false);
   };
 
   // const { error } = await supabase.from('emails').insert({ id: 1, name: 'Denmark' })
 
-  const isValidEmail = (email : string) => {
+  const isValidEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.(com|ca)$/;
     return emailRegex.test(email);
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any, consistent-return
-  const handleSubmit = async (e : any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     if (!inputValue.trim()) {

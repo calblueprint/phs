@@ -62,15 +62,16 @@ function SiteMap({ mode }: SiteMapProps) {
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const isWebDevice = useWebDeviceDetection();
-  const cacheRef = useRef<{ tours?: TourRow[], exhibits?: ExhibitWithCategoryRow[] }>({});
+  const cacheRef = useRef<{
+    tours?: TourRow[];
+    exhibits?: ExhibitWithCategoryRow[];
+  }>({});
 
-
-  
   useEffect(() => {
     /**
      * This useEffect will manage fetching Data depending on if the chosen map is tours or exhibits.
      * It will also manage the initial state of the map when no marker is chosen
-     * 
+     *
      * It will fetch tours when spotlights == True
      */
     async function fetchData() {
@@ -124,7 +125,6 @@ function SiteMap({ mode }: SiteMapProps) {
     setSelectedMarker(null);
     setSelectedTour(null);
   }, [mode]);
-
 
   useEffect(() => {
     if (!selectedTour) {
@@ -184,17 +184,17 @@ function SiteMap({ mode }: SiteMapProps) {
           );
         })
       )}
-      {selectedTour && (
-        isWebDevice ? (
+      {selectedTour &&
+        (isWebDevice ? (
           <Control position="bottomright">
             {mode === 'tours' ? (
               <TourPreviewCard
-                tour={selectedTour as TourRow} 
+                tour={selectedTour as TourRow}
                 handleClose={handlePreviewClose}
               />
             ) : (
               <ExhibitPreviewCard
-                tour={selectedTour as ExhibitWithCategoryRow} 
+                tour={selectedTour as ExhibitWithCategoryRow}
                 handleClose={handlePreviewClose}
               />
             )}
@@ -203,19 +203,18 @@ function SiteMap({ mode }: SiteMapProps) {
           <div className="bottom-center">
             {mode === 'tours' ? (
               <TourPreviewCard
-                tour={selectedTour as TourRow} 
+                tour={selectedTour as TourRow}
                 handleClose={handlePreviewClose}
               />
             ) : (
               <ExhibitPreviewCard
-                tour={selectedTour as ExhibitWithCategoryRow} 
+                tour={selectedTour as ExhibitWithCategoryRow}
                 handleClose={handlePreviewClose}
               />
             )}
           </div>
-        )
-      )}
- 
+        ))}
+
       {selectedTour == null && <RecenterMap center={center} />}
     </MapContainer>
   );

@@ -14,7 +14,7 @@ function AdmissionButton() {
       bg-ivory group hover:bg-mint-cream focus:bg-mint-cream
       shadow-darkest focus:shadow-vignette
       px-4 py-4 web:px-8 web:py-6"
-      href="/hoursAdmissionPage"
+      href="/hours-and-location"
     >
       <div
         className="GreenCircle relative w-10 h-10 rounded-full flex justify-center items-center
