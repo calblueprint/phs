@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import NavBar from '../../components/userComponents/navBar/navBar';
+import NavBar from '../../components/userComponents/NavBar/NavBar';
 import { CategoryRow } from '../../types/types';
 import { fetchAllCategories } from '../../supabase/category/queries';
 import Exhibit from '../../components/userComponents/Exhibit/Exhibit';
