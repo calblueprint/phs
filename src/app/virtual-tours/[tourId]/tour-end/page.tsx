@@ -12,10 +12,7 @@ import {
 } from '../../../../types/types';
 import { fetchTour } from '../../../../supabase/tours/queries';
 import { fetchTourDisplays } from '../../../../supabase/tour_displays/queries';
-import {
-  BackArrow,
-  Congratulations,
-} from '../../../../../public/icons';
+import { BackArrow, Congratulations } from '../../../../../public/icons';
 import ButtonWithText from '../../../../components/userComponents/ButtonWithText/ButtonWithText';
 import RelatedLinks from '../../../../components/userComponents/RelatedLinks/RelatedLinks';
 
@@ -87,7 +84,7 @@ export default function TourEndPage({
               </div>
             </Link>
           </div>
-          <div className='w-[24.375rem]'>
+          <div className="w-[24.375rem]">
             <RelatedLinks />
           </div>
         </div>
@@ -117,9 +114,9 @@ export default function TourEndPage({
               </div>
             </Link>
           </div>
-          <div className='w-[24.375rem] pb-6'>
+          <div className="w-[24.375rem] pb-6">
             <RelatedLinks />
-          </div>  
+          </div>
         </div>
       </div>
     </div>

@@ -31,7 +31,7 @@ import RelatedLinks from '../../../components/userComponents/RelatedLinks/Relate
  * @returns a spotlight page given a spotlight Id
  */
 export default function Page({ params }: { params: { spotlightId: string } }) {
-  const [spotlight, setSpotlight] = useState<TourRow>([]);
+  const [spotlight, setSpotlight] = useState<TourRow>();
   const [displays, setDisplays] = useState<DisplayRow[]>([]);
   const [media, setMedia] = useState<MediaRow[]>([]);
   const [tourMedia, setTourMedia] = useState<TourMediaRow[]>([]);
@@ -105,10 +105,10 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
               <span className="text-scary-forest">
                 Home / Wildlife Spotlights
               </span>{' '}
-              / {spotlight.name}
+              / {spotlight?.name}
             </p>
 
-            <h1 className="text-night">{spotlight.name}</h1>
+            <h1 className="text-night">{spotlight?.name}</h1>
           </div>
 
           <div className="bg-silver w-full h-[0.03125rem] mb-[3.75rem]" />
@@ -133,10 +133,10 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
               </div>
 
               <p className="b3 text-night mb-[3.75rem]">
-                {spotlight.description}
+                {spotlight?.description}
               </p>
 
-              <div className='mb-[3.75rem]'>
+              <div className="mb-[3.75rem]">
                 <RelatedLinks />
               </div>
 
@@ -206,7 +206,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
                   {displays.map(display => (
                     <Link
                       key={display.id}
-                      href={`/wildlife-spotlights/${spotlight.id}/${display.id}?spotlightId=${spotlight.id}`}
+                      href={`/wildlife-spotlights/${spotlight?.id}/${display.id}?spotlightId=${spotlight?.id}`}
                     >
                       <div className="w-[20.875rem] h-[4.625rem]">
                         <SpotlightDisplayButton text={display.title} />
@@ -242,8 +242,8 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
 
       <div className="flex flex-col gap-10 px-[1.12rem] pt-8 pb-10">
         <div className="flex flex-col gap-5">
-          <h1 className="text-night">{spotlight.name}</h1>
-          <p className="b3 text-night">{spotlight.description}</p>
+          <h1 className="text-night">{spotlight?.name}</h1>
+          <p className="b3 text-night">{spotlight?.description}</p>
         </div>
 
         {displays.length > 0 && (
@@ -255,7 +255,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
                 {displays.map(display => (
                   <Link
                     key={display.id}
-                    href={`/wildlife-spotlights/${spotlight.id}/${display.id}?spotlightId=${spotlight.id}`}
+                    href={`/wildlife-spotlights/${spotlight?.id}/${display.id}?spotlightId=${spotlight?.id}`}
                   >
                     <div className="w-[22.125rem] h-[3.75rem]">
                       <SpotlightDisplayButton text={display.title} />

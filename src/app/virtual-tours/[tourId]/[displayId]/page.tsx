@@ -157,7 +157,7 @@ export default function TourStopPage({
             </div>
           </div>
           <div className="flex flex-col gap-8 w-[24.375rem]">
-            {(currentStop && tour?.stop_count) > 0 && (
+            {currentStop && tour?.stop_count && (
               <ProgressBar
                 tourName={tour?.name || ''}
                 currentStop={currentStop || 0}
@@ -185,7 +185,7 @@ export default function TourStopPage({
       <NavBar />
       <div className="flex flex-col items-center">
         <div className="max-w-[24.375rem]">
-          {(currentStop && tour?.stop_count) > 0 && (
+          {currentStop && tour?.stop_count && (
             <ProgressBar
               tourName={tour?.name || ''}
               currentStop={currentStop || 0}

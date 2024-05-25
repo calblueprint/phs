@@ -41,7 +41,7 @@ export async function deleteDisplay(id: string) {
   if (error) {
     throw new Error(`An error occurred trying to delete displays: ${error}`);
   } else {
-    fetchDisplays();
+    fetchDisplay(id);
   }
 }
 
