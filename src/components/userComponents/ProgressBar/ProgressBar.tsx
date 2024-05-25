@@ -18,9 +18,9 @@ function ProgressBar({ tourName, currentStop, totalStops }: ProgressBarProps) {
 
   return (
     <div className="bg-ivory w-[24.375rem] min-h-[5.625rem] flex flex-col relative">
-      <div className="px-[1.56rem] pt-[1.69rem] pb-[1.12rem]">
-        <div className="flex flex-col font-lato font-medium items-center gap-2">
-          <div>{tourName} Tour</div>
+      <div className="pl-[1.56rem] lg:pl-0 pr-[1.56rem] pt-[1.69rem] pb-[1.12rem]">
+        <div className="flex flex-col items-center lg:items-start gap-2">
+          <p className="b2 text-night">{tourName} Tour</p>
           <div className="flex flex-row items-center gap-3">
             <div className="bg-[#F5F6F5] w-[18.75rem] h-[0.625rem] rounded-full">
               <div
@@ -32,9 +32,9 @@ function ProgressBar({ tourName, currentStop, totalStops }: ProgressBarProps) {
                 }}
               />
             </div>
-            <h4 className="text-night font-lato font-medium text-center">
+            <p className="b2 text-night">
               {currentStop}/{totalStops}
-            </h4>
+            </p>
           </div>
         </div>
       </div>

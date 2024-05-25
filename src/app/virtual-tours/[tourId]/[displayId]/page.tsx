@@ -9,7 +9,7 @@ import {
   TourDisplaysRow,
   MediaRow,
 } from '../../../../types/types';
-import NavBar from '../../../../components/userComponents/navBar/navBar';
+import NavBar from '../../../../components/userComponents/NavBar/NavBar';
 import { fetchTour } from '../../../../supabase/tours/queries';
 import { fetchDisplay } from '../../../../supabase/displays/queries';
 import { fetchTourDisplays } from '../../../../supabase/tour_displays/queries';
@@ -18,6 +18,7 @@ import LastStopButton from '../../../../components/userComponents/LastStopButton
 import NextStopButton from '../../../../components/userComponents/NextStopButton/NextStopButton';
 import { fetchImagesForDisplay } from '../../../../supabase/media/queries';
 import Carousel from '../../../../components/userComponents/ImageScroller/ImageScroller';
+import TextButton from '../../../../components/userComponents/TextButton/TextButton';
 
 /**
  * Displays a stop page for the current tour
@@ -36,14 +37,13 @@ export default function TourStopPage({
   const [tour, setTour] = useState<TourRow>();
   const [currentStop, setCurrentStop] = useState<number>();
   const [media, setMedia] = useState<MediaRow[]>([]);
-  const [prev, setPrev] = useState<string>(
-    `/featuredToursPage/${params.tourId}`,
-  );
+  const [prev, setPrev] = useState<string>(`/virtual-tours/${params.tourId}`);
   const [prevText, setPrevText] = useState<string>('Back');
   const [next, setNext] = useState<string>(
-    `/featuredToursPage/${params.tourId}/tourEndPage`,
+    `/virtual-tours/${params.tourId}/tour-end`,
   );
   const [nextText, setNextText] = useState<string>('End Tour');
+  const [isWide, setIsWide] = useState(false);
 
   useEffect(() => {
     // Get display
@@ -75,27 +75,27 @@ export default function TourStopPage({
         throw new Error('Display not found in tour displays');
       } else if (index === 0) {
         setNext(
-          `/featuredToursPage/${params.tourId}/${
+          `/virtual-tours/${params.tourId}/${
             tourDisplays[index + 1].display_id
           }`,
         );
         setNextText('Next Stop');
       } else if (index === tourDisplays.length - 1) {
         setPrev(
-          `/featuredToursPage/${params.tourId}/${
+          `/virtual-tours/${params.tourId}/${
             tourDisplays[index - 1].display_id
           }`,
         );
         setPrevText('Last Stop');
       } else {
         setPrev(
-          `/featuredToursPage/${params.tourId}/${
+          `/virtual-tours/${params.tourId}/${
             tourDisplays[index - 1].display_id
           }`,
         );
         setPrevText('Last Stop');
         setNext(
-          `/featuredToursPage/${params.tourId}/${
+          `/virtual-tours/${params.tourId}/${
             tourDisplays[index + 1].display_id
           }`,
         );
@@ -133,37 +133,84 @@ export default function TourStopPage({
     fetchDisplayMedia();
   }, [params.displayId, params.tourId]);
 
-  return (
-    <div className="bg-ivory w-[24.375rem] min-h-screen">
+  useEffect(() => {
+    if (window) {
+      setIsWide(window.innerWidth >= 1024);
+    }
+    // Update isWide state on window resize
+    const handleResize = () => setIsWide(window.innerWidth >= 1024);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return isWide ? (
+    <div className="bg-ivory w-full min-h-screen">
       <NavBar />
-      {(currentStop && tour?.stop_count) > 0 && (
-        <ProgressBar
-          tourName={tour?.name || ''}
-          currentStop={currentStop || 0}
-          totalStops={tour?.stop_count || 0}
-        />
-      )}
-      <div className="mb-6">
-        {media.length > 0 ? (
-          <Carousel media={media} />
-        ) : (
-          <div className="bg-scary-forest relative w-full h-[15.3125rem]" />
-        )}
-      </div>
-      <h1 className="text-night font-lato text-3xl font-bold px-[1.31rem] gap-4 mt-6 mb-4">
-        {display && display.title}
-      </h1>
-      <div className="px-[1.31rem] pb-[2.5rem]">
-        <p className="text-night font-lato font-normal">
-          {display && display.description}
-        </p>
-        <div className="flex flex-row justify-between mt-8">
-          <LastStopButton text={prevText} link={prev} />
-          <NextStopButton text={nextText} link={next} />
+      <div className="flex justify-center">
+        <div className="flex flex-row gap-[8.5rem] py-[6.25rem]">
+          <div className="flex flex-col gap-10">
+            <h1 className="text-night">{display && display.title}</h1>
+            <div className="w-[29.25rem] h-[18.375rem]">
+              {media.length > 0 && <Carousel media={media} />}
+            </div>
+          </div>
+          <div className="flex flex-col gap-8 w-[24.375rem]">
+            {currentStop && tour?.stop_count && (
+              <ProgressBar
+                tourName={tour?.name || ''}
+                currentStop={currentStop || 0}
+                totalStops={tour?.stop_count || 0}
+              />
+            )}
+            <div className="">
+              <p className="b3 text-night mb-[3.12rem]">
+                {display && display.description}
+              </p>
+              <div className="flex flex-row gap-4 mb-4">
+                <LastStopButton text={prevText} link={prev} />
+                <NextStopButton text={nextText} link={next} />
+              </div>
+              <Link href="/virtual-tours">
+                <TextButton text="Exit this tour" />
+              </Link>
+            </div>
+          </div>
         </div>
-        <h4 className="text-scary-forest font-lato font-bold mt-4">
-          <Link href="/featuredToursPage">Exit this tour</Link>
-        </h4>
+      </div>
+    </div>
+  ) : (
+    <div className="bg-ivory w-full min-h-screen">
+      <NavBar />
+      <div className="flex flex-col items-center">
+        <div className="max-w-[24.375rem]">
+          {currentStop && tour?.stop_count && (
+            <ProgressBar
+              tourName={tour?.name || ''}
+              currentStop={currentStop || 0}
+              totalStops={tour?.stop_count || 0}
+            />
+          )}
+          <div className="mb-6">
+            <div className="w-[24.375rem] h-[15.3125rem]">
+              {media.length > 0 && <Carousel media={media} />}
+            </div>
+          </div>
+          <div className="flex flex-col gap-5 px-[1.31rem]">
+            <h1 className="text-night">{display && display.title}</h1>
+            <div className="pb-[2.5rem]">
+              <p className="b3 text-night">{display && display.description}</p>
+              <div className="flex flex-row gap-4 mt-8 mb-4">
+                <LastStopButton text={prevText} link={prev} />
+                <NextStopButton text={nextText} link={next} />
+              </div>
+              <Link href="/virtual-tours">
+                <TextButton text="Exit this tour" />
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

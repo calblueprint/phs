@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BackArrow } from '../../../../public/icons';
 
 /**
  * @returns the BackArrow button
  */
 export default function BackButton() {
+  const [isClicked, setIsClicked] = useState(false);
+  const handleClick = () => {
+    setIsClicked(true);
+  };
   return (
-    <div className="bg-[#EBF0E8] bg-opacity-[36%] w-[3rem] h-[2.0625rem] rounded-lg flex items-center justify-around">
+    <button
+      className={`w-12 h-[2.0625rem] rounded-lg bg-[#EBF0E8] bg-opacity-40 flex items-center justify-center ${
+        isClicked ? 'brightness-[.6]' : ''
+      }`}
+      aria-label="Back Button"
+      type="button"
+      onClick={handleClick}
+    >
       <BackArrow strokeColor="#FFFDF7" />
-    </div>
+    </button>
   );
 }

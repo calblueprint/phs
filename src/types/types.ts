@@ -7,6 +7,7 @@ Any updates to supabase.ts should be reflected here (new tables).
 import { Database, Json } from './supabase';
 
 export type DisplayRow = Database['public']['Tables']['displays']['Row'];
+export type LinksRow = Database['public']['Tables']['links']['Row'];
 export type MediaRow = Database['public']['Tables']['media']['Row'];
 export type TourDisplaysRow =
   Database['public']['Tables']['tour_displays']['Row'];
