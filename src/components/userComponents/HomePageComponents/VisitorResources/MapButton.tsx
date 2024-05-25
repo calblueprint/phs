@@ -18,7 +18,7 @@ function MapButton() {
       // p-4 web:pl-9 web:pr-24 web:pt-7 web:pb-[1.625rem]
       bg-ivory group hover:bg-mint-cream focus:bg-mint-cream
       shadow-darkest focus:shadow-vignette"
-      href="/siteMapPage"
+      href="/site-maps"
     >
       <div
         className="GreenCircle w-10 h-10 relative rounded-full flex justify-center items-center

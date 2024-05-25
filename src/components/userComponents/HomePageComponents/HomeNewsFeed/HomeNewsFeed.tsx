@@ -43,7 +43,7 @@ function HomeNewsFeed() {
           <Link
             className="b1 inline-flex items-center
             text-asparagus hover:text-hunter-green focus:text-hunter-green"
-            href="/newsFeedPage"
+            href="/news"
           >
             See All
             <HiChevronRight className="text-2xl" />
