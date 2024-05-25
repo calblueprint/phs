@@ -1,11 +1,9 @@
-/* eslint-disable jsdoc/require-returns */
-/* eslint-disable jsdoc/require-jsdoc */
 import L from 'leaflet';
 import React, { useState, createRef, useEffect } from 'react';
 import { useMap } from 'react-leaflet';
 
 interface ControlProps {
-  position: L.ControlPosition;
+  position: 'bottomleft' | 'bottomright' | 'topleft' | 'topright';
   children?: React.ReactNode;
   container?: React.HTMLAttributes<HTMLDivElement>;
   prepend?: boolean;
@@ -18,14 +16,22 @@ const POSITION_CLASSES = {
   topright: 'leaflet-top leaflet-right',
 };
 
+/**
+ * Custom control component for Leaflet maps using React.
+ * @param props - The properties object.
+ * @param props.position - The position of the control on the map.
+ * @param [props.children] - The child elements to be rendered inside the control.
+ * @param [props.container] - Additional HTML attributes for the control container.
+ * @param [props.prepend] - Whether to prepend the control to the container.
+ * @returns The custom control component.
+ */
 function Control({
   position,
   children,
   container,
   prepend,
 }: ControlProps): JSX.Element {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [portalRoot, setPortalRoot] = useState<any>(
+  const [portalRoot, setPortalRoot] = useState<HTMLElement>(
     document.createElement('div'),
   );
   const positionClass =
@@ -35,8 +41,8 @@ function Control({
 
   /**
    * Whenever the control container ref is created,
-   * Ensure the click / scroll propagation is removed
-   * This way click/scroll events do not bubble down to the map
+   * ensure the click/scroll propagation is removed.
+   * This way click/scroll events do not bubble down to the map.
    */
   useEffect(() => {
     if (controlContainerRef.current !== null) {
@@ -46,21 +52,23 @@ function Control({
   }, [controlContainerRef]);
 
   /**
-   * Whenever the position is changed, go ahead and get the container of the map and the first
-   * instance of the position class in that map container
+   * Whenever the position is changed, go ahead and get the container of the map
+   * and the first instance of the position class in that map container.
    */
   useEffect(() => {
     const mapContainer = map.getContainer();
-    const targetDiv = mapContainer.getElementsByClassName(positionClass);
-    setPortalRoot(targetDiv[0]);
+    const targetDiv = mapContainer.getElementsByClassName(positionClass)[0];
+    if (targetDiv) {
+      setPortalRoot(targetDiv as HTMLElement);
+    }
   }, [positionClass, map]);
 
   /**
    * Whenever the portal root is complete,
-   * append or prepend the control container to the portal root
+   * append or prepend the control container to the portal root.
    */
   useEffect(() => {
-    if (portalRoot !== null) {
+    if (portalRoot && controlContainerRef.current) {
       if (prepend !== undefined && prepend === true) {
         portalRoot.prepend(controlContainerRef.current);
       } else {
@@ -70,8 +78,9 @@ function Control({
   }, [portalRoot, prepend, controlContainerRef]);
 
   /**
-   * Concatenate the props.container className to the class of the control div, per leaflet's built in styles.
-   * Will need to change styling of component itself based on screen breakpoints
+   * Concatenate the props.container className to the class of the control div,
+   * per Leaflet's built-in styles.
+   * Will need to change styling of the component itself based on screen breakpoints.
    */
   const className = `${container?.className?.concat(' ') || ''}leaflet-control`;
 
