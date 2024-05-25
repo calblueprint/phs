@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { FiCalendar, FiCompass } from 'react-icons/fi';
 import Link from 'next/link';
 import NavBar from '../../components/userComponents/NavBar/NavBar';

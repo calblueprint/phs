@@ -7,7 +7,7 @@ import { LinksRow } from '../../types/types';
  * Fetches all links from the database.
  * @returns A promise that resolves to an array of LinksRow objects.
  */
-export async function fetchAllLinks(): Promise<LinksRow[]> {
+export default async function fetchAllLinks(): Promise<LinksRow[]> {
   const { data, error } = await supabase.rpc('get_links');
   if (error) {
     throw new Error(error.message);

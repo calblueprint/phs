@@ -64,7 +64,7 @@ export default function Page({
 
     fetchData();
     fetchDisplayMedia();
-  }, []);
+  }, [params.displayId, params.spotlightId]);
 
   useEffect(() => {
     if (window) {

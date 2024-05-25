@@ -80,7 +80,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
     getTourMedia();
     getMedia();
     getAllTourMedia();
-  }, []);
+  }, [params.spotlightId]);
 
   useEffect(() => {
     if (window) {

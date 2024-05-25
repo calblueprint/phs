@@ -6,7 +6,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './ExhibitPreview.module.css';
 
-
 /**
  *
  * @param props - props for the ExhibitPreview component

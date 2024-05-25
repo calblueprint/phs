@@ -4,12 +4,7 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 import NavBar from '../../../../components/userComponents/NavBar/NavBar';
-import {
-  MediaRow,
-  TourRow,
-  TourMediaRow,
-  TourDisplaysRow,
-} from '../../../../types/types';
+import { TourRow, TourDisplaysRow } from '../../../../types/types';
 import { fetchTour } from '../../../../supabase/tours/queries';
 import { fetchTourDisplays } from '../../../../supabase/tour_displays/queries';
 import { BackArrow, Congratulations } from '../../../../../public/icons';

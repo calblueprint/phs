@@ -24,12 +24,8 @@ export default function WildlifeSpotlightsPage() {
      * @returns spotlight data
      */
     async function fetchData() {
-      try {
-        const responseData: TourRow[] = await fetchAllSpotlights();
-        setSpotlights(responseData);
-      } catch (error) {
-        console.error(error);
-      }
+      const responseData: TourRow[] = await fetchAllSpotlights();
+      setSpotlights(responseData);
     }
 
     // Get all tour media
@@ -95,28 +91,34 @@ export default function WildlifeSpotlightsPage() {
                         <img
                           key={
                             media.find(
-                              m =>
-                                m.id ===
+                              mediaElement =>
+                                mediaElement.id ===
                                 allTourMedia.find(
-                                  m => m.tour_id === spotlight.id,
+                                  allTourMediaElement =>
+                                    allTourMediaElement.tour_id ===
+                                    spotlight.id,
                                 )?.media_id,
                             )?.id
                           }
                           src={
                             media.find(
-                              m =>
-                                m.id ===
+                              mediaElement =>
+                                mediaElement.id ===
                                 allTourMedia.find(
-                                  m => m.tour_id === spotlight.id,
+                                  allTourMediaElement =>
+                                    allTourMediaElement.tour_id ===
+                                    spotlight.id,
                                 )?.media_id,
                             )?.url ?? ''
                           }
                           alt={
                             media.find(
-                              m =>
-                                m.id ===
+                              mediaElement =>
+                                mediaElement.id ===
                                 allTourMedia.find(
-                                  m => m.tour_id === spotlight.id,
+                                  allTourMediaElement =>
+                                    allTourMediaElement.tour_id ===
+                                    spotlight.id,
                                 )?.media_id,
                             )?.text ?? ''
                           }
@@ -167,28 +169,34 @@ export default function WildlifeSpotlightsPage() {
                         <img
                           key={
                             media.find(
-                              m =>
-                                m.id ===
+                              mediaElement =>
+                                mediaElement.id ===
                                 allTourMedia.find(
-                                  m => m.tour_id === spotlight.id,
+                                  allTourMediaElement =>
+                                    allTourMediaElement.tour_id ===
+                                    spotlight.id,
                                 )?.media_id,
                             )?.id
                           }
                           src={
                             media.find(
-                              m =>
-                                m.id ===
+                              mediaElement =>
+                                mediaElement.id ===
                                 allTourMedia.find(
-                                  m => m.tour_id === spotlight.id,
+                                  allTourMediaElement =>
+                                    allTourMediaElement.tour_id ===
+                                    spotlight.id,
                                 )?.media_id,
                             )?.url ?? ''
                           }
                           alt={
                             media.find(
-                              m =>
-                                m.id ===
+                              mediaElement =>
+                                mediaElement.id ===
                                 allTourMedia.find(
-                                  m => m.tour_id === spotlight.id,
+                                  allTourMediaElement =>
+                                    allTourMediaElement.tour_id ===
+                                    spotlight.id,
                                 )?.media_id,
                             )?.text ?? ''
                           }

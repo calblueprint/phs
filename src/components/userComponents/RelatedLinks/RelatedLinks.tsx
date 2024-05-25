@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { LinksRow } from '../../../types/types';
 
-import { fetchAllLinks } from '../../../supabase/links/queries';
+import fetchAllLinks from '../../../supabase/links/queries';
 import { ExternalLinkIcon } from '../../../../public/icons';
 
 /**

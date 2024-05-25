@@ -18,7 +18,7 @@ import {
 
 import BackButton from '../../../components/userComponents/BackButton/BackButton';
 import NavBar from '../../../components/userComponents/NavBar/NavBar';
-import ButtonWithText from '@/components/userComponents/ButtonWithText/ButtonWithText';
+import ButtonWithText from '../../../components/userComponents/ButtonWithText/ButtonWithText';
 
 /**
  * @param params -
