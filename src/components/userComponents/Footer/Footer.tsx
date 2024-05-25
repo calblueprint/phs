@@ -49,7 +49,7 @@ function Input({
     <div>
       {!isWebDevice && (
         <div className="flex flex-col justify-center">
-          <div className="bg-hunterGreen mt-2 pb-16">
+          <div className="bg-hunter-green mt-2 pb-16">
             {subscribed && (
               <div className="flex flex-col items-center pt-20">
                 <IoIosCheckmarkCircleOutline className="text-ivory text-5xl" />
@@ -65,9 +65,9 @@ function Input({
             {!subscribed && (
               <div>
                 <div>
-                  <h3 className="pt-12 text-center font-['Lato']">
+                  <p className="pt-12 text-lg text-center font-bold font-['Lato']">
                     SUBSCRIBE TO OUR NEWSLETTER
-                  </h3>
+                  </p>
                 </div>
                 <div>
                   <p className="text-center m-auto w-[25rem] font-Lato font-normal text-white-smoke pt-2 pl-8 pr-8">
@@ -83,7 +83,7 @@ function Input({
                     required
                     id="nameInput"
                     onChange={handleNameChange}
-                    className={`focus:border-ivory valid:border-asparagus font-Lato text-sm bg-hunterGreen border border-silver rounded-md pl-3 w-[20.125rem] h-[3.125rem] items-center ${
+                    className={`focus:border-ivory valid:border-asparagus font-Lato text-sm bg-hunter-green border border-silver rounded-md pl-3 w-[20.125rem] h-[3.125rem] items-center ${
                       inputValueName ? 'text-silver' : 'text-silver'
                     }`}
                   />
@@ -94,7 +94,7 @@ function Input({
                     id="emailInput"
                     required
                     onChange={handleEmailChange}
-                    className={`focus:border-ivory valid:border-asparagus font-Lato text-sm bg-hunterGreen border border-silver rounded-md pl-3 w-[20.125rem] h-[3.125rem] items-center ${
+                    className={`focus:border-ivory valid:border-asparagus font-Lato text-sm bg-hunter-green border border-silver rounded-md pl-3 w-[20.125rem] h-[3.125rem] items-center ${
                       inputValueEmail ? 'text-silver' : 'text-silver'
                     }`}
                   />
@@ -106,7 +106,7 @@ function Input({
                     Subscribe
                   </button>
                   {showError && (
-                    <div className="error-modal flex items-center rounded-lg w-[20.125rem] bg-[#E94444] m-auto justify-center pt-[.625rem]">
+                    <div className="error-modal flex items-center rounded-lg w-[20.125rem] bg-[#E94444] m-auto justify-center pt-[.625rem] pb-[.625rem]">
                       {/* Display your error message or handle the error case */}
                       <div className="icon-container">
                         <BiErrorCircle className="text-ivory text-[12px]" />
@@ -152,29 +152,29 @@ function Input({
             <hr className="border-silver w-[322px] m-auto h-[.5px] mt-5 mb-8" />
             <div className="bg-scary-forest flex justify-around text-center text-ivory font-[Lato] gap-4 active:text-[#bcc0bb]">
               <div className="flex flex-col gap-4">
-                <Link href="/hoursAdmissionPage">
+                <Link href="/hours-and-location">
                   {' '}
                   <p> Hours & Locations </p>{' '}
                 </Link>
-                <Link href="/siteMapPage">
+                <Link href="/site-maps">
                   {' '}
                   <p> Site Maps </p>{' '}
                 </Link>
-                <Link href="/featuredToursPage">
+                <Link href="/virtual-tours">
                   {' '}
-                  <p> Featured Tours </p>{' '}
+                  <p> Virtual Tours </p>{' '}
                 </Link>
               </div>
               <div className="flex flex-col gap-4">
-                <Link href="/exhibitsPage">
+                <Link href="/exhibits">
                   {' '}
                   <p> Exhibits </p>{' '}
                 </Link>
-                <Link href="/newsFeedPage">
+                <Link href="/news">
                   {' '}
                   <p> News </p>{' '}
                 </Link>
-                <Link href="/spotlightPage">
+                <Link href="/wildlife-spotlights">
                   {' '}
                   <p> Wildlife Spotlights </p>{' '}
                 </Link>
@@ -182,7 +182,7 @@ function Input({
             </div>
             <div className="w-full pt-6 gap-4 bg-scary-forest">
               <Link href="https://phs-spca.org">
-                <div className="w-[12.5rem] m-auto px-4 py-1.5 bg-hunterGreen rounded-lg">
+                <div className="w-[12.5rem] m-auto px-4 py-1.5 bg-hunter-green rounded-lg">
                   <div className="text-center text-silver text-xs font-normal font-['Lato'] active:text-[#bcc0bb]">
                     Learn more about PHS/SPCA
                   </div>
@@ -219,7 +219,7 @@ function Input({
                 welfare.{' '}
               </p>
               <Link href="https://phs-spca.org">
-                <div className="w-[200px] px-4 py-1.5 bg-hunterGreen rounded-lg">
+                <div className="w-[200px] px-4 py-1.5 bg-hunter-green rounded-lg">
                   <div className="text-center text-silver text-xs font-normal font-['Lato'] active:text-[#bcc0bb]">
                     Learn more about PHS/SPCA
                   </div>
@@ -228,30 +228,30 @@ function Input({
             </div>
             <div className="w-[9.375rem] flex flex-col gap-4 text-ivory active:text-[#bcc0bb]">
               <p className="text-silver s2"> VISIT </p>
-              <Link href="/hoursAdmissionPage">
+              <Link href="/hours-and-location">
                 {' '}
                 <p> Hours & Location </p>
               </Link>
-              <Link href="/siteMapPage">
+              <Link href="/site-maps">
                 {' '}
                 <p> Site Maps </p>
               </Link>
-              <Link href="/featuredToursPage">
+              <Link href="/virtual-tours">
                 {' '}
-                <p> Featured Tours</p>{' '}
+                <p> Virtual Tours</p>{' '}
               </Link>
             </div>
             <div className="w-[150px] flex flex-col gap-4 text-ivory active:text-[#bcc0bb]">
               <p className="text-silver s2"> LEARN & EXPLORE </p>
-              <Link href="/exhibitsPage">
+              <Link href="/exhibits">
                 {' '}
                 <p> Exhibits </p>
               </Link>
-              <Link href="/newsFeedPage">
+              <Link href="/news">
                 {' '}
                 <p> News </p>{' '}
               </Link>
-              <Link href="/spotlightPage">
+              <Link href="/wildlife-spotlights">
                 {' '}
                 <p>Wildlife Spotlights</p>{' '}
               </Link>
@@ -305,8 +305,7 @@ function Input({
 }
 
 /**
- * @param root0 footer element thats at the bottom of every page. renders differentally based on whether its mobile or web.
- * @returns an email pop up.
+ * @returns the footer component seen on bottom of every page
  * if no email is entered and the user clicks the submit button, an error message will pop up.
  * if an invalid email is entered and the user clicks the submit button, another error message will pop up.
  * otherwise, if a valid email is submitted and properly subscribed, another pop up will appear that will tell the user they are subscribed and direct them to another page.

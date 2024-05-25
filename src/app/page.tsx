@@ -8,6 +8,7 @@ import WelcomeGraphic from '../components/userComponents/HomePageComponents/Welc
 import HomeVirtualTours from '../components/userComponents/HomePageComponents/HomeVirtualTours/HomeVirtualTours';
 import HomeNewsFeed from '../components/userComponents/HomePageComponents/HomeNewsFeed/HomeNewsFeed';
 import { useWebDeviceDetection } from '../context/WindowWidthContext/WindowWidthContext';
+import Footer from '../components/userComponents/Footer/Footer';
 
 /**
  * @returns - Home page for PHS/SPCA.  Buttons are available for the major flows of the application from this page.
@@ -52,7 +53,7 @@ function Home() {
       <VisitorResources />
       <HomeVirtualTours />
       <HomeNewsFeed />
-      {/* Add Footer Here */}
+      <Footer />
     </div>
   );
 }

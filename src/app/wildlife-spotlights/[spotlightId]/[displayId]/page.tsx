@@ -13,6 +13,7 @@ import Carousel from '../../../../components/userComponents/ImageScroller/ImageS
 import { fetchImagesForDisplay } from '../../../../supabase/media/queries';
 import SpotlightDisplayButton from '../../../../components/userComponents/SpotlightDisplayButton/SpotlightDisplayButton';
 import TextButton from '../../../../components/userComponents/TextButton/TextButton';
+import Footer from '../../../../components/userComponents/Footer/Footer';
 
 /**
  * @param root0 -
@@ -117,6 +118,7 @@ export default function Page({
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   ) : (
     <div className="bg-ivory w-full min-h-screen">
@@ -161,6 +163,7 @@ export default function Page({
           <TextButton text="See all spotlights" />
         </Link>
       </div>
+      <Footer />
     </div>
   );
 }
