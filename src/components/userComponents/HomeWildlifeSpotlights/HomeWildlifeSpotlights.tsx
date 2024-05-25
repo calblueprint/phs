@@ -65,7 +65,10 @@ function HomeWildlifeSpotlights(): React.JSX.Element {
       </div>
       <div className="carousel carousel-center space-x-4  md:px-51 md:w-280 mt-6 rounded-lg w-full">
         {spotlightsWithMedia.map((spotlight: SpotlightWithMediaRow) => (
-          <Link href={`/wildlife-spotlights/${spotlight.id}`} key={spotlight.id}>
+          <Link
+            href={`/wildlife-spotlights/${spotlight.id}`}
+            key={spotlight.id}
+          >
             <div
               className="relative 
             carousel-item w-60 h-72 md:w-96 rounded-lg 

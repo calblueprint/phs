@@ -27,8 +27,8 @@ interface FilterButtonProps {
  * @param root0.isSelected
  */
 function FilterButton({ content, onClick, isSelected }: FilterButtonProps) {
-  const selectedStyle = 'bg-hunter-green text-white font-lato text-base font-medium rounded-lg';
-  
+  const selectedStyle =
+    'bg-hunter-green text-white font-lato text-base font-medium rounded-lg';
 
   const buttonClass = `py-2 px-6 whitespace-nowrap border-solid text-scary-forest flex-grow font-lato text-base font-medium  ${
     isSelected ? selectedStyle : ''

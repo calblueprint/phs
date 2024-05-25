@@ -26,10 +26,10 @@ export default function Page({
 }: {
   params: { displayId: string; spotlightId: string };
 }) {
-  const [display, setDisplay] = useState<DisplayRow>([]);
+  const [display, setDisplay] = useState<DisplayRow>();
   const [otherDisplays, setOtherDisplays] = useState<DisplayRow[]>([]);
   const [media, setMedia] = useState<MediaRow[]>([]);
-  const [spotlight, setSpotlight] = useState<TourRow>([]);
+  const [spotlight, setSpotlight] = useState<TourRow>();
   const [isWide, setIsWide] = useState(false);
 
   useEffect(() => {
@@ -84,15 +84,15 @@ export default function Page({
       <div className="flex justify-center">
         <div className="flex flex-col gap-[3.12rem] py-[6.25rem]">
           <div className="flex flex-col gap-2">
-            <p className="s2 text-scary-forest">{spotlight.name}</p>
-            <h1 className="text-night">{display.title}</h1>
+            <p className="s2 text-scary-forest">{spotlight?.name}</p>
+            <h1 className="text-night">{display?.title}</h1>
           </div>
           <div className="flex flex-row gap-[6.44rem]">
             <div className="w-[34.75rem] flex flex-col gap-8">
               <div className="w-[34.75rem] h-[21.9375rem]">
                 {media.length > 0 && <Carousel media={media} />}
               </div>
-              <p className="b3 text-night">{display.description}</p>
+              <p className="b3 text-night">{display?.description}</p>
             </div>
             {otherDisplays.length > 0 && (
               <div className="flex flex-col gap-5 w-[20.875rem]">
@@ -133,10 +133,10 @@ export default function Page({
       <div className="px-[1.12rem] pt-8 pb-10">
         <div className="flex flex-col gap-5 mb-6">
           <div className="flex flex-col gap-2">
-            <p className="s2 text-scary-forest">{spotlight.name}</p>
-            <h1 className="text-night">{display.title}</h1>
+            <p className="s2 text-scary-forest">{spotlight?.name}</p>
+            <h1 className="text-night">{display?.title}</h1>
           </div>
-          <p className="b3 text-night">{display.description}</p>
+          <p className="b3 text-night">{display?.description}</p>
         </div>
 
         {otherDisplays.length > 0 && (

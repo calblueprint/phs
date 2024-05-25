@@ -199,7 +199,9 @@ export default function WildlifeSpotlightsPage() {
                     <h2 className="text-night truncate mb-1">
                       {spotlight.name}
                     </h2>
-                    <p className="s1 text-shadow line-clamp-2">{spotlight.preview_text}</p>
+                    <p className="s1 text-shadow line-clamp-2">
+                      {spotlight.preview_text}
+                    </p>
                   </Link>
                 </li>
               ))}

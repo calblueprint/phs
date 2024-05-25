@@ -62,7 +62,7 @@ function DisplayPreviewCard({
         // const imageObj = await fetchExhibitImage(tour.id);
         // if (imageObj) {
         imageUrl = tour.image;
-        console.log(tour)
+        console.log(tour);
         // }
         displayName = tour.category;
       }
