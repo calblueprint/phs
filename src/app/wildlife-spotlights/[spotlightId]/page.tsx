@@ -114,7 +114,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
           <div className="bg-silver w-full h-[0.03125rem] mb-[3.75rem]" />
 
           <div className="flex flex-row gap-[6.44rem]">
-            <div className="flex flex-col">
+            <div className="w-[34.75rem] flex flex-col">
               <div className="w-[34.75rem] h-[21.9375rem] mb-8 relative">
                 {media.length > 0 && (
                   <img
