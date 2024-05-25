@@ -22,6 +22,7 @@ import {
 } from '../../../supabase/tour_displays/queries';
 import BackButton from '../../../components/userComponents/BackButton/BackButton';
 import SpotlightDisplayButton from '../../../components/userComponents/SpotlightDisplayButton/SpotlightDisplayButton';
+import RelatedLinks from '../../../components/userComponents/RelatedLinks/RelatedLinks';
 
 /**
  * @param params -
@@ -135,6 +136,10 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
                 {spotlight.description}
               </p>
 
+              <div className='mb-[3.75rem]'>
+                <RelatedLinks />
+              </div>
+
               {relatedSpotlights.length > 0 && (
                 <div className="flex flex-col gap-4">
                   <h4 className="text-night">Related Spotlights</h4>
@@ -216,7 +221,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
       </div>
     </div>
   ) : (
-    <div className="bg-ivory w-full min-h-screen">
+    <div className="bg-ivory min-h-screen">
       <NavBar />
       <Link
         href="/wildlife-spotlights"
@@ -234,35 +239,44 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
           />
         )}
       </div>
-      <div className="flex flex-col px-[1.125rem] pt-8 pb-10 gap-5">
-        <h1 className="text-night">{spotlight.name}</h1>
-        <p className="b3 text-night">{spotlight.description}</p>
-      </div>
 
-      {displays.length > 0 && (
-        <div className="flex flex-col px-[1.12rem] gap-5 pb-10">
-          <h4 className="text-night">In this spotlight...</h4>
+      <div className="flex flex-col gap-10 px-[1.12rem] pt-8 pb-10">
+        <div className="flex flex-col gap-5">
+          <h1 className="text-night">{spotlight.name}</h1>
+          <p className="b3 text-night">{spotlight.description}</p>
+        </div>
 
-          <div className="flex flex-col gap-[0.875rem] items-center">
-            {displays.map(display => (
-              <Link
-                key={display.id}
-                href={`/wildlife-spotlights/${spotlight.id}/${display.id}?spotlightId=${spotlight.id}`}
-              >
-                <div className="w-[22.125rem] h-[3.75rem]">
-                  <SpotlightDisplayButton text={display.title} />
-                </div>
-              </Link>
-            ))}
+        {displays.length > 0 && (
+          <div className="flex justify-center">
+            <div className="w-[22.125rem] flex flex-col gap-5">
+              <h4 className="text-night">In this spotlight...</h4>
+
+              <div className="flex flex-col gap-[0.875rem] items-center">
+                {displays.map(display => (
+                  <Link
+                    key={display.id}
+                    href={`/wildlife-spotlights/${spotlight.id}/${display.id}?spotlightId=${spotlight.id}`}
+                  >
+                    <div className="w-[22.125rem] h-[3.75rem]">
+                      <SpotlightDisplayButton text={display.title} />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div className="bg-[#BDBDBD] h-[0.03125rem] mx-[-1.12rem]" />
+
+        <div className="w-full flex justify-center">
+          <div className="w-[24.375rem] mx-[-1.12rem]">
+            <RelatedLinks />
           </div>
         </div>
-      )}
 
-      {relatedSpotlights.length > 0 && (
-        <div>
-          <div className="bg-[#BDBDBD] h-[0.03125rem] mb-10" />
-
-          <div className="flex flex-col px-[1.125rem] gap-4 pb-10">
+        {relatedSpotlights.length > 0 && (
+          <div className="flex flex-col gap-4">
             <h4 className="text-night">Related Spotlights</h4>
 
             <ul className="list-none flex overflow-x-auto no-scrollbar gap-3">
@@ -314,8 +328,8 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
               ))}
             </ul>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
