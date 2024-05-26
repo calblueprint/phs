@@ -10,6 +10,7 @@ import { fetchTourDisplays } from '../../../../supabase/tour_displays/queries';
 import { BackArrow, Congratulations } from '../../../../../public/icons';
 import ButtonWithText from '../../../../components/userComponents/ButtonWithText/ButtonWithText';
 import RelatedLinks from '../../../../components/userComponents/RelatedLinks/RelatedLinks';
+import Footer from '../../../../components/userComponents/Footer/Footer';
 
 /**
  * @param params -
@@ -84,6 +85,7 @@ export default function TourEndPage({
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   ) : (
     <div className="bg-ivory min-h-screen">
@@ -114,6 +116,7 @@ export default function TourEndPage({
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

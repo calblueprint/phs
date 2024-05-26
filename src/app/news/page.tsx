@@ -8,6 +8,7 @@ import { NewsRow } from '../../types/types';
 import { fetchAllNewsByDate } from '../../supabase/news/queries';
 import NewsDisplay from '../../components/userComponents/NewsDisplay/NewsDisplay';
 import { useWebDeviceDetection } from '../../context/WindowWidthContext/WindowWidthContext';
+import Footer from '../../components/userComponents/Footer/Footer';
 
 /**
  * @description queries from the news table in supabase and fetches all the news rows to display
@@ -46,6 +47,7 @@ export default function App() {
               ))}
             </ul>
           </div>
+          <Footer />
         </div>
       )}
       {isWebDevice && (
@@ -78,6 +80,7 @@ export default function App() {
               </ul>
             </div>
           </div>
+          <Footer />
         </div>
       )}
     </div>

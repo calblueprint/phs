@@ -5,6 +5,7 @@ import { FiCalendar, FiCompass } from 'react-icons/fi';
 import Link from 'next/link';
 import NavBar from '../../components/userComponents/NavBar/NavBar';
 import { BackArrow } from '../../../public/icons';
+import Footer from '../../components/userComponents/Footer/Footer';
 
 /**
  * @returns The hours and location page.
@@ -89,6 +90,7 @@ export default function HoursLocationPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   ) : (
     <div className="bg-ivory min-h-screen">
@@ -138,6 +140,7 @@ export default function HoursLocationPage() {
           or contact us for guidance.
         </p>
       </div>
+      <Footer />
     </div>
   );
 }

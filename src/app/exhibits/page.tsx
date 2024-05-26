@@ -8,6 +8,7 @@ import { fetchAllCategories } from '../../supabase/category/queries';
 import Exhibit from '../../components/userComponents/Exhibit/Exhibit';
 import BackButton from '../../components/userComponents/BackButton/page';
 import { useWebDeviceDetection } from '../../context/WindowWidthContext/WindowWidthContext';
+import Footer from '../../components/userComponents/Footer/Footer';
 
 /**
  * @returns exhibit page
@@ -39,7 +40,7 @@ function App() {
           const y =
             element.getBoundingClientRect().top + window.scrollY + yOffset;
           // check on this offset later
-          window.scrollTo({ top: y, behavior: 'auto' });
+          window.scrollTo({ top: y, behavior: 'smooth' });
         }
       }, 1000);
     }
@@ -84,6 +85,7 @@ function App() {
               ))}
             </ul>
           </div>
+          <Footer />
         </div>
       )}
       {isWebDevice && (
@@ -131,6 +133,7 @@ function App() {
               ))}
             </div>
           </div>
+          <Footer />
         </div>
       )}
     </div>

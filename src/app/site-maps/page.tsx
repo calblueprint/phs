@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import NavBar from '../../components/userComponents/NavBar/NavBar';
 import FilterButton from '../../components/userComponents/FilterButton/FilterButton';
 import { useWebDeviceDetection } from '../../context/WindowWidthContext/WindowWidthContext';
+import Footer from '../../components/userComponents/Footer/Footer';
 
 const filterButtonContent: string[] = ['Virtual Tour Map', 'Exhibits Map'];
 
@@ -91,6 +92,7 @@ function MapPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   ) : (
     <>
@@ -109,6 +111,7 @@ function MapPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

@@ -23,6 +23,7 @@ import {
 import BackButton from '../../../components/userComponents/BackButton/BackButton';
 import SpotlightDisplayButton from '../../../components/userComponents/SpotlightDisplayButton/SpotlightDisplayButton';
 import RelatedLinks from '../../../components/userComponents/RelatedLinks/RelatedLinks';
+import Footer from '../../../components/userComponents/Footer/Footer';
 
 /**
  * @param params -
@@ -219,6 +220,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   ) : (
     <div className="bg-ivory min-h-screen">
@@ -330,6 +332,7 @@ export default function Page({ params }: { params: { spotlightId: string } }) {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 }
