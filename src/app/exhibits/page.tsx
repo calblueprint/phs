@@ -119,7 +119,7 @@ function App() {
                 </p>
               </div>
             </Link>
-            <div className="mt-8 grid grid-cols-2 gap-16 pb-[6rem]">
+            <div className="pt-8 grid grid-cols-2 gap-16 pb-[6rem]">
               {exhibits.map(exhibit => (
                 <Exhibit
                   title={exhibit.category || ''}
