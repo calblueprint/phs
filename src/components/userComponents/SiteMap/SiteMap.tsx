@@ -71,7 +71,6 @@ function SiteMap({ mode }: SiteMapProps) {
     /**
      * This useEffect will manage fetching Data depending on if the chosen map is tours or exhibits.
      * It will also manage the initial state of the map when no marker is chosen
-     *
      * It will fetch tours when spotlights == True
      */
     async function fetchData() {
@@ -114,6 +113,7 @@ function SiteMap({ mode }: SiteMapProps) {
           setSpotlightTours(data ?? []);
         }
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.error(`Encountered an error fetching data: ${error}`);
       } finally {
         setLoading(false);
