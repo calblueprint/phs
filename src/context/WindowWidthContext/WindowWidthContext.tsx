@@ -6,6 +6,7 @@ import React, {
   useEffect,
   useContext,
   useMemo,
+  useCallback,
 } from 'react';
 
 interface WindowWidthContextProps {
@@ -29,15 +30,18 @@ export function WindowWidthProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [isWeb, setIsWeb] = useState(window.innerWidth >= 1024);
+  const [isWeb, setIsWeb] = useState(false);
+  const handleResize = useCallback(() => {
+    setIsWeb(window.innerWidth >= 1024);
+  }, []);
 
   useEffect(() => {
-    const handleResize = () => setIsWeb(window.innerWidth >= 1024);
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [handleResize]);
 
   const windowWidthValue = useMemo(() => ({ isWeb }), [isWeb]);
 
