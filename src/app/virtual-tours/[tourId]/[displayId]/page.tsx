@@ -19,6 +19,7 @@ import NextStopButton from '../../../../components/userComponents/NextStopButton
 import { fetchImagesForDisplay } from '../../../../supabase/media/queries';
 import Carousel from '../../../../components/userComponents/ImageScroller/ImageScroller';
 import TextButton from '../../../../components/userComponents/TextButton/TextButton';
+import Footer from '../../../../components/userComponents/Footer/Footer';
 
 /**
  * Displays a stop page for the current tour
@@ -179,6 +180,7 @@ export default function TourStopPage({
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   ) : (
     <div className="bg-ivory w-full min-h-screen">
@@ -212,6 +214,7 @@ export default function TourStopPage({
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

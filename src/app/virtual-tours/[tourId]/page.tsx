@@ -19,6 +19,7 @@ import {
 import BackButton from '../../../components/userComponents/BackButton/BackButton';
 import NavBar from '../../../components/userComponents/NavBar/NavBar';
 import ButtonWithText from '../../../components/userComponents/ButtonWithText/ButtonWithText';
+import Footer from '../../../components/userComponents/Footer/Footer';
 
 /**
  * @param params -
@@ -136,78 +137,84 @@ export default function TourStartPage({
               </div>
             </div>
           </div>
+          <Footer />
         </div>
       )
     : tour && (
-        <div className="bg-ivory w-full min-h-screen">
-          <NavBar />
-          <div className="flex flex-col items-center">
-            <Link
-              href="/virtual-tours"
-              className="absolute top-[5.25rem] left-[1.12rem] z-10"
-            >
-              <BackButton />
-            </Link>
-            <div className="w-full h-[15.3125rem]">
-              {media.length > 0 && (
-                <img
-                  key={media.find(m => m.id === tourMedia[0]?.media_id)?.id}
-                  src={
-                    media.find(m => m.id === tourMedia[0]?.media_id)?.url ?? ''
-                  }
-                  alt={
-                    media.find(m => m.id === tourMedia[0]?.media_id)?.text ?? ''
-                  }
-                  className="object-cover w-full h-full"
-                />
-              )}
-            </div>
-
-            <div className="w-[24.375rem] flex flex-col px-[1.125rem] absolute top-[17.81rem] gap-6 mb-[2.5rem]">
-              <div className="bg-mint-cream w-[22.125rem] rounded-lg px-[2.1875rem] py-[2.25rem] flex-col items-center gap-3 inline-flex">
-                <div className="flex flex-col w-[22.125rem] px-[2.1875rem] text-center gap-1">
-                  <p className="s1 text-night">WELCOME TO</p>
-                  <h1 className="text-night truncate">{tour.name}</h1>
-                </div>
-                <Link
-                  href={`/virtual-tours/${params.tourId}/${tourDisplays[0]?.display_id}`}
-                >
-                  <div className="w-[12.25rem] h-10">
-                    <ButtonWithText text="Start Tour" />
-                  </div>
-                </Link>
+        <>
+          <div className="bg-ivory w-full min-h-screen">
+            <NavBar />
+            <div className="flex flex-col items-center">
+              <Link
+                href="/virtual-tours"
+                className="absolute top-[5.25rem] left-[1.12rem] z-10"
+              >
+                <BackButton />
+              </Link>
+              <div className="w-full h-[15.3125rem]">
+                {media.length > 0 && (
+                  <img
+                    key={media.find(m => m.id === tourMedia[0]?.media_id)?.id}
+                    src={
+                      media.find(m => m.id === tourMedia[0]?.media_id)?.url ??
+                      ''
+                    }
+                    alt={
+                      media.find(m => m.id === tourMedia[0]?.media_id)?.text ??
+                      ''
+                    }
+                    className="object-cover w-full h-full"
+                  />
+                )}
               </div>
 
-              <div className="flex flex-col relative gap-4 mb-10">
-                <div className="flex justify-between items-center">
-                  <h4 className="text-night">In this tour</h4>
-                  <div className="bg-[#F5EDCF80] w-[4.375rem] h-[1.5rem] rounded-[0.5625rem] px-3 py-1 flex justify-center items-center">
-                    <p className="s3 text-night">{tour.stop_count} stops</p>
+              <div className="w-[24.375rem] flex flex-col px-[1.125rem] absolute top-[17.81rem] gap-6 mb-[2.5rem]">
+                <div className="bg-mint-cream w-[22.125rem] rounded-lg px-[2.1875rem] py-[2.25rem] flex-col items-center gap-3 inline-flex">
+                  <div className="flex flex-col w-[22.125rem] px-[2.1875rem] text-center gap-1">
+                    <p className="s1 text-night">WELCOME TO</p>
+                    <h1 className="text-night truncate">{tour.name}</h1>
                   </div>
+                  <Link
+                    href={`/virtual-tours/${params.tourId}/${tourDisplays[0]?.display_id}`}
+                  >
+                    <div className="w-[12.25rem] h-10">
+                      <ButtonWithText text="Start Tour" />
+                    </div>
+                  </Link>
                 </div>
-                <ol>
-                  {tourDisplays.map(tourDisplay => (
-                    <li
-                      key={tourDisplay.display_id}
-                      className="mb-[0.44rem] ml-4"
-                    >
-                      <p className="b3 text-night">
-                        {tourDisplay.display_order != null
-                          ? tourDisplay.display_order + 1
-                          : ''}
-                        .{' '}
-                        {
-                          displays.find(
-                            display => display.id === tourDisplay.display_id,
-                          )?.title
-                        }
-                      </p>
-                    </li>
-                  ))}
-                </ol>
+
+                <div className="flex flex-col relative gap-4 mb-10">
+                  <div className="flex justify-between items-center">
+                    <h4 className="text-night">In this tour</h4>
+                    <div className="bg-[#F5EDCF80] w-[4.375rem] h-[1.5rem] rounded-[0.5625rem] px-3 py-1 flex justify-center items-center">
+                      <p className="s3 text-night">{tour.stop_count} stops</p>
+                    </div>
+                  </div>
+                  <ol>
+                    {tourDisplays.map(tourDisplay => (
+                      <li
+                        key={tourDisplay.display_id}
+                        className="mb-[0.44rem] ml-4"
+                      >
+                        <p className="b3 text-night">
+                          {tourDisplay.display_order != null
+                            ? tourDisplay.display_order + 1
+                            : ''}
+                          .{' '}
+                          {
+                            displays.find(
+                              display => display.id === tourDisplay.display_id,
+                            )?.title
+                          }
+                        </p>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+          <Footer />
+        </>
       );
 }
