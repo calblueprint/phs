@@ -13,11 +13,11 @@ interface TourCardProps {
 
 /**
  * Represents a preview card for a tour.
- *
- * @param {TourRow} tour - The tour data.
- * @param {Function} handleClick - The function to call when the card is clicked.
- * @param {Function} handleClose - The function to call to close the card.
- * @returns {JSX.Element} The component UI.
+ * @param tour - The tour data.
+ * @param tour.tour  - The tour data.
+ * @param tour.handleClick - The function to call when the card is clicked.
+ * @param tour.handleClose - The function to call when the close button is clicked.
+ * @returns The component UI.
  */
 function TourPreviewCard({
   tour,
@@ -102,6 +102,15 @@ function TourPreviewCard({
                 e.stopPropagation();
                 handleClose();
               }}
+              onKeyDown={e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.stopPropagation();
+                  handleClose();
+                }
+              }}
+              role="button"
+              tabIndex={0}
+              aria-label="Close preview"
             >
               <div className="pl-[0.75rem] w-full">
                 <text className="text-shadow bg-[#F173731A] pr-2 pl-2 rounded-md">

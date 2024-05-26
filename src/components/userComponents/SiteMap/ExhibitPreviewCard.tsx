@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { LatLngExpression } from 'leaflet';
-import { useMapEvents } from 'react-leaflet';
+// import { LatLngExpression } from 'leaflet';
+// import { useMapEvents } from 'react-leaflet';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ExhibitWithCategoryRow } from '../../../types/types';
@@ -14,18 +14,19 @@ interface ExhibitCardProps {
 
 /**
  * Props for ExhibitPreviewCard
- * @typedef {Object} ExhibitCardProps
- * @property {ExhibitWithCategoryRow} tour - The exhibit data.
- * @property {Function} handleClose - Function to close the preview card.
- * @property {Function} [handleClick] - Optional click handler for additional actions.
+ * tour - The exhibit data.
+ * handleClose - Function to close the preview card.
+ * [handleClick] - Optional click handler for additional actions.
  */
 
 /**
  * A component that renders a preview card for an exhibit within a Leaflet map container.
  * Includes image and details, with clickable areas for further interaction.
- *
- * @param {ExhibitCardProps} props - The props for the component.
- * @returns {JSX.Element} The rendered JSX for the exhibit preview card.
+ * @param props - The props for the component.
+ * @param props.tour - props for tour
+ * @param props.handleClick - Will handle when user clicks on the exhibit card
+ * @param props.handleClose - This will close the preview card
+ * @returns - The rendered JSX for the exhibit preview card.
  */
 function ExhibitPreviewCard({
   tour,
@@ -36,7 +37,7 @@ function ExhibitPreviewCard({
   const [previewImage, setPreviewImage] = useState<string>(tour.image || '');
   const [name1, setname1] = useState<string>(tour.category || '');
 
-  const { id, description, coordinates, category } = tour;
+  const { id, description } = tour;
   const [width, setWidth] = useState('20.06rem');
   const [height, setHeight] = useState('7.687rem');
   const isWebDevice = useWebDeviceDetection();
@@ -56,16 +57,6 @@ function ExhibitPreviewCard({
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [handleResize]);
-
-  // Map Context
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const map = useMapEvents({
-    click: e => {
-      if (!e.latlng.equals(coordinates as LatLngExpression)) {
-        handleClose();
-      }
-    },
-  });
 
   // fetch image to use for preview
   useEffect(() => {
@@ -128,6 +119,15 @@ function ExhibitPreviewCard({
                 e.stopPropagation();
                 handleClose();
               }}
+              onKeyDown={e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.stopPropagation();
+                  handleClose();
+                }
+              }}
+              role="button"
+              tabIndex={0}
+              aria-label="Close preview"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
