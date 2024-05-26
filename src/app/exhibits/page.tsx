@@ -34,12 +34,12 @@ function App() {
     if (hash) {
       setTimeout(() => {
         const element = document.querySelector(hash);
-        const yOffset = -200;
+        const yOffset = -100;
         if (element) {
           const y =
             element.getBoundingClientRect().top + window.scrollY + yOffset;
           // check on this offset later
-          window.scrollTo({ top: y, behavior: 'auto' });
+          window.scrollTo({ top: y, behavior: 'smooth' });
         }
       }, 1000);
     }
