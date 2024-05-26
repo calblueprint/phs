@@ -24,7 +24,7 @@ export default function App() {
       setNews(fetchedNews);
     };
     getNews();
-  }, [news]);
+  }, []);
   return (
     <div className="bg-ivory h-full">
       <NavBar />
