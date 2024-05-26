@@ -131,19 +131,34 @@ function Input({
                   </div>
                 </div>
                 <div className="justify-start items-start gap-2.5 inline-flex">
-                  <Link href="https://www.facebook.com/PHSSPCA/">
+                  <Link
+                    href="https://www.facebook.com/PHSSPCA/"
+                    target="_blank"
+                  >
                     <FaFacebook color="white" fontSize="1.3em" />
                   </Link>
-                  <Link href="https://www.instagram.com/peninsulahumanesociety">
+                  <Link
+                    href="https://www.instagram.com/peninsulahumanesociety"
+                    target="_blank"
+                  >
                     <FaInstagram color="white" fontSize="1.4em" />
                   </Link>
-                  <Link href="https://twitter.com/peninsulahumane">
+                  <Link
+                    href="https://twitter.com/peninsulahumane"
+                    target="_blank"
+                  >
                     <RiTwitterXFill color="white" fontSize="1.4em" />
                   </Link>
-                  <Link href="https://www.tiktok.com/@peninsulahumanesociety">
+                  <Link
+                    href="https://www.tiktok.com/@peninsulahumanesociety"
+                    target="_blank"
+                  >
                     <FaTiktok color="white" fontSize="1.35em" />
                   </Link>
-                  <Link href="https://www.youtube.com/user/peninsulaspca">
+                  <Link
+                    href="https://www.youtube.com/user/peninsulaspca"
+                    target="_blank"
+                  >
                     <FaYoutube color="white" fontSize="1.6em" />
                   </Link>
                 </div>
@@ -181,7 +196,7 @@ function Input({
               </div>
             </div>
             <div className="w-full pt-6 gap-4 bg-scary-forest">
-              <Link href="https://phs-spca.org">
+              <Link href="https://phs-spca.org" target="_blank">
                 <div className="w-[12.5rem] m-auto px-4 py-1.5 bg-hunter-green rounded-lg">
                   <div className="text-center text-silver text-xs font-normal font-['Lato'] active:text-[#bcc0bb]">
                     Learn more about PHS/SPCA
@@ -193,6 +208,7 @@ function Input({
               </Link>
               <Link
                 href="https://phs-spca.org/privacy-policy/"
+                target="_blank"
                 className="mt-1 pb-10 text-center flex justify-center text-zinc-500 text-xs font-normal font-['Lato'] underline"
               >
                 Privacy Policy
@@ -218,7 +234,7 @@ function Input({
                 private, non-profit charitable organization dedicated to animal
                 welfare.{' '}
               </p>
-              <Link href="https://phs-spca.org">
+              <Link href="https://phs-spca.org" target="_blank">
                 <div className="w-[200px] px-4 py-1.5 bg-hunter-green rounded-lg">
                   <div className="text-center text-silver text-xs font-normal font-['Lato'] active:text-[#bcc0bb]">
                     Learn more about PHS/SPCA
@@ -269,19 +285,31 @@ function Input({
                 9:30 AM – 5:00 PM{' '}
               </p>
               <div className="justify-start items-start gap-2.5 inline-flex">
-                <Link href="https://www.facebook.com/PHSSPCA/">
+                <Link href="https://www.facebook.com/PHSSPCA/" target="_blank">
                   <FaFacebook color="white" fontSize="1.3em" />
                 </Link>
-                <Link href="https://www.instagram.com/peninsulahumanesociety">
+                <Link
+                  href="https://www.instagram.com/peninsulahumanesociety"
+                  target="_blank"
+                >
                   <FaInstagram color="white" fontSize="1.4em" />
                 </Link>
-                <Link href="https://twitter.com/peninsulahumane">
+                <Link
+                  href="https://twitter.com/peninsulahumane"
+                  target="_blank"
+                >
                   <RiTwitterXFill color="white" fontSize="1.4em" />
                 </Link>
-                <Link href="https://www.tiktok.com/@peninsulahumanesociety">
+                <Link
+                  href="https://www.tiktok.com/@peninsulahumanesociety"
+                  target="_blank"
+                >
                   <FaTiktok color="white" fontSize="1.35em" />
                 </Link>
-                <Link href="https://www.youtube.com/user/peninsulaspca">
+                <Link
+                  href="https://www.youtube.com/user/peninsulaspca"
+                  target="_blank"
+                >
                   <FaYoutube color="white" fontSize="1.6em" />
                 </Link>
               </div>
@@ -293,6 +321,7 @@ function Input({
             </p>
             <Link
               href="https://phs-spca.org/privacy-policy/"
+              target="_blank"
               className="ml-8 pb-10 text-center flex justify-center text-silver text-normal font-normal font-['Lato'] underline"
             >
               Privacy Policy
