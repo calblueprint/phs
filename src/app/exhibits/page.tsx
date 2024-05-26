@@ -39,7 +39,7 @@ function App() {
           const y =
             element.getBoundingClientRect().top + window.scrollY + yOffset;
           // check on this offset later
-          window.scrollTo({ top: y, behavior: 'instant' });
+          window.scrollTo({ top: y, behavior: 'auto' });
         }
       }, 1000);
     }
@@ -80,7 +80,6 @@ function App() {
                   image={exhibit.image || ''}
                   key={exhibit.id}
                   id={exhibit.id}
-                  web={false}
                 />
               ))}
             </ul>
@@ -128,7 +127,6 @@ function App() {
                   image={exhibit.image || ''}
                   key={exhibit.id}
                   id={exhibit.id}
-                  web
                 />
               ))}
             </div>
