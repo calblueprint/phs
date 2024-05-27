@@ -23,12 +23,12 @@ function HomeNewsFeed() {
       setNews(topThreeNews);
     };
     getNews();
-  }, [news]);
+  }, []);
 
   return (
     <div
       className="w-full flex flex-row px-2.5 py-20 web:px-56 web:py-28 gap-40
-     justify-center items-center justify-start"
+     justify-center items-center"
     >
       {isWebDevice && (
         <img

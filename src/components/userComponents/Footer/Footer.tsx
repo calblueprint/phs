@@ -344,12 +344,14 @@ export default function Footer() {
   const [inputValueEmail, setEmailValue] = useState('');
   const [showError, setShowError] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
-
-  const subbed = () =>
-    Boolean(JSON.parse(window.sessionStorage.getItem('subscribed') || 'false'));
-  const [subscribed, setSubscribed] = useState(subbed);
+  const [subscribed, setSubscribed] = useState(false);
 
   useEffect(() => {
+    const subbed = () =>
+      Boolean(
+        JSON.parse(window.sessionStorage.getItem('subscribed') || 'false'),
+      );
+    setSubscribed(subbed);
     window.sessionStorage.setItem('subscribed', subscribed.toString());
   }, [subscribed]);
 
