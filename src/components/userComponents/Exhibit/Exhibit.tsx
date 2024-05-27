@@ -37,7 +37,14 @@ export default function Exhibit({
               <p className="text-night leading-tight font-normal font-['Lato']">
                 {description}
               </p>
-              <Image src={image} alt="Exhibit" width={354} height={150} />
+              <Image
+                src={image}
+                width="0"
+                height="0"
+                sizes="100vw"
+                className="relative object-contain w-full h-auto"
+                alt="Exhibit"
+              />
             </div>
           </div>
         </li>
@@ -46,16 +53,23 @@ export default function Exhibit({
         <div className="flex flex-col w-full px-8 py-16 bg-mint-cream rounded-lg flex-col justify-start items-start gap-2.5 mt-6">
           <div className="justify-start items-start gap-5">
             <div className="justify-start items-center gap-2">
-              <h1 className="text-hunter-green font-semibold leading-tight font-['Lato']">
+              <h2 className="text-hunter-green font-semibold leading-tight font-['Lato']">
                 {' '}
                 {title}
-              </h1>
+              </h2>
             </div>
             <p className="text-night leading-tight font-normal mt-5 mb-5 font-['Lato']">
               {description}
             </p>
           </div>
-          <Image src={image} alt="Exhibit" width={354} height={150} />
+          <Image
+            src={image}
+            width="0"
+            height="0"
+            sizes="100vw"
+            className="relative object-contain w-full h-auto"
+            alt="Exhibit"
+          />
           <div className="flex-grow" />
         </div>
       )}

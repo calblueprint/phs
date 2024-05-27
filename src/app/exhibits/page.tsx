@@ -35,7 +35,7 @@ function App() {
     if (hash) {
       setTimeout(() => {
         const element = document.querySelector(hash);
-        const yOffset = -200;
+        const yOffset = -100;
         if (element) {
           const y =
             element.getBoundingClientRect().top + window.scrollY + yOffset;
@@ -121,7 +121,7 @@ function App() {
                 </p>
               </div>
             </Link>
-            <div className="mt-8 grid grid-cols-2 gap-16 pb-[6rem]">
+            <div className="pt-8 grid grid-cols-2 gap-16 pb-[6rem]">
               {exhibits.map(exhibit => (
                 <Exhibit
                   title={exhibit.category || ''}
