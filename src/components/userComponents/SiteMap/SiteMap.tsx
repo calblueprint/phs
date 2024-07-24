@@ -1,9 +1,13 @@
+'use client';
+
 import L, { LatLngExpression } from 'leaflet';
-import React, { useEffect, useState, useRef } from 'react';
-import { MapContainer, TileLayer, Marker } from 'react-leaflet';
+import React, { useEffect, useState } from 'react';
+import { LayersControl, MapContainer, TileLayer, Marker } from 'react-leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
+
 import { fetchAllSpotlights } from '../../../supabase/tours/queries';
 import { ExhibitWithCategoryRow, TourRow } from '../../../types/types';
+
 import Control from './Control';
 import { fetchAllExhibits } from '../../../supabase/exhibits/queries';
 import { getCategoryColor1 } from '../../../supabase/category/queries';
@@ -14,7 +18,6 @@ import {
 } from '../../../../public/icons';
 import ExhibitPreviewCard from './ExhibitPreviewCard';
 import TourPreviewCard from './TourPreviewCard';
-import { useWebDeviceDetection } from '../../../context/WindowWidthContext/WindowWidthContext';
 
 const center: LatLngExpression = {
   lat: 37.58748,
@@ -63,37 +66,19 @@ function SiteMap({ mode }: SiteMapProps) {
   >(null);
   const [mapCenter, setMapCenter] = useState<LatLngExpression>(center);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const isWebDevice = useWebDeviceDetection();
-  const cacheRef = useRef<{
-    tours?: TourRow[];
-    exhibits?: ExhibitWithCategoryRow[];
-  }>({});
 
+  // fetch tours where spotlight == True
   useEffect(() => {
     /**
-     * This useEffect will manage fetching Data depending on if the chosen map is tours or exhibits.
-     * It will also manage the initial state of the map when no marker is chosen
-     * It will fetch tours when spotlights == True
+     *
      */
     async function fetchData() {
-      setLoading(true);
       try {
         let data;
         if (mode === 'tours') {
-          if (cacheRef.current.tours) {
-            data = cacheRef.current.tours;
-          } else {
-            data = await fetchAllSpotlights();
-            cacheRef.current.tours = data;
-          }
+          data = await fetchSpotlightTours();
         } else if (mode === 'exhibits') {
-          if (cacheRef.current.exhibits) {
-            data = cacheRef.current.exhibits;
-          } else {
-            data = await fetchAllExhibits();
-            cacheRef.current.exhibits = data;
-          }
+          data = await fetchAllExhibits();
         }
         if (data && mode === 'tours') {
           const colors = await Promise.all(
@@ -132,18 +117,17 @@ function SiteMap({ mode }: SiteMapProps) {
 
           console.log(newColorsMap);
         }
+        setSpotlightTours(data ?? []);
       } catch (error) {
-        // eslint-disable-next-line no-console
         console.error(`Encountered an error fetching data: ${error}`);
-      } finally {
-        setLoading(false);
       }
     }
-
     fetchData();
-    setMapCenter(center);
-    setSelectedMarker(null);
+  }, [mode]);
+  useEffect(() => {
+    // Reset selectedTour and selectedMarker when mode changes to ensure popups start closed
     setSelectedTour(null);
+    setSelectedMarker(null);
   }, [mode]);
 
   useEffect(() => {
@@ -172,44 +156,42 @@ function SiteMap({ mode }: SiteMapProps) {
       zoomControl={false}
       scrollWheelZoom
       style={{
-        height: '40vh',
+        height: '75vh',
         width: '100%',
-        minHeight: '532px',
+        minHeight: '544px',
         zIndex: '10',
         marginBottom: '25px',
       }}
       key={new Date().getTime()}
     >
       <TileLayer {...tileLayer} />
-      {loading ? (
-        <div className="loading-spinner">Loading...</div>
-      ) : (
-        spotlightTours &&
-        spotlightTours.map((tour, i) => {
-          const color = colorsMap[tour.id] || '#F17373'; // Fallback color
-          return (
-            <Marker
-              key={tour.id}
-              position={{
-                lat: (tour.coordinates as { lat: number })?.lat ?? 0,
-                lng: (tour.coordinates as { lng: number })?.lng ?? 0,
-              }}
-              eventHandlers={{ click: () => handleMarkerSelect(tour, i) }}
-              icon={
-                selectedMarker === i
-                  ? createSelectedMarkerIcon(color)
-                  : createDefaultMarkerIcon(color)
-              }
-            />
-          );
-        })
-      )}
-      {selectedTour &&
-        (isWebDevice ? (
+      <LayersControl position="topright">
+        {spotlightTours &&
+          spotlightTours.map((tour, i) => {
+            // Fetch the color for this tour/exhibit; fallback to a default color if not found
+            console.log(tour);
+            const color = colorsMap[tour.id] || '#F17373'; // Fallback color
+            return (
+              <Marker
+                key={tour.id}
+                position={{
+                  lat: (tour.coordinates as { lat: number })?.lat ?? 0,
+                  lng: (tour.coordinates as { lng: number })?.lng ?? 0,
+                }}
+                eventHandlers={{ click: () => handleMarkerSelect(tour, i) }}
+                icon={
+                  selectedMarker === i
+                    ? createSelectedMarkerIcon(color)
+                    : createDefaultMarkerIcon(color)
+                }
+              />
+            );
+          })}
+        {selectedTour && (
           <Control position="bottomright">
             {mode === 'tours' ? (
               <TourPreviewCard
-                tour={selectedTour as TourRow}
+                tour={selectedTour as TourRow} // Assuming you have proper type checks or type casting
                 handleClose={handlePreviewClose}
               />
             ) : (
@@ -219,22 +201,8 @@ function SiteMap({ mode }: SiteMapProps) {
               />
             )}
           </Control>
-        ) : (
-          <div className="bottom-center">
-            {mode === 'tours' ? (
-              <TourPreviewCard
-                tour={selectedTour as TourRow}
-                handleClose={handlePreviewClose}
-              />
-            ) : (
-              <ExhibitPreviewCard
-                tour={selectedTour as ExhibitWithCategoryRow}
-                handleClose={handlePreviewClose}
-              />
-            )}
-          </div>
-        ))}
-
+        )}
+      </LayersControl>
       {selectedTour == null && <RecenterMap center={center} />}
     </MapContainer>
   );

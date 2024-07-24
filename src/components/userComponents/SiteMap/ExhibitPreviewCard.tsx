@@ -61,40 +61,41 @@ function ExhibitPreviewCard({
   // fetch image to use for preview
   useEffect(() => {
     const fetchDetails = async () => {
-      if (!tour.image) {
-        setLoading(true);
+      setLoading(true);
 
-        let imageUrl = '';
-        let displayName = '';
+      let imageUrl = '';
+      let displayName = '';
 
-        imageUrl = tour.image;
-        displayName = tour.category;
+      // const imageObj = await fetchExhibitImage(tour.id);
+      // if (imageObj) {
+      imageUrl = tour.image;
+      // }
+      displayName = tour.category;
 
-        // Set state variables
-        setPreviewImage(imageUrl);
-        setname1(displayName);
-        setLoading(false);
-      }
+      // Set state variables
+      setPreviewImage(imageUrl);
+      setname1(displayName);
+      setLoading(false);
     };
 
+
     fetchDetails();
+  }, [tour]);
   }, [tour]);
 
   /** route this to spotlights */
 
   return (
-    <div
-      className="flex flex-col items-center justify-center mx-auto rounded-md px-[0.56rem]"
-      style={{ width, height }}
-    >
+    <div className="flex flex-col items-center justify-center w-[25rem] h-[8.25rem] max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto p-4 pb-[2.87rem] pr-[1.19rem] pl-[1.19rem] rounded-md">
       <div
-        className="flex flex-row items-center rounded-md overflow-hidden bg-ivory cursor-pointer flex-shrink-0 shadow-xl"
+        className="flex flex-row items-center rounded-md overflow-hidden bg-ivory cursor-pointer w-full sm:w-4/4 md:w-5/5 lg:w-2/2 xl:w-5/5 flex-shrink-0 shadow-xl"
         aria-hidden="true"
       >
         {!loading && (
-          <div className="relative w-[5.875rem] z-10 h-full shrink-0 rounded-tl-md rounded-tr-none rounded-br-none rounded-bl-md">
+          <div className="relative w-[5.8125rem] z-10 h-full shrink-0 rounded-tl-md rounded-tr-none rounded-br-none rounded-bl-md">
             <Image
               src={previewImage}
+              alt="placeholder"
               alt="placeholder"
               layout="fill"
               objectFit="cover"
@@ -116,18 +117,9 @@ function ExhibitPreviewCard({
             <div
               className="flex justify-end items-center pt-2 pr-2"
               onClick={e => {
-                e.stopPropagation();
+                e.stopPropagation(); //  prevents the click from propagating to the parent link
                 handleClose();
               }}
-              onKeyDown={e => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.stopPropagation();
-                  handleClose();
-                }
-              }}
-              role="button"
-              tabIndex={0}
-              aria-label="Close preview"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -138,29 +130,29 @@ function ExhibitPreviewCard({
               >
                 <path
                   d="M10.0523 11.0274L3.35083 4.32596M10.0524 4.32596L3.35083 11.0275"
-                  stroke="silver"
+                  stroke="#272929"
                   strokeWidth="1.11692"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
               </svg>
             </div>
-            <Link href={`/exhibits#a${id}`}>
-              <h3 className="relative pr-[0.31rem] pl-[0.75rem] pt-[0.3rem] pb-[0rem]">
-                <p className="truncate font-medium font-lato text-night  text-base leading-normal">
-                  {name1}
-                </p>
+            <Link href={`/spotlightPage/${id}`}>
+              <h3 className="relative truncate font-medium font-lato text-night pr-[0.31rem] pl-[0.75rem] pt-[0rem] pb-[0rem] text-base leading-normal">
+                {name1}
               </h3>
-              <h4 className="relative h-[2rem] pr-[0.31rem] pt-[0rem] pl-[0.75rem] pb-[2.4rem]">
-                <p className="line-clamp-2 text-shadow text-xs font-normal font-lato">
-                  {description}{' '}
-                </p>
+
+              <h4 className="relative font-lato h-[2rem] pr-[0.31rem] pt-[0rem] pl-[0.75rem] pb-[2.4rem] text-shadow line-clamp-2 text-sm">
+                {description}
               </h4>
-              <h6 className="relative pt-[0rem] pr-[1rem] pb-[0.4rem] text-silver font-lato text-xs text-right">
-                Go to exhibit &gt;
+              <h6 className="relative pt-[0.2rem] pr-[1rem] text-silver font-lato text-xs text-right">
+                Go to exhibit `&gt;`
               </h6>
             </Link>
           </div>
+          {/* <div>
+                <h6>Go to exhibit > </h6>
+            </div> */}
         </div>
       </div>
     </div>
