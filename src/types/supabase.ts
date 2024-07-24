@@ -14,25 +14,19 @@ export type Database = {
           category: string | null;
           color_hex: string;
           created_at: string;
-          description: string | null;
           id: number;
-          image: string | null;
         };
         Insert: {
           category?: string | null;
           color_hex: string;
           created_at?: string;
-          description?: string | null;
           id?: number;
-          image?: string | null;
         };
         Update: {
           category?: string | null;
           color_hex?: string;
           created_at?: string;
-          description?: string | null;
           id?: number;
-          image?: string | null;
         };
         Relationships: [];
       };
@@ -116,54 +110,25 @@ export type Database = {
       };
       exhibits: {
         Row: {
-          category_id: number;
           coordinates: Json | null;
+          description: string;
           id: string;
+          image: string | null;
           title: string;
         };
         Insert: {
-          category_id: number;
           coordinates?: Json | null;
+          description: string;
           id?: string;
+          image?: string | null;
           title: string;
         };
         Update: {
-          category_id?: number;
           coordinates?: Json | null;
+          description?: string;
           id?: string;
+          image?: string | null;
           title?: string;
-        };
-        Relationships: [
-          {
-            foreignKeyName: 'public_exhibits_category_id_fkey';
-            columns: ['category_id'];
-            isOneToOne: false;
-            referencedRelation: 'categories';
-            referencedColumns: ['id'];
-          },
-        ];
-      };
-      links: {
-        Row: {
-          created_at: string;
-          id: string;
-          title: string | null;
-          type: string | null;
-          url: string | null;
-        };
-        Insert: {
-          created_at?: string;
-          id?: string;
-          title?: string | null;
-          type?: string | null;
-          url?: string | null;
-        };
-        Update: {
-          created_at?: string;
-          id?: string;
-          title?: string | null;
-          type?: string | null;
-          url?: string | null;
         };
         Relationships: [];
       };
@@ -399,26 +364,6 @@ export type Database = {
           category_in: string;
         };
         Returns: string;
-      };
-      get_exhibit_details: {
-        Args: Record<PropertyKey, never>;
-        Returns: {
-          coordinates: Json;
-          id: number;
-          category: string;
-          description: string;
-          image: string;
-        }[];
-      };
-      get_links: {
-        Args: Record<PropertyKey, never>;
-        Returns: {
-          id: string;
-          created_at: string;
-          type: string;
-          title: string;
-          url: string;
-        }[];
       };
       get_non_spotlight_tours: {
         Args: Record<PropertyKey, never>;
