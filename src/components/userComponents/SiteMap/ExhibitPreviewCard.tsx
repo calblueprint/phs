@@ -78,9 +78,7 @@ function ExhibitPreviewCard({
       setLoading(false);
     };
 
-
     fetchDetails();
-  }, [tour]);
   }, [tour]);
 
   /** route this to spotlights */

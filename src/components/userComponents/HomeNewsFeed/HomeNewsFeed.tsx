@@ -8,7 +8,6 @@ import { NewsRow } from '../../../types/types';
 import NewsDisplay from '../NewsDisplay/NewsDisplay';
 import { fetchAllNewsByDate } from '../../../supabase/news/queries';
 
-
 /**
  * @returns news feed page limited to 3 most recend entries, for home page.
  */
@@ -35,14 +34,17 @@ function HomeNewsFeed() {
   }, []);
 
   return (
-    <div className="flex flex-row px-2.5 py-20 md:px-56 md:py-28 gap-40
-     justify-center items-center justify-start">
+    <div
+      className="flex flex-row px-2.5 py-20 md:px-56 md:py-28 gap-40
+     justify-center items-center justify-start"
+    >
       {windowWidth > 768 && (
         <img
-        className="object-cover object-center md:w-96 md:h-80 rounded-l"
-        src="https://qkkuacqtcsfjbnzmxmhk.supabase.co/storage/v1/object/public/images/HomePage_Raccoons.png"
-        alt="background for spotlight"
-        />)}
+          className="object-cover object-center md:w-96 md:h-80 rounded-l"
+          src="https://qkkuacqtcsfjbnzmxmhk.supabase.co/storage/v1/object/public/images/HomePage_Raccoons.png"
+          alt="background for spotlight"
+        />
+      )}
       <div className="w-full">
         <div className="w-full md:w-96 h-5 justify-between items-center flex">
           <h2 className="text-night font-medium">Latest News</h2>
