@@ -24,7 +24,9 @@ function AdmissionButton() {
         className="flex-col justify-start
         items-start gap-0.5 inline-flex"
       >
-        <p className="b1 text-night whitespace-normal md:text-nowrap">Hours & Location</p>
+        <p className="b1 text-night whitespace-normal md:text-nowrap">
+          Hours & Location
+        </p>
       </div>
     </Link>
   );

@@ -39,7 +39,7 @@ function VisitorResources() {
         <div className="z-10 flex-col items-start justify-start items-center gap-4 md:gap-3 inline-flex bg-opacity-80 md:flex-row">
           <ExhibitButton />
           <div className="flex w-full justify-center gap-4 md:space-x-0 z-10 md:flex-col md:gap-3">
-            <div className ="w-1/2 md:w-full">
+            <div className="w-1/2 md:w-full">
               <MapButton />
             </div>
             <div className="w-1/2 md:w-full">
