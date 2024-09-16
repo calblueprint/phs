@@ -61,9 +61,6 @@ function SiteMap({ mode }: SiteMapProps) {
   const [selectedTour, setSelectedTour] = useState<
     TourRow | ExhibitWithCategoryRow | null
   >(null);
-  const [selectedTour, setSelectedTour] = useState<
-    TourRow | ExhibitWithCategoryRow | null
-  >(null);
   const [mapCenter, setMapCenter] = useState<LatLngExpression>(center);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
 

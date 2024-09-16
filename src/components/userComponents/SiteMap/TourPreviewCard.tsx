@@ -56,26 +56,14 @@ function TourPreviewCard({
   useEffect(() => {
     const fetchDetails = async () => {
       setLoading(true);
-
-      let imageUrl = '';
-      let displayName = '';
-
-      // Fetch images for a tour
       const images = await fetchImagesForTour(tour.id);
-      if (images && images.length > 0) {
-        imageUrl = images[0].url;
-      }
-      displayName = tour.name;
-      // Set state variables
-      setPreviewImage(imageUrl);
-      setname1(displayName);
+      setPreviewImage(images && images.length > 0 ? images[0].url : '');
+      setname1(tour.name);
       setLoading(false);
     };
 
     fetchDetails();
   }, [tour]);
-
-  /** route this to spotlights */
 
   return (
     <div
@@ -88,7 +76,7 @@ function TourPreviewCard({
         onClick={handleClick}
       >
         {!loading && (
-          <div className="relative w-[5.8125rem] z-10 h-full shrink-0 rounded-tl-md rounded-tr-none rounded-br-none rounded-bl-md">
+          <div className="relative w-[5.875rem] z-10 h-full shrink-0 rounded-tl-md rounded-tr-none rounded-br-none rounded-bl-md">
             <Image
               src={previewImage}
               alt="Tour preview"
