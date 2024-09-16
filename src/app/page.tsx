@@ -29,9 +29,9 @@ function Home() {
     <div className="HomePage w-full h-full m-0 flex-col justify-center font-normal">
       <NavBar />
       <WelcomeGraphic />
-      <div className="IntroInfo web:w-full web:h-72 bg-ivory web:bg-mint-cream inline-flex flex-col justify-center items-center">
-        {!isWebDevice && (
-          <p className="b3 w-full px-4 py-10 text-night text-center gap-4">
+      <div className="IntroInfo md:w-full md:h-72 bg-ivory md:bg-mint-cream inline-flex flex-col justify-center items-center">
+        {windowWidth < 768 && (
+          <p className="b3 w-full px-[2rem] mt-10 text-night text-center text-base gap-4">
             The Peninsula Humane Society & SPCA (PHS/SPCA) is a local, private,
             non-profit charitable organization dedicated to animal welfare.
             PHS/SPCA is truly an open admission shelter, not only accepting many
@@ -43,7 +43,7 @@ function Home() {
           className="web:w-auto h-48 rounded-lg bg-mint-cream web:bg-ivory justify-center 
         items-center mt-10 web:mt-0 m-2 inline-flex px-10 py-11 web:px-[4.59rem] py-[2.875rem]"
         >
-          <h3 className="max-w-64 web:w-96 text-scary-forest text-center font-normal italic">
+          <h3 className="w-64 md:w-96 text-scary-forest text-center font-normal italic">
             Peninsula Humane Society & SPCA guided by the humane ethics, builds
             healthy relationships between people and animals.
           </h3>
