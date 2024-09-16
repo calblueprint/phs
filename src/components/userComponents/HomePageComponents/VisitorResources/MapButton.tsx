@@ -15,7 +15,7 @@ function MapButton() {
       className="MapButton w-full h-full rounded-md gap-3
       justify-center items-center inline-flex z-10
       p-4 web:px-8 web:py-6
-      // p-4 web:pl-9 web:pr-24 web:pt-7 web:pb-[1.625rem]
+      web:pl-9 web:pr-24 web:pt-7 web:pb-[1.625rem]
       bg-ivory group hover:bg-mint-cream focus:bg-mint-cream
       shadow-darkest focus:shadow-vignette"
       href="/site-maps"

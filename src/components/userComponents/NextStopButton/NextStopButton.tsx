@@ -27,7 +27,7 @@ export default function NextStopButton({ text, link }: NextStopButtonProps) {
       onClick={handleClick}
     >
       <div className="flex items-center justify-end w-full gap-[1.31rem]">
-        <p className="b1 text-ivory">{text}</p>
+        <h4 className="text-ivory font-lato font-bold text-center">{text}</h4>
         <CaretRight />
       </div>
     </Link>
